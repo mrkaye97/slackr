@@ -5,14 +5,14 @@
 \alias{slackr-package}
 \title{A package to send webhook API messages to Slack.com channels/users}
 \usage{
-slackr(expr, channel = Sys.getenv("SLACK_CHANNEL"),
+slackr(..., channel = Sys.getenv("SLACK_CHANNEL"),
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
   slack_webhook_url_prefix = Sys.getenv("SLACK_URL_PREFIX"),
   token = Sys.getenv("SLACK_TOKEN"))
 }
 \arguments{
-\item{expr}{an R expression to be evaluated}
+\item{...}{expressions to be sent to Slack.com}
 
 \item{channel}{which channel to post the message to (chr)}
 
@@ -24,9 +24,6 @@ slackr(expr, channel = Sys.getenv("SLACK_CHANNEL"),
 
 \item{token}{your webhook API token}
 }
-\value{
-if there was an error posting to Slack, the \code{POST} response object will be returned
-}
 \description{
 A package to send webhook API messages to Slack.com channels/users
 
@@ -37,7 +34,7 @@ general information sharing.
 \details{
 By default, everyting but \code{expr} will be looked for in a "\code{SLACK_}"
 environment variable. You can override or just specify these values directly instead,
-but it's probably better to call `slackrSetup()` first.
+but it's probably better to call \code{slackrSetup()} first.
 }
 \examples{
 \dontrun{
