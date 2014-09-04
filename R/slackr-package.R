@@ -1,12 +1,15 @@
-#' A package to send webhook API messages to Slack.com channels/users
+#' A package to work with Slack.com webhook API messages
 #'
-#' @name slackr
+#' You'll probably want to dive right into the \link{slackr} function for more information.
+#'
+#' @name slackr-package
+#' @title slackr-package
 #' @docType package
 #' @author Bob Rudis (@@hrbrmstr)
 #' @import httr jsonlite
 #' @examples
 #' \dontrun{
-#' slackrSetup(channel="#code", url_prefix="http://myslack.slack.com/services/hooks/incoming-webhook?")
-#' slackr(str(iris))
+#' slackrSetup()
+#' slackr("iris info", head(iris), str(iris))
 #' }
 NULL

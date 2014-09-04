@@ -4,21 +4,26 @@
 \title{Setup environment variables for Slack.com API}
 \usage{
 slackrSetup(channel = "#general", username = "slackr", icon_emoji = "",
-  token = "", url_prefix = "")
+  token = "", incoming_url_prefix = "", config_file = "~/.slackr",
+  echo = FALSE)
 }
 \arguments{
-\item{channel}{which default channel to send the output to (chr) defaults to \code{#general}}
+\item{channel}{default channel to send the output to (chr) defaults to \code{#general}}
 
-\item{username}{which username will output appear from (chr) defaults to \code{slackr}}
+\item{username}{the username output will appear from (chr) defaults to \code{slackr}}
 
 \item{icon_emoji}{which emoji picture to use (chr) defaults to none}
 
 \item{token}{the slack.com API token string (chr) defaults to none}
 
-\item{url_prefix}{the slack.com URL prefix to use (chr) defaults to none}
+\item{incoming_url_prefix}{the slack.com URL prefix to use (chr) defaults to none}
+
+\item{config_file}{a configuration file (DCF) format with the config values.}
+
+\item{echo}{display the configuraiton variables (bool) initially \code{FALSE}}
 }
 \description{
-Initialize all the environment variables \code{slackr()} will need to use to
+Initialize all the environment variables \link{slackr} will need to use to
 work properly.
 }
 \details{
@@ -27,10 +32,30 @@ of \code{slackr()} with no emoji and the default slack.com API prefix URL. You
 still need to provide the webhook API token in \code{token} for anyting to work.
 Failure to call this function before calling \code{slackr()} will result in a
 message to do so.
+
+If a valid file is found at the locaiton pointed to by \code{config_file}, the
+values there will be used. The fields should be specified as such in the file: \cr
+\cr
+\code{ token: yourTokenCode} \cr
+\code{ channel: #general} \cr
+\code{ username: slackr} \cr
+\code{ icon_emoji:} \cr
+\code{ incoming_webhook_url: https://yourgroup.slack.com/services/hooks/incoming-webhook?} \cr \cr
+}
+\note{
+You need a Slack.com account and will also need to setup an incoming webhook: \url{https://api.slack.com/}
 }
 \examples{
 \dontrun{
-slackrSetup(channel="#code", url_prefix="http://myslack.slack.com/services/hooks/incoming-webhook?")
+# reads from default file
+slackrSetup()
+
+# reads from alternate config
+slackrSetup(config_file="/path/to/my/slackrconfig)
+
+# the hard way
+slackrSetup(channel="#code", token="mytoken",
+            url_prefix="http://myslack.slack.com/services/hooks/incoming-webhook?")
 }
 }
 

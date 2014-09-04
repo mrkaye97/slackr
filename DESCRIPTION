@@ -1,13 +1,16 @@
 Package: slackr
 Type: Package
-Title: slackr - A package to send webhook API messages to Slack.com
-    channels/users
+Title: Send webhook API messages to slack.com channels/users
 Version: 1.0
 Date: 2014-09-04
 Author: Bob Rudis (@hrbrmstr)
 Maintainer: Bob Rudis <bob@rudis.net>
-Description: slackr - A package to send webhook API messages to Slack.com
-    channels/users
+Description: This pacakge contains functions that make it possible to
+    interact with slack messaging platform. When you need to share
+    information/data from Rm rather than resort to copy/paste in e-mails
+    or other services like Skype, you can use this package to send
+    well-formatted output from multiple R objects and expressions
+    to all teammates at the same time with little effort.
 URL: http://github.com/hrbrmstr/slackr
 BugReports: https://github.com/hrbrmstr/slackr/issues
 License: MIT + file LICENSE

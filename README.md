@@ -1,5 +1,7 @@
 slackr is a package to send webhook API messages to Slack.com channels/users
 
+This pacakge contains functions that make it possible to interact with slack messaging platform. When you need to share information/data from Rm rather than resort to copy/paste in e-mails or other services like Skype, you can use this package to send well-formatted output from multiple R objects and expressions to all teammates at the same time with little effort.
+
 The following functions are implemented:
 
 -   `slackrSetup` : initialize necessary environment variables
@@ -51,7 +53,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Thu Sep  4 09:18:20 2014"
+    ## [1] "Thu Sep  4 12:00:00 2014"
 
 ``` {.r}
 test_dir("tests/")
