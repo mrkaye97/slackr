@@ -1,0 +1,48 @@
+---
+title: "README"
+author: "Bob Rudis"
+date: September 03, 2014
+output:
+  md_document:
+    variant: markdown_github
+---
+
+slackr is ...
+
+The following functions are implemented:
+
+### News
+
+- Version  released
+
+### Installation
+
+```{r eval=FALSE}
+devtools::install_github("hrbrmstr/slackr")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
+options(width=120)
+```
+
+### Usage
+
+```{r}
+library(slackr)
+
+# current verison
+packageVersion("slackr")
+
+```
+
+### Test Results
+
+```{r}
+library(slackr)
+library(testthat)
+
+date()
+
+test_dir("tests/")
+```
+
