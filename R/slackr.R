@@ -4,7 +4,7 @@
 #' work properly.
 #'
 #' By default, \code{slackr} will use the \code{#general} room and a username
-#' of \code{slackr()} with no emoji and the default slack.com API prefix URL. You
+#' of \code{slackr()} with no emoji and the default \url{slack.com} API prefix URL. You
 #' still need to provide the webhook API token in \code{token} for anyting to work.
 #' Failure to call this function before calling \code{slackr()} will result in a
 #' message to do so.
@@ -19,12 +19,12 @@
 #' \code{ incoming_webhook_url: https://yourgroup.slack.com/services/hooks/incoming-webhook?} \cr \cr
 #' @param channel default channel to send the output to (chr) defaults to \code{#general}
 #' @param username the username output will appear from (chr) defaults to \code{slackr}
-#' @param icon_emoji which emoji picture to use (chr) defaults to none
-#' @param token the slack.com API token string (chr) defaults to none
+#' @param icon_emoji which emoji picture to use (chr) defaults to none (can be left blank in config file as well)
+#' @param token the \url{slack.com} API token string (chr) defaults to none
 #' @param incoming_url_prefix the slack.com URL prefix to use (chr) defaults to none
-#' @param config_file a configuration file (DCF) format with the config values.
+#' @param config_file a configuration file (DCF) - see \link{read.dcf} - format with the config values.
 #' @param echo display the configuraiton variables (bool) initially \code{FALSE}
-#' @note You need a Slack.com account and will also need to setup an incoming webhook: \url{https://api.slack.com/}
+#' @note You need a \url{slack.com} account and will also need to setup an incoming webhook: \url{https://api.slack.com/}
 #' @examples
 #' \dontrun{
 #' # reads from default file
@@ -39,7 +39,7 @@
 #' }
 #' @export
 slackrSetup <- function(channel="#general", username="slackr",
-                        icon_emoji="", token="", incoming_url_prefix="",
+                        icon_emoji="", token="", incoming_webhook_url="",
                         config_file="~/.slackr", echo=FALSE) {
 
   if (file.exists(config_file)) {
@@ -74,7 +74,7 @@ slackrSetup <- function(channel="#general", username="slackr",
 
 #' Output R expressions to a Slack.com channel/user
 #'
-#' Takes an \code{expr}, evaluates it and sends the output to a Slack.com
+#' Takes an \code{expr}, evaluates it and sends the output to a \url{slack.com}
 #' chat destination. Useful for logging, messaging on long compute tasks or
 #' general information sharing.
 #'
@@ -86,9 +86,9 @@ slackrSetup <- function(channel="#general", username="slackr",
 #' @param channel which channel to post the message to (chr)
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
-#' @param slack_incoming_webhook_url_prefix which slack.com API endpoint URL to use
+#' @param incoming_webhook_url which \url{slack.com} API endpoint URL to use
 #' @param token your webhook API token
-#' @note You need a Slack.com account and will also need to setup an incoming webhook: \url{https://api.slack.com/}
+#' @note You need a \url{slack.com} account and will also need to setup an incoming webhook: \url{https://api.slack.com/}
 #' @import httr
 #' @examples
 #' \dontrun{
@@ -100,10 +100,10 @@ slackr <- function(...,
                    channel=Sys.getenv("SLACK_CHANNEL"),
                    username=Sys.getenv("SLACK_USERNAME"),
                    icon_emoji=Sys.getenv("SLACK_ICON_EMOJI"),
-                   slack_incoming_webhook_url_prefix=Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
+                   incoming_webhook_url=Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
                    token=Sys.getenv("SLACK_TOKEN")) {
 
-  if (slack_incoming_webhook_url_prefix == "" | token == "") {
+  if (incoming_webhook_url == "" | token == "") {
     stop("No URL prefix and/or token specified. Did you forget to call slackrSetup()?", call. = FALSE)
   }
 
@@ -133,7 +133,7 @@ slackr <- function(...,
 
       output <- gsub('^\"|\"$', "", toJSON(data, simplifyVector=TRUE, flatten=TRUE, auto_unbox=TRUE))
 
-      resp <- POST(url=paste0(slack_incoming_webhook_url_prefix, "token=", token),
+      resp <- POST(url=paste0(incoming_webhook_url, "token=", token),
                    add_headers(`Content-Type`="application/x-www-form-urlencoded", `Accept`="*/*"),
                    body=URLencode(sprintf('payload={"channel": "%s", "username": "%s", "text": "```%s```"%s}',
                                           channel, username, output, icon_emoji)))
