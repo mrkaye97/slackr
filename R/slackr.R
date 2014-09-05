@@ -149,5 +149,3 @@ slackr <- function(...,
   return(invisible())
 
 }
-
-
