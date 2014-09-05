@@ -9,7 +9,7 @@ output:
 
 slackr is a package to send webhook API messages to Slack.com channels/users
 
-This pacakge contains functions that make it possible to
+This package contains functions that make it possible to
 interact with slack messaging platform. When you need to share
 information/data from Rm rather than resort to copy/paste in e-mails
 or other services like Skype, you can use this package to send
