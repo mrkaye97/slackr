@@ -5,12 +5,14 @@ This package contains functions that make it possible to interact with slack mes
 The following functions are implemented:
 
 -   `slackrSetup` : initialize necessary environment variables
--   `slackr` : send stuff to slackr
--   `dev.slackr` : send the graphics contents of the current device to a to slack.com channel (full API token - i.e. not wehbook - required)
--   `save.slackr` : save R objects to an RData file on `slack.com`
--   `slackrUpload` : upload any file to `slack.com`
--   `slackrUsers` : get a data frame of slack.com users (full API token - i.e. not wehbook - required)
--   `slackrChannels` : get a data frame of slack.com channels (full API token - i.e. not wehbook - required)
+-   `slackr` : send stuff to `slack.com` (full API token - i.e. not wehbook - required)
+-   `slackrBot` : send stuff to `slack.com` using the incoming webhook API/token
+-   `dev.slackr` : send the graphics contents of the current device to a to `slack.com` channel (full API token - i.e. not wehbook - required)
+-   `save.slackr` : save R objects to an RData file on `slack.com` (full API token - i.e. not wehbook - required)
+-   `slackrUpload` : upload any file to `slack.com` (full API token - i.e. not wehbook - required)
+-   `slackrUsers` : get a data frame of `slack.com` users (full API token - i.e. not wehbook - required)
+-   `slackrChannels` : get a data frame of `slack.com` channels (full API token - i.e. not wehbook - required)
+-   `slackrGroups` : get a data frame of `slack.com` groups (full API token - i.e. not wehbook - required)
 
 The `slackrSetup()` function will try to read setup values from a `~/.slackr` (you can change the default) configuration file, which may be easier and more secure than passing them in manually (plus, will allow you to have multiple slackr configs for multiple Slack.com teams). The file is in Debian Control File (DCF) format since it really doesn't need to be JSON and R has a handy `read.dcf()` function since that's what `DESCRIPTION` files are coded in. Here's the basic format for the configuration file:
 
@@ -79,7 +81,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Sat Sep  6 08:11:43 2014"
+    ## [1] "Sat Sep  6 16:03:05 2014"
 
 ``` {.r}
 test_dir("tests/")

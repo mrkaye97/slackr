@@ -45,7 +45,7 @@ values there will be used. The fields should be specified as such in the file: \
 \code{ incoming_webhook_url: https://yourgroup.slack.com/services/hooks/incoming-webhook?} \cr \cr
 }
 \note{
-You need a \url{slack.com} account and will also need to setup an incoming webhook: \url{https://api.slack.com/}
+You need a \url{slack.com} account and will also need to setup an incoming webhook and full API tokens: \url{https://api.slack.com/}
 }
 \examples{
 \dontrun{

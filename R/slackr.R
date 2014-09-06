@@ -76,7 +76,7 @@ slackrSetup <- function(channel="#general", username="slackr",
 
 }
 
-#' Output R expressions to a \code{slack.com} channel/user
+#' Output R expressions to a \code{slack.com} channel/user (as \code{slackbot})
 #'
 #' Takes an \code{expr}, evaluates it and sends the output to a \url{slack.com}
 #' chat destination. Useful for logging, messaging on long compute tasks or
@@ -86,6 +86,8 @@ slackrSetup <- function(channel="#general", username="slackr",
 #' environment variable. You can override or just specify these values directly instead,
 #' but it's probably better to call \link{slackrSetup} first.
 #'
+#' This function uses the incoming webhook API and posts user messages as \code{slackbot}
+#'
 #' @param ... expressions to be sent to Slack.com
 #' @param channel which channel to post the message to (chr)
 #' @param username what user should the bot be named as (chr)
@@ -93,14 +95,14 @@ slackrSetup <- function(channel="#general", username="slackr",
 #' @param incoming_webhook_url which \url{slack.com} API endpoint URL to use
 #' @param token your webhook API token
 #' @note You need a \url{slack.com} account and will also need to setup an incoming webhook: \url{https://api.slack.com/}
-#' @seealso \code{\link{slackrSetup}}, \code{\link{dev.slackr}}, \code{\link{save.slackr}}, \code{\link{slackrUpload}}
+#' @seealso \code{\link{slackrSetup}}, \code{\link{slackr}}, \code{\link{dev.slackr}}, \code{\link{save.slackr}}, \code{\link{slackrUpload}}
 #' @examples
 #' \dontrun{
 #' slackrSetup()
 #' slackr("iris info", head(iris), str(iris))
 #' }
 #' @export
-slackr <- function(...,
+slackrBot <- function(...,
                    channel=Sys.getenv("SLACK_CHANNEL"),
                    username=Sys.getenv("SLACK_USERNAME"),
                    icon_emoji=Sys.getenv("SLACK_ICON_EMOJI"),
@@ -141,6 +143,84 @@ slackr <- function(...,
                    add_headers(`Content-Type`="application/x-www-form-urlencoded", `Accept`="*/*"),
                    body=URLencode(sprintf('payload={"channel": "%s", "username": "%s", "text": "```%s```"%s}',
                                           channel, username, output, icon_emoji)))
+
+      warn_for_status(resp)
+
+      if (resp$status_code > 200) { print(str(expr))}
+
+    }
+
+  }
+
+  return(invisible())
+
+}
+
+
+#' Output R expressions to a \code{slack.com} channel/user
+#'
+#' Takes an \code{expr}, evaluates it and sends the output to a \url{slack.com}
+#' chat destination. Useful for logging, messaging on long compute tasks or
+#' general information sharing.
+#'
+#' By default, everyting but \code{expr} will be looked for in a "\code{SLACK_}"
+#' environment variable. You can override or just specify these values directly instead,
+#' but it's probably better to call \link{slackrSetup} first.
+#'
+#' @param ... expressions to be sent to Slack.com
+#' @param channel which channel to post the message to (chr)
+#' @param username what user should the bot be named as (chr)
+#' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
+#' @param api_token your full slack.com API token
+#' @note You need a \url{slack.com} account and will also need to setup an API token \url{https://api.slack.com/}
+#' @seealso \code{\link{slackrSetup}}, \code{\link{slackrBot}}, \code{\link{dev.slackr}}, \code{\link{save.slackr}}, \code{\link{slackrUpload}}
+#' @examples
+#' \dontrun{
+#' slackrSetup()
+#' slackr("iris info", head(iris), str(iris))
+#' }
+#' @export
+slackr <- function(...,
+                   channel=Sys.getenv("SLACK_CHANNEL"),
+                   username=Sys.getenv("SLACK_USERNAME"),
+                   icon_emoji=Sys.getenv("SLACK_ICON_EMOJI"),
+                   api_token=Sys.getenv("SLACK_API_TOKEN")) {
+
+  if (api_token == "") {
+    stop("No token specified. Did you forget to call slackrSetup()?", call. = FALSE)
+  }
+
+  if (icon_emoji != "") { icon_emoji <- sprintf(', "icon_emoji": "%s"', icon_emoji)  }
+
+  resp_ret <- ""
+
+  if (!missing(...)) {
+
+    input_list <- as.list(substitute(list(...)))[-1L]
+
+    for(i in 1:length(input_list)) {
+
+      expr <- input_list[[i]]
+
+      if (class(expr) == "call") {
+
+        expr_text <- sprintf("> %s", deparse(expr))
+
+        data <- capture.output(eval(expr))
+        data <- paste0(data, collapse="\n")
+        data <- sprintf("%s\n%s", expr_text, data)
+
+      } else {
+        data <- as.character(expr)
+      }
+
+      output <- gsub('^\"|\"$', "", toJSON(data, simplifyVector=TRUE, flatten=TRUE, auto_unbox=TRUE))
+
+      resp <- POST(url="https://slack.com/api/chat.postMessage",
+                   body=list(token=api_token, channel=channel,
+                             username=username, icon_emoji=icon_emoji,
+                             text=sprintf("```%s```", output), link_names=1))
+
 
       warn_for_status(resp)
 
@@ -269,7 +349,7 @@ slackrUpload <- function(filename, title=basename(filename),
 #'
 #' Given a vector of one or more channel names, it will retrieve list of
 #' active channels and try to replace channels that begin with "\code{#}" or "\code{@@}"
-#' with the channel ID for that channel.
+#' with the channel ID for that channel. Also incorporates groups.
 #'
 #' @param channels vector of channel names to parse
 #' @param api_token the slack.com full API token (chr)
@@ -280,11 +360,14 @@ slackrChTrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
   chan <- slackrChannels(api_token)
   users <- slackrUsers(api_token)
+  groups <- slackrGroups(api_token)
 
   chan$name <- sprintf("#%s", chan$name)
   users$name <- sprintf("@%s", users$name)
 
-  chan_list <- rbind(chan[,1:2,with=FALSE], users[,1:2,with=FALSE])
+  chan_list <- rbind(chan[,1:2,with=FALSE],
+                     users[,1:2,with=FALSE],
+                     groups[,1:2,with=FALSE])
 
   chan_xref <- merge(data.frame(name=channels), chan_list, all.x=TRUE)
 
@@ -294,7 +377,7 @@ slackrChTrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
 }
 
-#' Get data frame of slack.com users
+#' Get a data frame of slack.com users
 #'
 #' need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
 #'
@@ -312,7 +395,7 @@ slackrUsers <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
 }
 
-#' Get data frame of slack.com channels
+#' Get a data frame of slack.com channels
 #'
 #' need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
 #'
@@ -330,3 +413,22 @@ slackrChannels <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
   }) )
 
 }
+
+#' Get a data frame of slack.com groups
+#'
+#' need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
+#'
+#' @param api_token the slack.com full API token (chr)
+#' @return data.table of channels
+#' @export
+slackrGroups <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
+
+  Sys.setlocale('LC_ALL','C')
+  tmp <- POST("https://slack.com/api/groups.list", body=list(token=api_token))
+  tmp_p <- content(tmp, as="parsed")
+  rbindlist(lapply(tmp_p$groups, function(x) {
+    data.frame(id=x$id, name=x$name, is_archived=x$is_archived)
+  }) )
+
+}
+
