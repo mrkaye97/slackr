@@ -20,6 +20,9 @@ The following functions are implemented:
 
 - `slackrSetup` : initialize necessary environment variables
 - `slackr` : send stuff to slackr
+- `ggslackr` : send `ggplot`s to slack.com
+- `slackr_users` : get a data frame of slack.com users (full API token - i.e. not wehbook - required)
+- `slackr_channels` : get a data frame of slack.com channels (full API token - i.e. not wehbook - required)
 
 ### News
 

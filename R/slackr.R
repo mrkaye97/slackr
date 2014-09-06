@@ -20,8 +20,9 @@
 #' @param channel default channel to send the output to (chr) defaults to \code{#general}
 #' @param username the username output will appear from (chr) defaults to \code{slackr}
 #' @param icon_emoji which emoji picture to use (chr) defaults to none (can be left blank in config file as well)
-#' @param token the \url{slack.com} API token string (chr) defaults to none
+#' @param token the \url{slack.com} webhook API token string (chr) defaults to none
 #' @param incoming_url_prefix the slack.com URL prefix to use (chr) defaults to none
+#' @param api_token the slack.com full API token (chr)
 #' @param config_file a configuration file (DCF) - see \link{read.dcf} - format with the config values.
 #' @param echo display the configuraiton variables (bool) initially \code{FALSE}
 #' @note You need a \url{slack.com} account and will also need to setup an incoming webhook: \url{https://api.slack.com/}
@@ -40,19 +41,20 @@
 #' @export
 slackrSetup <- function(channel="#general", username="slackr",
                         icon_emoji="", token="", incoming_webhook_url="",
-                        config_file="~/.slackr", echo=FALSE) {
+                        api_token="", config_file="~/.slackr", echo=FALSE) {
 
   if (file.exists(config_file)) {
 
     config <- read.dcf(config_file,
                        fields=c("token", "channel", "icon_emoji",
-                                "username", "incoming_webhook_url"))
+                                "username", "incoming_webhook_url", "api_token"))
 
     Sys.setenv(SLACK_CHANNEL=config[,"channel"])
     Sys.setenv(SLACK_USERNAME=config[,"username"])
     Sys.setenv(SLACK_ICON_EMOJI=config[,"icon_emoji"])
     Sys.setenv(SLACK_TOKEN=config[,"token"])
     Sys.setenv(SLACK_INCOMING_URL_PREFIX=config[,"incoming_webhook_url"])
+    Sys.setenv(SLACK_API_TOKEN=config[,"api_token"])
 
   } else {
 
@@ -61,13 +63,14 @@ slackrSetup <- function(channel="#general", username="slackr",
     Sys.setenv(SLACK_ICON_EMOJI=icon_emoji)
     Sys.setenv(SLACK_TOKEN=token)
     Sys.setenv(SLACK_INCOMING_URL_PREFIX=incoming_url_prefix)
+    Sys.setenv(SLACK_API_TOKEN=api_token)
 
   }
 
   if (echo) {
     print(Sys.getenv(c("SLACK_CHANNEL", "SLACK_USERNAME",
                        "SLACK_ICON_EMOJI", "SLACK_TOKEN",
-                       "SLACK_INCOMING_URL_PREFIX")))
+                       "SLACK_INCOMING_URL_PREFIX", "SLACK_API_TOKEN")))
   }
 
 }
@@ -149,3 +152,65 @@ slackr <- function(...,
   return(invisible())
 
 }
+
+#' Post a ggplot to a \url{slack.com} channel
+#'
+#' need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
+#' @param api_token the slack.com full API token (chr)
+#' @param channels
+#' @param plot plot to save, defaults to last plot displayed
+#' @param scale scaling factor
+#' @param width width (defaults to the width of current plotting window)
+#' @param height height (defaults to the height of current plotting window)
+#' @param units units for width and height when either one is explicitly specified (in, cm, or mm)
+#' @param dpi dpi to use for raster graphics
+#' @param limitsize when TRUE (the default), ggsave will not save images larger than 50x50 inches, to prevent the common error of specifying dimensions in pixels.
+#' @param ... other argumenrs passed to graphics device
+#' @export
+#'
+ggslackr <- function(api_token=Sys.getenv("SLACK_API_TOKEN"), channels=Sys.getenv("SLACK_CHANNEL"),
+                     plot=last_plot(), scale=1, width=par("din")[1], height=par("din")[2],
+                     units=c("in", "cm", "mm"), dpi=300, limitsize=TRUE, ...) {
+
+  Sys.setlocale('LC_ALL','C')
+  ftmp <- tempfile("ggplot", fileext=".png")
+  ggsave(filename=ftmp, plot=plot, scale=scale, width=width, height=height, units=units, dpi=dpi, limitsize=limitsize, ...)
+  print(ftmp)
+
+  POST(url="https://slack.com/api/files.upload",
+       add_headers(`Content-Type`="multipart/form-data"),
+       body=list( file=upload_file(ftmp), token=api_token, channels=channels ))
+
+}
+
+#' Get data frame of slack.com users
+#'
+#' need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
+#' @param api_token the slack.com full API token (chr)
+#' @export
+slackr_users <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
+
+  Sys.setlocale('LC_ALL','C')
+  tmp <- POST("https://slack.com/api/users.list", body=list(token=api_token))
+  tmp.p <- content(tmp, as="parsed")
+  rbindlist(lapply(tmp.p$members, function(x) { data.frame(id=x$id, name=x$name, real_name=x$real_name) }) )
+
+}
+
+#' Get data frame of slack.com channels
+#'
+#' need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
+#' @param api_token the slack.com full API token (chr)
+#' @export
+slackr_channels <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
+
+  Sys.setlocale('LC_ALL','C')
+  tmp <- POST("https://slack.com/api/channels.list", body=list(token=api_token))
+  tmp.p <- content(tmp, as="parsed")
+  rbindlist(lapply(tmp.p$channels, function(x) { data.frame(id=x$id, name=x$name, is_member=x$is_member) }) )
+
+}
+
+
+
+

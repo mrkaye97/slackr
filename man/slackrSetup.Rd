@@ -4,8 +4,8 @@
 \title{Setup environment variables for Slack.com API}
 \usage{
 slackrSetup(channel = "#general", username = "slackr", icon_emoji = "",
-  token = "", incoming_webhook_url = "", config_file = "~/.slackr",
-  echo = FALSE)
+  token = "", incoming_webhook_url = "", api_token = "",
+  config_file = "~/.slackr", echo = FALSE)
 }
 \arguments{
 \item{channel}{default channel to send the output to (chr) defaults to \code{#general}}
@@ -14,9 +14,11 @@ slackrSetup(channel = "#general", username = "slackr", icon_emoji = "",
 
 \item{icon_emoji}{which emoji picture to use (chr) defaults to none (can be left blank in config file as well)}
 
-\item{token}{the \url{slack.com} API token string (chr) defaults to none}
+\item{token}{the \url{slack.com} webhook API token string (chr) defaults to none}
 
 \item{incoming_url_prefix}{the slack.com URL prefix to use (chr) defaults to none}
+
+\item{api_token}{the slack.com full API token (chr)}
 
 \item{config_file}{a configuration file (DCF) - see \link{read.dcf} - format with the config values.}
 
