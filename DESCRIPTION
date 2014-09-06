@@ -21,4 +21,4 @@ Depends:
     R (>= 3.0.0),
     httr (>= 0.4.0),
     jsonlite,
-    data.table (>= 1.9.3)
+    data.table (>= 1.9.2)
