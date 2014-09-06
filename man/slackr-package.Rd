@@ -12,7 +12,16 @@ You'll probably want to dive right into the \link{slackr} function for more info
 \examples{
 \dontrun{
 slackrSetup()
+
+# send objects
 slackr("iris info", head(iris), str(iris))
+
+# send images
+library(ggplot2)
+qplot(mpg, wt, data=mtcars)
+dev.slack("#results")
+
+
 }
 }
 \author{

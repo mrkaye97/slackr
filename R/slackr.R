@@ -1,4 +1,4 @@
-#' Setup environment variables for Slack.com API
+#' Setup environment variables for \code{slack.com} API
 #'
 #' Initialize all the environment variables \link{slackr} will need to use to
 #' work properly.
@@ -21,7 +21,7 @@
 #' @param username the username output will appear from (chr) defaults to \code{slackr}
 #' @param icon_emoji which emoji picture to use (chr) defaults to none (can be left blank in config file as well)
 #' @param token the \url{slack.com} webhook API token string (chr) defaults to none
-#' @param incoming_url_prefix the slack.com URL prefix to use (chr) defaults to none
+#' @param incoming_webhook_url the slack.com URL prefix to use (chr) defaults to none
 #' @param api_token the slack.com full API token (chr)
 #' @param config_file a configuration file (DCF) - see \link{read.dcf} - format with the config values.
 #' @param echo display the configuraiton variables (bool) initially \code{FALSE}
@@ -62,7 +62,7 @@ slackrSetup <- function(channel="#general", username="slackr",
     Sys.setenv(SLACK_USERNAME=username)
     Sys.setenv(SLACK_ICON_EMOJI=icon_emoji)
     Sys.setenv(SLACK_TOKEN=token)
-    Sys.setenv(SLACK_INCOMING_URL_PREFIX=incoming_url_prefix)
+    Sys.setenv(SLACK_INCOMING_URL_PREFIX=incoming_webhook_url)
     Sys.setenv(SLACK_API_TOKEN=api_token)
 
   }
@@ -75,7 +75,7 @@ slackrSetup <- function(channel="#general", username="slackr",
 
 }
 
-#' Output R expressions to a Slack.com channel/user
+#' Output R expressions to a \code{slack.com} channel/user
 #'
 #' Takes an \code{expr}, evaluates it and sends the output to a \url{slack.com}
 #' chat destination. Useful for logging, messaging on long compute tasks or
@@ -153,75 +153,109 @@ slackr <- function(...,
 
 }
 
-#' Post a ggplot to a \url{slack.com} channel
+#' Send the graphics contents of the current device to a \code{slack.com} channel
 #'
-#' need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
-#' @param api_token the slack.com full API token (chr)
+#' \code{dev.slackr} sends the graphics contents of the current device to the specified \code{slack.com} channel.
+#' This requires setting up a full API token (i.e. not a webhook & not OAuth) for this to work.
+#'
 #' @param channels list of channels to post image to
 #' @param ... other arguments passed into png device
-#' @export
+#' @param api_token the slack.com full API token (chr)
+#' @return \code{httr} response object from \code{POST} call
+#' @note Renamed from \code{ggslackr} and re-ordered parameters
+#' @examples
+#' \dontrun{
+#' slackrSetup()
 #'
-ggslackr <- function(api_token=Sys.getenv("SLACK_API_TOKEN"), channels=Sys.getenv("SLACK_CHANNEL"), ...) {
+#' # ggplot
+#' library(ggplot2)
+#' qplot(mpg, wt, data=mtcars)
+#' dev.slackr("#results")
+#'
+#' # base
+#' barplot(VADeaths)
+#' dev.slackr("@@jayjacobs")
+#' }
+#' @export
+dev.slackr <- function(channels=Sys.getenv("SLACK_CHANNEL"), ...,
+                       api_token=Sys.getenv("SLACK_API_TOKEN")) {
+
   Sys.setlocale('LC_ALL','C')
-  ftmp <- tempfile("ggplot", fileext=".png")
-  # ggsave(filename=ftmp, plot=plot, scale=scale, width=width, height=height, units=units, dpi=dpi, limitsize=limitsize, ...)
-  print(ftmp)
+
+  ftmp <- tempfile("plot", fileext=".png")
   dev.copy(png, file=ftmp, ...)
   dev.off()
-  print(channels)
-  modchan <- slackr_chtrans(channels)
-  print(modchan)
+
+  modchan <- slackrChTrans(channels)
+
   POST(url="https://slack.com/api/files.upload",
        add_headers(`Content-Type`="multipart/form-data"),
        body=list( file=upload_file(ftmp), token=api_token, channels=modchan))
+
 }
 
 #' Translate vector of channel names to channel ID's for API
 #'
 #' Given a vector of one or more channel names, it will retrieve list of
-#' active channels and try to replace channels that begin with "#" with
-#' the channel ID for that channel.
+#' active channels and try to replace channels that begin with "\code{#}" or "\code{@@}"
+#' with the channel ID for that channel.
 #'
-#' Returns the original channel list with #channels replaced with ID's.
+#' Returns the original channel list with \code{#} or \code{@@} channels replaced with ID's.
 #'
 #' @param channels vector of channel names to parse
 #' @param api_token the slack.com full API token (chr)
+#' @note Renamed from \code{slackr_chtrans}
 #' @export
-slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
-  cmatch <- grepl("^\\#", channels)
-  if (any(cmatch)) {
-    chanlist <- slackr_channels(api_token)
-    cindex <- which(cmatch)
-    channels[cindex] <- as.character(chanlist$id[cindex])
-  }
-  channels
+slackrChTrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
+
+  chan <- slackrChannels(api_token)
+  users <- slackrUsers(api_token)
+
+  chan$name <- sprintf("#%s", chan$name)
+  users$name <- sprintf("@%s", users$name)
+
+  chan_list <- rbind(chan[,1:2,with=FALSE], users[,1:2,with=FALSE])
+
+  chan_xref <- merge(data.frame(name=channels), chan_list, all.x=TRUE)
+
+  ifelse(is.na(chan_xref$id),
+         as.character(chan_xref$name),
+         as.character(chan_xref$id))
+
 }
 
 #' Get data frame of slack.com users
 #'
 #' need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
+#'
 #' @param api_token the slack.com full API token (chr)
 #' @export
-slackr_users <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
+slackrUsers <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
   Sys.setlocale('LC_ALL','C')
   tmp <- POST("https://slack.com/api/users.list", body=list(token=api_token))
-  tmp.p <- content(tmp, as="parsed")
-  rbindlist(lapply(tmp.p$members, function(x) { data.frame(id=x$id, name=x$name, real_name=x$real_name) }) )
+  tmp_p <- content(tmp, as="parsed")
+  rbindlist(lapply(tmp_p$members, function(x) {
+    data.frame(id=x$id, name=x$name, real_name=x$real_name)
+  }) )
 
 }
 
 #' Get data frame of slack.com channels
 #'
 #' need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
+#'
 #' @param api_token the slack.com full API token (chr)
+#' @note Renamed from \code{slackr_channels}
 #' @export
-slackr_channels <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
+slackrChannels <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
   Sys.setlocale('LC_ALL','C')
   tmp <- POST("https://slack.com/api/channels.list", body=list(token=api_token))
-  tmp.p <- content(tmp, as="parsed")
-  rbindlist(lapply(tmp.p$channels, function(x) { data.frame(id=x$id, name=x$name, is_member=x$is_member) }) )
+  tmp_p <- content(tmp, as="parsed")
+  rbindlist(lapply(tmp_p$channels, function(x) {
+    data.frame(id=x$id, name=x$name, is_member=x$is_member)
+  }) )
 
 }
 
