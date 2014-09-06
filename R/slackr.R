@@ -209,7 +209,7 @@ dev.slackr <- function(channels=Sys.getenv("SLACK_CHANNEL"), ...,
 #' @return \code{httr} response object from \code{POST} call
 #' @seealso \code{\link{slackrSetup}}, \code{\link{dev.slackr}}, \code{\link{slackrUpload}}
 #' @export
-save.slackr <- function(..., channels,
+save.slackr <- function(..., channels="",
                         file="slackr",
                         api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
@@ -223,7 +223,8 @@ save.slackr <- function(..., channels,
 
   POST(url="https://slack.com/api/files.upload",
        add_headers(`Content-Type`="multipart/form-data"),
-       body=list( file=upload_file(ftmp), token=api_token, channels=modchan))
+       body=list(file=upload_file(ftmp), filename=sprintf("%s.rda", file),
+                  token=api_token, channels=modchan))
 
 }
 
@@ -242,7 +243,7 @@ save.slackr <- function(..., channels,
 #' @export
 slackrUpload <- function(filename, title=basename(filename),
                          initial_comment=basename(filename),
-                         channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
+                         channels="", api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
   f_path <- path.expand(filename)
 

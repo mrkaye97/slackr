@@ -4,7 +4,7 @@
 \title{Send a file to \code{slack.com}}
 \usage{
 slackrUpload(filename, title = basename(filename),
-  initial_comment = basename(filename), channels,
+  initial_comment = basename(filename), channels = "",
   api_token = Sys.getenv("SLACK_API_TOKEN"))
 }
 \arguments{

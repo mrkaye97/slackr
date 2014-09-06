@@ -3,7 +3,7 @@
 \alias{save.slackr}
 \title{Save R objects to an RData file on \code{slack.com}}
 \usage{
-save.slackr(..., channels, file = "slackr",
+save.slackr(..., channels = "", file = "slackr",
   api_token = Sys.getenv("SLACK_API_TOKEN"))
 }
 \arguments{
