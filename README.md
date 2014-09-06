@@ -1,12 +1,14 @@
 slackr is a package to send webhook API messages to Slack.com channels/users
 
-This package contains functions that make it possible to interact with slack messaging platform. When you need to share information/data from R, rather than resort to copy/paste in e-mails or other services like Skype, you can use this package to send well-formatted output from multiple R objects and expressions to all teammates at the same time with little effort. You can also send images from the current graphics device.
+This package contains functions that make it possible to interact with slack messaging platform. When you need to share information/data from R, rather than resort to copy/paste in e-mails or other services like Skype, you can use this package to send well-formatted output from multiple R objects and expressions to all teammates at the same time with little effort. You can also send images from the current graphics device. , R objects (as RData), and upload files.
 
 The following functions are implemented:
 
 -   `slackrSetup` : initialize necessary environment variables
 -   `slackr` : send stuff to slackr
 -   `dev.slackr` : send the graphics contents of the current device to a to slack.com channel (full API token - i.e. not wehbook - required)
+-   `save.slackr` : save R objects to an RData file on `slack.com`
+-   `slackrUpload` : upload any file to `slack.com`
 -   `slackrUsers` : get a data frame of slack.com users (full API token - i.e. not wehbook - required)
 -   `slackrChannels` : get a data frame of slack.com channels (full API token - i.e. not wehbook - required)
 
@@ -22,7 +24,7 @@ You can also change the default emoji icon (from the one you setup at integratio
 
 ### News
 
--   Version `1.1` released (added graphics capability)
+-   Version `1.1` released (added graphics & files capability)
 -   Version `1.0` released
 
 ### Installation
@@ -77,7 +79,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Sat Sep  6 07:05:09 2014"
+    ## [1] "Sat Sep  6 08:11:43 2014"
 
 ``` {.r}
 test_dir("tests/")

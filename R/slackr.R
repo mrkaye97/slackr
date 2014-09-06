@@ -26,6 +26,7 @@
 #' @param config_file a configuration file (DCF) - see \link{read.dcf} - format with the config values.
 #' @param echo display the configuraiton variables (bool) initially \code{FALSE}
 #' @note You need a \url{slack.com} account and will also need to setup an incoming webhook: \url{https://api.slack.com/}
+#' @seealso \code{\link{slackr}}, \code{\link{dev.slackr}}, \code{\link{save.slackr}}, \code{\link{slackrUpload}}
 #' @examples
 #' \dontrun{
 #' # reads from default file
@@ -92,7 +93,7 @@ slackrSetup <- function(channel="#general", username="slackr",
 #' @param incoming_webhook_url which \url{slack.com} API endpoint URL to use
 #' @param token your webhook API token
 #' @note You need a \url{slack.com} account and will also need to setup an incoming webhook: \url{https://api.slack.com/}
-#' @import httr
+#' @seealso \code{\link{slackrSetup}}, \code{\link{dev.slackr}}, \code{\link{save.slackr}}, \code{\link{slackrUpload}}
 #' @examples
 #' \dontrun{
 #' slackrSetup()
@@ -163,6 +164,7 @@ slackr <- function(...,
 #' @param api_token the slack.com full API token (chr)
 #' @return \code{httr} response object from \code{POST} call
 #' @note Renamed from \code{ggslackr} and re-ordered parameters
+#' @seealso \code{\link{slackrSetup}}, \code{\link{save.slackr}}, \code{\link{slackrUpload}}
 #' @examples
 #' \dontrun{
 #' slackrSetup()
@@ -194,17 +196,84 @@ dev.slackr <- function(channels=Sys.getenv("SLACK_CHANNEL"), ...,
 
 }
 
+#' Save R objects to an RData file on \code{slack.com}
+#'
+#' \code{save.slackr} enables you upload R objects (as an R data file)
+#' to \code{slack.com} and (optionally) post them to one or more channels
+#' (if \code{channels} is not empty).
+#'
+#' @param ... objects to store in the R data file
+#' @param channels slack.com channels to save to (optional)
+#' @param file filename (without extension) to use
+#' @param api_token full API token
+#' @return \code{httr} response object from \code{POST} call
+#' @seealso \code{\link{slackrSetup}}, \code{\link{dev.slackr}}, \code{\link{slackrUpload}}
+#' @export
+save.slackr <- function(..., channels,
+                        file="slackr",
+                        api_token=Sys.getenv("SLACK_API_TOKEN")) {
+
+
+  Sys.setlocale('LC_ALL','C')
+
+  ftmp <- tempfile(file, fileext=".rda")
+  save(..., file=ftmp)
+
+  modchan <- slackrChTrans(channels)
+
+  POST(url="https://slack.com/api/files.upload",
+       add_headers(`Content-Type`="multipart/form-data"),
+       body=list( file=upload_file(ftmp), token=api_token, channels=modchan))
+
+}
+
+#' Send a file to \code{slack.com}
+#'
+#' \code{slackrUoload} enables you upload files to \code{slack.com} and
+#' (optionally) post them to one or more channels (if \code{channels} is not empty).
+#'
+#' @param filename path to file
+#' @param title title on slack (optional - defaults to filename)
+#' @param initial_comment comment for file on slack (optional - defaults to filename)
+#' @param channels slack.com channels to save to (optional)
+#' @param api_token full API token
+#' @return \code{httr} response object from \code{POST} call
+#' @seealso \code{\link{slackrSetup}}, \code{\link{dev.slackr}}, \code{\link{save.slackr}}
+#' @export
+slackrUpload <- function(filename, title=basename(filename),
+                         initial_comment=basename(filename),
+                         channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
+
+  f_path <- path.expand(filename)
+
+  if (file.exists(f_path)) {
+
+    f_name <- basename(f_path)
+
+    Sys.setlocale('LC_ALL','C')
+
+    modchan <- slackrChTrans(channels)
+
+    POST(url="https://slack.com/api/files.upload",
+         add_headers(`Content-Type`="multipart/form-data"),
+         body=list( file=upload_file(f_path), filename=f_name,
+                    title=title, initial_comment=initial_comment,
+                    token=api_token, channels=modchan))
+
+  }
+
+}
+
 #' Translate vector of channel names to channel ID's for API
 #'
 #' Given a vector of one or more channel names, it will retrieve list of
 #' active channels and try to replace channels that begin with "\code{#}" or "\code{@@}"
 #' with the channel ID for that channel.
 #'
-#' Returns the original channel list with \code{#} or \code{@@} channels replaced with ID's.
-#'
 #' @param channels vector of channel names to parse
 #' @param api_token the slack.com full API token (chr)
 #' @note Renamed from \code{slackr_chtrans}
+#' @return character vector - original channel list with \code{#} or \code{@@} channels replaced with ID's.
 #' @export
 slackrChTrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
@@ -229,6 +298,7 @@ slackrChTrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
 #' need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
 #'
 #' @param api_token the slack.com full API token (chr)
+#' @return data.table of users
 #' @export
 slackrUsers <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
@@ -246,6 +316,7 @@ slackrUsers <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 #' need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
 #'
 #' @param api_token the slack.com full API token (chr)
+#' @return data.table of channels
 #' @note Renamed from \code{slackr_channels}
 #' @export
 slackrChannels <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
