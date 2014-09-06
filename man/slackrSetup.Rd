@@ -29,7 +29,7 @@ Initialize all the environment variables \link{slackr} will need to use to
 work properly.
 }
 \details{
-By default, \code{slackr} will use the \code{#general} room and a username
+By default, \code{slackr} (and other functions) will use the \code{#general} room and a username
 of \code{slackr()} with no emoji and the default \url{slack.com} API prefix URL. You
 still need to provide the webhook API token in \code{token} for anyting to work.
 Failure to call this function before calling \code{slackr()} will result in a

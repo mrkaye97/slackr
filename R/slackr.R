@@ -3,7 +3,7 @@
 #' Initialize all the environment variables \link{slackr} will need to use to
 #' work properly.
 #'
-#' By default, \code{slackr} will use the \code{#general} room and a username
+#' By default, \code{slackr} (and other functions) will use the \code{#general} room and a username
 #' of \code{slackr()} with no emoji and the default \url{slack.com} API prefix URL. You
 #' still need to provide the webhook API token in \code{token} for anyting to work.
 #' Failure to call this function before calling \code{slackr()} will result in a
@@ -25,7 +25,7 @@
 #' @param api_token the slack.com full API token (chr)
 #' @param config_file a configuration file (DCF) - see \link{read.dcf} - format with the config values.
 #' @param echo display the configuraiton variables (bool) initially \code{FALSE}
-#' @note You need a \url{slack.com} account and will also need to setup an incoming webhook: \url{https://api.slack.com/}
+#' @note You need a \url{slack.com} account and will also need to setup an incoming webhook and full API tokens: \url{https://api.slack.com/}
 #' @seealso \code{\link{slackr}}, \code{\link{dev.slackr}}, \code{\link{save.slackr}}, \code{\link{slackrUpload}}
 #' @examples
 #' \dontrun{
@@ -330,7 +330,3 @@ slackrChannels <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
   }) )
 
 }
-
-
-
-
