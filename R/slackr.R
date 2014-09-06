@@ -157,30 +157,44 @@ slackr <- function(...,
 #'
 #' need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
 #' @param api_token the slack.com full API token (chr)
-#' @param channels
-#' @param plot plot to save, defaults to last plot displayed
-#' @param scale scaling factor
-#' @param width width (defaults to the width of current plotting window)
-#' @param height height (defaults to the height of current plotting window)
-#' @param units units for width and height when either one is explicitly specified (in, cm, or mm)
-#' @param dpi dpi to use for raster graphics
-#' @param limitsize when TRUE (the default), ggsave will not save images larger than 50x50 inches, to prevent the common error of specifying dimensions in pixels.
-#' @param ... other argumenrs passed to graphics device
+#' @param channels list of channels to post image to
+#' @param ... other arguments passed into png device
 #' @export
 #'
-ggslackr <- function(api_token=Sys.getenv("SLACK_API_TOKEN"), channels=Sys.getenv("SLACK_CHANNEL"),
-                     plot=last_plot(), scale=1, width=par("din")[1], height=par("din")[2],
-                     units=c("in", "cm", "mm"), dpi=300, limitsize=TRUE, ...) {
-
+ggslackr <- function(api_token=Sys.getenv("SLACK_API_TOKEN"), channels=Sys.getenv("SLACK_CHANNEL"), ...) {
   Sys.setlocale('LC_ALL','C')
   ftmp <- tempfile("ggplot", fileext=".png")
-  ggsave(filename=ftmp, plot=plot, scale=scale, width=width, height=height, units=units, dpi=dpi, limitsize=limitsize, ...)
+  # ggsave(filename=ftmp, plot=plot, scale=scale, width=width, height=height, units=units, dpi=dpi, limitsize=limitsize, ...)
   print(ftmp)
-
+  dev.copy(png, file=ftmp, ...)
+  dev.off()
+  print(channels)
+  modchan <- slackr_chtrans(channels)
+  print(modchan)
   POST(url="https://slack.com/api/files.upload",
        add_headers(`Content-Type`="multipart/form-data"),
-       body=list( file=upload_file(ftmp), token=api_token, channels=channels ))
+       body=list( file=upload_file(ftmp), token=api_token, channels=modchan))
+}
 
+#' Translate vector of channel names to channel ID's for API
+#'
+#' Given a vector of one or more channel names, it will retrieve list of
+#' active channels and try to replace channels that begin with "#" with
+#' the channel ID for that channel.
+#'
+#' Returns the original channel list with #channels replaced with ID's.
+#'
+#' @param channels vector of channel names to parse
+#' @param api_token the slack.com full API token (chr)
+#' @export
+slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
+  cmatch <- grepl("^\\#", channels)
+  if (any(cmatch)) {
+    chanlist <- slackr_channels(api_token)
+    cindex <- which(cmatch)
+    channels[cindex] <- as.character(chanlist$id[cindex])
+  }
+  channels
 }
 
 #' Get data frame of slack.com users
