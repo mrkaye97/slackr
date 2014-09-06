@@ -10,7 +10,7 @@ The following functions are implemented:
 -   `slackrUsers` : get a data frame of slack.com users (full API token - i.e. not wehbook - required)
 -   `slackrChannels` : get a data frame of slack.com channels (full API token - i.e. not wehbook - required)
 
-The `slackrSetup()` function will try to read setup values from a `~/.slackr` (you can change the default) configuration file, which may be easier and more secure than passing them in manually (plus, will allow you to have multiple slackr configs for multiple Slack.com teams). The file is in Debian Control File (DFC) format since it really doesn't need to be JSON and R has a handy `read.dcf()` function since that's what `DESCRIPTION` files are coded in. Here's the basic format for the configuration file:
+The `slackrSetup()` function will try to read setup values from a `~/.slackr` (you can change the default) configuration file, which may be easier and more secure than passing them in manually (plus, will allow you to have multiple slackr configs for multiple Slack.com teams). The file is in Debian Control File (DCF) format since it really doesn't need to be JSON and R has a handy `read.dcf()` function since that's what `DESCRIPTION` files are coded in. Here's the basic format for the configuration file:
 
     token: YOUR_INCOMING_WEBHOOK_TOKEN
     channel: #general
@@ -77,7 +77,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Sat Sep  6 07:04:19 2014"
+    ## [1] "Sat Sep  6 07:05:09 2014"
 
 ``` {.r}
 test_dir("tests/")
