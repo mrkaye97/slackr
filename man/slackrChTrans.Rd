@@ -16,7 +16,7 @@ character vector - original channel list with \code{#} or \code{@} channels repl
 \description{
 Given a vector of one or more channel names, it will retrieve list of
 active channels and try to replace channels that begin with "\code{#}" or "\code{@}"
-with the channel ID for that channel.
+with the channel ID for that channel. Also incorporates groups.
 }
 \note{
 Renamed from \code{slackr_chtrans}

@@ -26,7 +26,8 @@ You can also change the default emoji icon (from the one you setup at integratio
 
 ### News
 
--   Version `1.1` released (added graphics & files capability)
+-   Version `1.1.1` fixed a bug in the new full API `slackr()` function
+-   Version `1.1` added graphics & files capability
 -   Version `1.0` released
 
 ### Installation
@@ -81,7 +82,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Sat Sep  6 16:03:05 2014"
+    ## [1] "Sun Sep  7 06:54:09 2014"
 
 ``` {.r}
 test_dir("tests/")

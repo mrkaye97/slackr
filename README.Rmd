@@ -38,7 +38,8 @@ You can also change the default emoji icon (from the one you setup at integratio
 
 ### News
 
-- Version `1.1` released (added graphics & files capability)
+- Version `1.1.1` fixed a bug in the new full API `slackr()` function
+- Version `1.1` added graphics & files capability
 - Version `1.0` released
 
 ### Installation

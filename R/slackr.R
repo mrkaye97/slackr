@@ -214,13 +214,12 @@ slackr <- function(...,
         data <- as.character(expr)
       }
 
-      output <- gsub('^\"|\"$', "", toJSON(data, simplifyVector=TRUE, flatten=TRUE, auto_unbox=TRUE))
+      output <- data
 
       resp <- POST(url="https://slack.com/api/chat.postMessage",
                    body=list(token=api_token, channel=channel,
                              username=username, icon_emoji=icon_emoji,
                              text=sprintf("```%s```", output), link_names=1))
-
 
       warn_for_status(resp)
 
