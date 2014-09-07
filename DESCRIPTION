@@ -5,7 +5,7 @@ Version: 1.2
 Date: 2014-09-07
 Author: Bob Rudis (@hrbrmstr) & Jay Jacobs (@jayjacobs)
 Maintainer: Bob Rudis <bob@rudis.net>
-Description: This pacakge contains functions that make it possible to
+Description: This package contains functions that make it possible to
     interact with slack messaging platform. When you need to share
     information/data from R, rather than resort to copy/paste in e-mails
     or other services like Skype, you can use this package to send
