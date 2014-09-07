@@ -12,7 +12,7 @@
 #' @title slackr-package
 #' @docType package
 #' @author Bob Rudis (@@hrbrmstr)
-#' @import httr jsonlite data.table
+#' @import httr jsonlite data.table ggplot2
 #' @examples
 #' \dontrun{
 #' slackrSetup()
@@ -25,6 +25,7 @@
 #' qplot(mpg, wt, data=mtcars)
 #' dev.slack("#results")
 #'
+#' ggslackr(qplot(mpg, wt, data=mtcars))
 #'
 #' }
 NULL

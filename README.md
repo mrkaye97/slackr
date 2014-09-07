@@ -8,6 +8,7 @@ The following functions are implemented:
 -   `slackr` : send stuff to `slack.com` (full API token - i.e. not wehbook - required)
 -   `slackrBot` : send stuff to `slack.com` using the incoming webhook API/token
 -   `dev.slackr` : send the graphics contents of the current device to a to `slack.com` channel (full API token - i.e. not wehbook - required)
+-   `ggslackr` : send a ggplot object to a `slack.com` channel (no existing device plot required, useful for scripts) (full API token - i.e. not wehbook - required)
 -   `save.slackr` : save R objects to an RData file on `slack.com` (full API token - i.e. not wehbook - required)
 -   `slackrUpload` : upload any file to `slack.com` (full API token - i.e. not wehbook - required)
 -   `slackrUsers` : get a data frame of `slack.com` users (full API token - i.e. not wehbook - required)
@@ -26,6 +27,7 @@ You can also change the default emoji icon (from the one you setup at integratio
 
 ### News
 
+-   Version `1.2` re-introduced `ggslackr()`
 -   Version `1.1.1` fixed a bug in the new full API `slackr()` function
 -   Version `1.1` added graphics & files capability
 -   Version `1.0` released
@@ -57,6 +59,8 @@ dev.slackr("#results")
 
 barplot(VADeaths)
 dev.slackr("@jayjacobs")
+
+ggslackr(qplot(mpg, wt, data=mtcars))
 ```
 
 ### Test Results
@@ -75,6 +79,7 @@ library(slackr)
     ##     View
     ## 
     ## Loading required package: data.table
+    ## Loading required package: ggplot2
 
 ``` {.r}
 library(testthat)
@@ -82,7 +87,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Sun Sep  7 06:54:09 2014"
+    ## [1] "Sun Sep  7 16:32:25 2014"
 
 ``` {.r}
 test_dir("tests/")

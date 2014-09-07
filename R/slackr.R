@@ -242,7 +242,6 @@ slackr <- function(...,
 #' @param ... other arguments passed into png device
 #' @param api_token the slack.com full API token (chr)
 #' @return \code{httr} response object from \code{POST} call
-#' @note Renamed from \code{ggslackr} and re-ordered parameters
 #' @seealso \code{\link{slackrSetup}}, \code{\link{save.slackr}}, \code{\link{slackrUpload}}
 #' @examples
 #' \dontrun{
@@ -274,6 +273,45 @@ dev.slackr <- function(channels=Sys.getenv("SLACK_CHANNEL"), ...,
        body=list( file=upload_file(ftmp), token=api_token, channels=modchan))
 
 }
+
+#' Post a ggplot to a \url{slack.com} channel
+#'
+#' Unlike the \code{\link{dev.slackr}} function, this one takes a \code{ggplot} object,
+#' eliminating the need to have a graphics device (think use in scripts).
+#'
+#' @param plot ggplot object to save, defaults to last plot displayed
+#' @param channels list of channels to post image to
+#' @param scale scaling factor
+#' @param width width (defaults to the width of current plotting window)
+#' @param height height (defaults to the height of current plotting window)
+#' @param units units for width and height when either one is explicitly specified (in, cm, or mm)
+#' @param dpi dpi to use for raster graphics
+#' @param limitsize when TRUE (the default), ggsave will not save images larger than 50x50 inches, to prevent the common error of specifying dimensions in pixels.
+#' @param api_token the slack.com full API token (chr)
+#' @param ... other arguments passed to graphics device
+#' @note You need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
+#' @return \code{httr} response object
+#' @examples
+#' \dontrun{
+#' slackrSetup()
+#' ggslackr(qplot(mpg, wt, data=mtcars))
+#' }
+#' @export
+ggslackr <- function(plot=last_plot(), channels=Sys.getenv("SLACK_CHANNEL"), scale=1, width=par("din")[1], height=par("din")[2],
+                     units=c("in", "cm", "mm"), dpi=300, limitsize=TRUE, api_token=Sys.getenv("SLACK_API_TOKEN"), ...) {
+
+  Sys.setlocale('LC_ALL','C')
+  ftmp <- tempfile("ggplot", fileext=".png")
+  ggsave(filename=ftmp, plot=plot, scale=scale, width=width, height=height, units=units, dpi=dpi, limitsize=limitsize, ...)
+
+  modchan <- slackrChTrans(channels)
+
+  POST(url="https://slack.com/api/files.upload",
+       add_headers(`Content-Type`="multipart/form-data"),
+       body=list( file=upload_file(ftmp), token=api_token, channels=modchan))
+
+}
+
 
 #' Save R objects to an RData file on \code{slack.com}
 #'
