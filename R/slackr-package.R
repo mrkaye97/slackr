@@ -1,4 +1,4 @@
-#' A package to work with the Slack.com API
+#' slackr - A package to work with the Slack.com API
 #'
 #' Check out:
 #' \itemize{
