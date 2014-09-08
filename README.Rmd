@@ -39,6 +39,7 @@ You can also change the default emoji icon (from the one you setup at integratio
 
 ### News
 
+- Version `1.2.1` fixed [issue](https://github.com/hrbrmstr/slackr/issues/3) when there are no private groups defined 
 - Version `1.2` re-introduced `ggslackr()` (first [CRAN version](http://cran.at.r-project.org/web/packages/slackr/index.html))
 - Version `1.1.1` fixed a bug in the new full API `slackr()` function
 - Version `1.1` added graphics & files capability

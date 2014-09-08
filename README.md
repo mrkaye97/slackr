@@ -27,6 +27,7 @@ You can also change the default emoji icon (from the one you setup at integratio
 
 ### News
 
+-   Version `1.2.1` fixed [issue](https://github.com/hrbrmstr/slackr/issues/3) when there are no private groups defined
 -   Version `1.2` re-introduced `ggslackr()` (first [CRAN version](http://cran.at.r-project.org/web/packages/slackr/index.html))
 -   Version `1.1.1` fixed a bug in the new full API `slackr()` function
 -   Version `1.1` added graphics & files capability
@@ -91,7 +92,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Mon Sep  8 07:56:33 2014"
+    ## [1] "Mon Sep  8 12:28:38 2014"
 
 ``` {.r}
 test_dir("tests/")
