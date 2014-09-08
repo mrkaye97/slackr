@@ -39,7 +39,7 @@ You can also change the default emoji icon (from the one you setup at integratio
 
 ### News
 
-- Version `1.2` re-introduced `ggslackr()`
+- Version `1.2` re-introduced `ggslackr()` (first [CRAN version](http://cran.at.r-project.org/web/packages/slackr/index.html))
 - Version `1.1.1` fixed a bug in the new full API `slackr()` function
 - Version `1.1` added graphics & files capability
 - Version `1.0` released
@@ -47,6 +47,10 @@ You can also change the default emoji icon (from the one you setup at integratio
 ### Installation
 
 ```{r eval=FALSE}
+# stable/CRAN
+install.packages("slackr")
+
+# bleeding edge
 devtools::install_github("hrbrmstr/slackr")
 ```
 

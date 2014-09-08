@@ -27,7 +27,7 @@ You can also change the default emoji icon (from the one you setup at integratio
 
 ### News
 
--   Version `1.2` re-introduced `ggslackr()`
+-   Version `1.2` re-introduced `ggslackr()` (first [CRAN version](http://cran.at.r-project.org/web/packages/slackr/index.html))
 -   Version `1.1.1` fixed a bug in the new full API `slackr()` function
 -   Version `1.1` added graphics & files capability
 -   Version `1.0` released
@@ -35,6 +35,10 @@ You can also change the default emoji icon (from the one you setup at integratio
 ### Installation
 
 ``` {.r}
+# stable/CRAN
+install.packages("slackr")
+
+# bleeding edge
 devtools::install_github("hrbrmstr/slackr")
 ```
 
@@ -79,6 +83,7 @@ library(slackr)
     ##     View
     ## 
     ## Loading required package: data.table
+    ## Loading required package: ggplot2
 
 ``` {.r}
 library(testthat)
@@ -86,7 +91,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Mon Sep  8 06:59:34 2014"
+    ## [1] "Mon Sep  8 07:56:33 2014"
 
 ``` {.r}
 test_dir("tests/")
