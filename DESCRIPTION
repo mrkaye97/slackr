@@ -1,8 +1,8 @@
 Package: slackr
 Type: Package
 Title: Send messages, images, R objects and files to Slack.com channels/users
-Version: 1.2
-Date: 2014-09-08
+Version: 1.2.2
+Date: 2014-09-15
 Author: Bob Rudis (@hrbrmstr) & Jay Jacobs (@jayjacobs)
 Maintainer: Bob Rudis <bob@rudis.net>
 Description: Slackr contains functions that make it possible to

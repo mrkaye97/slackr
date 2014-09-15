@@ -4,6 +4,7 @@ Slackr contains functions that make it possible to interact with slack messaging
 
 ### News
 
+-   Version `1.2.2` fixed [issue](https://github.com/hrbrmstr/slackr/issues/4) (bug in `1.2.1` fix)
 -   Version `1.2.1` fixed [issue](https://github.com/hrbrmstr/slackr/issues/3) when there are no private groups defined
 -   Version `1.2` re-introduced `ggslackr()` (first [CRAN version](http://cran.at.r-project.org/web/packages/slackr/index.html))
 -   Version `1.1.1` fixed a bug in the new full API `slackr()` function
@@ -92,7 +93,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Mon Sep  8 12:30:14 2014"
+    ## [1] "Mon Sep 15 11:58:02 2014"
 
 ``` {.r}
 test_dir("tests/")
