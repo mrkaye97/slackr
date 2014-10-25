@@ -402,9 +402,11 @@ slackrChTrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
   chan$name <- sprintf("#%s", chan$name)
   users$name <- sprintf("@%s", users$name)
 
-  chan_list <- rbind(chan[,1:2,with=FALSE],
-                     users[,1:2,with=FALSE],
-                     groups[,1:2,with=FALSE])
+  chan_list <- data.table(id=character(0), name=character(0))
+
+  if (length(chan) > 0) { chan_list <- rbind(chan_list, chan[,1:2,with=FALSE])  }
+  if (length(users) > 0) { chan_list <- rbind(chan_list, users[,1:2,with=FALSE]) }
+  if (length(groups) > 0) { chan_list <- rbind(chan_list, groups[,1:2,with=FALSE]) }
 
   chan_xref <- merge(data.frame(name=channels), chan_list, all.x=TRUE)
 

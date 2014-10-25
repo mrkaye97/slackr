@@ -2,6 +2,15 @@ slackr - a package to send full & webhook API messages to Slack.com channels/use
 
 Slackr contains functions that make it possible to interact with slack messaging platform. When you need to share information/data from R, rather than resort to copy/paste in e-mails or other services like Skype, you can use this package to send well-formatted output from multiple R objects and expressions to all teammates at the same time with little effort. You can also send images from the current graphics device. , R objects (as RData), and upload files.
 
+### News
+
+-   Version `1.2.2` fixed [issue](https://github.com/hrbrmstr/slackr/issues/4) (bug in `1.2.1` fix)
+-   Version `1.2.1` fixed [issue](https://github.com/hrbrmstr/slackr/issues/3) when there are no private groups defined
+-   Version `1.2` re-introduced `ggslackr()` (first [CRAN version](http://cran.at.r-project.org/web/packages/slackr/index.html))
+-   Version `1.1.1` fixed a bug in the new full API `slackr()` function
+-   Version `1.1` added graphics & files capability
+-   Version `1.0` released
+
 The following functions are implemented:
 
 -   `slackrSetup` : initialize necessary environment variables
@@ -24,13 +33,6 @@ The `slackrSetup()` function will try to read setup values from a `~/.slackr` (y
     api_token: YOUR_FULL_API_TOKEN
 
 You can also change the default emoji icon (from the one you setup at integration creation time) with `icon_emoji`.
-
-### News
-
--   Version `1.2` re-introduced `ggslackr()` (first [CRAN version](http://cran.at.r-project.org/web/packages/slackr/index.html))
--   Version `1.1.1` fixed a bug in the new full API `slackr()` function
--   Version `1.1` added graphics & files capability
--   Version `1.0` released
 
 ### Installation
 
@@ -91,7 +93,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Mon Sep  8 07:56:33 2014"
+    ## [1] "Mon Sep 15 11:58:02 2014"
 
 ``` {.r}
 test_dir("tests/")
