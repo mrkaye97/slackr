@@ -468,4 +468,3 @@ slackrGroups <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
   }) )
 
 }
-
