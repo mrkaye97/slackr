@@ -14,15 +14,15 @@ Slackr contains functions that make it possible to interact with slack messaging
 The following functions are implemented:
 
 -   `slackrSetup` : initialize necessary environment variables
--   `slackr` : send stuff to `slack.com` (full API token - i.e. not wehbook - required)
+-   `slackr` : send stuff to `slack.com` (full API token - i.e. not webhook - required)
 -   `slackrBot` : send stuff to `slack.com` using the incoming webhook API/token
--   `dev.slackr` : send the graphics contents of the current device to a to `slack.com` channel (full API token - i.e. not wehbook - required)
--   `ggslackr` : send a ggplot object to a `slack.com` channel (no existing device plot required, useful for scripts) (full API token - i.e. not wehbook - required)
--   `save.slackr` : save R objects to an RData file on `slack.com` (full API token - i.e. not wehbook - required)
--   `slackrUpload` : upload any file to `slack.com` (full API token - i.e. not wehbook - required)
--   `slackrUsers` : get a data frame of `slack.com` users (full API token - i.e. not wehbook - required)
--   `slackrChannels` : get a data frame of `slack.com` channels (full API token - i.e. not wehbook - required)
--   `slackrGroups` : get a data frame of `slack.com` groups (full API token - i.e. not wehbook - required)
+-   `dev.slackr` : send the graphics contents of the current device to a to `slack.com` channel (full API token - i.e. not webhook - required)
+-   `ggslackr` : send a ggplot object to a `slack.com` channel (no existing device plot required, useful for scripts) (full API token - i.e. not webhook - required)
+-   `save.slackr` : save R objects to an RData file on `slack.com` (full API token - i.e. not webhook - required)
+-   `slackrUpload` : upload any file to `slack.com` (full API token - i.e. not webhook - required)
+-   `slackrUsers` : get a data frame of `slack.com` users (full API token - i.e. not webhook - required)
+-   `slackrChannels` : get a data frame of `slack.com` channels (full API token - i.e. not webhook - required)
+-   `slackrGroups` : get a data frame of `slack.com` groups (full API token - i.e. not webhook - required)
 
 The `slackrSetup()` function will try to read setup values from a `~/.slackr` (you can change the default) configuration file, which may be easier and more secure than passing them in manually (plus, will allow you to have multiple slackr configs for multiple Slack.com teams). The file is in Debian Control File (DCF) format since it really doesn't need to be JSON and R has a handy `read.dcf()` function since that's what `DESCRIPTION` files are coded in. Here's the basic format for the configuration file:
 
