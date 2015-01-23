@@ -68,6 +68,18 @@ slackrSetup <- function(channel="#general", username="slackr",
 
   }
 
+  if (!grepl("?$", Sys.getenv("SLACK_INCOMING_URL_PREFIX"))) {
+    Sys.setenv(SLACK_INCOMING_URL_PREFIX=sprintf("%s?", config[,"incoming_webhook_url"]))
+  }
+
+  if (length(Sys.getenv("SLACK_CHANNEL"))==0) {
+    Sys.setenv("SLACK_CHANNEL", "#general")
+  }
+
+  if (length(Sys.getenv("SLACK_USERNAME"))==0) {
+    Sys.setenv("SLACK_USERNAME", "slackr")
+  }
+
   if (echo) {
     print(Sys.getenv(c("SLACK_CHANNEL", "SLACK_USERNAME",
                        "SLACK_ICON_EMOJI", "SLACK_TOKEN",
@@ -249,7 +261,7 @@ slackr <- function(...,
 #'
 #' # ggplot
 #' library(ggplot2)
-#' qplot(mpg, wt, data=mtcars)
+#'
 #' dev.slackr("#results")
 #'
 #' # base
@@ -429,7 +441,7 @@ slackrUsers <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
   tmp <- POST("https://slack.com/api/users.list", body=list(token=api_token))
   tmp_p <- content(tmp, as="parsed")
   rbindlist(lapply(tmp_p$members, function(x) {
-    data.frame(id=x$id, name=x$name, real_name=x$real_name)
+    data.frame(id=nax(x$id), name=nax(x$name), real_name=nax(x$real_name))
   }) )
 
 }
@@ -448,7 +460,7 @@ slackrChannels <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
   tmp <- POST("https://slack.com/api/channels.list", body=list(token=api_token))
   tmp_p <- content(tmp, as="parsed")
   rbindlist(lapply(tmp_p$channels, function(x) {
-    data.frame(id=x$id, name=x$name, is_member=x$is_member)
+    data.frame(id=nax(x$id), name=nax(x$name), is_member=nax(x$is_member))
   }) )
 
 }
@@ -466,7 +478,12 @@ slackrGroups <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
   tmp <- POST("https://slack.com/api/groups.list", body=list(token=api_token))
   tmp_p <- content(tmp, as="parsed")
   rbindlist(lapply(tmp_p$groups, function(x) {
-    data.frame(id=x$id, name=x$name, is_archived=x$is_archived)
+    data.frame(id=nax(x$id), name=nax(x$name), is_archived=nax(x$is_archived))
   }) )
 
+}
+
+# helper function for NULLs as return value
+nax <- function(x) {
+  ifelse(is.null(x), NA, x)
 }

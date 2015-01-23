@@ -1,9 +1,10 @@
 slackr - a package to send full & webhook API messages to Slack.com channels/users
 
-Slackr contains functions that make it possible to interact with slack messaging platform. When you need to share information/data from R, rather than resort to copy/paste in e-mails or other services like Skype, you can use this package to send well-formatted output from multiple R objects and expressions to all teammates at the same time with little effort. You can also send images from the current graphics device. , R objects (as RData), and upload files.
+Slackr contains functions that make it possible to interact with slack messaging platform. When you need to share information/data from R, rather than resort to copy/paste in e-mails or other services like Skype, you can use this package to send well-formatted output from multiple R objects and expressions to all teammates at the same time with little effort. You can also send images from the current graphics device, R objects (as RData), and upload files.
 
 ### News
 
+-   Version `1.2.3` added more parameter error cheking, remobved the need for ending `?` on webhook URL and added defaults for missing setup parameters.
 -   Version `1.2.2` fixed [issue](https://github.com/hrbrmstr/slackr/issues/4) (bug in `1.2.1` fix)
 -   Version `1.2.1` fixed [issue](https://github.com/hrbrmstr/slackr/issues/3) when there are no private groups defined
 -   Version `1.2` re-introduced `ggslackr()` (first [CRAN version](http://cran.at.r-project.org/web/packages/slackr/index.html))
@@ -36,7 +37,7 @@ You can also change the default emoji icon (from the one you setup at integratio
 
 ### Installation
 
-``` {.r}
+``` r
 # stable/CRAN
 install.packages("slackr")
 
@@ -46,7 +47,7 @@ devtools::install_github("hrbrmstr/slackr")
 
 ### Usage
 
-``` {.r}
+``` r
 library(slackr)
 
 # current verison
@@ -71,7 +72,7 @@ ggslackr(qplot(mpg, wt, data=mtcars))
 
 ### Test Results
 
-``` {.r}
+``` r
 library(slackr)
 ```
 
@@ -87,15 +88,15 @@ library(slackr)
     ## Loading required package: data.table
     ## Loading required package: ggplot2
 
-``` {.r}
+``` r
 library(testthat)
 
 date()
 ```
 
-    ## [1] "Mon Sep 15 11:58:02 2014"
+    ## [1] "Thu Jan 22 21:59:12 2015"
 
-``` {.r}
+``` r
 test_dir("tests/")
 ```
 
