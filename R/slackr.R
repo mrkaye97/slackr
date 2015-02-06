@@ -441,6 +441,7 @@ slackrUsers <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
   tmp <- POST("https://slack.com/api/users.list", body=list(token=api_token))
   tmp_p <- content(tmp, as="parsed")
   rbindlist(lapply(tmp_p$members, function(x) {
+    if ( is.null(x$real_name) ) { x$real_name <- "" }
     data.frame(id=nax(x$id), name=nax(x$name), real_name=nax(x$real_name))
   }) )
 
