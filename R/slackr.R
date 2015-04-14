@@ -270,11 +270,12 @@ slackr <- function(...,
 #' }
 #' @export
 dev.slackr <- function(channels=Sys.getenv("SLACK_CHANNEL"), ...,
-                       api_token=Sys.getenv("SLACK_API_TOKEN")) {
+                       api_token=Sys.getenv("SLACK_API_TOKEN"),
+                       file='plot') {
 
   Sys.setlocale('LC_ALL','C')
 
-  ftmp <- tempfile("plot", fileext=".png")
+  ftmp <- tempfile(file, fileext=".png")
   dev.copy(png, file=ftmp, ...)
   dev.off()
 
