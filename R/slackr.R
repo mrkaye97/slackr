@@ -388,7 +388,7 @@ slackrUpload <- function(filename, title=basename(filename),
          add_headers(`Content-Type`="multipart/form-data"),
          body=list( file=upload_file(f_path), filename=f_name,
                     title=title, initial_comment=initial_comment,
-                    token=api_token, channels=modchan))
+                    token=api_token, channels=paste(modchan, collapse=",")))
 
   }
 
