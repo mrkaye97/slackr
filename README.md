@@ -13,6 +13,15 @@ Slackr contains functions that make it possible to interact with slack messaging
 -   Version `1.1` added graphics & files capability
 -   Version `1.0` released
 
+Many thanks to:
+
+-   [Jay Jacobs](https://github.com/jayjacobs)
+-   [David Severski](https://github.com/davidski)
+-   [Quinn Weber](https://github.com/qsweber)
+-   [Konrad Karczewski](https://github.com/konradjk)
+
+for their contributions to the package!
+
 The following functions are implemented:
 
 -   `slackr_setup` : initialize necessary environment variables
@@ -80,7 +89,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Wed Jul 29 14:06:01 2015"
+    ## [1] "Wed Jul 29 14:09:08 2015"
 
 ``` r
 test_dir("tests/")
