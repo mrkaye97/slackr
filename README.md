@@ -4,6 +4,7 @@ Slackr contains functions that make it possible to interact with slack messaging
 
 ### News
 
+-   Version `1.3.0.000` Radically changed how `slackr` works. Functions have camelCase and under\_score versions
 -   Version `1.2.3` added more parameter error cheking, remobved the need for ending `?` on webhook URL and added defaults for missing setup parameters.
 -   Version `1.2.2` fixed [issue](https://github.com/hrbrmstr/slackr/issues/4) (bug in `1.2.1` fix)
 -   Version `1.2.1` fixed [issue](https://github.com/hrbrmstr/slackr/issues/3) when there are no private groups defined
@@ -14,18 +15,18 @@ Slackr contains functions that make it possible to interact with slack messaging
 
 The following functions are implemented:
 
--   `slackrSetup` : initialize necessary environment variables
+-   `slackr_setup` : initialize necessary environment variables
 -   `slackr` : send stuff to `slack.com` (full API token - i.e. not wehbook - required)
--   `slackrBot` : send stuff to `slack.com` using the incoming webhook API/token
--   `dev.slackr` : send the graphics contents of the current device to a to `slack.com` channel (full API token - i.e. not wehbook - required)
+-   `slackr_bot` : send stuff to `slack.com` using the incoming webhook API/token
+-   `dev_slackr` : send the graphics contents of the current device to a to `slack.com` channel (full API token - i.e. not wehbook - required)
 -   `ggslackr` : send a ggplot object to a `slack.com` channel (no existing device plot required, useful for scripts) (full API token - i.e. not wehbook - required)
--   `save.slackr` : save R objects to an RData file on `slack.com` (full API token - i.e. not wehbook - required)
--   `slackrUpload` : upload any file to `slack.com` (full API token - i.e. not wehbook - required)
+-   `save_slackr` : save R objects to an RData file on `slack.com` (full API token - i.e. not wehbook - required)
+-   `slackr_upload` : upload any file to `slack.com` (full API token - i.e. not wehbook - required)
 -   `slackrUsers` : get a data frame of `slack.com` users (full API token - i.e. not wehbook - required)
 -   `slackrChannels` : get a data frame of `slack.com` channels (full API token - i.e. not wehbook - required)
 -   `slackrGroups` : get a data frame of `slack.com` groups (full API token - i.e. not wehbook - required)
 
-The `slackrSetup()` function will try to read setup values from a `~/.slackr` (you can change the default) configuration file, which may be easier and more secure than passing them in manually (plus, will allow you to have multiple slackr configs for multiple Slack.com teams). The file is in Debian Control File (DCF) format since it really doesn't need to be JSON and R has a handy `read.dcf()` function since that's what `DESCRIPTION` files are coded in. Here's the basic format for the configuration file:
+The `slackr_setup()` function will try to read setup values from a `~/.slackr` (you can change the default) configuration file, which may be easier and more secure than passing them in manually (plus, will allow you to have multiple slackr configs for multiple Slack.com teams). The file is in Debian Control File (DCF) format since it really doesn't need to be JSON and R has a handy `read.dcf()` function since that's what `DESCRIPTION` files are coded in. Here's the basic format for the configuration file:
 
     token: YOUR_INCOMING_WEBHOOK_TOKEN
     channel: #general
@@ -74,32 +75,18 @@ ggslackr(qplot(mpg, wt, data=mtcars))
 
 ``` r
 library(slackr)
-```
-
-    ## Loading required package: httr
-    ## Loading required package: jsonlite
-    ## 
-    ## Attaching package: 'jsonlite'
-    ## 
-    ## The following object is masked from 'package:utils':
-    ## 
-    ##     View
-    ## 
-    ## Loading required package: data.table
-    ## Loading required package: ggplot2
-
-``` r
 library(testthat)
 
 date()
 ```
 
-    ## [1] "Thu Jan 22 21:59:12 2015"
+    ## [1] "Wed Jul 29 14:04:19 2015"
 
 ``` r
 test_dir("tests/")
 ```
 
-    ## basic functionality :
-
-[![ropensci_footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+    ## testthat results ========================================================================================================
+    ## OK: 0 SKIPPED: 0 FAILED: 0
+    ## 
+    ## DONE
