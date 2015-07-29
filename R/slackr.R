@@ -279,7 +279,7 @@ dev.slackr <- function(channels=Sys.getenv("SLACK_CHANNEL"), ...,
   dev.copy(png, file=ftmp, ...)
   dev.off()
 
-  modchan <- slackrChTrans(channels)
+  modchan <- slackrChTrans(channels, ims=TRUE)
 
   POST(url="https://slack.com/api/files.upload",
        add_headers(`Content-Type`="multipart/form-data"),
@@ -317,7 +317,7 @@ ggslackr <- function(plot=last_plot(), channels=Sys.getenv("SLACK_CHANNEL"), sca
   ftmp <- tempfile("ggplot", fileext=".png")
   ggsave(filename=ftmp, plot=plot, scale=scale, width=width, height=height, units=units, dpi=dpi, limitsize=limitsize, ...)
 
-  modchan <- slackrChTrans(channels)
+  modchan <- slackrChTrans(channels, ims=TRUE)
 
   POST(url="https://slack.com/api/files.upload",
        add_headers(`Content-Type`="multipart/form-data"),
@@ -393,7 +393,7 @@ save.slackr <- function(..., channels="",
   ftmp <- tempfile(file, fileext=".rda")
   save(..., file=ftmp)
 
-  modchan <- slackrChTrans(channels)
+  modchan <- slackrChTrans(channels, ims=TRUE)
 
   POST(url="https://slack.com/api/files.upload",
        add_headers(`Content-Type`="multipart/form-data"),
@@ -427,7 +427,7 @@ slackrUpload <- function(filename, title=basename(filename),
 
     Sys.setlocale('LC_ALL','C')
 
-    modchan <- slackrChTrans(channels)
+    modchan <- slackrChTrans(channels, ims=TRUE)
 
     POST(url="https://slack.com/api/files.upload",
          add_headers(`Content-Type`="multipart/form-data"),
@@ -447,13 +447,19 @@ slackrUpload <- function(filename, title=basename(filename),
 #'
 #' @param channels vector of channel names to parse
 #' @param api_token the slack.com full API token (chr)
+#' @param ims Should the IM ids be used instead of the user ids?
+#'  Defaults to FALSE, which is how the function behaved through version 1.2.3
 #' @note Renamed from \code{slackr_chtrans}
 #' @return character vector - original channel list with \code{#} or \code{@@} channels replaced with ID's.
 #' @export
-slackrChTrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
+slackrChTrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN"), ims=FALSE) {
 
   chan <- slackrChannels(api_token)
-  users <- slackrUsers(api_token)
+  if ( ims ) {
+    users <- slackrIms(api_token)
+  } else {
+    users <- slackrUsers(api_token)
+  }
   groups <- slackrGroups(api_token)
 
   chan$name <- sprintf("#%s", chan$name)
@@ -490,6 +496,31 @@ slackrUsers <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
     data.frame(id=nax(x$id), name=nax(x$name), real_name=nax(x$real_name))
   }) )
 
+}
+
+#' Get a data frame of slack.com IM ids
+#'
+#' need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
+#'
+#' @param api_token the slack.com full API token (chr)
+#' @return data.table of im ids and user names
+#' @export
+slackrIms <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) 
+{
+  Sys.setlocale('LC_ALL','C')
+  tmp <- POST("https://slack.com/api/im.list", body=list(token=api_token))
+  tmp_p <- content(tmp, as="parsed")
+  ims <- rbindlist(lapply(tmp_p$ims, function(x) {
+    data.frame(user=x$user, im=x$id)
+  }))
+
+  users <- slackrUsers(api_token)
+  setnames(users,'id','user')
+  ims <- merge(ims, users, by='user')
+  setnames(ims,'im','id')
+  setcolorder(ims, c('id','name','user','real_name'))
+  
+  return(ims)
 }
 
 #' Get a data frame of slack.com channels

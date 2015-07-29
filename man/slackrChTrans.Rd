@@ -4,12 +4,16 @@
 \alias{slackrChTrans}
 \title{Translate vector of channel names to channel ID's for API}
 \usage{
-slackrChTrans(channels, api_token = Sys.getenv("SLACK_API_TOKEN"))
+slackrChTrans(channels, api_token = Sys.getenv("SLACK_API_TOKEN"),
+  ims = FALSE)
 }
 \arguments{
 \item{channels}{vector of channel names to parse}
 
 \item{api_token}{the slack.com full API token (chr)}
+
+\item{ims}{Should the IM ids be used instead of the user ids?
+Defaults to FALSE, which is how the function behaved through version 1.2.3}
 }
 \value{
 character vector - original channel list with \code{#} or \code{@} channels replaced with ID's.
