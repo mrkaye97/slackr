@@ -4,7 +4,7 @@ Slackr contains functions that make it possible to interact with slack messaging
 
 ### News
 
--   Version `1.3.0.000` Radically changed how `slackr` works. Functions have camelCase and under\_score versions
+-   Version `1.3.0.9000` Radically changed how `slackr` works. Functions have camelCase and under\_score versions
 -   Version `1.2.3` added more parameter error cheking, remobved the need for ending `?` on webhook URL and added defaults for missing setup parameters.
 -   Version `1.2.2` fixed [issue](https://github.com/hrbrmstr/slackr/issues/4) (bug in `1.2.1` fix)
 -   Version `1.2.1` fixed [issue](https://github.com/hrbrmstr/slackr/issues/3) when there are no private groups defined
@@ -80,7 +80,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Wed Jul 29 14:04:19 2015"
+    ## [1] "Wed Jul 29 14:06:01 2015"
 
 ``` r
 test_dir("tests/")

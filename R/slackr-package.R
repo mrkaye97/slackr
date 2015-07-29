@@ -2,7 +2,6 @@
 #'
 #' Mega thanks to:
 #'
-#'
 #' \itemize{
 #'   \item \href{https://github.com/jayjacobs}{Jay Jacobs}
 #'   \item \href{https://github.com/davidski}{David Severski}
