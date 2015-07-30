@@ -1,3 +1,8 @@
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/slackr)](http://cran.r-project.org/web/packages/slackr)
+
+![](slackr.png)
+
 slackr - a package to send full & webhook API messages to Slack.com channels/users
 
 Slackr contains functions that make it possible to interact with the Slack messaging platform. When you need to share information/data from R, rather than resort to copy/paste in e-mails or other services like Skype, you can use this package to send well-formatted output from multiple R objects and expressions to all teammates at the same time with little effort. You can also send images from the current graphics device, R objects (as RData), and upload files.
@@ -88,15 +93,11 @@ library(slackr)
 library(testthat)
 
 date()
-```
+#> [1] "Wed Jul 29 23:24:28 2015"
 
-    ## [1] "Wed Jul 29 21:06:33 2015"
-
-``` r
 test_dir("tests/")
+#> testthat results ========================================================================================================
+#> OK: 0 SKIPPED: 0 FAILED: 0
+#> 
+#> DONE
 ```
-
-    ## testthat results ========================================================================================================
-    ## OK: 0 SKIPPED: 0 FAILED: 0
-    ## 
-    ## DONE

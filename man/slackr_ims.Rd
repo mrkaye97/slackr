@@ -18,4 +18,10 @@ data.table of im ids and user names
 \description{
 need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
 }
+\author{
+Quinn Weber [aut], Bob Rudis [ctb]
+}
+\references{
+\url{https://github.com/hrbrmstr/slackr/pull/13}
+}
 
