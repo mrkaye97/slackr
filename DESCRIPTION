@@ -6,11 +6,11 @@ Date: 2015-07-29
 Author: Bob Rudis [aut, cre], Jay Jacobs [ctb], David Severski [ctb],
         Quinn Weber [ctb], Konrad Karczewski [ctb]
 Maintainer: Bob Rudis <bob@rudis.net>
-Description: Slack <http://slack.com/> provides a service for teams to
+Description: 'Slack' <http://slack.com/> provides a service for teams to
     collaborate by sharing messages, images, links, files and more.
     Slackr contains functions that make it possible to
     interact with the Slack platform API. When you need to share
-    information/data from R, rather than resort to copy/paste in e-mails
+    information or data from R, rather than resort to copy/paste in e-mails
     or other services like 'Skype' <http://www.skype.com/>, you can use this
     package to send well-formatted output from multiple R objects and expressions
     to all teammates at the same time with little effort. You can also

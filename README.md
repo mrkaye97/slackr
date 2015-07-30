@@ -1,6 +1,6 @@
 slackr - a package to send full & webhook API messages to Slack.com channels/users
 
-Slackr contains functions that make it possible to interact with slack messaging platform. When you need to share information/data from R, rather than resort to copy/paste in e-mails or other services like Skype, you can use this package to send well-formatted output from multiple R objects and expressions to all teammates at the same time with little effort. You can also send images from the current graphics device, R objects (as RData), and upload files.
+Slackr contains functions that make it possible to interact with the Slack messaging platform. When you need to share information/data from R, rather than resort to copy/paste in e-mails or other services like Skype, you can use this package to send well-formatted output from multiple R objects and expressions to all teammates at the same time with little effort. You can also send images from the current graphics device, R objects (as RData), and upload files.
 
 ### News
 
@@ -90,7 +90,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Wed Jul 29 21:04:15 2015"
+    ## [1] "Wed Jul 29 21:06:33 2015"
 
 ``` r
 test_dir("tests/")
