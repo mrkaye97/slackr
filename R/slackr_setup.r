@@ -1,10 +1,10 @@
 #' Setup environment variables for \code{slack.com} API
 #'
-#' Initialize all the environment variables \link{slackr} will need to use to
+#' Initialize all the environment variables \code{\link{slackr}} will need to use to
 #' work properly.
 #'
-#' By default, \code{slackr} (and other functions) will use the \code{#general} room and a username
-#' of \code{slackr()} with no emoji and the default \url{slack.com} API prefix URL. You
+#' By default, \code{\link{slackr}} (and other functions) will use the \code{#general} room and a username
+#' of \code{slackr()} with no emoji and the default \code{slack.com} API prefix URL. You
 #' still need to provide the webhook API token in \code{token} for anyting to work.
 #' Failure to call this function before calling \code{slackr()} will result in a
 #' message to do so.
@@ -30,7 +30,7 @@
 #' @rdname slackr_setup
 #' @examples
 #' \dontrun{
-#' # reads from default file
+#' # reads from default file (i.e. ~/.slackr)
 #' slackr_setup()
 #'
 #' # reads from alternate config

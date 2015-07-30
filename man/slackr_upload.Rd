@@ -28,7 +28,7 @@ slackrUpload(filename, title = basename(filename),
 \code{httr} response object from \code{POST} call
 }
 \description{
-\code{slackrUoload} enables you upload files to \code{slack.com} and
+\code{slackrUpload} enables you upload files to \code{slack.com} and
 (optionally) post them to one or more channels (if \code{channels} is not empty).
 }
 \author{

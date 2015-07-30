@@ -2,7 +2,7 @@
 % Please edit documentation in R/gg_slackr.R
 \name{ggslackr}
 \alias{ggslackr}
-\title{Post a ggplot to a \url{slack.com} channel}
+\title{Post a ggplot to a \code{slack.com} channel}
 \usage{
 ggslackr(plot = last_plot(), channels = Sys.getenv("SLACK_CHANNEL"),
   scale = 1, width = par("din")[1], height = par("din")[2],
