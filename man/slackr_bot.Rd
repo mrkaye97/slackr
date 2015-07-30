@@ -33,24 +33,24 @@ slackbot(..., channel = Sys.getenv("SLACK_CHANNEL"),
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
 
-\item{incoming_webhook_url}{which \url{slack.com} API endpoint URL to use}
+\item{incoming_webhook_url}{which \code{slack.com} API endpoint URL to use}
 
 \item{token}{your webhook API token}
 }
 \description{
-Takes an \code{expr}, evaluates it and sends the output to a \url{slack.com}
+Takes an \code{expr}, evaluates it and sends the output to a \code{slack.com}
 chat destination. Useful for logging, messaging on long compute tasks or
 general information sharing.
 }
 \details{
 By default, everyting but \code{expr} will be looked for in a "\code{SLACK_}"
 environment variable. You can override or just specify these values directly instead,
-but it's probably better to call \link{slackrSetup} first.
+but it's probably better to call \code{\link{slackrSetup}} first.
 
 This function uses the incoming webhook API and posts user messages as \code{slackbot}
 }
 \note{
-You need a \url{slack.com} account and will also need to setup an incoming webhook: \url{https://api.slack.com/}
+You need a \url{https://www.slack.com} account and will also need to setup an incoming webhook: \url{https://api.slack.com/}
 }
 \examples{
 \dontrun{

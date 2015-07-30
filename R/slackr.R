@@ -1,19 +1,19 @@
 #' Output R expressions to a \code{slack.com} channel/user
 #'
-#' Takes an \code{expr}, evaluates it and sends the output to a \url{slack.com}
+#' Takes an \code{expr}, evaluates it and sends the output to a \code{slack.com}
 #' chat destination. Useful for logging, messaging on long compute tasks or
 #' general information sharing.
 #'
 #' By default, everyting but \code{expr} will be looked for in a "\code{SLACK_}"
 #' environment variable. You can override or just specify these values directly instead,
-#' but it's probably better to call \link{slackrSetup} first.
+#' but it's probably better to call \code{\link{slackrSetup}} first.
 #'
 #' @param ... expressions to be sent to Slack.com
 #' @param channel which channel to post the message to (chr)
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
 #' @param api_token your full slack.com API token
-#' @note You need a \url{slack.com} account and will also need to setup an API token \url{https://api.slack.com/}
+#' @note You need a \url{https://www.slack.com} account and will also need to setup an API token \url{https://api.slack.com/}
 #'       Also, you can pass in \code{add_user=TRUE} as part of the \code{...} parameters and the Slack API
 #'       will post the message as your logged-in user account (this will override anything set in
 #'       \code{username})

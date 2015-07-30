@@ -38,7 +38,7 @@ slackr_setup()
 
 # base
 library(maps)
-maps("usa")
+map("usa")
 dev_slackr("#results", filename='map')
 
 # base
