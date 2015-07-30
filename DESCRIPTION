@@ -4,7 +4,7 @@ Title: Send Messages, Images, R Objects and Files to 'Slack' Channels/Users
 Version: 1.3.1.9001
 Date: 2015-07-29
 Author: Bob Rudis [aut, cre], Jay Jacobs [ctb], David Severski [ctb],
-        Quinn Weber [ctb], Konrad Karczewski [ctb]
+        Quinn Weber [ctb], Konrad Karczewski [ctb], Shinya Uryu [ctb]
 Maintainer: Bob Rudis <bob@rudis.net>
 Description: 'Slack' <http://slack.com/> provides a service for teams to
     collaborate by sharing messages, images, links, files and more.
