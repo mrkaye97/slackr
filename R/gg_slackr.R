@@ -1,4 +1,4 @@
-#' Post a ggplot to a \url{slack.com} channel
+#' Post a ggplot to a \code{slack.com} channel
 #'
 #' Unlike the \code{\link{dev_slackr}} function, this one takes a \code{ggplot} object,
 #' eliminating the need to have a graphics device (think use in scripts).

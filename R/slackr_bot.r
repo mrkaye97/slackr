@@ -1,12 +1,12 @@
 #' Output R expressions to a \code{slack.com} channel/user (as \code{slackbot})
 #'
-#' Takes an \code{expr}, evaluates it and sends the output to a \url{slack.com}
+#' Takes an \code{expr}, evaluates it and sends the output to a \code{slack.com}
 #' chat destination. Useful for logging, messaging on long compute tasks or
 #' general information sharing.
 #'
 #' By default, everyting but \code{expr} will be looked for in a "\code{SLACK_}"
 #' environment variable. You can override or just specify these values directly instead,
-#' but it's probably better to call \link{slackrSetup} first.
+#' but it's probably better to call \code{\link{slackrSetup}} first.
 #'
 #' This function uses the incoming webhook API and posts user messages as \code{slackbot}
 #'
@@ -14,9 +14,9 @@
 #' @param channel which channel to post the message to (chr)
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
-#' @param incoming_webhook_url which \url{slack.com} API endpoint URL to use
+#' @param incoming_webhook_url which \code{slack.com} API endpoint URL to use
 #' @param token your webhook API token
-#' @note You need a \url{slack.com} account and will also need to setup an incoming webhook: \url{https://api.slack.com/}
+#' @note You need a \url{https://www.slack.com} account and will also need to setup an incoming webhook: \url{https://api.slack.com/}
 #' @seealso \code{\link{slackrSetup}}, \code{\link{slackr}}, \code{\link{dev_slackr}},
 #'          \code{\link{save_slackr}}, \code{\link{slackr_upload}}
 #' @rdname slackr_bot

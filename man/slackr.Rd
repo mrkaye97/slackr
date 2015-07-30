@@ -21,17 +21,17 @@ slackr(..., channel = Sys.getenv("SLACK_CHANNEL"),
 \item{api_token}{your full slack.com API token}
 }
 \description{
-Takes an \code{expr}, evaluates it and sends the output to a \url{slack.com}
+Takes an \code{expr}, evaluates it and sends the output to a \code{slack.com}
 chat destination. Useful for logging, messaging on long compute tasks or
 general information sharing.
 }
 \details{
 By default, everyting but \code{expr} will be looked for in a "\code{SLACK_}"
 environment variable. You can override or just specify these values directly instead,
-but it's probably better to call \link{slackrSetup} first.
+but it's probably better to call \code{\link{slackrSetup}} first.
 }
 \note{
-You need a \url{slack.com} account and will also need to setup an API token \url{https://api.slack.com/}
+You need a \url{https://www.slack.com} account and will also need to setup an API token \url{https://api.slack.com/}
       Also, you can pass in \code{add_user=TRUE} as part of the \code{...} parameters and the Slack API
       will post the message as your logged-in user account (this will override anything set in
       \code{username})
