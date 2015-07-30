@@ -24,7 +24,8 @@
 #' @title slackr-package
 #' @docType package
 #' @author Bob Rudis (@@hrbrmstr)
-#' @import httr data.table ggplot2 utils methods
+#' @import httr ggplot2 utils methods
+#' @importFrom dplyr data_frame left_join
 #' @importFrom jsonlite toJSON
 #' @examples
 #' \dontrun{

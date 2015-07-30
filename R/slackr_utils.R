@@ -7,24 +7,27 @@
 #' @param channels vector of channel names to parse
 #' @param api_token the slack.com full API token (chr)
 #' @rdname slackr_chtrans
-#' @return character vector - original channel list with \code{#} or \code{@@} channels replaced with ID's.
+#' @author Quinn Weber [ctb], Bob Rudis [aut]
+#' @return character vector - original channel list with \code{#} or
+#'          \code{@@} channels replaced with ID's.
 #' @export
 slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
-  chan <- slackrChannels(api_token)
-  users <- slackrUsers(api_token)
-  groups <- slackrGroups(api_token)
+  chan <- slackr_channels(api_token)
+  users <- slackr_ims(api_token)
+  groups <- slackr_groups(api_token)
 
   chan$name <- sprintf("#%s", chan$name)
   users$name <- sprintf("@%s", users$name)
 
-  chan_list <- data.table(id=character(0), name=character(0))
+  chan_list <- data_frame(id=character(0), name=character(0))
 
-  if (length(chan) > 0) { chan_list <- rbind(chan_list, chan[,1:2,with=FALSE])  }
-  if (length(users) > 0) { chan_list <- rbind(chan_list, users[,1:2,with=FALSE]) }
-  if (length(groups) > 0) { chan_list <- rbind(chan_list, groups[,1:2,with=FALSE]) }
+  if (length(chan) > 0) { chan_list <- bind_rows(chan_list, chan[, c("id", "name")])  }
+  if (length(users) > 0) { chan_list <- bind_rows(chan_list, users[, c("id", "name")]) }
+  if (length(groups) > 0) { chan_list <- bind_rows(chan_list, groups[, c("id", "name")]) }
 
-  chan_xref <- merge(data.frame(name=channels), chan_list, all.x=TRUE)
+  chan_list <- data.frame(chan_list, stringsAsFactors=FALSE)
+  chan_xref <- chan_list[chan_list$name %in% channels, ]
 
   ifelse(is.na(chan_xref$id),
          as.character(chan_xref$name),
@@ -48,11 +51,9 @@ slackr_users <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
   Sys.setlocale('LC_ALL','C')
   tmp <- POST("https://slack.com/api/users.list", body=list(token=api_token))
-  tmp_p <- content(tmp, as="parsed")
-  rbindlist(lapply(tmp_p$members, function(x) {
-    if ( is.null(x$real_name) ) { x$real_name <- "" }
-    data.frame(id=nax(x$id), name=nax(x$name), real_name=nax(x$real_name))
-  }) )
+  members <- jsonlite::fromJSON(content(tmp, as="text"))$members
+  cols <- setdiff(colnames(members), "profile")
+  cbind.data.frame(members[,cols], members$profile, stringsAsFactors=FALSE)
 
 }
 
@@ -73,10 +74,7 @@ slackr_channels <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
   Sys.setlocale('LC_ALL','C')
   tmp <- POST("https://slack.com/api/channels.list", body=list(token=api_token))
-  tmp_p <- content(tmp, as="parsed")
-  rbindlist(lapply(tmp_p$channels, function(x) {
-    data.frame(id=nax(x$id), name=nax(x$name), is_member=nax(x$is_member))
-  }) )
+  jsonlite::fromJSON(content(tmp, as="text"))$channels
 
 }
 
@@ -96,10 +94,7 @@ slackr_groups <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
   Sys.setlocale('LC_ALL','C')
   tmp <- POST("https://slack.com/api/groups.list", body=list(token=api_token))
-  tmp_p <- content(tmp, as="parsed")
-  rbindlist(lapply(tmp_p$groups, function(x) {
-    data.frame(id=nax(x$id), name=nax(x$name), is_archived=nax(x$is_archived))
-  }) )
+  tmp_p <- jsonlite::fromJSON(content(tmp, as="text"))$groups
 
 }
 
@@ -107,7 +102,27 @@ slackr_groups <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 #' @export
 slackrGroups <- slackr_groups
 
-# helper function for NULLs as return value
-nax <- function(x) {
-  ifelse(is.null(x), NA, x)
+#' Get a data frame of slack.com IM ids
+#'
+#' need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
+#'
+#' @param api_token the slack.com full API token (chr)
+#' @rdname slackr_ims
+#' @author Quinn Weber [aut], Bob Rudis [ctb]
+#' @references \url{https://github.com/hrbrmstr/slackr/pull/13}
+#' @return data.table of im ids and user names
+#' @export
+slackr_ims <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
+
+  Sys.setlocale('LC_ALL','C')
+
+  tmp <- POST("https://slack.com/api/im.list", body=list(token=api_token))
+  ims <- jsonlite::fromJSON(content(tmp, as="text"))$ims
+  users <- slackr_users(api_token)
+  left_join(users, ims, by="id")
+
 }
+
+#' @rdname slackr_ims
+#' @export
+slackrIms <- slackr_ims

@@ -1,7 +1,7 @@
 Package: slackr
 Type: Package
 Title: Send Messages, Images, R Objects and Files to 'Slack' Channels/Users
-Version: 1.3.0.9000
+Version: 1.3.1.9000
 Date: 2015-07-29
 Author: Bob Rudis [aut, cre], Jay Jacobs [ctb], David Severski [ctb],
         Quinn Weber [ctb], Konrad Karczewski [ctb]
@@ -26,7 +26,7 @@ Depends:
 Imports:
     httr (>= 0.4.0),
     jsonlite,
-    data.table (>= 1.9.2),
     ggplot2,
     utils,
-    methods
+    methods,
+    dplyr

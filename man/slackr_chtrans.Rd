@@ -15,7 +15,8 @@ slackrChTrans(channels, api_token = Sys.getenv("SLACK_API_TOKEN"))
 \item{api_token}{the slack.com full API token (chr)}
 }
 \value{
-character vector - original channel list with \code{#} or \code{@} channels replaced with ID's.
+character vector - original channel list with \code{#} or
+         \code{@} channels replaced with ID's.
 }
 \description{
 Given a vector of one or more channel names, it will retrieve list of
