@@ -9,6 +9,7 @@ Slackr contains functions that make it possible to interact with the Slack messa
 
 ### News
 
+-   Version `1.3.1.9001` Forgot `bind_rows` in pkg imports
 -   Version `1.3.1.9000` Removed `data.table` dependency (replaced with `dplyr`); added access to `im.list` (<https://api.slack.com/methods/im.list>) thx to PR from Quinn Weber
 -   Version `1.3.0.9000` Radically changed how `slackr` works. Functions have camelCase and under\_score versions
 -   Version `1.2.3` added more parameter error cheking, remobved the need for ending `?` on webhook URL and added defaults for missing setup parameters.
@@ -93,7 +94,7 @@ library(slackr)
 library(testthat)
 
 date()
-#> [1] "Wed Jul 29 23:24:28 2015"
+#> [1] "Thu Jul 30 17:55:48 2015"
 
 test_dir("tests/")
 #> testthat results ========================================================================================================
