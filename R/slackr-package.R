@@ -25,7 +25,7 @@
 #' @docType package
 #' @author Bob Rudis (@@hrbrmstr)
 #' @import httr ggplot2 utils methods
-#' @importFrom dplyr data_frame left_join
+#' @importFrom dplyr data_frame left_join bind_rows
 #' @importFrom jsonlite toJSON
 #' @examples
 #' \dontrun{
