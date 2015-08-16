@@ -1,15 +1,15 @@
-#' Output R expressions to a \code{slack.com} channel/user (as \code{slackbot})
+#' Send result of R expressions to a \code{slack.com} channel via webhook API
 #'
 #' Takes an \code{expr}, evaluates it and sends the output to a \code{slack.com}
-#' chat destination. Useful for logging, messaging on long compute tasks or
-#' general information sharing.
+#' chat destination via the webhook API. Useful for logging, messaging on long
+#' compute tasks or general information sharing.
 #'
 #' By default, everyting but \code{expr} will be looked for in a "\code{SLACK_}"
 #' environment variable. You can override or just specify these values directly
 #' instead, but it's probably better to call \code{\link{slackrSetup}} first.
 #'
-#' This function uses the incoming webhook API and posts user messages as
-#' \code{slackbot}
+#' This function uses the incoming webhook API. The webhook will have a default
+#' channel, username, icon etc, but these can be overridden.
 #'
 #' @param ... expressions to be sent to Slack.com
 #' @param channel which channel to post the message to (chr)
