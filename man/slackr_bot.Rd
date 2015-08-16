@@ -33,9 +33,11 @@ slackbot(..., channel = Sys.getenv("SLACK_CHANNEL"),
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
 
-\item{incoming_webhook_url}{which \code{slack.com} API endpoint URL to use}
+\item{incoming_webhook_url}{which \code{slack.com} API endpoint URL to use
+(see section \bold{Webhook URLs} for details)}
 
-\item{token}{your webhook API token}
+\item{token}{your webhook API token (see section \bold{Webhook URLs} for
+details)}
 }
 \description{
 Takes an \code{expr}, evaluates it and sends the output to a \code{slack.com}
@@ -44,22 +46,48 @@ general information sharing.
 }
 \details{
 By default, everyting but \code{expr} will be looked for in a "\code{SLACK_}"
-environment variable. You can override or just specify these values directly instead,
-but it's probably better to call \code{\link{slackrSetup}} first.
+environment variable. You can override or just specify these values directly
+instead, but it's probably better to call \code{\link{slackrSetup}} first.
 
-This function uses the incoming webhook API and posts user messages as \code{slackbot}
+This function uses the incoming webhook API and posts user messages as
+\code{slackbot}
 }
 \note{
-You need a \url{https://www.slack.com} account and will also need to setup an incoming webhook: \url{https://api.slack.com/}
+You need a \url{https://www.slack.com} account and will also need to
+  setup an incoming webhook: \url{https://api.slack.com/}
+}
+\section{Webhook URLs}{
+ Webhook URLs look like: \itemize{
+
+  \item \code{http://myslack.slack.com/services/hooks/incoming-webhook?}
+
+  \item \code{https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX}
+
+  }
+
+  The second, \emph{new}, style is the standard form at the time of writing
+  (August 2015). If you have an an old style webhook URL then you must alos
+  supply a \code{token}. If you have a new style URL, then no \code{token} is
+  required.
 }
 \examples{
 \dontrun{
 slackr_setup()
 slackr_bot("iris info", head(iris), str(iris))
+
+# or directly
+slackr_bot("Test message", username="slackr", channel="#random",
+  incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX")
+
+# ... with an old style webhook API URL
+slackr_bot("Test message", username="slackr", channel="#random",
+  incoming_webhook_url="http://myslack.slack.com/services/hooks/incoming-webhook?",
+  token="XXXXXXXXXXXXXX")
 }
 }
 \seealso{
-\code{\link{slackrSetup}}, \code{\link{slackr}}, \code{\link{dev_slackr}},
-         \code{\link{save_slackr}}, \code{\link{slackr_upload}}
+\code{\link{slackrSetup}}, \code{\link{slackr}},
+  \code{\link{dev_slackr}}, \code{\link{save_slackr}},
+  \code{\link{slackr_upload}}
 }
 
