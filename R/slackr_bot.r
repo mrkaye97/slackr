@@ -33,8 +33,13 @@ slackr_bot <- function(...,
                        incoming_webhook_url=Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
                        token=Sys.getenv("SLACK_TOKEN")) {
 
-  if (incoming_webhook_url == "" | token == "") {
-    stop("No URL prefix and/or token specified. Did you forget to call slackrSetup()?", call. = FALSE)
+  if (incoming_webhook_url == "") {
+    stop("No incoming webhook URL specified. Did you forget to call slackrSetup()?", call. = FALSE)
+  }
+  oldstyle_webhook=!grepl("https://hooks.slack.com/services/",incoming_webhook_url, fixed=T)
+
+  if(oldstyle_webhook && token == "") {
+    stop("No webhook token specified. Did you forget to call slackrSetup()?", call. = FALSE)
   }
 
   if (icon_emoji != "") { icon_emoji <- sprintf(', "icon_emoji": "%s"', icon_emoji)  }
@@ -63,7 +68,9 @@ slackr_bot <- function(...,
 
       output <- gsub('^\"|\"$', "", toJSON(data, simplifyVector=TRUE, flatten=TRUE, auto_unbox=TRUE))
 
-      resp <- POST(url=paste0(incoming_webhook_url, "token=", token),
+      resp <- POST(url=ifelse(oldstyle_webhook,
+                              paste0(incoming_webhook_url, "token=", token),
+                              incoming_webhook_url),
                    add_headers(`Content-Type`="application/x-www-form-urlencoded", `Accept`="*/*"),
                    body=URLencode(sprintf('payload={"channel": "%s", "username": "%s", "text": "```%s```"%s}',
                                           channel, username, output, icon_emoji)))
