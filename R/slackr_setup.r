@@ -38,7 +38,7 @@
 #'
 #' # the hard way
 #' slackr_setup(channel="#code", token="mytoken",
-#'             url_prefix="http://myslack.slack.com/services/hooks/incoming-webhook?")
+#'             incoming_webhook_url="http://myslack.slack.com/services/hooks/incoming-webhook?")
 #' }
 #' @export
 slackr_setup <- function(channel="#general", username="slackr",

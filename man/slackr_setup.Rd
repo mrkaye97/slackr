@@ -63,7 +63,7 @@ slackr_setup(config_file="/path/to/my/slackrconfig)
 
 # the hard way
 slackr_setup(channel="#code", token="mytoken",
-            url_prefix="http://myslack.slack.com/services/hooks/incoming-webhook?")
+            incoming_webhook_url="http://myslack.slack.com/services/hooks/incoming-webhook?")
 }
 }
 \seealso{
