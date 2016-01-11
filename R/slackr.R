@@ -35,8 +35,6 @@ slackr <- function(...,
     stop("No token specified. Did you forget to call slackr_setup()?", call. = FALSE)
   }
 
-  if (icon_emoji != "") { icon_emoji <- sprintf(', "icon_emoji": "%s"', icon_emoji)  }
-
   resp_ret <- ""
 
   if (!missing(...)) {
