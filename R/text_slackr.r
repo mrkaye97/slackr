@@ -10,7 +10,7 @@
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
 #' @param api_token your full slack.com API token
-#' @return \code{httr} response object
+#' @return \code{httr} response object (invislbly)
 #' @author Quinn Weber [aut], Bob Rudis [ctb]
 #' @note You can pass in \code{add_user=TRUE} as part of the \code{...} parameters and the Slack API
 #'       will post the message as your logged-in user account (this will override anything set in
@@ -60,5 +60,6 @@ text_slackr <- function(text,
 
   warn_for_status(resp)
 
-  return(resp)
+  return(invisible(resp))
+
 }

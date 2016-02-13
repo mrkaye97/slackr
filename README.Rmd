@@ -47,6 +47,7 @@ Many thanks to:
 - [David Severski](https://github.com/davidski)
 - [Quinn Weber](https://github.com/qsweber)
 - [Konrad Karczewski](https://github.com/konradjk)
+- [Ed Niles](https://github.com/eniles)
 
 for their contributions to the package!
 

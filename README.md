@@ -35,6 +35,7 @@ Many thanks to:
 -   [David Severski](https://github.com/davidski)
 -   [Quinn Weber](https://github.com/qsweber)
 -   [Konrad Karczewski](https://github.com/konradjk)
+-   [Ed Niles](https://github.com/eniles)
 
 for their contributions to the package!
 
@@ -106,7 +107,7 @@ library(slackr)
 library(testthat)
 
 date()
-#> [1] "Sat Feb 13 09:45:17 2016"
+#> [1] "Sat Feb 13 09:47:55 2016"
 
 test_dir("tests/")
 #> testthat results ========================================================================================================

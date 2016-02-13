@@ -36,7 +36,7 @@ Prepend direct messages with an @}
 \item{api_token}{your full slack.com API token}
 }
 \value{
-\code{httr} response object
+\code{httr} response object (invislbly)
 }
 \description{
 Sends basic text to a slack channel. Calls the chat.postMessage method on the Slack Web API.

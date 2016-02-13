@@ -7,6 +7,7 @@
 #'   \item \href{https://github.com/davidski}{David Severski}
 #'   \item \href{https://github.com/qsweber}{Quinn Weber}
 #'   \item \href{https://github.com/konradjk}{Konrad Karczewski}
+#'   \item \href{https://github.com/eniles}{Ed Niles}
 #' }
 #'
 #' for their contributions to the package!
