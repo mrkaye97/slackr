@@ -1,7 +1,7 @@
-#' Send the graphics contents of the current device to a \code{slack.com} channel
+#' Send the graphics contents of the current device to a Slack channel
 #'
-#' \code{dev.slackr} sends the graphics contents of the current device to the specified \code{slack.com} channel.
-#' This requires setting up a full API token (i.e. not a webhook & not OAuth) for this to work.
+#' \code{dev.slackr} sends the graphics contents of the current device to the
+#' specified Slack channel.
 #'
 #' @param channels list of channels to post image to
 #' @param ... other arguments passed into png device
@@ -33,7 +33,9 @@ dev_slackr <- function(channels=Sys.getenv("SLACK_CHANNEL"), ...,
                        api_token=Sys.getenv("SLACK_API_TOKEN"),
                        file="plot") {
 
-  Sys.setlocale('LC_ALL','C')
+  loc <- Sys.getlocale('LC_CTYPE')
+  Sys.setlocale('LC_CTYPE','C')
+  on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   ftmp <- tempfile(file, fileext=".png")
   dev.copy(png, file=ftmp, ...)
@@ -46,7 +48,3 @@ dev_slackr <- function(channels=Sys.getenv("SLACK_CHANNEL"), ...,
        body=list( file=upload_file(ftmp), token=api_token, channels=modchan))
 
 }
-
-#' @rdname dev_slackr
-#' @export
-dev.slackr <- dev_slackr

@@ -26,6 +26,8 @@ slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
   if (length(users) > 0) { chan_list <- bind_rows(chan_list, users[, c("id", "name")]) }
   if (length(groups) > 0) { chan_list <- bind_rows(chan_list, groups[, c("id", "name")]) }
 
+  chan_list <- dplyr::distinct(chan_list)
+
   chan_list <- data.frame(chan_list, stringsAsFactors=FALSE)
   chan_xref <- chan_list[chan_list$name %in% channels, ]
 
@@ -35,94 +37,83 @@ slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
 }
 
-#' @rdname slackr_chtrans
-#' @export
-slackrChTrans <- slackr_chtrans
 
-#' Get a data frame of slack.com users
+#' Get a data frame of Slack users
 #'
-#' need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
-#'
-#' @param api_token the slack.com full API token (chr)
-#' @return data.table of users
+#' @param api_token the Slack full API token (chr)
+#' @return \code{data.frame} of users
 #' @rdname slackr_users
 #' @export
 slackr_users <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
-  Sys.setlocale('LC_ALL','C')
-  tmp <- POST("https://slack.com/api/users.list", body=list(token=api_token))
+  loc <- Sys.getlocale('LC_CTYPE')
+  Sys.setlocale('LC_CTYPE','C')
+  on.exit(Sys.setlocale("LC_CTYPE", loc))
+
+  tmp <- POST("https://slack.com/api/users.list",
+              body=list(token=api_token))
+  stop_for_status(tmp)
   members <- jsonlite::fromJSON(content(tmp, as="text"))$members
   cols <- setdiff(colnames(members), "profile")
   cbind.data.frame(members[,cols], members$profile, stringsAsFactors=FALSE)
 
 }
 
-#' @rdname slackr_users
-#' @export
-slackrUsers <- slackr_users
-
-#' Get a data frame of slack.com channels
+#' Get a data frame of Slack channels
 #'
-#' need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
-#'
-#' @param api_token the slack.com full API token (chr)
+#' @param api_token the Slack full API token (chr)
 #' @return data.table of channels
-#' @note Renamed from \code{slackr_channels}
 #' @rdname slackr_channels
 #' @export
 slackr_channels <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
-  Sys.setlocale('LC_ALL','C')
-  tmp <- POST("https://slack.com/api/channels.list", body=list(token=api_token))
+  loc <- Sys.getlocale('LC_CTYPE')
+  Sys.setlocale('LC_CTYPE','C')
+  on.exit(Sys.setlocale("LC_CTYPE", loc))
+
+  tmp <- POST("https://slack.com/api/channels.list",
+              body=list(token=api_token))
+  stop_for_status(tmp)
   jsonlite::fromJSON(content(tmp, as="text"))$channels
 
 }
 
-#' @rdname slackr_channels
-#' @export
-slackrChannels <- slackr_channels
-
-#' Get a data frame of slack.com groups
+#' Get a data frame of Slack groups
 #'
-#' need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
-#'
-#' @param api_token the slack.com full API token (chr)
-#' @return data.table of channels
+#' @param api_token the Slackfull API token (chr)
+#' @return \code{data.frame} of channels
 #' @rdname slackr_groups
 #' @export
 slackr_groups <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
-  Sys.setlocale('LC_ALL','C')
-  tmp <- POST("https://slack.com/api/groups.list", body=list(token=api_token))
-  tmp_p <- jsonlite::fromJSON(content(tmp, as="text"))$groups
+  loc <- Sys.getlocale('LC_CTYPE')
+  Sys.setlocale('LC_CTYPE','C')
+  on.exit(Sys.setlocale("LC_CTYPE", loc))
+
+  tmp <- POST("https://slack.com/api/groups.list",
+              body=list(token=api_token))
+  stop_for_status(tmp)
+  jsonlite::fromJSON(content(tmp, as="text"))$groups
 
 }
 
-#' @rdname slackr_groups
-#' @export
-slackrGroups <- slackr_groups
-
-#' Get a data frame of slack.com IM ids
+#' Get a data frame of Slack IM ids
 #'
-#' need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
-#'
-#' @param api_token the slack.com full API token (chr)
+#' @param api_token the Slack full API token (chr)
 #' @rdname slackr_ims
 #' @author Quinn Weber [aut], Bob Rudis [ctb]
 #' @references \url{https://github.com/hrbrmstr/slackr/pull/13}
-#' @return data.table of im ids and user names
+#' @return \code{data.frame} of im ids and user names
 #' @export
 slackr_ims <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
-  Sys.setlocale('LC_ALL','C')
+  loc <- Sys.getlocale('LC_CTYPE')
+  Sys.setlocale('LC_CTYPE','C')
+  on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   tmp <- POST("https://slack.com/api/im.list", body=list(token=api_token))
   ims <- jsonlite::fromJSON(content(tmp, as="text"))$ims
   users <- slackr_users(api_token)
-  left_join(users, ims, by="id")
+  dplyr::left_join(users, ims, by="id")
 
 }
-
-#' @rdname slackr_ims
-#' @export
-slackrIms <- slackr_ims

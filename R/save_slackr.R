@@ -1,7 +1,7 @@
-#' Save R objects to an RData file on \code{slack.com}
+#' Save R objects to an RData file on Slack
 #'
 #' \code{save_slackr} enables you upload R objects (as an R data file)
-#' to \code{slack.com} and (optionally) post them to one or more channels
+#' to Slack and (optionally) post them to one or more channels
 #' (if \code{channels} is not empty).
 #'
 #' @param ... objects to store in the R data file
@@ -24,20 +24,23 @@ save_slackr <- function(..., channels="",
                         api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
 
-  Sys.setlocale('LC_ALL','C')
+  loc <- Sys.getlocale('LC_CTYPE')
+  Sys.setlocale('LC_CTYPE','C')
+  on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   ftmp <- tempfile(file, fileext=".rda")
   save(..., file=ftmp)
 
-  modchan <- slackrChTrans(channels)
+  modchan <- slackr_chtrans(channels)
+  if (length(modchan) == 0) modchan <- ""
 
-  POST(url="https://slack.com/api/files.upload",
+  res <- POST(url="https://slack.com/api/files.upload",
        add_headers(`Content-Type`="multipart/form-data"),
-       body=list(file=upload_file(ftmp), filename=sprintf("%s.rda", file),
-                  token=api_token, channels=modchan))
+       body=list(file=upload_file(ftmp),
+                 filename=sprintf("%s.rda", file),
+                 token=api_token,
+                 channels=modchan))
+
+  invisible(res)
 
 }
-
-#' @rdname save_slackr
-#' @export
-save.slackr <- save_slackr

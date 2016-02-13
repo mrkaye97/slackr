@@ -1,15 +1,24 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/slackr)](http://cran.r-project.org/web/packages/slackr)
 
 ![](slackr.png)
 
-slackr - a package to send full & webhook API messages to Slack.com channels/users
+`slackr` - a package to send user messages & webhook API messages to Slack channels/users
 
-Slackr contains functions that make it possible to interact with the Slack messaging platform. When you need to share information/data from R, rather than resort to copy/paste in e-mails or other services like Skype, you can use this package to send well-formatted output from multiple R objects and expressions to all teammates at the same time with little effort. You can also send images from the current graphics device, R objects (as RData), and upload files.
+The `slackr` package contains functions that make it possible to interact with the Slack messaging platform. When you need to share information/data from R, rather than resort to copy/paste in e-mails or other services like Skype, you can use this package to send well-formatted output from multiple R objects and expressions to all teammates at the same time with little effort. You can also send images from the current graphics device, R objects (as R data files), and upload files.
+
+### BREAKING CHANGES
+
+Versions 1.4+ BREAK THINGS.
+
+Support has been removed for the "old style" incoming web hooks (see "Setup" below for the required incoming web hook URL format).
+
+The incoming webhook "token" is no longer required or used.
 
 ### News
 
--   Version `1.3.1.9001` Forgot `bind_rows` in pkg imports
+-   Version `1.4.1.9000` new `slackr_msg()` + many fixes and BREAKING CHANGES (see above)
 -   Version `1.3.1.9000` Removed `data.table` dependency (replaced with `dplyr`); added access to `im.list` (<https://api.slack.com/methods/im.list>) thx to PR from Quinn Weber
 -   Version `1.3.0.9000` Radically changed how `slackr` works. Functions have camelCase and under\_score versions
 -   Version `1.2.3` added more parameter error cheking, remobved the need for ending `?` on webhook URL and added defaults for missing setup parameters.
@@ -38,17 +47,18 @@ The following functions are implemented:
 -   `ggslackr` : send a ggplot object to a `slack.com` channel (no existing device plot required, useful for scripts) (full API token - i.e. not wehbook - required)
 -   `save_slackr` : save R objects to an RData file on `slack.com` (full API token - i.e. not wehbook - required)
 -   `slackr_upload` : upload any file to `slack.com` (full API token - i.e. not wehbook - required)
--   `slackrUsers` : get a data frame of `slack.com` users (full API token - i.e. not wehbook - required)
--   `slackrChannels` : get a data frame of `slack.com` channels (full API token - i.e. not wehbook - required)
--   `slackrGroups` : get a data frame of `slack.com` groups (full API token - i.e. not wehbook - required)
+-   `slackr_users` : get a data frame of `slack.com` users (full API token - i.e. not wehbook - required)
+-   `slackr_channels` : get a data frame of `slack.com` channels (full API token - i.e. not wehbook - required)
+-   `slackr_groups` : get a data frame of `slack.com` groups (full API token - i.e. not wehbook - required)
+
+### SETUP
 
 The `slackr_setup()` function will try to read setup values from a `~/.slackr` (you can change the default) configuration file, which may be easier and more secure than passing them in manually (plus, will allow you to have multiple slackr configs for multiple Slack.com teams). The file is in Debian Control File (DCF) format since it really doesn't need to be JSON and R has a handy `read.dcf()` function since that's what `DESCRIPTION` files are coded in. Here's the basic format for the configuration file:
 
-    token: YOUR_INCOMING_WEBHOOK_TOKEN
+    api_token: YOUR_FULL_API_TOKEN
     channel: #general
     username: slackr
-    incoming_webhook_url: https://YOUR_TEAM.slack.com/services/hooks/incoming-webhook?
-    api_token: YOUR_FULL_API_TOKEN
+    incoming_webhook_url: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX
 
 You can also change the default emoji icon (from the one you setup at integration creation time) with `icon_emoji`.
 
@@ -72,7 +82,7 @@ packageVersion("slackr")
 
 
 slackrSetup(channel="#code", 
-            url_prefix="http://myslack.slack.com/services/hooks/incoming-webhook?")
+            incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX")
 
 slackr(str(iris))
 
@@ -94,11 +104,9 @@ library(slackr)
 library(testthat)
 
 date()
-#> [1] "Thu Jul 30 17:55:48 2015"
+#> [1] "Sat Feb 13 09:40:39 2016"
 
 test_dir("tests/")
 #> testthat results ========================================================================================================
 #> OK: 0 SKIPPED: 0 FAILED: 0
-#> 
-#> DONE
 ```

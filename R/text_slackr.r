@@ -45,6 +45,10 @@ text_slackr <- function(text,
     if ( substr(text, nchar(text)-2, nchar(text)) != '```' ) { text <- paste0(text, '```') }
   }
 
+  loc <- Sys.getlocale('LC_CTYPE')
+  Sys.setlocale('LC_CTYPE','C')
+  on.exit(Sys.setlocale("LC_CTYPE", loc))
+
   resp <- POST(url="https://slack.com/api/chat.postMessage",
                body=list(token=api_token,
                          channel=channel,
@@ -58,7 +62,3 @@ text_slackr <- function(text,
 
   return(resp)
 }
-
-#' @rdname text_slackr
-#' @export
-textSlackr <- text_slackr
