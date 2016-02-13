@@ -16,6 +16,10 @@ slackrBot <- slackr_bot
 #' @export
 slackrChtrans <- slackr_chtrans
 
+#' @rdname slackr_chtrans
+#' @export
+slackrChTrans <- slackr_chtrans
+
 #' @rdname slackr_channels
 #' @export
 slackrChannels <- slackr_channels
