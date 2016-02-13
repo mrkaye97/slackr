@@ -42,15 +42,17 @@ for their contributions to the package!
 The following functions are implemented:
 
 -   `slackr_setup` : initialize necessary environment variables
--   `slackr` : send stuff to `slack.com` (full API token - i.e. not wehbook - required)
--   `slackr_bot` : send stuff to `slack.com` using the incoming webhook API/token
--   `dev_slackr` : send the graphics contents of the current device to a to `slack.com` channel (full API token - i.e. not wehbook - required)
--   `ggslackr` : send a ggplot object to a `slack.com` channel (no existing device plot required, useful for scripts) (full API token - i.e. not wehbook - required)
--   `save_slackr` : save R objects to an RData file on `slack.com` (full API token - i.e. not wehbook - required)
--   `slackr_upload` : upload any file to `slack.com` (full API token - i.e. not wehbook - required)
--   `slackr_users` : get a data frame of `slack.com` users (full API token - i.e. not wehbook - required)
--   `slackr_channels` : get a data frame of `slack.com` channels (full API token - i.e. not wehbook - required)
--   `slackr_groups` : get a data frame of `slack.com` groups (full API token - i.e. not wehbook - required)
+-   `slackr` : send stuff to Slack
+-   `slackr_bot` : send stuff to Slack using an incoming webhook URL
+-   `dev_slackr` : send the graphics contents of the current device to a to Slack channel
+-   `ggslackr` : send a ggplot object to a Slack channel (no existing device plot required, useful for scripts)
+-   `save_slackr` : save R objects to an RData file on Slack
+-   `slackr_upload` : upload any file to Slack
+-   `slackr_users` : get a data frame of Slack
+-   `slackr_channels` : get a data frame of Slack
+-   `slackr_groups` : get a data frame of Slack groups
+-   `text_slackr` : Send regular or preformatted messages to Slack
+-   `slackr_msg` : Slightly different version of `text_slackr()`
 
 ### SETUP
 
@@ -107,7 +109,7 @@ library(slackr)
 library(testthat)
 
 date()
-#> [1] "Sat Feb 13 09:47:55 2016"
+#> [1] "Sat Feb 13 09:53:39 2016"
 
 test_dir("tests/")
 #> testthat results ========================================================================================================
