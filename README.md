@@ -36,6 +36,7 @@ Many thanks to:
 -   [Quinn Weber](https://github.com/qsweber)
 -   [Konrad Karczewski](https://github.com/konradjk)
 -   [Ed Niles](https://github.com/eniles)
+-   [Rick Saporta](https://github.com/rsaporta)
 
 for their contributions to the package!
 
@@ -55,10 +56,6 @@ The following functions are implemented:
 -   `slackr_msg` : Slightly different version of `text_slackr()`
 
 ### SETUP
-
-First you need a Slack API token.
-If you don not already have one, go here to set one up:
--  [Slack Web API](https://api.slack.com/web)
 
 The `slackr_setup()` function will try to read setup values from a `~/.slackr` (you can change the default) configuration file, which may be easier and more secure than passing them in manually (plus, will allow you to have multiple slackr configs for multiple Slack.com teams). The file is in Debian Control File (DCF) format since it really doesn't need to be JSON and R has a handy `read.dcf()` function since that's what `DESCRIPTION` files are coded in. Here's the basic format for the configuration file:
 
@@ -86,7 +83,7 @@ library(slackr)
 
 # current verison
 packageVersion("slackr")
-#> [1] '1.4.0.9000'
+#> [1] '1.4.1.9000'
 ```
 
 ``` r
@@ -113,7 +110,7 @@ library(slackr)
 library(testthat)
 
 date()
-#> [1] "Sat Feb 13 09:53:39 2016"
+#> [1] "Mon Feb 15 08:37:19 2016"
 
 test_dir("tests/")
 #> testthat results ========================================================================================================
