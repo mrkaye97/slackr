@@ -56,6 +56,10 @@ The following functions are implemented:
 
 ### SETUP
 
+First you need a Slack API token.
+If you don not already have one, go here to set one up:
+-  [Slack Web API](https://api.slack.com/web)
+
 The `slackr_setup()` function will try to read setup values from a `~/.slackr` (you can change the default) configuration file, which may be easier and more secure than passing them in manually (plus, will allow you to have multiple slackr configs for multiple Slack.com teams). The file is in Debian Control File (DCF) format since it really doesn't need to be JSON and R has a handy `read.dcf()` function since that's what `DESCRIPTION` files are coded in. Here's the basic format for the configuration file:
 
     api_token: YOUR_FULL_API_TOKEN
