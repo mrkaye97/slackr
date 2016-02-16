@@ -47,12 +47,12 @@ slackr <- function(...,
 
     # setup in-memory sink
     rval <- NULL
-    file <- textConnection("rval", "w", local = TRUE)
+    fil <- textConnection("rval", "w", local = TRUE)
 
-    sink(file)
+    sink(fil)
     on.exit({
       sink()
-      close(file)
+      close(fil)
     })
 
     # where we'll need to eval expressions
@@ -92,10 +92,10 @@ slackr <- function(...,
       for (item in tmp) if (item$visible) { print(item$value); cat("\n") }
     }
 
-    on.exit(unlink(file))
+    on.exit()
 
     sink()
-    close(file)
+    close(fil)
 
     # combined all of them (rval is a character vector)
     output <- paste0(rval, collapse="\n")
