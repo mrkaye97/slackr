@@ -31,6 +31,8 @@ save_slackr <- function(..., channels="",
   ftmp <- tempfile(file, fileext=".rda")
   save(..., file=ftmp)
 
+  on.exit(unlink(ftmp), add=TRUE)
+
   modchan <- slackr_chtrans(channels)
   if (length(modchan) == 0) modchan <- ""
 
@@ -40,6 +42,8 @@ save_slackr <- function(..., channels="",
                  filename=sprintf("%s.rda", file),
                  token=api_token,
                  channels=modchan))
+
+  stop_for_status()
 
   invisible(res)
 
