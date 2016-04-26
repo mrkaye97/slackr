@@ -1,15 +1,15 @@
 Package: slackr
 Type: Package
 Title: Send Messages, Images, R Objects and Files to 'Slack' Channels/Users
-Version: 1.4.1.9000
-Date: 2016-02-16
+Version: 1.4.1
+Date: 2016-04-26
 Author: Bob Rudis [aut, cre], Jay Jacobs [ctb], David Severski [ctb],
     Quinn Weber [ctb], Konrad Karczewski [ctb], Shinya Uryu [ctb],
     Gregory Jefferis [ctb], Ed Niles [ctb], Rick Saporta [ctb]
 Maintainer: Bob Rudis <bob@rudis.net>
 Description: 'Slack' <http://slack.com/> provides a service for teams to
-    collaborate by sharing messages, images, links, files and more. Slackr contains
-    functions that make it possible to interact with the Slack platform API. When
+    collaborate by sharing messages, images, links, files and more. Functions are provided
+    that make it possible to interact with the 'Slack' platform 'API'. When
     you need to share information or data from R, rather than resort to copy/
     paste in e-mails or other services like 'Skype' <http://www.skype.com/>, you
     can use this package to send well-formatted output from multiple R objects and
@@ -29,5 +29,7 @@ Imports:
     ggplot2,
     utils,
     methods,
-    dplyr
+    dplyr,
+    graphics,
+    grDevices
 RoxygenNote: 5.0.1

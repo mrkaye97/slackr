@@ -29,6 +29,9 @@
 #' @import httr ggplot2 utils methods
 #' @importFrom dplyr data_frame left_join bind_rows
 #' @importFrom jsonlite toJSON
+#' @import utils
+#' @importFrom grDevices dev.copy dev.off png
+#' @importFrom graphics par
 #' @examples
 #' \dontrun{
 #' slackr_setup()
