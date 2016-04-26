@@ -3,3 +3,4 @@
 ^.*Rmd$
 ^\.travis\.yml$
 ^slackr\.png$
+^cran-comments\.md$

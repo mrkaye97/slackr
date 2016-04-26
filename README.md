@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/slackr)](http://cran.r-project.org/web/packages/slackr)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/slackr) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/slackr)](http://cran.r-project.org/package=slackr)
 
 ![](slackr.png)
 
@@ -21,7 +21,7 @@ The incoming webhook "token" is no longer required or used.
 -   Version `1.4.0.9000` new `slackr_msg()` + many fixes and BREAKING CHANGES (see above)
 -   Version `1.3.1.9000` Removed `data.table` dependency (replaced with `dplyr`); added access to `im.list` (<https://api.slack.com/methods/im.list>) thx to PR from Quinn Weber
 -   Version `1.3.0.9000` Radically changed how `slackr` works. Functions have camelCase and under\_score versions
--   Version `1.2.3` added more parameter error checking, removed the need for ending `?` on webhook URL and added defaults for missing setup parameters.
+-   Version `1.2.3` added more parameter error cheking, remobved the need for ending `?` on webhook URL and added defaults for missing setup parameters.
 -   Version `1.2.2` fixed [issue](https://github.com/hrbrmstr/slackr/issues/4) (bug in `1.2.1` fix)
 -   Version `1.2.1` fixed [issue](https://github.com/hrbrmstr/slackr/issues/3) when there are no private groups defined
 -   Version `1.2` re-introduced `ggslackr()` (first [CRAN version](http://cran.at.r-project.org/web/packages/slackr/index.html))
@@ -83,7 +83,7 @@ library(slackr)
 
 # current verison
 packageVersion("slackr")
-#> [1] '1.4.1.9000'
+#> [1] '1.4.1'
 ```
 
 ``` r
@@ -110,7 +110,7 @@ library(slackr)
 library(testthat)
 
 date()
-#> [1] "Mon Feb 15 08:37:19 2016"
+#> [1] "Tue Apr 26 17:55:41 2016"
 
 test_dir("tests/")
 #> testthat results ========================================================================================================
