@@ -22,7 +22,7 @@
 #' # base
 #' library(maps)
 #' map("usa")
-#' dev_slackr("#results", filename='map')
+#' dev_slackr("#results", file='map')
 #'
 #' # base
 #' barplot(VADeaths)
