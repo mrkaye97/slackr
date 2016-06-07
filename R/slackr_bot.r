@@ -55,44 +55,78 @@ slackr_bot <- function(...,
   if (icon_emoji != "") { icon_emoji <- sprintf(', "icon_emoji": "%s"', icon_emoji)  }
 
   resp_ret <- ""
-
+  
   if (!missing(...)) {
-
-    input_list <- as.list(substitute(list(...)))[-1L]
-
-    for(i in 1:length(input_list)) {
-
-      expr <- input_list[[i]]
-
-      if (class(expr) == "call") {
-
-        expr_text <- sprintf("> %s", deparse(expr))
-
-        data <- capture.output(eval(expr))
-        data <- paste0(data, collapse="\n")
-        data <- sprintf("%s\n%s", expr_text, data)
-
-      } else {
-        data <- as.character(expr)
-      }
-
-      output <- gsub('^\"|\"$', "", toJSON(data, simplifyVector=TRUE, flatten=TRUE, auto_unbox=TRUE))
-
-      resp <- POST(url=incoming_webhook_url,
-                   encode="form",
-                   add_headers(`Content-Type`="application/x-www-form-urlencoded",
-                               `Accept`="*/*"),
-                   body=URLencode(sprintf('payload={"channel": "%s", "username": "%s", "text": "```%s```"%s}',
-                                          channel, username, output, icon_emoji)))
-
-      warn_for_status(resp)
-
-      if (resp$status_code > 200) { print(str(expr))}
-
+    
+    # mimics capture.output
+    
+    # get the arglist
+    args <- substitute(list(...))[-1L]
+    
+    # setup in-memory sink
+    rval <- NULL
+    fil <- textConnection("rval", "w", local = TRUE)
+    
+    sink(fil)
+    on.exit({
+      sink()
+      close(fil)
+    })
+    
+    # where we'll need to eval expressions
+    pf <- parent.frame()
+    
+    # how we'll eval expressions
+    evalVis <- function(expr) withVisible(eval(expr, pf))
+    
+    # for each expression
+    for (i in seq_along(args)) {
+      
+      expr <- args[[i]]
+      
+      # do something, note all the newlines...Slack ``` needs them
+      tmp <- switch(mode(expr),
+                    # if it's actually an expresison, iterate over it
+                    expression = {
+                      cat(sprintf("> %s\n", deparse(expr)))
+                      lapply(expr, evalVis)
+                    },
+                    # if it's a call or a name, eval, printing run output as if in console
+                    call = ,
+                    name = {
+                      cat(sprintf("> %s\n", deparse(expr)))
+                      list(evalVis(expr))
+                    },
+                    # if pretty much anything else (i.e. a bare value) just output it
+                    integer = ,
+                    double = ,
+                    complex = ,
+                    raw = ,
+                    logical = ,
+                    numeric = cat(sprintf("%s\n\n", as.character(expr))),
+                    character = cat(sprintf("%s\n\n", expr)),
+                    stop("mode of argument not handled at present by slackr"))
+      
+      for (item in tmp) if (item$visible) { print(item$value, quote = FALSE); cat("\n") }
     }
-
+    
+    on.exit()
+    
+    sink()
+    close(fil)
+    
+    # combined all of them (rval is a character vector)
+    output <- paste0(rval, collapse="\n")
+    
+    loc <- Sys.getlocale('LC_CTYPE')
+    Sys.setlocale('LC_CTYPE','C')
+    on.exit(Sys.setlocale("LC_CTYPE", loc))
+    
+    resp <- POST(url = incoming_webhook_url, encode = "form", 
+                 add_headers(`Content-Type` = "application/x-www-form-urlencoded", 
+                             Accept = "*/*"), body = URLencode(sprintf("payload={\"channel\": \"%s\", \"username\": \"%s\", \"text\": \"```%s```\"%s}", 
+                                                                       channel, username, output, icon_emoji)))
+    warn_for_status(resp)
   }
-
   return(invisible())
-
 }
