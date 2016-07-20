@@ -13,8 +13,8 @@
 #' @export
 slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
-  chan <- slackr_channels(api_token)
-  users <- slackr_ims(api_token)
+  chan <- slackr::slackr_channels(api_token)
+  users <- slackr::slackr_ims(api_token)
   groups <- slackr_groups(api_token)
 
   chan$name <- sprintf("#%s", chan$name)
@@ -50,11 +50,10 @@ slackr_users <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-  tmp <- POST("https://slack.com/api/users.list",
-              body=list(token=api_token))
-  stop_for_status(tmp)
-  members <- jsonlite::fromJSON(content(tmp, as="text"))$members
-  cols <- setdiff(colnames(members), "profile")
+  tmp <- httr::POST("https://slack.com/api/users.list", body=list(token=api_token))
+  httr::stop_for_status(tmp)
+  members <- jsonlite::fromJSON(httr::content(tmp, as="text"))$members
+  cols <- setdiff(colnames(members), c("profile", "real_name"))
   cbind.data.frame(members[,cols], members$profile, stringsAsFactors=FALSE)
 
 }
@@ -90,9 +89,8 @@ slackr_groups <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-  tmp <- POST("https://slack.com/api/groups.list",
-              body=list(token=api_token))
-  stop_for_status(tmp)
+  tmp <- httr::POST("https://slack.com/api/groups.list", body=list(token=api_token))
+  httr::stop_for_status(tmp)
   jsonlite::fromJSON(content(tmp, as="text"))$groups
 
 }
@@ -111,9 +109,9 @@ slackr_ims <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-  tmp <- POST("https://slack.com/api/im.list", body=list(token=api_token))
-  ims <- jsonlite::fromJSON(content(tmp, as="text"))$ims
+  tmp <- httr::POST("https://slack.com/api/im.list", body=list(token=api_token))
+  ims <- jsonlite::fromJSON(httr::content(tmp, as="text"))$ims
   users <- slackr_users(api_token)
-  dplyr::left_join(users, ims, by="id")
+  dplyr::left_join(users, ims, by="id", copy=TRUE)
 
 }

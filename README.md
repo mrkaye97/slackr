@@ -18,6 +18,7 @@ The incoming webhook "token" is no longer required or used.
 
 ### News
 
+-   Version `1.4.2` fixes for changes to the Slack API causing duplicate column names and breaking functions
 -   Version `1.4.0.9000` new `slackr_msg()` + many fixes and BREAKING CHANGES (see above)
 -   Version `1.3.1.9000` Removed `data.table` dependency (replaced with `dplyr`); added access to `im.list` (<https://api.slack.com/methods/im.list>) thx to PR from Quinn Weber
 -   Version `1.3.0.9000` Radically changed how `slackr` works. Functions have camelCase and under\_score versions
@@ -110,9 +111,11 @@ library(slackr)
 library(testthat)
 
 date()
-#> [1] "Tue Apr 26 17:55:41 2016"
+#> [1] "Wed Jul 20 14:05:11 2016"
 
 test_dir("tests/")
 #> testthat results ========================================================================================================
 #> OK: 0 SKIPPED: 0 FAILED: 0
+#> 
+#> DONE ===================================================================================================================
 ```
