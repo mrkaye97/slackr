@@ -54,7 +54,7 @@ slackr_users <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
               body=list(token=api_token))
   stop_for_status(tmp)
   members <- jsonlite::fromJSON(content(tmp, as="text"))$members
-  cols <- setdiff(colnames(members), "profile")
+  cols <- setdiff(colnames(members), c("profile", "real_name"))
   cbind.data.frame(members[,cols], members$profile, stringsAsFactors=FALSE)
 
 }
