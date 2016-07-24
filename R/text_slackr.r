@@ -12,7 +12,7 @@
 #' @param api_token your full slack.com API token
 #' @return \code{httr} response object (invislbly)
 #' @author Quinn Weber [aut], Bob Rudis [ctb]
-#' @note You can pass in \code{add_user=TRUE} as part of the \code{...} parameters and the Slack API
+#' @note You can pass in \code{as_user=TRUE} as part of the \code{...} parameters and the Slack API
 #'       will post the message as your logged-in user account (this will override anything set in
 #'       \code{username})
 #' @references \url{https://github.com/hrbrmstr/slackr/pull/11}
