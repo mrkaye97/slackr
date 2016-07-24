@@ -17,7 +17,7 @@
 #' @param file prefix for filenames (defaults to \code{ggplot})
 #' @param ... other arguments passed to graphics device
 #' @note You need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
-#'       Also, uou can pass in \code{add_user=TRUE} as part of the \code{...}
+#'       Also, uou can pass in \code{as_user=TRUE} as part of the \code{...}
 #'       parameters and the Slack API will post the message as your logged-in user
 #'       account (this will override anything set in \code{username})
 #' @return \code{httr} response object (invisibly)
