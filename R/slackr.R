@@ -19,7 +19,7 @@
 #'       parameters and the Slack API will post the message as your logged-in
 #'       user account (this will override anything set in \code{username}). 
 #'       Passing \code{as_user=FALSE}, results in the Slack API posting the
-#'       message as set in \code{username}.
+#'       message as set in \code{username}
 #' @seealso \code{\link{slackr_setup}}, \code{\link{slackr_bot}}, \code{\link{dev_slackr}},
 #'          \code{\link{save_slackr}}, \code{\link{slackr_upload}}
 #' @examples
