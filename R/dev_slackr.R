@@ -10,7 +10,7 @@
 #' @return \code{httr} response object from \code{POST} call
 #' @seealso \code{\link{slackrSetup}}, \code{\link{save.slackr}}, \code{\link{slackrUpload}}
 #' @author Konrad Karczewski [ctb], Bob Rudis [aut]
-#' @note You can pass in \code{add_user=TRUE} as part of the \code{...} parameters and the Slack API
+#' @note You can pass in \code{as_user=TRUE} as part of the \code{...} parameters and the Slack API
 #'       will post the message as your logged-in user account (this will override anything set in
 #'       \code{username})
 #' @references \url{https://github.com/hrbrmstr/slackr/pull/12/files}
