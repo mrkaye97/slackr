@@ -39,7 +39,7 @@ slackr_upload <- function(filename, title=basename(filename),
     return(invisible(res))
 
   } else {
-    stop(sprintf("File [%s] not found", fpath), call.=FALSE)
+    stop(sprintf("File [%s] not found", f_path), call.=FALSE)
   }
 
 }
