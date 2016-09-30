@@ -5,7 +5,7 @@
 #' (if \code{channels} is not empty).
 #'
 #' @param ... objects to store in the R data file
-#' @param channels slack.com channels to save to (optional)
+#' @param channels Slack channels to save to (optional)
 #' @param file filename (without extension) to use
 #' @param api_token full API token
 #' @rdname save_slackr

@@ -33,7 +33,7 @@ Prepend direct messages with an @}
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
 
-\item{api_token}{your full slack.com API token}
+\item{api_token}{your full Slack API token}
 }
 \value{
 \code{httr} response object (invislbly)

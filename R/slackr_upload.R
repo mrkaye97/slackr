@@ -1,13 +1,13 @@
 #' Send a file to Slack
 #'
-#' \code{slackrUpload} enables you upload files to Slack and
+#' \code{slackr_upload} enables you upload files to Slack and
 #' (optionally) post them to one or more channels (if \code{channels} is not empty).
 #'
 #' @rdname slackr_upload
 #' @param filename path to file
-#' @param title title on slack (optional - defaults to filename)
+#' @param title title on Slack (optional - defaults to filename)
 #' @param initial_comment comment for file on slack (optional - defaults to filename)
-#' @param channels slack.com channels to save to (optional)
+#' @param channels Slack channels to save to (optional)
 #' @param api_token full API token
 #' @return \code{httr} response object from \code{POST} call (invisibly)
 #' @author Quinn Weber [ctb], Bob Rudis [aut]
@@ -38,6 +38,8 @@ slackr_upload <- function(filename, title=basename(filename),
 
     return(invisible(res))
 
+  } else {
+    stop(sprintf("File [%s] not found", fpath), call.=FALSE)
   }
 
 }

@@ -14,7 +14,7 @@ save.slackr(..., channels = "", file = "slackr",
 \arguments{
 \item{...}{objects to store in the R data file}
 
-\item{channels}{slack.com channels to save to (optional)}
+\item{channels}{Slack channels to save to (optional)}
 
 \item{file}{filename (without extension) to use}
 

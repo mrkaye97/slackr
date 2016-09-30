@@ -8,11 +8,11 @@
 #' environment variable. You can override or just specify these values directly instead,
 #' but it's probably better to call \code{\link{slackr_setup}} first.
 #'
-#' @param ... expressions to be sent to Slack.com
+#' @param ... expressions to be sent to Slack
 #' @param channel which channel to post the message to (chr)
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
-#' @param api_token your full slack.com API token
+#' @param api_token your full Slack API token
 #' @note You need a \url{https://www.slack.com} account and will also need to
 #'       setup an API token \url{https://api.slack.com/}
 #'       Also, you can pass in \code{add_user=TRUE} as part of the \code{...}
@@ -136,7 +136,7 @@ slackr <- function(...,
 #' @param channel which channel to post the message to (chr)
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
-#' @param api_token your full slack.com API token
+#' @param api_token your full Slack API token
 #' @param ... other arguments passed to the Slack API \code{chat.postMessage} call
 #' @note You need a \url{https://www.slack.com} account and will also need to
 #'       setup an API token \url{https://api.slack.com/}

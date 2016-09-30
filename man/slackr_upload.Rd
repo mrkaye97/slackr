@@ -16,11 +16,11 @@ slackrUpload(filename, title = basename(filename),
 \arguments{
 \item{filename}{path to file}
 
-\item{title}{title on slack (optional - defaults to filename)}
+\item{title}{title on Slack (optional - defaults to filename)}
 
 \item{initial_comment}{comment for file on slack (optional - defaults to filename)}
 
-\item{channels}{slack.com channels to save to (optional)}
+\item{channels}{Slack channels to save to (optional)}
 
 \item{api_token}{full API token}
 }
@@ -28,7 +28,7 @@ slackrUpload(filename, title = basename(filename),
 \code{httr} response object from \code{POST} call (invisibly)
 }
 \description{
-\code{slackrUpload} enables you upload files to Slack and
+\code{slackr_upload} enables you upload files to Slack and
 (optionally) post them to one or more channels (if \code{channels} is not empty).
 }
 \author{

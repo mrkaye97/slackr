@@ -5,7 +5,7 @@
 #' with the channel ID for that channel. Also incorporates groups.
 #'
 #' @param channels vector of channel names to parse
-#' @param api_token the slack.com full API token (chr)
+#' @param api_token the Slack full API token (chr)
 #' @rdname slackr_chtrans
 #' @author Quinn Weber [ctb], Bob Rudis [aut]
 #' @return character vector - original channel list with \code{#} or

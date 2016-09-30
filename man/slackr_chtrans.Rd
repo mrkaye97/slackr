@@ -15,7 +15,7 @@ slackrChTrans(channels, api_token = Sys.getenv("SLACK_API_TOKEN"))
 \arguments{
 \item{channels}{vector of channel names to parse}
 
-\item{api_token}{the slack.com full API token (chr)}
+\item{api_token}{the Slack full API token (chr)}
 }
 \value{
 character vector - original channel list with \code{#} or

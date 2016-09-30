@@ -16,7 +16,7 @@ dev.slackr(channels = Sys.getenv("SLACK_CHANNEL"), ...,
 
 \item{...}{other arguments passed into png device}
 
-\item{api_token}{the slack.com full API token (chr)}
+\item{api_token}{the Slack full API token (chr)}
 
 \item{file}{prefix for filenames (defaults to \code{plot})}
 }

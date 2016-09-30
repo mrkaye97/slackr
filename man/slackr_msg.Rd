@@ -25,7 +25,7 @@ is passed in, they will be combined and separated by newlines.}
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
 
-\item{api_token}{your full slack.com API token}
+\item{api_token}{your full Slack API token}
 
 \item{...}{other arguments passed to the Slack API \code{chat.postMessage} call}
 }

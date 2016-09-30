@@ -10,7 +10,7 @@ slackr(..., channel = Sys.getenv("SLACK_CHANNEL"),
   api_token = Sys.getenv("SLACK_API_TOKEN"))
 }
 \arguments{
-\item{...}{expressions to be sent to Slack.com}
+\item{...}{expressions to be sent to Slack}
 
 \item{channel}{which channel to post the message to (chr)}
 
@@ -18,7 +18,7 @@ slackr(..., channel = Sys.getenv("SLACK_CHANNEL"),
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
 
-\item{api_token}{your full slack.com API token}
+\item{api_token}{your full Slack API token}
 }
 \description{
 Takes an \code{expr}, evaluates it and sends the output to a Slack

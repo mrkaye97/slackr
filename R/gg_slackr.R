@@ -13,7 +13,7 @@
 #' @param dpi dpi to use for raster graphics
 #' @param limitsize when TRUE (the default), ggsave will not save images larger
 #'        than 50x50 inches, to prevent the common error of specifying dimensions in pixels.
-#' @param api_token the slack.com full API token (chr)
+#' @param api_token the Slack full API token (chr)
 #' @param file prefix for filenames (defaults to \code{ggplot})
 #' @param ... other arguments passed to graphics device
 #' @note You need to setup a full API token (i.e. not a webhook & not OAuth) for this to work

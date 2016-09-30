@@ -20,7 +20,7 @@
 #' @param username the username output will appear from (chr) defaults to \code{slackr}
 #' @param icon_emoji which emoji picture to use (chr) defaults to none (can be
 #'        left blank in config file as well)
-#' @param incoming_webhook_url the slack.com URL prefix to use (chr) defaults to none
+#' @param incoming_webhook_url the Slack URL prefix to use (chr) defaults to none
 #' @param api_token the Slack full API token (chr)
 #' @param config_file a configuration file (DCF) - see \link{read.dcf} - format
 #'        with the config values.

@@ -28,7 +28,7 @@ ggslackr(plot = last_plot(), channels = Sys.getenv("SLACK_CHANNEL"),
 \item{limitsize}{when TRUE (the default), ggsave will not save images larger
 than 50x50 inches, to prevent the common error of specifying dimensions in pixels.}
 
-\item{api_token}{the slack.com full API token (chr)}
+\item{api_token}{the Slack full API token (chr)}
 
 \item{file}{prefix for filenames (defaults to \code{ggplot})}
 

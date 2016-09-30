@@ -16,7 +16,7 @@ slackrBot(..., channel = Sys.getenv("SLACK_CHANNEL"),
   incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"))
 }
 \arguments{
-\item{...}{expressions to be sent to Slack.com}
+\item{...}{expressions to be sent to Slack}
 
 \item{channel}{which channel to post the message to (chr)}
 

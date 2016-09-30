@@ -21,7 +21,7 @@ slackrSetup(channel = "#general", username = "slackr", icon_emoji = "",
 \item{icon_emoji}{which emoji picture to use (chr) defaults to none (can be
 left blank in config file as well)}
 
-\item{incoming_webhook_url}{the slack.com URL prefix to use (chr) defaults to none}
+\item{incoming_webhook_url}{the Slack URL prefix to use (chr) defaults to none}
 
 \item{api_token}{the Slack full API token (chr)}
 

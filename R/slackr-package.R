@@ -1,4 +1,4 @@
-#' slackr - A package to work with the Slack.com API
+#' slackr - A package to work with the Slack API
 #'
 #' Mega thanks to:
 #'
