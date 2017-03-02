@@ -112,6 +112,7 @@ slackr_ims <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
   tmp <- httr::POST("https://slack.com/api/im.list", body=list(token=api_token))
   ims <- jsonlite::fromJSON(httr::content(tmp, as="text"))$ims
   users <- slackr_users(api_token)
-  dplyr::left_join(users, ims, by="id", copy=TRUE)
+  suppressWarnings( merge(users, ims, by.x="id", by.y='user') )
+  #dplyr::left_join(users, ims, by="id", copy=TRUE)
 
 }
