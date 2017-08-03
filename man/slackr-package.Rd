@@ -49,4 +49,3 @@ ggslackr(qplot(mpg, wt, data=mtcars))
 \author{
 Bob Rudis (@hrbrmstr)
 }
-
