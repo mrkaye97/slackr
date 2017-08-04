@@ -5,7 +5,8 @@
 \title{Post a tex output to a Slack channel}
 \usage{
 tex_slackr(obj, channels = Sys.getenv("SLACK_CHANNEL"),
-  api_token = Sys.getenv("SLACK_API_TOKEN"), ...)
+  api_token = Sys.getenv("SLACK_API_TOKEN"), ext = "png", path = NULL,
+  ...)
 }
 \arguments{
 \item{obj}{character object containing tex to compile}
@@ -13,6 +14,10 @@ tex_slackr(obj, channels = Sys.getenv("SLACK_CHANNEL"),
 \item{channels}{list of channels to post image to}
 
 \item{api_token}{the Slack full API token (chr)}
+
+\item{ext}{character, type of format to return, can be tex, pdf, or any image device, Default: 'png'}
+
+\item{path}{character, path to save texPreview outputs, if NULL then tempdir is used, Default: NULL}
 
 \item{...}{other arguments passed to \code{\link[texPreview]{texPreview}}}
 }
@@ -33,9 +38,13 @@ You need to setup a full API token (i.e. not a webhook & not OAuth) for this to 
 \dontrun{
 slackr_setup()
 obj=xtable::xtable(mtcars)
-tex_slackr(obj,
-           print.xtable.opts=list(scalebox=getOption("xtable.scalebox", 0.8))
-)
+tex_slackr(obj,print.xtable.opts=list(scalebox=getOption("xtable.scalebox", 0.8)))
+
+tex_slackr(obj,ext = 'pdf',print.xtable.opts=list(scalebox=getOption("xtable.scalebox", 0.8)))
+
+tex_slackr(obj,ext = 'tex',print.xtable.opts=list(scalebox=getOption("xtable.scalebox", 0.8)))
+
+tex_slackr(obj,path='testdir',print.xtable.opts=list(scalebox=getOption("xtable.scalebox", 0.8)))
 }
 }
 \seealso{
