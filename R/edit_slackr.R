@@ -3,7 +3,6 @@
 #'
 #' @param text The character vector to be posted
 #' @param ts Timestamp of the message to be updated
-#' @param tag prefix to the text with ip of node/computer, Default: FALSE
 #' @param ... Optional arguments such as: as_user, parse, unfurl_links, etc.
 #' @param preformatted Should the text be sent as preformatted text. Defaults to TRUE
 #' @param channel The name of the channels to which the DataTable should be sent.
@@ -28,7 +27,6 @@
 #' @export
 edit_slackr <- function(text,
                         ts=NULL,
-                        tag=FALSE,
                         ...,
                         preformatted=TRUE,
                         channel=Sys.getenv("SLACK_CHANNEL"),
@@ -43,11 +41,6 @@ edit_slackr <- function(text,
   if ( !is.character(api_token) | length(api_token) > 1 ) { stop("api_token must be a character vector of length one") }
 
   text <- as.character(text)
-
-  if(tag){
-    thisip <- system("ifconfig | grep 'inet ' | grep -Fv 127.0.0.1 | awk '{print $2}'", intern=TRUE)
-    text <- sprintf('IP %s : %s', gsub('[^0-9.]','',thisip) , text)
-  }
 
   if ( preformatted ) {
     if ( substr(text, 1, 3) != '```' ) { text <- paste0('```', text) }

@@ -5,7 +5,7 @@
 \title{edit a message on a slack channel. Calls the chat.update method on the Slack Web API.
 Information on this method can be found here: \url{https://api.slack.com/methods/chat.update}}
 \usage{
-edit_slackr(text, ts = NULL, tag = FALSE, ..., preformatted = TRUE,
+edit_slackr(text, ts = NULL, ..., preformatted = TRUE,
   channel = Sys.getenv("SLACK_CHANNEL"),
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
@@ -15,8 +15,6 @@ edit_slackr(text, ts = NULL, tag = FALSE, ..., preformatted = TRUE,
 \item{text}{The character vector to be posted}
 
 \item{ts}{Timestamp of the message to be updated}
-
-\item{tag}{prefix to the text with ip of node/computer, Default: FALSE}
 
 \item{...}{Optional arguments such as: as_user, parse, unfurl_links, etc.}
 
