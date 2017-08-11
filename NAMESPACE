@@ -2,7 +2,9 @@
 
 export(dev.slackr)
 export(dev_slackr)
+export(edit_slackr)
 export(ggslackr)
+export(history_slackr)
 export(save.slackr)
 export(save_slackr)
 export(slackr)
