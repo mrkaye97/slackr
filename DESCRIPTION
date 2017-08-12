@@ -5,7 +5,8 @@ Version: 1.4.3
 Date: 2016-09-30
 Author: Bob Rudis [aut, cre], Jay Jacobs [ctb], David Severski [ctb],
     Quinn Weber [ctb], Konrad Karczewski [ctb], Shinya Uryu [ctb],
-    Gregory Jefferis [ctb], Ed Niles [ctb], Rick Saporta [ctb]
+    Gregory Jefferis [ctb], Ed Niles [ctb], Rick Saporta [ctb],
+    Jonathan Sidi [ctb]
 Maintainer: Bob Rudis <bob@rudis.net>
 Description: 'Slack' <http://slack.com/> provides a service for teams to
     collaborate by sharing messages, images, links, files and more. Functions are provided
@@ -30,5 +31,6 @@ Imports:
     methods,
     dplyr,
     graphics,
-    grDevices
-RoxygenNote: 5.0.1
+    grDevices,
+    texPreview
+RoxygenNote: 6.0.1

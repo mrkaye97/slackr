@@ -53,4 +53,3 @@ slackr_setup()
 ggslackr(qplot(mpg, wt, data=mtcars))
 }
 }
-

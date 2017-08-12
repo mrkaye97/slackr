@@ -47,4 +47,3 @@ slackr("iris info", head(iris), str(iris))
 \code{\link{slackr_setup}}, \code{\link{slackr_bot}}, \code{\link{dev_slackr}},
          \code{\link{save_slackr}}, \code{\link{slackr_upload}}
 }
-
