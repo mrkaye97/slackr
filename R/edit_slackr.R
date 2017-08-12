@@ -2,7 +2,8 @@
 #' Information on this method can be found here: \url{https://api.slack.com/methods/chat.update}
 #'
 #' @param text The character vector to be posted
-#' @param ts Timestamp of the message to be updated
+#' @param pattern Filter messages by regex (grepl), Default: NULL
+#' @param idx, Index of message to edit (descending order), Default: 1
 #' @param ... Optional arguments such as: as_user, parse, unfurl_links, etc.
 #' @param preformatted Should the text be sent as preformatted text. Defaults to TRUE
 #' @param channel The name of the channels to which the DataTable should be sent.
@@ -21,12 +22,18 @@
 #' @examples
 #' \dontrun{
 #' slackr_setup()
+#'
 #' text_slackr('hello world')
-#' edit_slackr('another world')
+#' text_slackr('hello new world')
+#'
+#' edit_slackr('another new world')
+#' edit_slackr('goodbye new world',pattern='world',idx=2)
+#'
 #' }
 #' @export
 edit_slackr <- function(text,
-                        ts=NULL,
+                        pattern=NULL,
+                        idx=1,
                         ...,
                         preformatted=TRUE,
                         channel=Sys.getenv("SLACK_CHANNEL"),
@@ -50,7 +57,16 @@ edit_slackr <- function(text,
   chnl_map <- slackr_channels(api_token = api_token)[c('id','name')]
   chnl_map$name <- sprintf('#%s',chnl_map$name)
 
-  if(is.null(ts)) ts <- history_slackr(count = 1,api_token=api_token)$ts
+  hs <- history_slackr(count = 100, api_token=api_token)
+
+  if(!is.null(pattern)) hs <- hs[grepl(pattern,hs$text),]
+
+  if(nrow(hs)==0){
+    message('Pattern: ',pattern,' returned nothing')
+    return(NULL)
+  }
+
+  ts <- hs$ts[idx]
 
   loc <- Sys.getlocale('LC_CTYPE')
   Sys.setlocale('LC_CTYPE','C')

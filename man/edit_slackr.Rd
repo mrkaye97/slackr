@@ -5,7 +5,7 @@
 \title{edit a message on a slack channel. Calls the chat.update method on the Slack Web API.
 Information on this method can be found here: \url{https://api.slack.com/methods/chat.update}}
 \usage{
-edit_slackr(text, ts = NULL, ..., preformatted = TRUE,
+edit_slackr(text, pattern = NULL, idx = 1, ..., preformatted = TRUE,
   channel = Sys.getenv("SLACK_CHANNEL"),
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
@@ -14,7 +14,9 @@ edit_slackr(text, ts = NULL, ..., preformatted = TRUE,
 \arguments{
 \item{text}{The character vector to be posted}
 
-\item{ts}{Timestamp of the message to be updated}
+\item{pattern}{Filter messages by regex (grepl), Default: NULL}
+
+\item{idx, }{Index of message to edit (descending order), Default: 1}
 
 \item{...}{Optional arguments such as: as_user, parse, unfurl_links, etc.}
 
@@ -45,8 +47,13 @@ You can pass in \code{add_user=TRUE} as part of the \code{...} parameters and th
 \examples{
 \dontrun{
 slackr_setup()
+
 text_slackr('hello world')
-edit_slackr('another world')
+text_slackr('hello new world')
+
+edit_slackr('another new world')
+edit_slackr('goodbye new world',pattern='world',idx=2)
+
 }
 }
 \seealso{
