@@ -3,7 +3,8 @@
 #'
 #' @param text The character vector to be posted
 #' @param pattern Filter messages by regex (grepl), Default: NULL
-#' @param idx, Index of message to edit (descending order), Default: 1
+#' @param idx Index of message to edit (descending order), Default: 1
+#' @param hs History of slack channel (if NULL a request to slacka api will be made), Default=NULL
 #' @param ... Optional arguments such as: as_user, parse, unfurl_links, etc.
 #' @param preformatted Should the text be sent as preformatted text. Defaults to TRUE
 #' @param channel The name of the channels to which the DataTable should be sent.
@@ -34,6 +35,7 @@
 edit_slackr <- function(text,
                         pattern=NULL,
                         idx=1,
+                        hs=NULL,
                         ...,
                         preformatted=TRUE,
                         channel=Sys.getenv("SLACK_CHANNEL"),
@@ -57,7 +59,7 @@ edit_slackr <- function(text,
   chnl_map <- slackr_channels(api_token = api_token)[c('id','name')]
   chnl_map$name <- sprintf('#%s',chnl_map$name)
 
-  hs <- history_slackr(count = 100, api_token=api_token)
+  if(is.null(hs)) hs <- history_slackr(count = 100, api_token=api_token)
 
   if(!is.null(pattern)) hs <- hs[grepl(pattern,hs$text),]
 
