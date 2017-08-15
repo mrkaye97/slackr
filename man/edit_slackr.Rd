@@ -62,5 +62,5 @@ edit_slackr('goodbye new world',pattern='world',idx=2)
 \url{https://api.slack.com/methods/chat.update}
 }
 \author{
-Quinn Weber [aut], Bob Rudis [ctb]
+Jonathan Sidi [aut]
 }

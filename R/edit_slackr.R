@@ -14,7 +14,7 @@
 #' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
 #' @param api_token your full Slack API token
 #' @return \code{httr} response object (invislbly)
-#' @author Quinn Weber [aut], Bob Rudis [ctb]
+#' @author Jonathan Sidi [aut]
 #' @note You can pass in \code{add_user=TRUE} as part of the \code{...} parameters and the Slack API
 #'       will post the message as your logged-in user account (this will override anything set in
 #'       \code{username})

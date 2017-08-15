@@ -11,9 +11,7 @@ delete_slackr(count, channel = Sys.getenv("SLACK_CHANNEL"),
 \arguments{
 \item{count}{Number of messages to delete.}
 
-\item{channel}{The name of the channels to which the DataTable should be sent.
-Prepend channel names with a hashtag. Prepend private-groups with nothing.
-Prepend direct messages with an @}
+\item{channel}{The name of the channels to delete messages from}
 
 \item{api_token}{your full Slack API token}
 }
@@ -35,4 +33,6 @@ delete_slackr(count=1)
 }
 \author{
 Quinn Weber [aut], Bob Rudis [ctb]
+
+Jonathan Sidi [aut]
 }
