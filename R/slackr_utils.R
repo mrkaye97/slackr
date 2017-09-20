@@ -77,6 +77,47 @@ slackr_channels <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
 }
 
+#' Get a data frame of messages from a Slack channel
+#'
+#' @param api_token the Slack full API token (chr)
+#' @param channel which channel to get messages from
+#' @param posted_from_time Start of time range of messages to include in results
+#' @param posted_to_time End of time range of messages to include in results
+#' @param message_count Number of messages to return, between 1 and 1000
+#' @return data.table of channels
+#' @rdname slackr_channels
+#' @export
+
+slackr_channel_history <- function(api_token = Sys.getenv("SLACK_API_TOKEN"),
+                                   channel = Sys.getenv("SLACK_CHANNEL"),
+                                   posted_from_time = 0L,
+                                   posted_to_time = as.numeric(Sys.time()),
+                                   message_count = 100L) {
+
+  out <- tryCatch({
+    chnl <- slackr_chtrans(channel)
+    params <- list(token = api_token,
+                   channel = chnl,
+                   latest = posted_to_time,
+                   oldest = posted_from_time,
+                   inclusive = "true",
+                   count = message_count)
+
+    response <- httr::GET(url = "https://slack.com/api/channels.history",
+                          query = params)
+
+    jsonlite::fromJSON(httr::content(response, as = "text"))$messages
+  }, error = function(e) {
+    message(paste("Channel", channel, "does not exist."))
+  })
+
+  if (length(out) == 0) {
+    message(paste("Channel", channel, "has no new messages."))
+  }
+  return(out)
+}
+
+
 #' Get a data frame of Slack groups
 #'
 #' @param api_token the Slackfull API token (chr)
