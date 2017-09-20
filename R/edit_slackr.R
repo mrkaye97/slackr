@@ -1,7 +1,9 @@
-#' Sends basic text to a slack channel. Calls the chat.postMessage method on the Slack Web API.
-#' Information on this method can be found here: \url{https://api.slack.com/methods/chat.postMessage}
+#' edit a message on a slack channel. Calls the chat.update method on the Slack Web API.
+#' Information on this method can be found here: \url{https://api.slack.com/methods/chat.update}
 #'
 #' @param text The character vector to be posted
+#' @param pattern Filter messages by regex (grepl), Default: NULL
+#' @param idx, Index of message to edit (descending order), Default: 1
 #' @param ... Optional arguments such as: as_user, parse, unfurl_links, etc.
 #' @param preformatted Should the text be sent as preformatted text. Defaults to TRUE
 #' @param channel The name of the channels to which the DataTable should be sent.
@@ -12,19 +14,26 @@
 #' @param api_token your full Slack API token
 #' @return \code{httr} response object (invislbly)
 #' @author Quinn Weber [aut], Bob Rudis [ctb]
-#' @note You can pass in \code{as_user=TRUE} as part of the \code{...} parameters and the Slack API
+#' @note You can pass in \code{add_user=TRUE} as part of the \code{...} parameters and the Slack API
 #'       will post the message as your logged-in user account (this will override anything set in
 #'       \code{username})
-#' @references \url{https://github.com/hrbrmstr/slackr/pull/11}
-#' @seealso \url{https://api.slack.com/methods/chat.postMessage}
-#' @rdname text_slackr
+#' @seealso \url{https://api.slack.com/methods/chat.update}
+#' @rdname edit_slackr
 #' @examples
 #' \dontrun{
 #' slackr_setup()
-#' text_slackr('hello world', as_user=TRUE)
+#'
+#' text_slackr('hello world')
+#' text_slackr('hello new world')
+#'
+#' edit_slackr('another new world')
+#' edit_slackr('goodbye new world',pattern='world',idx=2)
+#'
 #' }
 #' @export
-text_slackr <- function(text,
+edit_slackr <- function(text,
+                        pattern=NULL,
+                        idx=1,
                         ...,
                         preformatted=TRUE,
                         channel=Sys.getenv("SLACK_CHANNEL"),
@@ -45,17 +54,31 @@ text_slackr <- function(text,
     if ( substr(text, nchar(text)-2, nchar(text)) != '```' ) { text <- paste0(text, '```') }
   }
 
+  chnl_map <- slackr_channels(api_token = api_token)[c('id','name')]
+  chnl_map$name <- sprintf('#%s',chnl_map$name)
+
+  hs <- history_slackr(count = 100, api_token=api_token)
+
+  if(!is.null(pattern)) hs <- hs[grepl(pattern,hs$text),]
+
+  if(nrow(hs)==0){
+    message('Pattern: ',pattern,' returned nothing')
+    return(NULL)
+  }
+
+  ts <- hs$ts[idx]
+
   loc <- Sys.getlocale('LC_CTYPE')
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-  resp <- POST(url="https://slack.com/api/chat.postMessage",
+  resp <- POST(url="https://slack.com/api/chat.update",
                body=list(token=api_token,
-                         channel=channel,
+                         channel=chnl_map$id[grepl(sprintf('^%s$',channel),chnl_map$name)],
                          username=username,
-                         icon_emoji=icon_emoji,
                          text=text,
                          link_names=1,
+                         ts=ts,
                          ...))
 
   warn_for_status(resp)

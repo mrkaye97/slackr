@@ -15,9 +15,11 @@
 #' @param api_token your full Slack API token
 #' @note You need a \url{https://www.slack.com} account and will also need to
 #'       setup an API token \url{https://api.slack.com/}
-#'       Also, you can pass in \code{add_user=TRUE} as part of the \code{...}
+#'       Also, you can pass in \code{as_user=TRUE}, the default, as part of the \code{...}
 #'       parameters and the Slack API will post the message as your logged-in
-#'       user account (this will override anything set in \code{username})
+#'       user account (this will override anything set in \code{username}). 
+#'       Passing \code{as_user=FALSE}, results in the Slack API posting the
+#'       message as set in \code{username}
 #' @seealso \code{\link{slackr_setup}}, \code{\link{slackr_bot}}, \code{\link{dev_slackr}},
 #'          \code{\link{save_slackr}}, \code{\link{slackr_upload}}
 #' @examples
