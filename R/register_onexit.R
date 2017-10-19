@@ -16,12 +16,37 @@
 #' trt <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
 #' group <- gl(2, 10, 20, labels = c("Ctl","Trt"))
 #' weight <- c(ctl, trt)
-#' register_onexit(lm,channel="general")
+#'
+#' #pass a message to Slack channel 'general'
+#' register_onexit(lm,'bazinga!',channel="#general")
+#'
 #' lm.D9 <- slack_lm(weight ~ group)
 #'
-#' register_onexit(lm,msg='bazinga!',channel="general")
+#' #test that output keeps inheritance
+#' summary(lm.D9)
+#'
+#' #pass a message to Slack channel 'general' with a header message to begin output
+#' register_onexit(lm,'bazinga!',
+#' channel="#general",
+#' header_msg='This is a message to begin')
+#'
 #' lm.D9 <- slack_lm(weight ~ group)
-#' }
+#'
+#' #onexit with an expression that calls lm.plot
+#' register_onexit(lm,{
+#'  par(mfrow = c(2, 2), oma = c(0, 0, 2, 0))
+#'  plot(z)
+#' },
+#' channel="#general",
+#' header_msg = 'This is a plot just for this output',
+#' use_device = TRUE)
+#'
+#' lm.D9 <- slack_lm(weight ~ group)
+#'
+#'#clean up slack channel from examples
+#'delete_slackr(count = 6,channel = '#general')
+#'}
+#'
 #' @rdname register_onexit
 #' @seealso
 #' \code{\link{text_slackr}}
