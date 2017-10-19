@@ -7,32 +7,14 @@
 \usage{
 slackr_channels(api_token = Sys.getenv("SLACK_API_TOKEN"))
 
-slackr_channel_history(api_token = Sys.getenv("SLACK_API_TOKEN"),
-  channel = Sys.getenv("SLACK_CHANNEL"), posted_from_time = 0L,
-  posted_to_time = as.numeric(Sys.time()), message_count = 100L)
-
 slackrChannels(api_token = Sys.getenv("SLACK_API_TOKEN"))
 }
 \arguments{
 \item{api_token}{the Slack full API token (chr)}
-
-\item{channel}{which channel to get messages from}
-
-\item{posted_from_time}{Start of time range of messages to include in results}
-
-\item{posted_to_time}{End of time range of messages to include in results}
-
-\item{message_count}{Number of messages to return, between 1 and 1000}
-
-\item{api_token}{the Slack full API token (chr)}
 }
 \value{
-data.table of channels
-
 data.table of channels
 }
 \description{
 Get a data frame of Slack channels
-
-Get a data frame of messages from a Slack channel
 }

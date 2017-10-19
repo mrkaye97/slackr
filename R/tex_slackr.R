@@ -29,6 +29,7 @@
 #' @seealso
 #'  \code{\link[texPreview]{texPreview}} \code{\link[xtable]{print.xtable}}
 #' @importFrom texPreview texPreview
+#' @author Jonathan Sidi [aut]
 #' @export
 tex_slackr <- function(obj,
                      channels=Sys.getenv("SLACK_CHANNEL"),

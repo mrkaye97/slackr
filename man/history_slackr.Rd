@@ -36,5 +36,5 @@ history_slackr(count=1)
 \url{https://api.slack.com/methods/channels.history}
 }
 \author{
-Quinn Weber [aut], Bob Rudis [ctb]
+Jonathan Sidi [aut]
 }

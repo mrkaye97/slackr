@@ -85,7 +85,7 @@ slackr_channels <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 #' @param posted_to_time End of time range of messages to include in results
 #' @param message_count Number of messages to return, between 1 and 1000
 #' @return data.table of channels
-#' @rdname slackr_channels
+#' @rdname slackr_channels_history
 #' @export
 
 slackr_channel_history <- function(api_token = Sys.getenv("SLACK_API_TOKEN"),

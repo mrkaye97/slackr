@@ -50,3 +50,6 @@ tex_slackr(obj,path='testdir',print.xtable.opts=list(scalebox=getOption("xtable.
 \seealso{
 \code{\link[texPreview]{texPreview}} \code{\link[xtable]{print.xtable}}
 }
+\author{
+Jonathan Sidi [aut]
+}

@@ -8,7 +8,7 @@
 #'  Prepend direct messages with an @@
 #' @param api_token your full Slack API token
 #' @return \code{httr} response object (invislbly)
-#' @author Quinn Weber [aut], Bob Rudis [ctb]
+#' @author Jonathan Sidi [aut]
 #' @seealso \url{https://api.slack.com/methods/channels.history}
 #' @rdname history_slackr
 #' @examples
