@@ -28,9 +28,9 @@ dev.slackr(channels = Sys.getenv("SLACK_CHANNEL"), ...,
 specified Slack channel.
 }
 \note{
-You can pass in \code{add_user=TRUE} as part of the \code{...} parameters and the Slack API
+You can pass in \code{as_user=TRUE} as part of the \code{...} parameters and the Slack API
       will post the message as your logged-in user account (this will override anything set in
-      \code{username})
+      \code{username}).
 }
 \examples{
 \dontrun{
