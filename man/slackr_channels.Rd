@@ -2,6 +2,7 @@
 % Please edit documentation in R/slackr_utils.R, R/zcamels.r
 \name{slackr_channels}
 \alias{slackr_channels}
+\alias{slackr_channel_history}
 \alias{slackrChannels}
 \title{Get a data frame of Slack channels}
 \usage{

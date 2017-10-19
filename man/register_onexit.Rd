@@ -4,8 +4,8 @@
 \alias{register_onexit}
 \title{Append text_slackr as on.exit to functions.}
 \usage{
-register_onexit(f, msg = "done!", env = parent.frame(2),
-  channel = Sys.getenv("SLACK_CHANNEL"),
+register_onexit(f, ..., header_msg = NULL, use_device = FALSE,
+  env = parent.frame(2), channel = Sys.getenv("SLACK_CHANNEL"),
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
   api_token = Sys.getenv("SLACK_API_TOKEN"))
@@ -13,14 +13,17 @@ register_onexit(f, msg = "done!", env = parent.frame(2),
 \arguments{
 \item{f}{function or character}
 
-\item{msg}{character, message to pass to text_slackr Default: 'done!'}
+\item{...}{expressions to be sent to Slack}
+
+\item{header_msg}{boolean, message to append to start of Slack output, Default: NULL}
+
+\item{use_device}{boolean, passes current image in the graphics device to Slack as part of f,
+Default: FALSE}
 
 \item{env}{environment to assign appended function to with relation to the function environment,
 Default: parent.frame(2) (global environment)}
 
-\item{channel}{The name of the channels to which the DataTable should be sent.
-Prepend channel names with a hashtag. Prepend private-groups with nothing.
-Prepend direct messages with an @}
+\item{channel}{which channel to post the message to (chr)}
 
 \item{username}{what user should the bot be named as (chr)}
 
@@ -45,10 +48,10 @@ group <- gl(2, 10, 20, labels = c("Ctl","Trt"))
 weight <- c(ctl, trt)
 register_onexit(lm,channel="general")
 lm.D9 <- slack_lm(weight ~ group)
+
+register_onexit(lm,msg='bazinga!',channel="general")
+lm.D9 <- slack_lm(weight ~ group)
 }
-}
-\references{
-\url{https://github.com/hrbrmstr/slackr/pull/11}
 }
 \seealso{
 \code{\link{text_slackr}}

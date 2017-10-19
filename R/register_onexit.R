@@ -1,10 +1,13 @@
 #' @title Append text_slackr as on.exit to functions.
 #' @description Appends to the body of a function an on.exit call to run at the end of the call.
 #' @param f function or character
-#' @param msg character, message to pass to text_slackr Default: 'done!'
+#' @param ... expressions to be sent to Slack
+#' @param header_msg boolean, message to append to start of Slack output, Default: NULL
+#' @param use_device boolean, passes current image in the graphics device to Slack as part of f,
+#' Default: FALSE
 #' @param env environment to assign appended function to with relation to the function environment,
 #' Default: parent.frame(2) (global environment)
-#' @inherit text_slackr
+#' @inherit slackr
 #' @return function
 #' @details If a character is passed to f then it will evaluate internally to a function.
 #' @examples
@@ -15,6 +18,9 @@
 #' weight <- c(ctl, trt)
 #' register_onexit(lm,channel="general")
 #' lm.D9 <- slack_lm(weight ~ group)
+#'
+#' register_onexit(lm,msg='bazinga!',channel="general")
+#' lm.D9 <- slack_lm(weight ~ group)
 #' }
 #' @rdname register_onexit
 #' @seealso
@@ -22,7 +28,9 @@
 #' @author Jonathan Sidi [aut]
 #' @export
 register_onexit <- function(f,
-                            msg='done!',
+                            ...,
+                            header_msg=NULL,
+                            use_device=FALSE,
                             env=parent.frame(2),
                             channel = Sys.getenv("SLACK_CHANNEL"),
                             username = Sys.getenv("SLACK_USERNAME"),
@@ -33,17 +41,25 @@ register_onexit <- function(f,
 
   if(inherits(f,'character')) f <- eval(parse(text = f))
 
-  msg <- sprintf('%s : %s', f.val, msg)
+  if(!is.null(header_msg))
+    header_msg <- sprintf('%s : %s', f.val, header_msg)
 
   b <- body(f)
 
   tmp <- b[[length(b)]]
 
-  b[[length(b)]] <- substitute(on.exit({text_slackr(msg,
-                                                      channel=channel,
-                                                      username=username,
-                                                      icon_emoji = icon_emoji,
-                                                      api_token = api_token)},add = TRUE))
+  b[[length(b)]] <- substitute(on.exit({
+
+    if(!is.null(header_msg))
+      slackr(header_msg,channel=channel,username=username,icon_emoji = icon_emoji, api_token = api_token)
+
+    slackr(...,channel=channel,username=username,icon_emoji = icon_emoji, api_token = api_token)
+
+    if(use_device&!is.null(dev.list()))
+      dev_slackr(channels=channel,api_token = api_token)
+
+    },
+    add = TRUE))
 
   b[[length(b)+1]] <- tmp
 
