@@ -16,10 +16,10 @@
 #' @export
 slackr_upload <- function(filename, title=basename(filename),
                           initial_comment=basename(filename),
-                          channels="", api_token=Sys.getenv("SLACK_API_TOKEN")) {
+                          channels = Sys.getenv("SLACK_CHANNEL"),
+                          api_token = Sys.getenv("SLACK_API_TOKEN")) {
 
   f_path <- path.expand(filename)
-
   if (file.exists(f_path)) {
 
     f_name <- basename(f_path)
@@ -28,13 +28,13 @@ slackr_upload <- function(filename, title=basename(filename),
     Sys.setlocale('LC_CTYPE','C')
     on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-    modchan <- slackrChTrans(channels, api_token)
+    modchan <- slackr_chtrans(channels)
 
-    res <- httr::POST(url="https://slack.com/api/files.upload",
-                      httr::add_headers(`Content-Type`="multipart/form-data"),
-                      body=list( file=httr::upload_file(f_path), filename=f_name,
-                                 title=title, initial_comment=initial_comment,
-                                 token=api_token, channels=paste(modchan, collapse=",")))
+    res <- httr::POST(url = "https://slack.com/api/files.upload",
+               httr::add_headers(`Content-Type` = "multipart/form-data"),
+               body = list(file = httr::upload_file(f_path), filename = f_name,
+                           title = title, initial_comment = initial_comment,
+                           token = api_token, channels = modchan))
 
     return(invisible(res))
 
