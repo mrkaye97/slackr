@@ -4,6 +4,8 @@
 #' allowing the user to post a static image of an htmlwidget to a slack channel.
 #'
 #' @param plot htmlwidget object to save, defaults to last item ouptut
+#' @param title title on Slack (optional - defaults to filename)
+#' @param initial_comment comment for file on slack (optional - defaults to filename)
 #' @param channels list of channels to post image to
 #' @param api_token the Slack full API token (chr)
 #' @param file prefix for filenames (defaults to \code{widget})
@@ -21,9 +23,11 @@
 #' @export
 
 htmlslackr <- function(plot,
-                     channels = Sys.getenv("SLACK_CHANNEL"),
-                     api_token = Sys.getenv("SLACK_API_TOKEN"),
-                     file = "widget",
+                       title="widget",
+                       initial_comment=NULL,
+                       channels = Sys.getenv("SLACK_CHANNEL"),
+                       api_token = Sys.getenv("SLACK_API_TOKEN"),
+                       file = "widget",
                      ...) {
   if (missing(plot)) {plot <- .Last.value}
   loc <- Sys.getlocale('LC_CTYPE')
@@ -45,7 +49,9 @@ htmlslackr <- function(plot,
               httr::add_headers(`Content-Type` = "multipart/form-data"),
               body = list(file = httr::upload_file(ftmp2),
                         token = api_token,
-                        channels = modchan))
+                        channels = modchan,
+                        title = title,
+                        initial_comment = initial_comment))
   unlink(c(ftmp,ftmp2))
   return(invisible(res))
 }
