@@ -1,26 +1,27 @@
 Package: slackr
 Type: Package
 Title: Send Messages, Images, R Objects and Files to 'Slack' Channels/Users
-Version: 1.4.3
-Date: 2016-09-30
+Version: 1.5.0
+Date: 2018-05-16
 Author: Bob Rudis [aut, cre], Jay Jacobs [ctb], David Severski [ctb],
     Quinn Weber [ctb], Konrad Karczewski [ctb], Shinya Uryu [ctb],
     Gregory Jefferis [ctb], Ed Niles [ctb], Rick Saporta [ctb],
-    Jonathan Sidi [ctb]
-Maintainer: Bob Rudis <bob@rudis.net>
-Description: 'Slack' <http://slack.com/> provides a service for teams to
+    Jonathan Sidi [aut, ctb]
+Maintainer: Bob Rudis <bob@rud.is>
+Description: 'Slack' <https://slack.com/> provides a service for teams to
     collaborate by sharing messages, images, links, files and more. Functions are provided
     that make it possible to interact with the 'Slack' platform 'API'. When
     you need to share information or data from R, rather than resort to copy/
-    paste in e-mails or other services like 'Skype' <http://www.skype.com/>, you
+    paste in e-mails or other services like 'Skype' <https://www.skype.com/>, you
     can use this package to send well-formatted output from multiple R objects and
     expressions to all teammates at the same time with little effort. You can also
     send images from the current graphics device, R objects, and upload files.
-URL: http://github.com/hrbrmstr/slackr
+URL: https://github.com/hrbrmstr/slackr
 BugReports: https://github.com/hrbrmstr/slackr/issues
 License: MIT + file LICENSE
 Suggests:
     testthat
+Encoding: UTF-8
 Depends:
     R (>= 3.0.0)
 Imports:
@@ -33,4 +34,4 @@ Imports:
     graphics,
     grDevices,
     texPreview
-RoxygenNote: 6.0.1
+RoxygenNote: 6.0.1.9000

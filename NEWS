@@ -1,5 +1,0 @@
-## 1.4.1
-* There is a new `slackr_msg()` function which behaves slightly differently than `text_slackr()`
-* Versions 1.4+ BREAK THINGS.
-* Support has been removed for the "old style" incoming web hooks (see "Setup" in the README for the required incoming web hook URL format).
-* the incoming webhook "token" is no longer required or used.
