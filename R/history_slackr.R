@@ -34,16 +34,31 @@ history_slackr <- function(count,
 
   # for private channels
   chnl_map <- slackr_channels(api_token = api_token)[c('id','name')]
+  if (nrow(chnl_map) > 0) {
+    chnl_map$public <- TRUE
+  }
   if (include_private) {
     private_chnl_map <- slackr_groups(api_token = api_token)[c('id','name')]
+    if (nrow(private_chnl_map) > 0) {
+      private_chnl_map$public <- FALSE
+    }
     chnl_map = bind_rows(private_chnl_map, chnl_map)
   }
 
-  chnl_map$name <- sprintf('#%s',chnl_map$name)
+  # in case you forgot your #
+  if (!grepl("^#", channel)) {
+    channel = paste0("#", channel)
+  }
 
-  resp <- httr::POST(url="https://slack.com/api/channels.history",
-                     body=list(token=api_token,
-                               channel=chnl_map$id[grepl(sprintf('^%s$',channel),chnl_map$name)],
+  chnl_map$name <- sprintf('#%s',chnl_map$name)
+  channel_df = chnl_map[grepl(sprintf('^%s$',channel),chnl_map$name),]
+  channel_id = channel_df$id
+  public = channel_df$public
+  endpoint = ifelse(public, "channels.history", "groups.history")
+
+  resp <- httr::POST(url= paste0("https://slack.com/api/", endpoint),
+                     body=list(token = api_token,
+                               channel = channel_id,
                                count=count,
                                ...))
   warn_for_status(resp)
