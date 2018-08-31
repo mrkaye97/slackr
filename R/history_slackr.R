@@ -7,6 +7,7 @@
 #'  Prepend channel names with a hashtag. Prepend private-groups with nothing.
 #'  Prepend direct messages with an @@
 #' @param api_token your full Slack API token
+#' @param include_private Include private channels in this
 #' @return \code{httr} response object (invislbly)
 #' @author Jonathan Sidi [aut]
 #' @seealso \url{https://api.slack.com/methods/channels.history}
@@ -19,8 +20,9 @@
 #' @export
 history_slackr <- function(count,
                            ...,
-                          channel=Sys.getenv("SLACK_CHANNEL"),
-                          api_token=Sys.getenv("SLACK_API_TOKEN")) {
+                           channel=Sys.getenv("SLACK_CHANNEL"),
+                           api_token=Sys.getenv("SLACK_API_TOKEN"),
+                           include_private = TRUE) {
 
   if ( !is.character(channel) | length(channel) > 1 ) { stop("channel must be a character vector of length one") }
   if ( !is.character(api_token) | length(api_token) > 1 ) { stop("api_token must be a character vector of length one") }
@@ -30,14 +32,20 @@ history_slackr <- function(count,
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
+  # for private channels
   chnl_map <- slackr_channels(api_token = api_token)[c('id','name')]
+  if (include_private) {
+    private_chnl_map <- slackr_groups(api_token = api_token)[c('id','name')]
+    chnl_map = bind_rows(private_chnl_map, chnl_map)
+  }
+
   chnl_map$name <- sprintf('#%s',chnl_map$name)
 
   resp <- httr::POST(url="https://slack.com/api/channels.history",
-               body=list(token=api_token,
-                         channel=chnl_map$id[grepl(sprintf('^%s$',channel),chnl_map$name)],
-                         count=count,
-                         ...))
+                     body=list(token=api_token,
+                               channel=chnl_map$id[grepl(sprintf('^%s$',channel),chnl_map$name)],
+                               count=count,
+                               ...))
   warn_for_status(resp)
 
   slack_hist <- jsonlite::fromJSON(httr::content(resp, as="text"))$messages

@@ -7,7 +7,7 @@
 Information on this method can be found here: \url{https://api.slack.com/methods/channels.history}}
 \usage{
 history_slackr(count, ..., channel = Sys.getenv("SLACK_CHANNEL"),
-  api_token = Sys.getenv("SLACK_API_TOKEN"))
+  api_token = Sys.getenv("SLACK_API_TOKEN"), include_private = TRUE)
 }
 \arguments{
 \item{count}{Number of messages to return, between 1 and 1000.}
@@ -19,6 +19,8 @@ Prepend channel names with a hashtag. Prepend private-groups with nothing.
 Prepend direct messages with an @}
 
 \item{api_token}{your full Slack API token}
+
+\item{include_private}{Include private channels in this}
 }
 \value{
 \code{httr} response object (invislbly)
