@@ -13,6 +13,31 @@
 #' @export
 slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
+  chan_list <- slackr_all_channels(api_token)
+  check_channels = chan_list$name %in% channels
+  # trying channels
+  if (!any(check_channels)) {
+    check_channels = chan_list$name %in% paste0("#", channels)
+  }
+  # trying usernames
+  if (!any(check_channels)) {
+    check_channels = chan_list$name %in% paste0("@", channels)
+  }
+  # trying IDs lastly
+  if (!any(check_channels)) {
+    check_channels = chan_list$id %in% channels
+  }
+  chan_xref <- chan_list[check_channels, ]
+
+  ifelse(is.na(chan_xref$id),
+         as.character(chan_xref$name),
+         as.character(chan_xref$id))
+
+}
+
+#' @export
+#' @rdname slackr_chtrans
+slackr_all_channels = function(api_token = Sys.getenv("SLACK_API_TOKEN")) {
   chan <- slackr::slackr_channels(api_token)
   users <- slackr::slackr_ims(api_token)
   groups <- slackr_groups(api_token)
@@ -29,12 +54,7 @@ slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
   chan_list <- dplyr::distinct(chan_list)
 
   chan_list <- data.frame(chan_list, stringsAsFactors=FALSE)
-  chan_xref <- chan_list[chan_list$name %in% channels, ]
-
-  ifelse(is.na(chan_xref$id),
-         as.character(chan_xref$name),
-         as.character(chan_xref$id))
-
+  return(chan_list)
 }
 
 

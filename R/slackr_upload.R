@@ -29,7 +29,9 @@ slackr_upload <- function(filename, title=basename(filename),
     on.exit(Sys.setlocale("LC_CTYPE", loc))
 
     modchan <- slackrChTrans(channels, api_token)
-
+    if (length(modchan) == 0) {
+      stop("No channel was found, see output of slackr_all_channels()")
+    }
     res <- httr::POST(url="https://slack.com/api/files.upload",
                       httr::add_headers(`Content-Type`="multipart/form-data"),
                       body=list( file=httr::upload_file(f_path), filename=f_name,
