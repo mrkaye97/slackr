@@ -2,11 +2,14 @@
 % Please edit documentation in R/slackr_utils.R, R/zcamels.r
 \name{slackr_chtrans}
 \alias{slackr_chtrans}
+\alias{slackr_all_channels}
 \alias{slackrChtrans}
 \alias{slackrChTrans}
 \title{Translate vector of channel names to channel ID's for API}
 \usage{
 slackr_chtrans(channels, api_token = Sys.getenv("SLACK_API_TOKEN"))
+
+slackr_all_channels(api_token = Sys.getenv("SLACK_API_TOKEN"))
 
 slackrChtrans(channels, api_token = Sys.getenv("SLACK_API_TOKEN"))
 
