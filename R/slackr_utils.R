@@ -39,20 +39,26 @@ slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
 #' @rdname slackr_chtrans
 slackr_all_channels = function(api_token = Sys.getenv("SLACK_API_TOKEN")) {
   chan <- slackr::slackr_channels(api_token)
-  chan$ch_type = "channel"
   users <- slackr::slackr_ims(api_token)
-  chan$ch_type = "user"
   groups <- slackr_groups(api_token)
-  chan$ch_type = "group"
 
   chan$name <- sprintf("#%s", chan$name)
   users$name <- sprintf("@%s", users$name)
 
   chan_list <- data_frame(id=character(0), name=character(0))
 
-  if (length(chan) > 0) { chan_list <- bind_rows(chan_list, chan[, c("id", "name", "ch_type")])  }
-  if (length(users) > 0) { chan_list <- bind_rows(chan_list, users[, c("id", "name", "ch_type")]) }
-  if (length(groups) > 0) { chan_list <- bind_rows(chan_list, groups[, c("id", "name", "ch_type")]) }
+  if (length(chan) > 0) {
+    chan$ch_type = "channel"
+    chan_list <- bind_rows(chan_list, chan[, c("id", "name", "ch_type")])
+    }
+  if (length(users) > 0) {
+    users$ch_type = "user"
+    chan_list <- bind_rows(chan_list, users[, c("id", "name", "ch_type")])
+    }
+  if (length(groups) > 0) {
+    groups$ch_type = "group"
+    chan_list <- bind_rows(chan_list, groups[, c("id", "name", "ch_type")])
+    }
 
   chan_list <- dplyr::distinct(chan_list)
 
