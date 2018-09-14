@@ -122,10 +122,23 @@ slackr_bot <- function(...,
     Sys.setlocale('LC_CTYPE','C')
     on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-    resp <- POST(url = incoming_webhook_url, encode = "form",
-                 add_headers(`Content-Type` = "application/x-www-form-urlencoded",
-                             Accept = "*/*"), body = URLencode(sprintf("payload={\"channel\": \"%s\", \"username\": \"%s\", \"text\": \"```%s```\"%s}",
-                                                                       channel, username, output, icon_emoji)))
+    ## https://api.slack.com/incoming-webhooks#posting_with_webhooks
+    ## You cannot override the default channel (chosen by the user who installed
+    ## your app), username, or icon when you're using Incoming Webhooks to post
+    ## messages. Instead, these values will always inherit from the associated
+    ## Slack app configuration.
+
+    resp <- httr::POST(
+      url = incoming_webhook_url,
+      body = jsonlite::toJSON(x =
+                                list(text = sprintf(
+                                  "```%s```", output
+                                )),
+                              auto_unbox = TRUE),
+      encode = "json",
+      httr::content_type("application/json")
+    )
+
     warn_for_status(resp)
   }
   return(invisible())
