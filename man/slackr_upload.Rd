@@ -7,11 +7,11 @@
 \usage{
 slackr_upload(filename, title = basename(filename),
   initial_comment = basename(filename), channels = "",
-  api_token = Sys.getenv("SLACK_API_TOKEN"))
+  api_token = Sys.getenv("SLACK_API_TOKEN"), ...)
 
 slackrUpload(filename, title = basename(filename),
   initial_comment = basename(filename), channels = "",
-  api_token = Sys.getenv("SLACK_API_TOKEN"))
+  api_token = Sys.getenv("SLACK_API_TOKEN"), ...)
 }
 \arguments{
 \item{filename}{path to file}
@@ -23,6 +23,8 @@ slackrUpload(filename, title = basename(filename),
 \item{channels}{Slack channels to save to (optional)}
 
 \item{api_token}{full API token}
+
+\item{...}{other arguments passed to the API as per \url{https://api.slack.com/methods/files.upload}}
 }
 \value{
 \code{httr} response object from \code{POST} call (invisibly)
