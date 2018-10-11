@@ -13,23 +13,22 @@
 #' @export
 slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
-  chan <- slackr::slackr_channels(api_token)
-  users <- slackr::slackr_ims(api_token)
-  groups <- slackr_groups(api_token)
+  if ( !is.character(api_token) | length(api_token) > 1 ) { stop("api_token must be a character vector of length one") }
 
-  chan$name <- sprintf("#%s", chan$name)
+  conversations <- slackr::slackr_conversations(api_token, types='public_channel,private_channel,im,mpim')
+  users <- slackr::slackr_users(api_token)
+
+  if('is_channel' %in% colnames(conversations)){ # Depending on selected types this attribute may not be available
+    conversations$name <- ifelse(conversations$is_channel==T,sprintf("#%s", conversations$name), conversations$test)
+  }
   users$name <- sprintf("@%s", users$name)
 
-  chan_list <- data_frame(id=character(0), name=character(0))
-
-  if (length(chan) > 0) { chan_list <- bind_rows(chan_list, chan[, c("id", "name")])  }
-  if (length(users) > 0) { chan_list <- bind_rows(chan_list, users[, c("id", "name")]) }
-  if (length(groups) > 0) { chan_list <- bind_rows(chan_list, groups[, c("id", "name")]) }
-
+  chan_list <- dplyr::select(conversations, "id", "name")
+  chan_list <- rbind(chan_list, dplyr::select(users,"id", "name"))
   chan_list <- dplyr::distinct(chan_list)
 
   chan_list <- data.frame(chan_list, stringsAsFactors=FALSE)
-  chan_xref <- chan_list[chan_list$name %in% channels, ]
+  chan_xref <- chan_list[chan_list$name %in% channels,]
 
   ifelse(is.na(chan_xref$id),
          as.character(chan_xref$name),
@@ -46,16 +45,67 @@ slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
 #' @export
 slackr_users <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
+  if ( !is.character(api_token) | length(api_token) > 1 ) { stop("api_token must be a character vector of length one") }
+
   loc <- Sys.getlocale('LC_CTYPE')
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   tmp <- httr::POST("https://slack.com/api/users.list", body=list(token=api_token))
   httr::stop_for_status(tmp)
-  members <- jsonlite::fromJSON(httr::content(tmp, as="text"))$members
-  cols <- setdiff(colnames(members), c("profile", "real_name"))
-  cbind.data.frame(members[,cols], members$profile, stringsAsFactors=FALSE)
 
+  res=jsonlite::fromJSON(httr::content(tmp, as="text"), flatten=T)
+
+  members = res$members
+  nextCursor=res$response_metadata$next_cursor
+
+  while (nextCursor!="") {
+    tmp <- POST("https://slack.com/api/users.list",
+              body=list(token=api_token, cursor=nextCursor))
+    stop_for_status(tmp)
+    res=jsonlite::fromJSON(content(tmp, as="text"), flatten=T)
+    members = dplyr::bind_rows(members, res$members)
+    nextCursor=res$response_metadata$next_cursor
+  }
+
+  members
+
+}
+
+
+#' Get a data frame of Slack conversations
+#'
+#' @param api_token the Slack full API token (chr)
+#' @param types Types of conversations to pull, comma separated, e.g. public_channel,im will pull public channels and direct messages. The possible values are public_channel, private_channel, im and mpim
+#' @return data.table of conversations
+#' @rdname slackr_conversations
+#' @export
+slackr_conversations <- function(api_token=Sys.getenv("SLACK_API_TOKEN"), types='public_channel') {
+
+  if ( !is.character(api_token) | length(api_token) > 1 ) { stop("api_token must be a character vector of length one") }
+
+  loc <- Sys.getlocale('LC_CTYPE')
+  Sys.setlocale('LC_CTYPE','C')
+  on.exit(Sys.setlocale("LC_CTYPE", loc))
+
+  tmp <- POST("https://slack.com/api/conversations.list",
+              body=list(token=api_token, types=types, limit=1000))
+  stop_for_status(tmp)
+  res=jsonlite::fromJSON(content(tmp, as="text"), flatten=T)
+
+  chanList = res$channels
+  nextCursor=res$response_metadata$next_cursor
+
+  while (nextCursor!="") {
+    tmp <- POST("https://slack.com/api/conversations.list",
+              body=list(token=api_token, types=types, limit=1000, cursor=nextCursor))
+    stop_for_status(tmp)
+    res=jsonlite::fromJSON(content(tmp, as="text"), flatten=T)
+    chanList = dplyr::bind_rows(chanList, res$channels)
+    nextCursor=res$response_metadata$next_cursor
+  }
+
+  chanList
 }
 
 #' Get a data frame of Slack channels
@@ -65,6 +115,8 @@ slackr_users <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 #' @rdname slackr_channels
 #' @export
 slackr_channels <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
+
+  if ( !is.character(api_token) | length(api_token) > 1 ) { stop("api_token must be a character vector of length one") }
 
   loc <- Sys.getlocale('LC_CTYPE')
   Sys.setlocale('LC_CTYPE','C')
@@ -85,6 +137,8 @@ slackr_channels <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 #' @export
 slackr_groups <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
+  if ( !is.character(api_token) | length(api_token) > 1 ) { stop("api_token must be a character vector of length one") }
+
   loc <- Sys.getlocale('LC_CTYPE')
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
@@ -104,6 +158,8 @@ slackr_groups <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 #' @return \code{data.frame} of im ids and user names
 #' @export
 slackr_ims <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
+
+  if ( !is.character(api_token) | length(api_token) > 1 ) { stop("api_token must be a character vector of length one") }
 
   loc <- Sys.getlocale('LC_CTYPE')
   Sys.setlocale('LC_CTYPE','C')
