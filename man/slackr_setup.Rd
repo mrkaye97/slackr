@@ -5,13 +5,13 @@
 \alias{slackrSetup}
 \title{Setup environment variables for Slack API access}
 \usage{
-slackr_setup(channel = "#general", username = "slackr", icon_emoji = "",
-  incoming_webhook_url = "", api_token = "", config_file = "~/.slackr",
-  echo = FALSE)
+slackr_setup(channel = "#general", username = "slackr",
+  icon_emoji = "", incoming_webhook_url = "", api_token = "",
+  config_file = "~/.slackr", echo = FALSE)
 
-slackrSetup(channel = "#general", username = "slackr", icon_emoji = "",
-  incoming_webhook_url = "", api_token = "", config_file = "~/.slackr",
-  echo = FALSE)
+slackrSetup(channel = "#general", username = "slackr",
+  icon_emoji = "", incoming_webhook_url = "", api_token = "",
+  config_file = "~/.slackr", echo = FALSE)
 }
 \arguments{
 \item{channel}{default channel to send the output to (chr) defaults to \code{#general}}

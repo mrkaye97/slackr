@@ -6,11 +6,13 @@
 \title{Send a file to Slack}
 \usage{
 slackr_upload(filename, title = basename(filename),
-  initial_comment = basename(filename), channels = "",
+  initial_comment = basename(filename),
+  channels = Sys.getenv("SLACK_CHANNEL"),
   api_token = Sys.getenv("SLACK_API_TOKEN"))
 
 slackrUpload(filename, title = basename(filename),
-  initial_comment = basename(filename), channels = "",
+  initial_comment = basename(filename),
+  channels = Sys.getenv("SLACK_CHANNEL"),
   api_token = Sys.getenv("SLACK_API_TOKEN"))
 }
 \arguments{
