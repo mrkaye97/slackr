@@ -35,7 +35,7 @@ slackr_upload <- function(filename, title=basename(filename),
                       body=list( file=httr::upload_file(f_path), filename=f_name,
                                  title=title, initial_comment=initial_comment,
                                  token=api_token, channels=paste(modchan, collapse=",")))
-
+    okContent(res)
     return(invisible(res))
 
   } else {
