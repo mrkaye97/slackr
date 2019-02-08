@@ -1,6 +1,6 @@
 # slackr 1.5.1
 * Resolves silent failure and error messages as requested in [#59](https://github.com/hrbrmstr/slackr/issues/59)
-* Adds testing framework with sandbox slackr workspace on slack. 
+
 
 # slackr 1.5.0
 
