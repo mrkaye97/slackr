@@ -31,6 +31,10 @@ slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
   chan_list <- data.frame(chan_list, stringsAsFactors=FALSE)
   chan_xref <- chan_list[chan_list$name %in% channels, ]
 
+  if(!nrow(chan_xref)>0){
+    stop(paste0("Could not find \"", channels, "\" in your workspace." ))
+  }
+
   ifelse(is.na(chan_xref$id),
          as.character(chan_xref$name),
          as.character(chan_xref$id))
