@@ -2,6 +2,11 @@ library(yaml)
 library(testthat)
 library(slackr)
 
+# Some useful references about testing Slack apps/bots
+# Mocking: https://github.com/Skellington-Closet/slack-mock
+# Slack's test api:  https://api.slack.com/methods/api.test
+# Best practices for API packages: https://discuss.ropensci.org/t/best-practices-for-testing-api-packages/460/7
+
 creds <- yaml::yaml.load_file(input = "~/src/slackr_creds.yml")
 
 context("basic functioning")
