@@ -1,22 +1,26 @@
-# slackr 1.5.1
+
+# 1.5.2
+*fixes an issue with `slackr_ims()` where an inner join is performed which should be a left join.
+
+
+# 1.5.1
 * Resolves silent failure and error messages as requested in [#59](https://github.com/hrbrmstr/slackr/issues/59)
 
-
-# slackr 1.5.0
+# 1.5.0
 
 * TONS of improvements / additions
 * Fixes CRAN issues
 
-# slackr 1.4.3
+# 1.4.3
 
 * Added `stop()` in `slackr_upload()` if file to upload was not found (via #46)
 
-# slackr 1.4.2
+# 1.4.2
 
 * Fixed bug introduced by new field names in Slack API
 * Added a `NEWS.md` file to track changes to the package.
 
-# slackr 1.4.1
+# 1.4.1
 
 * There is a new `slackr_msg()` function which behaves slightly differently than `text_slackr()`
 * Versions 1.4+ BREAK THINGS.

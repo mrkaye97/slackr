@@ -14,9 +14,12 @@
 #' @references \url{https://github.com/hrbrmstr/slackr/pull/15/files}
 #' @seealso \code{\link{slackr_setup}}, \code{\link{dev_slackr}}, \code{\link{save_slackr}}
 #' @export
-slackr_upload <- function(filename, title=basename(filename),
+slackr_upload <- function(filename,
+                          title=basename(filename),
                           initial_comment=basename(filename),
-                          channels="", api_token=Sys.getenv("SLACK_API_TOKEN")) {
+                          filetype = NULL,
+                          channels="",
+                          api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
   f_path <- path.expand(filename)
 
@@ -32,9 +35,13 @@ slackr_upload <- function(filename, title=basename(filename),
 
     res <- httr::POST(url="https://slack.com/api/files.upload",
                       httr::add_headers(`Content-Type`="multipart/form-data"),
-                      body=list( file=httr::upload_file(f_path), filename=f_name,
-                                 title=title, initial_comment=initial_comment,
-                                 token=api_token, channels=paste(modchan, collapse=",")))
+                      body=list( file=httr::upload_file(f_path),
+                                 filename=f_name,
+                                 filetype = filetype,
+                                 title=title,
+                                 initial_comment=initial_comment,
+                                 token=api_token,
+                                 channels=paste(modchan, collapse=",")))
     okContent(res)
     return(invisible(res))
 
