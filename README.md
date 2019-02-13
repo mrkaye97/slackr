@@ -2,6 +2,9 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/slackr) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/slackr)](http://cran.r-project.org/package=slackr)
 
+NB: This is a forked slackr project.
+====================================
+
 ![](slackr.png)
 
 `slackr` - a package to send user messages & webhook API messages to Slack channels/users
@@ -74,11 +77,7 @@ You can also change the default emoji icon (from the one you setup at integratio
 ### Installation
 
 ``` r
-# stable/CRAN
-install.packages("slackr")
-
-# bleeding edge
-devtools::install_github("hrbrmstr/slackr")
+devtools::install_github("bestdan/slackr")
 ```
 
 ### Usage
@@ -88,7 +87,7 @@ library(slackr)
 
 # current verison
 packageVersion("slackr")
-#> [1] '1.4.3'
+#> [1] '1.5.1'
 ```
 
 ``` r
@@ -103,7 +102,7 @@ qplot(mpg, wt, data=mtcars)
 dev.slackr("#results")
 
 barplot(VADeaths)
-dev.slackr("@jayjacobs")
+dev.slackr("#general")
 
 ggslackr(qplot(mpg, wt, data=mtcars))
 ```
@@ -115,13 +114,20 @@ library(slackr)
 library(testthat)
 
 date()
-#> [1] "Thu Oct 19 17:48:25 2017"
+#> [1] "Wed Feb 13 13:13:32 2019"
 
 test_dir("tests/")
-#> testthat results ========================================================================================================
-#> OK: 0 SKIPPED: 0 FAILED: 0
+#> ✔ | OK F W S | Context
+#> ══ testthat results  ════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+#> OK: 6 SKIPPED: 1 FAILED: 0
 #> 
-#> DONE ===================================================================================================================
+#> ══ Results ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+#> Duration: 9.7 s
+#> 
+#> OK:       0
+#> Failed:   0
+#> Warnings: 0
+#> Skipped:  0
 ```
 
 ### Onexit Usage
