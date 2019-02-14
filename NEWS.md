@@ -1,4 +1,7 @@
 
+# 1.6.0
+* adds caching for `ims` and `chans`
+
 # 1.5.2
 *fixes an issue with `slackr_ims()` where an inner join is performed which should be a left join.
 
