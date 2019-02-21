@@ -19,20 +19,22 @@ slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN"), ce
   if(is.null(slackr_census)){
     census <- runcensus(api_token)
   }
-    chan   <- census$channels
-    users  <- census$users
-    ims    <- census$ims
-    groups <- census$groups
 
+  chan   <- census$channels
+  users  <- census$users
+  ims    <- census$ims
+  groups <- census$groups
+  channels <- gsub("@", "", channels)
+  channels <- gsub("#", "", channels)
 
-  chan$name <- sprintf("#%s", chan$name)
-  users$name <- sprintf("@%s", users$name)
+  chan$full_name <- sprintf("#%s", chan$name)
+  users$full_name <- sprintf("@%s", users$name)
 
   chan_list <- data_frame(id=character(0), name=character(0))
 
-  if (length(chan) > 0) { chan_list <- bind_rows(chan_list, chan[, c("id", "name")])  }
-  if (length(users) > 0) { chan_list <- bind_rows(chan_list, users[, c("id", "name")]) }
-  if (length(groups) > 0) { chan_list <- bind_rows(chan_list, groups[, c("id", "name")]) }
+  if (length(chan) > 0) { chan_list <- bind_rows(chan_list, chan[, c("id", "name", "full_name")])  }
+  if (length(users) > 0) { chan_list <- bind_rows(chan_list, users[, c("id", "name", "full_name")]) }
+  if (length(groups) > 0) { chan_list <- bind_rows(chan_list, groups[, c("id", "name", "full_name")]) }
 
   chan_list <- dplyr::distinct(chan_list)
 
@@ -42,7 +44,7 @@ slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN"), ce
   if(!nrow(chan_xref)>0){
     all_matches <- unique(sapply(channels, agrep, x=chan_list$name))
     close_matches <- ifelse(length(all_matches)>0,
-                            paste0(chan_list[all_matches, "name"], collapse = ", "),
+                            paste0(chan_list[all_matches, "full_name"], collapse = ", "),
                             "None.")
 
     stop(paste0("Could not find \"", channels, "\" in your workspace. Close matches:  ", close_matches ))
