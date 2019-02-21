@@ -1,9 +1,10 @@
 
+
 # 1.6.0
-* adds caching for `ims` and `chans`
+* Adds caching of channels for improve performance. `slackr_setup()` includes `runcensus()` by default to reduce redundant requests. Improved error messages in `slackr_chtrans()`
 
 # 1.5.2
-*fixes an issue with `slackr_ims()` where an inner join is performed which should be a left join.
+* Fixes an issue with `slackr_ims()` where an inner join is performed which should be a left join.
 
 
 # 1.5.1

@@ -6,16 +6,23 @@
 \alias{slackrChTrans}
 \title{Translate vector of channel names to channel ID's for API}
 \usage{
-slackr_chtrans(channels, api_token = Sys.getenv("SLACK_API_TOKEN"))
+slackr_chtrans(channels, api_token = Sys.getenv("SLACK_API_TOKEN"),
+  census = getGlobalIfMissing(get("slackr_census")))
 
-slackrChtrans(channels, api_token = Sys.getenv("SLACK_API_TOKEN"))
+slackrChtrans(channels, api_token = Sys.getenv("SLACK_API_TOKEN"),
+  census = getGlobalIfMissing(get("slackr_census")))
 
-slackrChTrans(channels, api_token = Sys.getenv("SLACK_API_TOKEN"))
+slackrChTrans(channels, api_token = Sys.getenv("SLACK_API_TOKEN"),
+  census = getGlobalIfMissing(get("slackr_census")))
 }
 \arguments{
 \item{channels}{vector of channel names to parse}
 
 \item{api_token}{the Slack full API token (chr)}
+
+\item{census}{An object in the format created by \code{\link{runcensus}}: if not supplied,
+it looks for an object named \code{slackr_census} in your global environment. If none is found,
+it performs \code{\link{runcensus}}.}
 }
 \value{
 character vector - original channel list with \code{#} or

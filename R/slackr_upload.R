@@ -7,6 +7,7 @@
 #' @param filename path to file
 #' @param title title on Slack (optional - defaults to filename)
 #' @param initial_comment comment for file on slack (optional - defaults to filename)
+#' @param filetype What is the filetype: \url{https://api.slack.com/types/file}
 #' @param channels Slack channels to save to (optional)
 #' @param api_token full API token
 #' @return \code{httr} response object from \code{POST} call (invisibly)
