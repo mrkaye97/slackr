@@ -6,16 +6,24 @@
 #'
 #' @param channels vector of channel names to parse
 #' @param api_token the Slack full API token (chr)
+#' @param census An object in the format created by \code{\link{runcensus}}: if not supplied,
+#' it looks for an object named \code{slackr_census} in your global environment. If none is found,
+#' it performs \code{\link{runcensus}}.
 #' @rdname slackr_chtrans
 #' @author Quinn Weber [ctb], Bob Rudis [aut]
 #' @return character vector - original channel list with \code{#} or
 #'          \code{@@} channels replaced with ID's.
 #' @export
-slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
+slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN"), census=getGlobalIfMissing(slackr_census)) {
 
-  chan <- slackr::slackr_channels(api_token)
-  users <- slackr::slackr_ims(api_token)
-  groups <- slackr_groups(api_token)
+  if(is.null(slackr_census)){
+    census <- runcensus(api_token)
+  }
+    chan   <- census$channels
+    users  <- census$users
+    ims    <- census$ims
+    groups <- census$groups
+
 
   chan$name <- sprintf("#%s", chan$name)
   users$name <- sprintf("@%s", users$name)
@@ -32,7 +40,12 @@ slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
   chan_xref <- chan_list[chan_list$name %in% channels, ]
 
   if(!nrow(chan_xref)>0){
-    stop(paste0("Could not find \"", channels, "\" in your workspace." ))
+    all_matches <- unique(sapply(channels, agrep, x=chan_list$name))
+    close_matches <- ifelse(length(all_matches)>0,
+                            paste0(chan_list[all_matches, "name"], collapse = ", "),
+                            "None.")
+
+    stop(paste0("Could not find \"", channels, "\" in your workspace. Close matches:  ", close_matches ))
   }
 
   ifelse(is.na(chan_xref$id),
@@ -151,6 +164,5 @@ slackr_channel_history <- function(api_token = Sys.getenv("SLACK_API_TOKEN"),
 
   return(out)
 }
-
 
 

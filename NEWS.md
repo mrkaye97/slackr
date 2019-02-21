@@ -1,6 +1,9 @@
 
+# 1.5.3
+* Added `runcensus()` and defaults to `slackr_setup()` to reduce redundant requests. Improved error messages in `slackr_chtrans()`
+
 # 1.5.2
-*fixes an issue with `slackr_ims()` where an inner join is performed which should be a left join.
+* Fixes an issue with `slackr_ims()` where an inner join is performed which should be a left join.
 
 
 # 1.5.1

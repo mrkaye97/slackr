@@ -24,6 +24,7 @@
 #' @param api_token the Slack full API token (chr)
 #' @param config_file a configuration file (DCF) - see \link{read.dcf} - format
 #'        with the config values.
+#' @param cacheChannels Defaults to \code{TRUE}. Should we cache the list of users, ims, and channels? Prevents redundant server requests if you'll be making more than one in a session.
 #' @param echo display the configuration variables (bool) initially \code{FALSE}
 #' @note You need a \href{slack.com}{Slack} account and all your API URLs & tokens setup
 #'       to use this package.
@@ -83,6 +84,11 @@ slackr_setup <- function(channel="#general",
 
   if (length(Sys.getenv("SLACK_USERNAME"))==0) {
     Sys.setenv("SLACK_USERNAME", "slackr")
+  }
+
+  if (cacheChannels){
+    # Writes the object to the global environment. Not sure this is the best approach.
+    slackr_census <<- runcensus(api_token)
   }
 
   if (echo) {

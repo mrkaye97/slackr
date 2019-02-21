@@ -29,6 +29,8 @@ left blank in config file as well)}
 with the config values.}
 
 \item{echo}{display the configuration variables (bool) initially \code{FALSE}}
+
+\item{cacheChannels}{Defaults to \code{TRUE}. Should we cache the list of users, ims, and channels? Prevents redundant server requests if you'll be making more than one in a session.}
 }
 \description{
 Initialize all the environment variables \code{\link{slackr}} will need to use to
