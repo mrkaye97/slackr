@@ -20,7 +20,8 @@ URL: https://github.com/bestdan/slackr
 BugReports: https://github.com/bestdan/slackr/issues
 License: MIT + file LICENSE
 Suggests:
-    testthat
+    testthat, 
+    yaml
 Encoding: UTF-8
 Depends:
     R (>= 3.0.0)

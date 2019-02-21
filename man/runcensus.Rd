@@ -22,8 +22,10 @@ list consisting of
 Gathers all the channels, users, ims and groups of your slack workspace into a single object.
 }
 \examples{
+\dontrun{
 creds <- yaml::yaml.load_file(input = "~/src/slackr_creds.yml")
 slackr_census <- slackr_runcensus(creds)
+}
 }
 \author{
 Daniel Egan [ctb]

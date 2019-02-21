@@ -20,6 +20,8 @@ slackrUpload(filename, title = basename(filename),
 
 \item{initial_comment}{comment for file on slack (optional - defaults to filename)}
 
+\item{filetype}{What is the filetype: \url{https://api.slack.com/types/file}}
+
 \item{channels}{Slack channels to save to (optional)}
 
 \item{api_token}{full API token}

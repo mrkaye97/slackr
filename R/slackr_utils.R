@@ -14,9 +14,9 @@
 #' @return character vector - original channel list with \code{#} or
 #'          \code{@@} channels replaced with ID's.
 #' @export
-slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN"), census=getGlobalIfMissing(slackr_census)) {
+slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN"), census=getGlobalIfMissing(get("slackr_census"))) {
 
-  if(is.null(slackr_census)){
+  if(is.null(census)){
     census <- runcensus(api_token)
   }
 

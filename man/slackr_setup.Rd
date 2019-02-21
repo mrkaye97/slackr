@@ -7,11 +7,11 @@
 \usage{
 slackr_setup(channel = "#general", username = "slackr",
   icon_emoji = "", incoming_webhook_url = "", api_token = "",
-  config_file = "~/.slackr", echo = FALSE)
+  config_file = "~/.slackr", cacheChannels = TRUE, echo = FALSE)
 
 slackrSetup(channel = "#general", username = "slackr",
   icon_emoji = "", incoming_webhook_url = "", api_token = "",
-  config_file = "~/.slackr", echo = FALSE)
+  config_file = "~/.slackr", cacheChannels = TRUE, echo = FALSE)
 }
 \arguments{
 \item{channel}{default channel to send the output to (chr) defaults to \code{#general}}
@@ -28,9 +28,9 @@ left blank in config file as well)}
 \item{config_file}{a configuration file (DCF) - see \link{read.dcf} - format
 with the config values.}
 
-\item{echo}{display the configuration variables (bool) initially \code{FALSE}}
-
 \item{cacheChannels}{Defaults to \code{TRUE}. Should we cache the list of users, ims, and channels? Prevents redundant server requests if you'll be making more than one in a session.}
+
+\item{echo}{display the configuration variables (bool) initially \code{FALSE}}
 }
 \description{
 Initialize all the environment variables \code{\link{slackr}} will need to use to

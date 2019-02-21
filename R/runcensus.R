@@ -12,8 +12,10 @@
 #' }
 #' @export
 #' @examples
+#' \dontrun{
 #' creds <- yaml::yaml.load_file(input = "~/src/slackr_creds.yml")
 #' slackr_census <- slackr_runcensus(creds)
+#' }
 
 runcensus <- function(api_token){
   return(

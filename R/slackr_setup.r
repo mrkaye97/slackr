@@ -50,6 +50,7 @@ slackr_setup <- function(channel="#general",
                          incoming_webhook_url="",
                          api_token="",
                          config_file="~/.slackr",
+                         cacheChannels = TRUE,
                          echo=FALSE) {
 
   if (file.exists(config_file)) {
@@ -88,7 +89,7 @@ slackr_setup <- function(channel="#general",
 
   if (cacheChannels){
     # Writes the object to the global environment. Not sure this is the best approach.
-    slackr_census <<- runcensus(api_token)
+    assign(x = "slackr_census", value = runcensus(api_token), envir = .GlobalEnv)
   }
 
   if (echo) {
