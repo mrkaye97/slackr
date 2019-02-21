@@ -1,6 +1,7 @@
 
-# 1.5.3
-* Added `runcensus()` and defaults to `slackr_setup()` to reduce redundant requests. Improved error messages in `slackr_chtrans()`
+
+# 1.6.0
+* Adds caching of channels for improve performance. `slackr_setup()` includes `runcensus()` by default to reduce redundant requests. Improved error messages in `slackr_chtrans()`
 
 # 1.5.2
 * Fixes an issue with `slackr_ims()` where an inner join is performed which should be a left join.
