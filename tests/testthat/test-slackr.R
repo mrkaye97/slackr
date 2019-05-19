@@ -23,7 +23,7 @@ test_that("Valid api tokens work", {
   # On github, should be done with Env variable.
 
   slackr_setup(channel = "#publicchanneltest",
-               api_token = creds$slack_bot$valid$api_token,
+               api_token = Sys.getenv("SLACK_API_TOKEN"),
                username = "slackr_bot",
                icon_emoji = "thumbsup")
 
