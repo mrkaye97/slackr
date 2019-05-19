@@ -1,23 +1,22 @@
-language: c
+language: R
+cache: packages
+sudo: false
+warnings_are_errors: true
 
-before_install:
-  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-  - chmod 755 ./travis-tool.sh
-  - ./travis-tool.sh bootstrap
+addons:
+  apt:
+    update: true
+    sources:
+      - sourceline: 'ppa:opencpu/imagemagick'
+    packages:
+      - libmagick++-dev
+      - libwebp-dev
+      - libpoppler-cpp-dev
+      - libtesseract-dev
+      - libleptonica-dev
+      - tesseract-ocr-eng
+      - libfftw3-dev
+      - cargo
 
-install:
-  - ./travis-tool.sh install_github plyr
-  - ./travis-tool.sh install_deps
-
-script: ./travis-tool.sh run_tests
-
-on_failure:
-  - ./travis-tool.sh dump_logs
-
-branches:
-  except:
-  - /-expt$/
-  notifications:
-    email:
-      on_success: change
-      on_failure: change
+notifications:
+  slack: slackr-tester:fVbBXh9OA3Lt11M6qKO8kbiP

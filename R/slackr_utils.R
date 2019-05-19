@@ -128,7 +128,7 @@ slackr_ims <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-  tmp <- httr::POST("https://slack.com/api/im.list", body=list(token=api_token))
+  tmp <- httr::GET("https://slack.com/api/im.list", body=list(token=api_token))
   ims <- jsonlite::fromJSON(httr::content(tmp, as="text"))$ims
   users <- slackr_users(api_token)
   #suppressWarnings( merge(users, ims, by.x="id", by.y='user') )
