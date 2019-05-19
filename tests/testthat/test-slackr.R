@@ -1,26 +1,17 @@
 
-library(yaml)
-library(testthat)
-library(slackr)
-# Some useful references about testing Slack apps/bots
-# Mocking: https://github.com/Skellington-Closet/slack-mock
-# Slack's test api:  https://api.slack.com/methods/api.test
-# Best practices for API packages: https://discuss.ropensci.org/t/best-practices-for-testing-api-packages/460/7
-
-creds <- yaml::yaml.load_file(input = "~/src/slackr_creds.yml")
-
+#NB: relies on Sys.getenv("SLACK_API_TOKEN")
 context("basic functioning")
 
 test_that("Webhook fails/works appropriately", {
   slackr_setup(channel = "#publicchanneltest",
-               incoming_webhook_url = creds$slack_bot$invalid$webhook,
+              incoming_webhook_url = creds$incoming_webhook_url,
                username = "slackr_bot")
 
   expect_warning(slackr_bot(txt = "testing 1,2,3"))
 
   Sys.sleep(1)
   slackr_setup(channel = "#publicchanneltest",
-               incoming_webhook_url = creds$slack_bot$valid$webhook,
+               incoming_webhook_url = creds$incoming_webhook_url,
                username = "slackr_bot")
 
   expect_error(slackr_bot(txt = "testing 1,2,3"), NA)
