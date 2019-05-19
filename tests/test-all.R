@@ -1,5 +1,5 @@
 library(testthat)
 library(yaml)
-source(here::here("helpers", "helper_loadCredentials.R"))
+source(here::here("tests", "helpers", "helper_loadCredentials.R"))
 creds <- loadCredentials(service.name = "slackr_test_api", yaml.path = "~/src/slackr/slackr_creds.yaml")
 test_check("slackr")
