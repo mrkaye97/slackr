@@ -3,9 +3,6 @@ cache: packages
 sudo: false
 warnings_are_errors: true
 
-r_packages:
-  - covr
-
 addons:
   apt:
     update: true
@@ -23,6 +20,3 @@ addons:
 
 notifications:
   slack: slackr-tester:fVbBXh9OA3Lt11M6qKO8kbiP
-
-after_success:
-  - Rscript -e 'covr::codecov(coverage = covr::package_coverage(line_exclusions = list("R/compat_lazyeval.R")))'
