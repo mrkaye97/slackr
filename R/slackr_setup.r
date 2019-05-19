@@ -89,7 +89,7 @@ slackr_setup <- function(channel="#general",
 
   if (cacheChannels){
     # Writes the object to the global environment. Not sure this is the best approach.
-    assign(x = "slackr_census", value = runcensus(api_token), envir = .GlobalEnv)
+    assign(x = "slackr_census", value = runcensus(Sys.getenv("SLACK_API_TOKEN")), envir = .GlobalEnv)
   }
 
   if (echo) {

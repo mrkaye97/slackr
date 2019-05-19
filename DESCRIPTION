@@ -28,6 +28,7 @@ Encoding: UTF-8
 Depends:
     R (>= 3.0.0)
 Imports:
+    assertthat, 
     httr,
     jsonlite,
     ggplot2,
