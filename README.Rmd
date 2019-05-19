@@ -4,8 +4,6 @@ output: rmarkdown::github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![Build Status](https://travis-ci.com/bestdan/slackr.svg?branch=master)](https://travis-ci.com/bestdan/slackr)
-
 ```{r base, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -13,6 +11,8 @@ knitr::opts_chunk$set(
   fig.path = "README-"
 )
 ```
+
+[![Build Status](https://travis-ci.com/bestdan/slackr.svg?branch=master)](https://travis-ci.com/bestdan/slackr)
 
 ----
 

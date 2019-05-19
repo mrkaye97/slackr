@@ -57,13 +57,6 @@ loadCredentials <- function(service.name,
 
     # if the default was given but not found, check the previous default locations
     # and communicate the move
-  } else if(yaml.path == file.path("~","src","bettercreds.yaml") &
-            !file.exists(yaml.path) &
-            any(file.exists(file.path("~","src","bettercreds.yml")),
-                file.exists(file.path("~","src","db_creds.yml")))){
-    stop(Sys.time(),
-         " loadCreds: default location for creds yaml file is now ",
-         file.path("~","src","bettercreds.yaml"))
   }
 
   # find requested block

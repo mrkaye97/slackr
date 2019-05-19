@@ -6,7 +6,7 @@ Status](https://travis-ci.com/bestdan/slackr.svg?branch=master)](https://travis-
 
 -----
 
-**FORKED VERSION** : This is a forked version of hrbrmstr’s
+**Forked Version** : This is a forked version of hrbrmstr’s
 [slackr](https://github.com/hrbrmstr/slackr) package.
 
 -----
@@ -93,7 +93,7 @@ library(slackr)
 library(testthat)
 
 date()
-#> [1] "Sun May 19 09:52:19 2019"
+#> [1] "Sun May 19 10:08:50 2019"
 
 test_dir("tests/")
 #> ✔ |  OK F W S | Context
