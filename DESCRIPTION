@@ -21,7 +21,8 @@ BugReports: https://github.com/bestdan/slackr/issues
 License: MIT + file LICENSE
 Suggests:
     testthat, 
-    yaml
+    yaml, 
+    xtable
 Encoding: UTF-8
 Depends:
     R (>= 3.0.0)
