@@ -7,13 +7,13 @@
 \title{Translate vector of channel names to channel ID's for API}
 \usage{
 slackr_chtrans(channels, api_token = Sys.getenv("SLACK_API_TOKEN"),
-  census = getGlobalIfMissing(get("slackr_census")))
+  census = getGlobalIfMissing("slackr_census"))
 
 slackrChtrans(channels, api_token = Sys.getenv("SLACK_API_TOKEN"),
-  census = getGlobalIfMissing(get("slackr_census")))
+  census = getGlobalIfMissing("slackr_census"))
 
 slackrChTrans(channels, api_token = Sys.getenv("SLACK_API_TOKEN"),
-  census = getGlobalIfMissing(get("slackr_census")))
+  census = getGlobalIfMissing("slackr_census"))
 }
 \arguments{
 \item{channels}{vector of channel names to parse}

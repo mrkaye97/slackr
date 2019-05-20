@@ -1,4 +1,4 @@
-api_token: xoxp-545402977602-545402978674-545298364339-50b3abd0df8fbe083125e28a2126ba84
+api_token: ""
 channel: #publicchanneltest
 username: slackr_bot
 incoming_webhook_url: "https://hooks.slack.com/services/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"

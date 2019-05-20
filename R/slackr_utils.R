@@ -14,7 +14,9 @@
 #' @return character vector - original channel list with \code{#} or
 #'          \code{@@} channels replaced with ID's.
 #' @export
-slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN"), census=getGlobalIfMissing(get("slackr_census"))) {
+slackr_chtrans <- function(channels,
+                           api_token=Sys.getenv("SLACK_API_TOKEN"),
+                           census=getGlobalIfMissing("slackr_census")) {
 
   if(is.null(census)){
     census <- runcensus(api_token)
@@ -71,6 +73,7 @@ slackr_users <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
   tmp <- httr::POST("https://slack.com/api/users.list", body=list(token=api_token))
   httr::stop_for_status(tmp)
+  okContent(tmp)
   members <- jsonlite::fromJSON(httr::content(tmp, as="text"))$members
   cols <- setdiff(colnames(members), c("profile", "real_name"))
   cbind.data.frame(members[,cols], members$profile, stringsAsFactors=FALSE)
@@ -92,6 +95,7 @@ slackr_channels <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
   tmp <- POST("https://slack.com/api/channels.list",
               body=list(token=api_token))
   stop_for_status(tmp)
+  okContent(tmp)
   jsonlite::fromJSON(content(tmp, as="text"))$channels
 
 }
@@ -101,6 +105,8 @@ slackr_channels <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 #' @param api_token the Slackfull API token (chr)
 #' @return \code{data.frame} of channels
 #' @rdname slackr_groups
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr POST stop_for_status
 #' @export
 slackr_groups <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
@@ -110,6 +116,7 @@ slackr_groups <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
   tmp <- httr::POST("https://slack.com/api/groups.list", body=list(token=api_token))
   httr::stop_for_status(tmp)
+  okContent(tmp)
   jsonlite::fromJSON(content(tmp, as="text"))$groups
 
 }
@@ -121,6 +128,8 @@ slackr_groups <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 #' @author Quinn Weber [aut], Bob Rudis [ctb]
 #' @references \url{https://github.com/hrbrmstr/slackr/pull/13}
 #' @return \code{data.frame} of im ids and user names
+#' @importFrom assertthat assert_that
+#' @importFrom dplyr left_join
 #' @export
 slackr_ims <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
@@ -128,10 +137,15 @@ slackr_ims <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-  tmp <- httr::GET("https://slack.com/api/im.list", body=list(token=api_token))
+  # tmp <- httr::GET("https://slack.com/api/users.list", query=list(token=api_token, limit = 2000))
+  # The method below is supposedly deprecated
+  tmp <- httr::GET("https://slack.com/api/im.list", query=list(token=api_token))
+  okContent(tmp)
   ims <- jsonlite::fromJSON(httr::content(tmp, as="text"))$ims
+  assert_that(!is.null(ims), msg = "Could not retrieve any IMs")
   users <- slackr_users(api_token)
-  #suppressWarnings( merge(users, ims, by.x="id", by.y='user') )
+  assert_that(nrow(users) > 0, msg = "Could not retrieve any uers")
+
   dplyr::left_join(users, ims, by="id", copy=TRUE)
 }
 
@@ -166,5 +180,4 @@ slackr_channel_history <- function(api_token = Sys.getenv("SLACK_API_TOKEN"),
 
   return(out)
 }
-
 

@@ -44,14 +44,14 @@
 #'             incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX")
 #' }
 #' @export
-slackr_setup <- function(channel="#general",
-                         username="slackr",
-                         icon_emoji="",
-                         incoming_webhook_url="",
-                         api_token="",
-                         config_file="~/.slackr",
+slackr_setup <- function(channel = "#general",
+                         username = "slackr",
+                         icon_emoji = "",
+                         incoming_webhook_url = "",
+                         api_token = "",
+                         config_file = "~/.slackr",
                          cacheChannels = TRUE,
-                         echo=FALSE) {
+                         echo = FALSE) {
 
   if (file.exists(config_file)) {
 
@@ -63,7 +63,9 @@ slackr_setup <- function(channel="#general",
     Sys.setenv(SLACK_USERNAME=config[,"username"])
     Sys.setenv(SLACK_ICON_EMOJI=config[,"icon_emoji"])
     Sys.setenv(SLACK_INCOMING_URL_PREFIX=config[,"incoming_webhook_url"])
-    Sys.setenv(SLACK_API_TOKEN=config[,"api_token"])
+    if(nchar(config[,"api_token"]) > 8){
+      Sys.setenv(SLACK_API_TOKEN=config[,"api_token"])
+    }
 
   } else {
 
@@ -89,7 +91,7 @@ slackr_setup <- function(channel="#general",
 
   if (cacheChannels){
     # Writes the object to the global environment. Not sure this is the best approach.
-    assign(x = "slackr_census", value = runcensus(api_token), envir = .GlobalEnv)
+    assign(x = "slackr_census", value = runcensus(Sys.getenv("SLACK_API_TOKEN")), envir = .GlobalEnv)
   }
 
   if (echo) {

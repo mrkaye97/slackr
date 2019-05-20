@@ -1,39 +1,27 @@
-
+if(Sys.getenv("SLACK_API_TOKEN") == ""){
+  api_token <- yaml::read_yaml(file.path("inst", "exdata", "slackr_creds.yml"))$slackr$api_token
+  Sys.setenv("SLACK_API_TOKEN" = api_token)
+} else {
+  api_token <- Sys.getenv("SLACK_API_TOKEN")
+}
 #NB: relies on Sys.getenv("SLACK_API_TOKEN")
-context("basic functioning")
 
-test_that("Webhook fails/works appropriately", {
+test_that("slackr_bot: webhook fails/works appropriately", {
 
-  expect_warning(slackr_bot(txt = "testing 1,2,3"))
-
+  expect_error(slackr_bot(txt = "testing 1,2,3",
+                            channel = "#publichanneltest",
+                            incoming_webhook_url = "BAD HOOK"
+                            ),
+                 regexp = "Couldn't resolve host 'BAD HOOK'")
+  Sys.sleep(1)
+  expect_silent(slackr_bot(txt = "testing 1,2,3",
+                            channel = "#publicchanneltest",
+                            incoming_webhook_url = "https://hooks.slack.com/services/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")
+                )
   Sys.sleep(1)
 
-  expect_error(slackr_bot(txt = "testing 1,2,3"), NA)
+
+  expect_error(slackr_bot(txt = "testing 1,2,3"), regexp = "No incoming webhook URL specified. Did you forget to call slackr_setup()?")
 
 })
 
-
-test_that("Valid api tokens work", {
-  # On github, should be done with Env variable.
-
-  # Does not respect username, icon, etc.
-  expect_error(
-    slackr::slackr_msg(txt = paste("testing: ", Sys.time())),
-               regexp = NA)
-  Sys.sleep(1)
-  expect_error(res <- slackr::slackr_msg(txt = "testing 1,2,3",
-                            channel = "@dp.egan"),
-               regexp = NA)
-  Sys.sleep(1)
-  expect_error(text_slackr(text = "testing: text_slackr",
-                             icon_emoji = "robot",
-                             username = "cashhubbot",
-                             channel = "@dp.egan"),
-               regexp = NA)
-  Sys.sleep(1)
-  expect_error(slackr_upload(filename = "~/Desktop/529.png",
-                        initial_comment = "Testing",
-                        channel = "@foobarmaxo"),
-               regexp = "Could not find ")
-
-})

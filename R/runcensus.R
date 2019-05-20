@@ -27,12 +27,3 @@ runcensus <- function(api_token){
       )
     )
 }
-
-getGlobalIfMissing <- function(x){
-  if ("x" %in% ls(envir = .GlobalEnv) & missing(x)) {
-    get("x", envir = .GlobalEnv)
-  } else {
-    x
-  }
-}
-#getGlobalIfMissing(x = census_channels)
