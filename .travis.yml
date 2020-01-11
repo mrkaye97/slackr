@@ -3,6 +3,13 @@ cache: packages
 sudo: false
 warnings_are_errors: true
 
+before_install:
+  - echo "$OSTYPE"
+  - if [[ "$OSTYPE" != "linux-gnu" ]]; then sudo tlmgr install tlmgr install standalone xcolor booktabs multirow array psnfss amsmath rotating listings graphicx setspace caption; fi
+
+r_packages:
+  - details
+
 addons:
   apt:
     update: true

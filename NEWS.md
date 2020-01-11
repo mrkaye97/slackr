@@ -1,4 +1,6 @@
 
+# 1.8.1
+* Updated tlmgr calls on travis. Attempting to fix travis build errors. 
 
 # 1.6.0
 * Adds caching of channels for improve performance. `slackr_setup()` includes `runcensus()` by default to reduce redundant requests. Improved error messages in `slackr_chtrans()`
