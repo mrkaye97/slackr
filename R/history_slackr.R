@@ -7,6 +7,7 @@
 #'  Prepend channel names with a hashtag. Prepend private-groups with nothing.
 #'  Prepend direct messages with an @@
 #' @param api_token your full Slack API token
+#' @param set_locale text encoding value. Default: 'C'
 #' @return \code{httr} response object (invislbly)
 #' @author Jonathan Sidi [aut]
 #' @seealso \url{https://api.slack.com/methods/channels.history}
@@ -20,14 +21,15 @@
 history_slackr <- function(count,
                            ...,
                           channel=Sys.getenv("SLACK_CHANNEL"),
-                          api_token=Sys.getenv("SLACK_API_TOKEN")) {
+                          api_token=Sys.getenv("SLACK_API_TOKEN"),
+                          set_locale="C") {
 
   if ( !is.character(channel) | length(channel) > 1 ) { stop("channel must be a character vector of length one") }
   if ( !is.character(api_token) | length(api_token) > 1 ) { stop("api_token must be a character vector of length one") }
 
 
   loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+  Sys.setlocale('LC_CTYPE', set_locale)
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   chnl_map <- slackr_channels(api_token = api_token)[c('id','name')]

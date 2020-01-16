@@ -4,6 +4,7 @@
 #' @param count Number of messages to delete.
 #' @param channel The name of the channels to delete messages from
 #' @param api_token your full Slack API token
+#' @param set_locale text encoding value. Default: 'C'
 #' @return \code{httr} response object (invislbly)
 #' @author Quinn Weber [aut], Bob Rudis [ctb]
 #' @seealso \url{https://api.slack.com/methods/chat.delete}
@@ -17,14 +18,15 @@
 #' @export
 delete_slackr <- function(count,
                            channel=Sys.getenv("SLACK_CHANNEL"),
-                           api_token=Sys.getenv("SLACK_API_TOKEN")) {
+                           api_token=Sys.getenv("SLACK_API_TOKEN"),
+                           set.locale="C") {
 
   if ( !is.character(channel) | length(channel) > 1 ) { stop("channel must be a character vector of length one") }
   if ( !is.character(api_token) | length(api_token) > 1 ) { stop("api_token must be a character vector of length one") }
 
 
   loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+  Sys.setlocale('LC_CTYPE', set.locale)
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   chnl_map <- slackr_channels(api_token = api_token)[c('id','name')]

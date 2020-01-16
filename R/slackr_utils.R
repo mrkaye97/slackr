@@ -41,13 +41,15 @@ slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
 #' Get a data frame of Slack users
 #'
 #' @param api_token the Slack full API token (chr)
+#' @param set_locale text encoding value. Default: 'C'
 #' @return \code{data.frame} of users
 #' @rdname slackr_users
 #' @export
-slackr_users <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
+slackr_users <- function(api_token=Sys.getenv("SLACK_API_TOKEN"),
+                         set_locale="C") {
 
   loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+  Sys.setlocale('LC_CTYPE', set_locale)
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   tmp <- httr::POST("https://slack.com/api/users.list", body=list(token=api_token))
@@ -61,13 +63,15 @@ slackr_users <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 #' Get a data frame of Slack channels
 #'
 #' @param api_token the Slack full API token (chr)
+#' @param set_locale text encoding value. Default: 'C'
 #' @return data.table of channels
 #' @rdname slackr_channels
 #' @export
-slackr_channels <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
+slackr_channels <- function(api_token=Sys.getenv("SLACK_API_TOKEN"),
+                            set_locale="C") {
 
   loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+  Sys.setlocale('LC_CTYPE', set_locale)
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   tmp <- POST("https://slack.com/api/channels.list",
@@ -80,13 +84,15 @@ slackr_channels <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 #' Get a data frame of Slack groups
 #'
 #' @param api_token the Slackfull API token (chr)
+#' @param set_locale text encoding value. Default: 'C'
 #' @return \code{data.frame} of channels
 #' @rdname slackr_groups
 #' @export
-slackr_groups <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
+slackr_groups <- function(api_token=Sys.getenv("SLACK_API_TOKEN"),
+                          set_locale="C") {
 
   loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+  Sys.setlocale('LC_CTYPE', set_locale)
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   tmp <- httr::POST("https://slack.com/api/groups.list", body=list(token=api_token))

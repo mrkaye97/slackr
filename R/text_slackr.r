@@ -10,6 +10,7 @@
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
 #' @param api_token your full Slack API token
+#' @param set_locale text encoding value. Default: 'C'
 #' @return \code{httr} response object (invislbly)
 #' @author Quinn Weber [aut], Bob Rudis [ctb]
 #' @note You can pass in \code{as_user=TRUE} as part of the \code{...} parameters and the Slack API
@@ -30,7 +31,8 @@ text_slackr <- function(text,
                         channel=Sys.getenv("SLACK_CHANNEL"),
                         username=Sys.getenv("SLACK_USERNAME"),
                         icon_emoji=Sys.getenv("SLACK_ICON_EMOJI"),
-                        api_token=Sys.getenv("SLACK_API_TOKEN")) {
+                        api_token=Sys.getenv("SLACK_API_TOKEN"),
+                        set_locale="C") {
 
   if ( length(text) > 1 ) { stop("text must be a vector of length one") }
   if ( !is.character(channel) | length(channel) > 1 ) { stop("channel must be a character vector of length one") }
@@ -46,7 +48,7 @@ text_slackr <- function(text,
   }
 
   loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+  Sys.setlocale('LC_CTYPE', set_locale)
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   resp <- POST(url="https://slack.com/api/chat.postMessage",

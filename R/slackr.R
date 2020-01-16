@@ -13,11 +13,12 @@
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
 #' @param api_token your full Slack API token
+#' @param set_locale text encoding value. Default: 'C'
 #' @note You need a \url{https://www.slack.com} account and will also need to
 #'       setup an API token \url{https://api.slack.com/}
 #'       Also, you can pass in \code{as_user=TRUE}, the default, as part of the \code{...}
 #'       parameters and the Slack API will post the message as your logged-in
-#'       user account (this will override anything set in \code{username}). 
+#'       user account (this will override anything set in \code{username}).
 #'       Passing \code{as_user=FALSE}, results in the Slack API posting the
 #'       message as set in \code{username}
 #' @seealso \code{\link{slackr_setup}}, \code{\link{slackr_bot}}, \code{\link{dev_slackr}},
@@ -32,7 +33,9 @@ slackr <- function(...,
                    channel=Sys.getenv("SLACK_CHANNEL"),
                    username=Sys.getenv("SLACK_USERNAME"),
                    icon_emoji=Sys.getenv("SLACK_ICON_EMOJI"),
-                   api_token=Sys.getenv("SLACK_API_TOKEN")) {
+                   api_token=Sys.getenv("SLACK_API_TOKEN"),
+                   set_locale="C"
+                   ) {
 
   if (api_token == "") {
     stop("No token specified. Did you forget to call slackr_setup()?", call. = FALSE)
@@ -103,7 +106,7 @@ slackr <- function(...,
     output <- paste0(rval, collapse="\n")
 
     loc <- Sys.getlocale('LC_CTYPE')
-    Sys.setlocale('LC_CTYPE','C')
+    Sys.setlocale('LC_CTYPE', set_locale)
     on.exit(Sys.setlocale("LC_CTYPE", loc))
 
     resp <- POST(url="https://slack.com/api/chat.postMessage",
@@ -139,6 +142,7 @@ slackr <- function(...,
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
 #' @param api_token your full Slack API token
+#' @param set_locale text encoding value. Default: 'C'
 #' @param ... other arguments passed to the Slack API \code{chat.postMessage} call
 #' @note You need a \url{https://www.slack.com} account and will also need to
 #'       setup an API token \url{https://api.slack.com/}
@@ -158,6 +162,7 @@ slackr_msg <- function(txt="",
                        username=Sys.getenv("SLACK_USERNAME"),
                        icon_emoji=Sys.getenv("SLACK_ICON_EMOJI"),
                        api_token=Sys.getenv("SLACK_API_TOKEN"),
+                       set_locale="C",
                        ...) {
 
   if (api_token == "") {
@@ -169,7 +174,7 @@ slackr_msg <- function(txt="",
   output <- paste0(txt, collapse="\n\n")
 
   loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+  Sys.setlocale('LC_CTYPE', set.locale)
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   resp <- POST(url="https://slack.com/api/chat.postMessage",

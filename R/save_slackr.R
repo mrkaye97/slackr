@@ -8,6 +8,7 @@
 #' @param channels Slack channels to save to (optional)
 #' @param file filename (without extension) to use
 #' @param api_token full API token
+#' @param set_locale text encoding value. Default: 'C'
 #' @rdname save_slackr
 #' @note You can pass in \code{add_user=TRUE} as part of the \code{...} parameters and the Slack API
 #'       will post the message as your logged-in user account (this will override anything set in
@@ -21,11 +22,12 @@
 #' }
 save_slackr <- function(..., channels="",
                         file="slackr",
-                        api_token=Sys.getenv("SLACK_API_TOKEN")) {
+                        api_token=Sys.getenv("SLACK_API_TOKEN"),
+                        set_locale="C") {
 
 
   loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+  Sys.setlocale('LC_CTYPE', set_locale)
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   ftmp <- tempfile(file, fileext=".rda")

@@ -7,6 +7,7 @@
 #' @param ... other arguments passed into png device
 #' @param api_token the Slack full API token (chr)
 #' @param file prefix for filenames (defaults to \code{plot})
+#' @param set_locale text encoding value. Default: 'C'
 #' @return \code{httr} response object from \code{POST} call
 #' @seealso \code{\link{slackrSetup}}, \code{\link{save.slackr}}, \code{\link{slackrUpload}}
 #' @author Konrad Karczewski [ctb], Bob Rudis [aut]
@@ -31,10 +32,11 @@
 #' @export
 dev_slackr <- function(channels=Sys.getenv("SLACK_CHANNEL"), ...,
                        api_token=Sys.getenv("SLACK_API_TOKEN"),
-                       file="plot") {
+                       file="plot",
+                       set.locale="C") {
 
   loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+  Sys.setlocale('LC_CTYPE', set.locale)
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   ftmp <- tempfile(file, fileext=".png")

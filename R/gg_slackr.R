@@ -15,6 +15,7 @@
 #'        than 50x50 inches, to prevent the common error of specifying dimensions in pixels.
 #' @param api_token the Slack full API token (chr)
 #' @param file prefix for filenames (defaults to \code{ggplot})
+#' @param set_locale text encoding value. Default: 'C'
 #' @param ... other arguments passed to graphics device
 #' @note You need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
 #'       Also, uou can pass in \code{as_user=TRUE} as part of the \code{...}
@@ -37,10 +38,11 @@ ggslackr <- function(plot=last_plot(),
                      limitsize=TRUE,
                      api_token=Sys.getenv("SLACK_API_TOKEN"),
                      file="ggplot",
+                     set.locale="C",
                      ...) {
 
   loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+  Sys.setlocale('LC_CTYPE', set.locale)
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   ftmp <- tempfile(file, fileext=".png")

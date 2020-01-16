@@ -17,6 +17,7 @@
 #' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
 #' @param incoming_webhook_url which \code{slack.com} API endpoint URL to use
 #'   (see section \bold{Webhook URLs} for details)
+#' @param set_locale text encoding value. Default: 'C'
 #' @note You need a \url{https://www.slack.com} account and will also need to
 #'   setup an incoming webhook: \url{https://api.slack.com/}. Old style webhooks are
 #'   no longer supported.
@@ -46,7 +47,8 @@ slackr_bot <- function(...,
                        channel=Sys.getenv("SLACK_CHANNEL"),
                        username=Sys.getenv("SLACK_USERNAME"),
                        icon_emoji=Sys.getenv("SLACK_ICON_EMOJI"),
-                       incoming_webhook_url=Sys.getenv("SLACK_INCOMING_URL_PREFIX")) {
+                       incoming_webhook_url=Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
+                       set_locale="C") {
 
   if (incoming_webhook_url == "") {
     stop("No incoming webhook URL specified. Did you forget to call slackr_setup()?", call. = FALSE)
@@ -119,7 +121,7 @@ slackr_bot <- function(...,
     output <- paste0(rval, collapse="\n")
 
     loc <- Sys.getlocale('LC_CTYPE')
-    Sys.setlocale('LC_CTYPE','C')
+    Sys.setlocale('LC_CTYPE', set_locale)
     on.exit(Sys.setlocale("LC_CTYPE", loc))
 
     resp <- POST(url = incoming_webhook_url, encode = "form",

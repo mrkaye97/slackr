@@ -8,6 +8,7 @@
 #' @param ext character, type of format to return, can be tex, pdf, or any image device, Default: 'png'
 #' @param path character, path to save texPreview outputs, if NULL then tempdir is used, Default: NULL
 #' @param api_token the Slack full API token (chr)
+#' @param set_locale text encoding value. Default: 'C'
 #' @param ... other arguments passed to \code{\link[texPreview]{texPreview}}
 #' @note You need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
 #'       Also, uou can pass in \code{add_user=TRUE} as part of the \code{...}
@@ -36,10 +37,11 @@ tex_slackr <- function(obj,
                      api_token=Sys.getenv("SLACK_API_TOKEN"),
                      ext='png',
                      path=NULL,
+                     set_locale="C",
                      ...) {
 
   loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+  Sys.setlocale('LC_CTYPE', set_locale)
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   if(!is.null(path)){
