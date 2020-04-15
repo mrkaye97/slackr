@@ -5,11 +5,19 @@
 \alias{save.slackr}
 \title{Save R objects to an RData file on Slack}
 \usage{
-save_slackr(..., channels = "", file = "slackr",
-  api_token = Sys.getenv("SLACK_API_TOKEN"))
+save_slackr(
+  ...,
+  channels = "",
+  file = "slackr",
+  api_token = Sys.getenv("SLACK_API_TOKEN")
+)
 
-save.slackr(..., channels = "", file = "slackr",
-  api_token = Sys.getenv("SLACK_API_TOKEN"))
+save.slackr(
+  ...,
+  channels = "",
+  file = "slackr",
+  api_token = Sys.getenv("SLACK_API_TOKEN")
+)
 }
 \arguments{
 \item{...}{objects to store in the R data file}
