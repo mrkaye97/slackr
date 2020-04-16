@@ -5,11 +5,19 @@
 \alias{dev.slackr}
 \title{Send the graphics contents of the current device to a Slack channel}
 \usage{
-dev_slackr(channels = Sys.getenv("SLACK_CHANNEL"), ...,
-  api_token = Sys.getenv("SLACK_API_TOKEN"), file = "plot")
+dev_slackr(
+  channels = Sys.getenv("SLACK_CHANNEL"),
+  ...,
+  api_token = Sys.getenv("SLACK_API_TOKEN"),
+  file = "plot"
+)
 
-dev.slackr(channels = Sys.getenv("SLACK_CHANNEL"), ...,
-  api_token = Sys.getenv("SLACK_API_TOKEN"), file = "plot")
+dev.slackr(
+  channels = Sys.getenv("SLACK_CHANNEL"),
+  ...,
+  api_token = Sys.getenv("SLACK_API_TOKEN"),
+  file = "plot"
+)
 }
 \arguments{
 \item{channels}{list of channels to post image to}

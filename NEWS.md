@@ -1,4 +1,7 @@
 
+# 1.8.2
+* Fixed various typos, added jpg for uploading, updated documentation, put webhook into travis and testing files 
+
 # 1.8.1
 * Updated tlmgr calls on travis. Attempting to fix travis build errors. 
 

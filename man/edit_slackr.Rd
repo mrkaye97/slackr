@@ -5,11 +5,18 @@
 \title{edit a message on a slack channel. Calls the chat.update method on the Slack Web API.
 Information on this method can be found here: \url{https://api.slack.com/methods/chat.update}}
 \usage{
-edit_slackr(text, pattern = NULL, idx = 1, hs = NULL, ...,
-  preformatted = TRUE, channel = Sys.getenv("SLACK_CHANNEL"),
+edit_slackr(
+  text,
+  pattern = NULL,
+  idx = 1,
+  hs = NULL,
+  ...,
+  preformatted = TRUE,
+  channel = Sys.getenv("SLACK_CHANNEL"),
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-  api_token = Sys.getenv("SLACK_API_TOKEN"))
+  api_token = Sys.getenv("SLACK_API_TOKEN")
+)
 }
 \arguments{
 \item{text}{The character vector to be posted}

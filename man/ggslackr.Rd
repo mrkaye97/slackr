@@ -4,10 +4,19 @@
 \alias{ggslackr}
 \title{Post a ggplot to a Slack channel}
 \usage{
-ggslackr(plot = last_plot(), channels = Sys.getenv("SLACK_CHANNEL"),
-  scale = 1, width = par("din")[1], height = par("din")[2],
-  units = c("in", "cm", "mm"), dpi = 300, limitsize = TRUE,
-  api_token = Sys.getenv("SLACK_API_TOKEN"), file = "ggplot", ...)
+ggslackr(
+  plot = last_plot(),
+  channels = Sys.getenv("SLACK_CHANNEL"),
+  scale = 1,
+  width = par("din")[1],
+  height = par("din")[2],
+  units = c("in", "cm", "mm"),
+  dpi = 300,
+  limitsize = TRUE,
+  api_token = Sys.getenv("SLACK_API_TOKEN"),
+  file = "ggplot",
+  ...
+)
 }
 \arguments{
 \item{plot}{ggplot object to save, defaults to last plot displayed}

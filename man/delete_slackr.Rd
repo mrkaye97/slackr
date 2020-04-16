@@ -5,8 +5,11 @@
 \title{delete messages of a slack channel. Calls the chat.delete method on the Slack Web API.
 Information on this method can be found here: \url{https://api.slack.com/methods/chat.delete}}
 \usage{
-delete_slackr(count, channel = Sys.getenv("SLACK_CHANNEL"),
-  api_token = Sys.getenv("SLACK_API_TOKEN"))
+delete_slackr(
+  count,
+  channel = Sys.getenv("SLACK_CHANNEL"),
+  api_token = Sys.getenv("SLACK_API_TOKEN")
+)
 }
 \arguments{
 \item{count}{Number of messages to delete.}

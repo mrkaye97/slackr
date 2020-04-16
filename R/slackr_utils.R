@@ -32,20 +32,20 @@ slackr_chtrans <- function(channels,
   chan$full_name <- sprintf("#%s", chan$name)
   users$full_name <- sprintf("@%s", users$name)
 
-  chan_list <- data_frame(id=character(0), name=character(0))
+  chan_list <- base::data.frame(id = character(0L), name = character(0), full_name = character(0))
 
-  if (length(chan) > 0) { chan_list <- bind_rows(chan_list, chan[, c("id", "name", "full_name")])  }
-  if (length(users) > 0) { chan_list <- bind_rows(chan_list, users[, c("id", "name", "full_name")]) }
-  if (length(groups) > 0) { chan_list <- bind_rows(chan_list, groups[, c("id", "name", "full_name")]) }
+  if (length(chan) > 0 && nrow(chan) > 0) { chan_list   <- rbind(chan_list, chan[, c("id", "name", "full_name")])  }
+  if (length(users) > 0 && nrow(users) > 0) { chan_list  <- rbind(chan_list, users[, c("id", "name", "full_name")]) }
+  if (length(groups) > 0 && nrow(groups) > 0) { chan_list <- rbind(chan_list, groups[, c("id", "name", "full_name")]) }
 
   chan_list <- dplyr::distinct(chan_list)
 
-  chan_list <- data.frame(chan_list, stringsAsFactors=FALSE)
+  chan_list <- base::data.frame(chan_list, stringsAsFactors=FALSE)
   chan_xref <- chan_list[chan_list$name %in% channels, ]
 
   if(!nrow(chan_xref)>0){
     all_matches <- unique(sapply(channels, agrep, x=chan_list$name))
-    close_matches <- ifelse(length(all_matches)>0,
+    close_matches <- ifelse(class(all_matches) != "list" && length(all_matches) > 0,
                             paste0(chan_list[all_matches, "full_name"], collapse = ", "),
                             "None.")
 
