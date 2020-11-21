@@ -12,12 +12,12 @@
 #' @param channel which channel to post the message to (chr)
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
-#' @param api_token your full Slack API token
+#' @param bot_user_oauth_token Slack bot user OAuth token
 #' @note You need a \url{https://www.slack.com} account and will also need to
 #'       setup an API token \url{https://api.slack.com/}
 #'       Also, you can pass in \code{as_user=TRUE}, the default, as part of the \code{...}
 #'       parameters and the Slack API will post the message as your logged-in
-#'       user account (this will override anything set in \code{username}). 
+#'       user account (this will override anything set in \code{username}).
 #'       Passing \code{as_user=FALSE}, results in the Slack API posting the
 #'       message as set in \code{username}
 #' @seealso \code{\link{slackr_setup}}, \code{\link{slackr_bot}}, \code{\link{dev_slackr}},
@@ -32,9 +32,9 @@ slackr <- function(...,
                    channel=Sys.getenv("SLACK_CHANNEL"),
                    username=Sys.getenv("SLACK_USERNAME"),
                    icon_emoji=Sys.getenv("SLACK_ICON_EMOJI"),
-                   api_token=Sys.getenv("SLACK_API_TOKEN")) {
+                   bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
-  if (api_token == "") {
+  if (bot_user_oauth_token == "") {
     stop("No token specified. Did you forget to call slackr_setup()?", call. = FALSE)
   }
 
@@ -138,7 +138,7 @@ slackr <- function(...,
 #' @param channel which channel to post the message to (chr)
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
-#' @param api_token your full Slack API token
+#' @param bot_user_oauth_token Slack bot user OAuth token
 #' @param ... other arguments passed to the Slack API \code{chat.postMessage} call
 #' @note You need a \url{https://www.slack.com} account and will also need to
 #'       setup an API token \url{https://api.slack.com/}
@@ -157,10 +157,10 @@ slackr_msg <- function(txt="",
                        channel=Sys.getenv("SLACK_CHANNEL"),
                        username=Sys.getenv("SLACK_USERNAME"),
                        icon_emoji=Sys.getenv("SLACK_ICON_EMOJI"),
-                       api_token=Sys.getenv("SLACK_API_TOKEN"),
+                       bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                        ...) {
 
-  if (api_token == "") {
+  if (bot_user_oauth_token == "") {
     stop("No token specified. Did you forget to call slackr_setup()?", call. = FALSE)
   }
 
@@ -173,7 +173,7 @@ slackr_msg <- function(txt="",
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   resp <- POST(url="https://slack.com/api/chat.postMessage",
-               body=list(token=api_token,
+               body=list(token=bot_user_oauth_token,
                          channel=slackr_chtrans(channel),
                          username=username,
                          icon_emoji=icon_emoji,
