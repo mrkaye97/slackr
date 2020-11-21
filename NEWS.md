@@ -1,3 +1,7 @@
+# slackr 2.0.0
+
+* Fixes to work with new Slack API
+
 # slackr 1.5.0
 
 * TONS of improvements / additions
