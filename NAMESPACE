@@ -2,7 +2,6 @@
 
 export(dev.slackr)
 export(dev_slackr)
-export(edit_slackr)
 export(ggslackr)
 export(history_slackr)
 export(register_onexit)
