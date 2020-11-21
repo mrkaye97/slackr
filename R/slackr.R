@@ -107,7 +107,7 @@ slackr <- function(...,
     on.exit(Sys.setlocale("LC_CTYPE", loc))
 
     resp <- POST(url="https://slack.com/api/chat.postMessage",
-                 body=list(token=api_token,
+                 body=list(token=bot_user_oauth_token,
                            channel=slackr_chtrans(channel),
                            username=username,
                            icon_emoji=icon_emoji,
