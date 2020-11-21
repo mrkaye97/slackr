@@ -30,13 +30,13 @@ text_slackr <- function(text,
                         channel=Sys.getenv("SLACK_CHANNEL"),
                         username=Sys.getenv("SLACK_USERNAME"),
                         icon_emoji=Sys.getenv("SLACK_ICON_EMOJI"),
-                        api_token=Sys.getenv("SLACK_API_TOKEN")) {
+                        bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
   if ( length(text) > 1 ) { stop("text must be a vector of length one") }
   if ( !is.character(channel) | length(channel) > 1 ) { stop("channel must be a character vector of length one") }
   if ( !is.logical(preformatted) | length(preformatted) > 1 ) { stop("preformatted must be a logical vector of length one") }
   if ( !is.character(username) | length(username) > 1 ) { stop("username must be a character vector of length one") }
-  if ( !is.character(api_token) | length(api_token) > 1 ) { stop("api_token must be a character vector of length one") }
+  if ( !is.character(bot_user_oauth_token) | length(bot_user_oauth_token) > 1 ) { stop("api_token must be a character vector of length one") }
 
   text <- as.character(text)
 
@@ -50,7 +50,7 @@ text_slackr <- function(text,
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   resp <- POST(url="https://slack.com/api/chat.postMessage",
-               body=list(token=api_token,
+               body=list(token=bot_user_oauth_token,
                          channel=channel,
                          username=username,
                          icon_emoji=icon_emoji,

@@ -33,7 +33,7 @@
 #' @export
 tex_slackr <- function(obj,
                      channels=Sys.getenv("SLACK_CHANNEL"),
-                     api_token=Sys.getenv("SLACK_API_TOKEN"),
+                     bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                      ext='png',
                      path=NULL,
                      ...) {
@@ -62,7 +62,7 @@ tex_slackr <- function(obj,
   res <- POST(url="https://slack.com/api/files.upload",
               add_headers(`Content-Type`="multipart/form-data"),
               body=list(file=upload_file(file.path(td,paste0('slack.',ext))),
-                        token=api_token,
+                        token=bot_user_oauth_token,
                         channels=modchan))
 
   #cleanup

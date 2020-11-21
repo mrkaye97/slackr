@@ -10,7 +10,7 @@ slackr_upload(
   title = basename(filename),
   initial_comment = basename(filename),
   channels = "",
-  api_token = Sys.getenv("SLACK_API_TOKEN")
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
 )
 
 slackrUpload(
@@ -18,7 +18,7 @@ slackrUpload(
   title = basename(filename),
   initial_comment = basename(filename),
   channels = "",
-  api_token = Sys.getenv("SLACK_API_TOKEN")
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
 )
 }
 \arguments{
@@ -30,7 +30,7 @@ slackrUpload(
 
 \item{channels}{Slack channels to save to (optional)}
 
-\item{api_token}{full API token}
+\item{bot_user_oauth_token}{Slack bot user OAuth token}
 }
 \value{
 \code{httr} response object from \code{POST} call (invisibly)

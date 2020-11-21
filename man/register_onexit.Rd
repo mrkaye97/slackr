@@ -34,8 +34,6 @@ Default: parent.frame(2) (global environment)}
 \item{username}{what user should the bot be named as (chr)}
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
-
-\item{api_token}{your full Slack API token}
 }
 \value{
 function

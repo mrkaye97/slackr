@@ -9,14 +9,14 @@ save_slackr(
   ...,
   channels = "",
   file = "slackr",
-  api_token = Sys.getenv("SLACK_API_TOKEN")
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
 )
 
 save.slackr(
   ...,
   channels = "",
   file = "slackr",
-  api_token = Sys.getenv("SLACK_API_TOKEN")
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
 )
 }
 \arguments{
@@ -26,7 +26,7 @@ save.slackr(
 
 \item{file}{filename (without extension) to use}
 
-\item{api_token}{full API token}
+\item{bot_user_oauth_token}{Slack bot user OAuth token}
 }
 \value{
 \code{httr} response object from \code{POST} call
