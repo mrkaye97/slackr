@@ -20,15 +20,15 @@ slackr_chtrans <- function(channels, bot_user_oauth_token=Sys.getenv("SLACK_BOT_
   chan$name <- sprintf("#%s", chan$name)
   users$name <- sprintf("@%s", users$name)
 
-  chan_list <- data.frame(id=character(0), name=character(0))
+  chan_list <- data.frame(id=character(0), name=character(0), real_name=character(0))
 
   if (length(chan) > 0) { chan_list <- dplyr::bind_rows(chan_list, chan[, c("id", "name")])  }
-  if (length(users) > 0) { chan_list <- dplyr::bind_rows(chan_list, users[, c("id", "name")]) }
+  if (length(users) > 0) { chan_list <- dplyr::bind_rows(chan_list, users[, c("id", "name", "real_name")]) }
 
   chan_list <- dplyr::distinct(chan_list)
 
   chan_list <- data.frame(chan_list, stringsAsFactors=FALSE)
-  chan_xref <- chan_list[chan_list$name %in% channels, ]
+  chan_xref <- chan_list[(chan_list$name %in% channels ) | (chan_list$real_name %in% channels), ]
 
   ifelse(is.na(chan_xref$id),
          as.character(chan_xref$name),
