@@ -12,7 +12,7 @@ slackr_channels(
 slackrChannels(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"))
 }
 \arguments{
-\item{bot_user_oauth_token}{the Slack full API token (chr)}
+\item{bot_user_oauth_token}{the Slack bot OAuth token (chr)}
 }
 \value{
 data.table of channels
