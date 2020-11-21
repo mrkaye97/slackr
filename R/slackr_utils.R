@@ -5,26 +5,26 @@
 #' with the channel ID for that channel. Also incorporates groups.
 #'
 #' @param channels vector of channel names to parse
-#' @param api_token the Slack full API token (chr)
+#' @param bot_user_oauth_token the Slack bot user OAuth token (chr)
 #' @rdname slackr_chtrans
 #' @author Quinn Weber [ctb], Bob Rudis [aut]
 #' @return character vector - original channel list with \code{#} or
 #'          \code{@@} channels replaced with ID's.
+#' @import dplyr
 #' @export
-slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
+slackr_chtrans <- function(channels, bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
-  chan <- slackr::slackr_channels(api_token)
-  users <- slackr::slackr_ims(api_token)
-  groups <- slackr_groups(api_token)
+  chan <- slackr::slackr_channels(bot_user_oauth_token)
+  users <- slackr::slackr_ims(bot_user_oauth_token)
 
   chan$name <- sprintf("#%s", chan$name)
   users$name <- sprintf("@%s", users$name)
 
-  chan_list <- data_frame(id=character(0), name=character(0))
+  chan_list <- data.frame(id=character(0), name=character(0))
 
-  if (length(chan) > 0) { chan_list <- bind_rows(chan_list, chan[, c("id", "name")])  }
-  if (length(users) > 0) { chan_list <- bind_rows(chan_list, users[, c("id", "name")]) }
-  if (length(groups) > 0) { chan_list <- bind_rows(chan_list, groups[, c("id", "name")]) }
+  if (length(chan) > 0) { chan_list <- dplyr::bind_rows(chan_list, chan[, c("id", "name")])  }
+  if (length(users) > 0) { chan_list <- dplyr::bind_rows(chan_list, users[, c("id", "name")]) }
+  if (length(groups) > 0) { chan_list <- dplyr::bind_rows(chan_list, groups[, c("id", "name")]) }
 
   chan_list <- dplyr::distinct(chan_list)
 
@@ -40,17 +40,17 @@ slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
 #' Get a data frame of Slack users
 #'
-#' @param api_token the Slack full API token (chr)
+#' @param bot_user_oauth_token the Slack full API token (chr)
 #' @return \code{data.frame} of users
 #' @rdname slackr_users
 #' @export
-slackr_users <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
+slackr_users <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
   loc <- Sys.getlocale('LC_CTYPE')
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-  tmp <- httr::POST("https://slack.com/api/users.list", body=list(token=api_token))
+  tmp <- httr::POST("https://slack.com/api/users.list", body=list(token=bot_user_oauth_token))
   httr::stop_for_status(tmp)
   members <- jsonlite::fromJSON(httr::content(tmp, as="text"))$members
   cols <- setdiff(colnames(members), c("profile", "real_name"))
@@ -60,94 +60,39 @@ slackr_users <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
 
 #' Get a data frame of Slack channels
 #'
-#' @param api_token the Slack full API token (chr)
+#' @param bot_user_oauth_token the Slack full API token (chr)
 #' @return data.table of channels
 #' @rdname slackr_channels
 #' @export
-slackr_channels <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
+slackr_channels <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
   loc <- Sys.getlocale('LC_CTYPE')
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-  tmp <- POST("https://slack.com/api/channels.list",
-              body=list(token=api_token))
+  tmp <- POST("https://slack.com/api/conversations.list",
+              body=list(token=bot_user_oauth_token))
   stop_for_status(tmp)
   jsonlite::fromJSON(content(tmp, as="text"))$channels
 
 }
 
-#' Get a data frame of Slack groups
-#'
-#' @param api_token the Slackfull API token (chr)
-#' @return \code{data.frame} of channels
-#' @rdname slackr_groups
-#' @export
-slackr_groups <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
-
-  loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
-  on.exit(Sys.setlocale("LC_CTYPE", loc))
-
-  tmp <- httr::POST("https://slack.com/api/groups.list", body=list(token=api_token))
-  httr::stop_for_status(tmp)
-  jsonlite::fromJSON(content(tmp, as="text"))$groups
-
-}
-
 #' Get a data frame of Slack IM ids
 #'
-#' @param api_token the Slack full API token (chr)
+#' @param bot_user_oauth_token the Slack full API token (chr)
 #' @rdname slackr_ims
 #' @author Quinn Weber [aut], Bob Rudis [ctb]
 #' @references \url{https://github.com/hrbrmstr/slackr/pull/13}
 #' @return \code{data.frame} of im ids and user names
 #' @export
-slackr_ims <- function(api_token=Sys.getenv("SLACK_API_TOKEN")) {
+slackr_ims <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
   loc <- Sys.getlocale('LC_CTYPE')
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-  tmp <- httr::POST("https://slack.com/api/im.list", body=list(token=api_token))
-  ims <- jsonlite::fromJSON(httr::content(tmp, as="text"))$ims
-  users <- slackr_users(api_token)
-  suppressWarnings( merge(users, ims, by.x="id", by.y='user') )
-  #dplyr::left_join(users, ims, by="id", copy=TRUE)
-
+  tmp <- httr::POST("https://slack.com/api/conversations.list?types=im", body=list(token=bot_user_oauth_token))
+  ims <- jsonlite::fromJSON(httr::content(tmp, as="text"))$channels
+  users <- slackr_users(bot_user_oauth_token)
+  dplyr::left_join(users, ims, by="id")
 }
-
-# Deprecated functions ----------------------------------------------------
-
-#' @usage NULL
-#' @rdname history_slackr
-#' @export
-slackr_channel_history <- function(api_token = Sys.getenv("SLACK_API_TOKEN"),
-                                   channel = Sys.getenv("SLACK_CHANNEL"),
-                                   posted_from_time = 0L,
-                                   posted_to_time = as.numeric(Sys.time()),
-                                   message_count = 100L) {
-  .Deprecated("history_slackr()")
-  out <- tryCatch({
-    chnl <- slackr_chtrans(channel)
-    params <- list(token = api_token,
-                   channel = chnl,
-                   latest = posted_to_time,
-                   oldest = posted_from_time,
-                   inclusive = "true",
-                   count = message_count)
-
-    response <- httr::GET(url = "https://slack.com/api/channels.history",
-                          query = params)
-
-    jsonlite::fromJSON(httr::content(response, as = "text"))$messages
-  }, error = function(e) {
-    message(paste("Channel", channel, "does not exist."))
-    message(e)
-  })
-
-  return(out)
-}
-
-
-

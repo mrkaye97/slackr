@@ -6,8 +6,12 @@
 \title{return message history of a slack channel. Calls the channels.history method on the Slack Web API.
 Information on this method can be found here: \url{https://api.slack.com/methods/channels.history}}
 \usage{
-history_slackr(count, ..., channel = Sys.getenv("SLACK_CHANNEL"),
-  api_token = Sys.getenv("SLACK_API_TOKEN"))
+history_slackr(
+  count,
+  ...,
+  channel = Sys.getenv("SLACK_CHANNEL"),
+  api_token = Sys.getenv("SLACK_API_TOKEN")
+)
 }
 \arguments{
 \item{count}{Number of messages to return, between 1 and 1000.}

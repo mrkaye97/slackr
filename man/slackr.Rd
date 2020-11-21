@@ -4,10 +4,13 @@
 \alias{slackr}
 \title{Output R expressions to a Slack channel/user}
 \usage{
-slackr(..., channel = Sys.getenv("SLACK_CHANNEL"),
+slackr(
+  ...,
+  channel = Sys.getenv("SLACK_CHANNEL"),
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-  api_token = Sys.getenv("SLACK_API_TOKEN"))
+  api_token = Sys.getenv("SLACK_API_TOKEN")
+)
 }
 \arguments{
 \item{...}{expressions to be sent to Slack}

@@ -4,9 +4,14 @@
 \alias{tex_slackr}
 \title{Post a tex output to a Slack channel}
 \usage{
-tex_slackr(obj, channels = Sys.getenv("SLACK_CHANNEL"),
-  api_token = Sys.getenv("SLACK_API_TOKEN"), ext = "png", path = NULL,
-  ...)
+tex_slackr(
+  obj,
+  channels = Sys.getenv("SLACK_CHANNEL"),
+  api_token = Sys.getenv("SLACK_API_TOKEN"),
+  ext = "png",
+  path = NULL,
+  ...
+)
 }
 \arguments{
 \item{obj}{character object containing tex to compile}
