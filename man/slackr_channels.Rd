@@ -5,12 +5,14 @@
 \alias{slackrChannels}
 \title{Get a data frame of Slack channels}
 \usage{
-slackr_channels(api_token = Sys.getenv("SLACK_API_TOKEN"))
+slackr_channels(
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+)
 
-slackrChannels(api_token = Sys.getenv("SLACK_API_TOKEN"))
+slackrChannels(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"))
 }
 \arguments{
-\item{api_token}{the Slack full API token (chr)}
+\item{bot_user_oauth_token}{the Slack full API token (chr)}
 }
 \value{
 data.table of channels

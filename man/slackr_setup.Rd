@@ -10,7 +10,7 @@ slackr_setup(
   username = "slackr",
   icon_emoji = "",
   incoming_webhook_url = "",
-  api_token = "",
+  bot_user_oauth_token = "",
   config_file = "~/.slackr",
   echo = FALSE
 )
@@ -20,7 +20,7 @@ slackrSetup(
   username = "slackr",
   icon_emoji = "",
   incoming_webhook_url = "",
-  api_token = "",
+  bot_user_oauth_token = "",
   config_file = "~/.slackr",
   echo = FALSE
 )
@@ -35,7 +35,7 @@ left blank in config file as well)}
 
 \item{incoming_webhook_url}{the Slack URL prefix to use (chr) defaults to none}
 
-\item{api_token}{the Slack full API token (chr)}
+\item{bot_user_oauth_token}{the Slack full bot user OAuth token (chr)}
 
 \item{config_file}{a configuration file (DCF) - see \link{read.dcf} - format
 with the config values.}
@@ -54,7 +54,7 @@ If a valid file is found at the locaiton pointed to by \code{config_file}, the
 values there will be used. The fields should be specified as such in the file:
 
 \preformatted{
- api_token: YOUR_FULL_API_TOKEN
+ bot_user_oauth_token: SLACK_BOT_USER_OAUTH_TOKEN
  channel: #general
  username: slackr
  incoming_webhook_url: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX

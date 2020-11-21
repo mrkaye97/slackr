@@ -2,7 +2,7 @@
 #'
 #' Given a vector of one or more channel names, it will retrieve list of
 #' active channels and try to replace channels that begin with "\code{#}" or "\code{@@}"
-#' with the channel ID for that channel. Also incorporates groups.
+#' with the channel ID for that channel.
 #'
 #' @param channels vector of channel names to parse
 #' @param bot_user_oauth_token the Slack bot user OAuth token (chr)
@@ -24,7 +24,6 @@ slackr_chtrans <- function(channels, bot_user_oauth_token=Sys.getenv("SLACK_BOT_
 
   if (length(chan) > 0) { chan_list <- dplyr::bind_rows(chan_list, chan[, c("id", "name")])  }
   if (length(users) > 0) { chan_list <- dplyr::bind_rows(chan_list, users[, c("id", "name")]) }
-  if (length(groups) > 0) { chan_list <- dplyr::bind_rows(chan_list, groups[, c("id", "name")]) }
 
   chan_list <- dplyr::distinct(chan_list)
 
@@ -40,7 +39,7 @@ slackr_chtrans <- function(channels, bot_user_oauth_token=Sys.getenv("SLACK_BOT_
 
 #' Get a data frame of Slack users
 #'
-#' @param bot_user_oauth_token the Slack full API token (chr)
+#' @param bot_user_oauth_token the Slack bot OAuth token (chr)
 #' @return \code{data.frame} of users
 #' @rdname slackr_users
 #' @export
@@ -60,7 +59,7 @@ slackr_users <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_T
 
 #' Get a data frame of Slack channels
 #'
-#' @param bot_user_oauth_token the Slack full API token (chr)
+#' @param bot_user_oauth_token the Slack bot OAuth token (chr)
 #' @return data.table of channels
 #' @rdname slackr_channels
 #' @export
@@ -79,7 +78,7 @@ slackr_channels <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUT
 
 #' Get a data frame of Slack IM ids
 #'
-#' @param bot_user_oauth_token the Slack full API token (chr)
+#' @param bot_user_oauth_token the Slack both OAuth token (chr)
 #' @rdname slackr_ims
 #' @author Quinn Weber [aut], Bob Rudis [ctb]
 #' @references \url{https://github.com/hrbrmstr/slackr/pull/13}

@@ -24,10 +24,6 @@ slackrChTrans <- slackr_chtrans
 #' @export
 slackrChannels <- slackr_channels
 
-#' @rdname slackr_groups
-#' @export
-slackrGroups <- slackr_groups
-
 #' @rdname slackr_ims
 #' @export
 slackrIms <- slackr_ims
