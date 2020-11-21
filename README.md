@@ -119,7 +119,7 @@ integration creation time) with `icon_emoji`.
 
     # current verison
     packageVersion("slackr")
-    #> [1] '1.5.0'
+    #> [1] '2.0.0'
 
     slackrSetup(channel="#code", 
                 incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX")
@@ -143,24 +143,18 @@ integration creation time) with `icon_emoji`.
     #> Warning: package 'testthat' was built under R version 4.0.2
 
     date()
-    #> [1] "Sat Nov 21 13:41:50 2020"
+    #> [1] "Sat Nov 21 14:16:26 2020"
 
-    test_dir("tests/")
+    devtools::test()
+    #> Loading slackr
+    #> Testing slackr
     #> ✓ |  OK F W S | Context
-    #> ⠏ |   0       | all                                                                                                     ── Skip (test-slackr.R:2:1): we can do something ───────────────────────────────────────────────────────────────────────
-    #> Reason: empty test
-    #> 
-    #> ── Skip (test-textslackr.R:3:1): errors when given bad inputs ──────────────────────────────────────────────────────────
-    #> Reason: empty test
-    #> 
-    #> ── Skipped tests  ──────────────────────────────────────────────────────────────────────────────────────────────────────
-    #> ● empty test (2)
-    #> 
+    #> ⠏ |   0       | slackr                                                                                                  ⠏ |   0       | slackr                                                                                                  ⠋ |   1       | slackr                                                                                                  ✓ |   1       | slackr [1.0 s]
     #> 
     #> ══ Results ═════════════════════════════════════════════════════════════════════════════════════════════════════════════
-    #> Duration: 0.2 s
+    #> Duration: 1.0 s
     #> 
-    #> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 0 ]
+    #> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
 
 ### Onexit Usage
 
