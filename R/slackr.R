@@ -34,7 +34,7 @@ slackr <- function(...,
                    icon_emoji=Sys.getenv("SLACK_ICON_EMOJI"),
                    bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
-  if (bot_user_oauth_token == "") {
+  if ((bot_user_oauth_token == "") | is.na(bot_user_oauth_token)) {
     stop("No token specified. Did you forget to call slackr_setup()?", call. = FALSE)
   }
 
