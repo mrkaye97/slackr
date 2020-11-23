@@ -4,11 +4,17 @@
 \alias{register_onexit}
 \title{Append text_slackr as on.exit to functions.}
 \usage{
-register_onexit(f, ..., header_msg = NULL, use_device = FALSE,
-  env = parent.frame(2), channel = Sys.getenv("SLACK_CHANNEL"),
+register_onexit(
+  f,
+  ...,
+  header_msg = NULL,
+  use_device = FALSE,
+  env = parent.frame(2),
+  channel = Sys.getenv("SLACK_CHANNEL"),
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-  api_token = Sys.getenv("SLACK_API_TOKEN"))
+  api_token = Sys.getenv("SLACK_API_TOKEN")
+)
 }
 \arguments{
 \item{f}{function or character}
@@ -28,8 +34,6 @@ Default: parent.frame(2) (global environment)}
 \item{username}{what user should the bot be named as (chr)}
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
-
-\item{api_token}{your full Slack API token}
 }
 \value{
 function

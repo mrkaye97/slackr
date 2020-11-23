@@ -6,17 +6,25 @@
 \title{Sends basic text to a slack channel. Calls the chat.postMessage method on the Slack Web API.
 Information on this method can be found here: \url{https://api.slack.com/methods/chat.postMessage}}
 \usage{
-text_slackr(text, ..., preformatted = TRUE,
+text_slackr(
+  text,
+  ...,
+  preformatted = TRUE,
   channel = Sys.getenv("SLACK_CHANNEL"),
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-  api_token = Sys.getenv("SLACK_API_TOKEN"))
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+)
 
-textSlackr(text, ..., preformatted = TRUE,
+textSlackr(
+  text,
+  ...,
+  preformatted = TRUE,
   channel = Sys.getenv("SLACK_CHANNEL"),
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-  api_token = Sys.getenv("SLACK_API_TOKEN"))
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+)
 }
 \arguments{
 \item{text}{The character vector to be posted}

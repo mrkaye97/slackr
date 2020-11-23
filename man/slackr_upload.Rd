@@ -5,13 +5,21 @@
 \alias{slackrUpload}
 \title{Send a file to Slack}
 \usage{
-slackr_upload(filename, title = basename(filename),
-  initial_comment = basename(filename), channels = "",
-  api_token = Sys.getenv("SLACK_API_TOKEN"))
+slackr_upload(
+  filename,
+  title = basename(filename),
+  initial_comment = basename(filename),
+  channels = "",
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+)
 
-slackrUpload(filename, title = basename(filename),
-  initial_comment = basename(filename), channels = "",
-  api_token = Sys.getenv("SLACK_API_TOKEN"))
+slackrUpload(
+  filename,
+  title = basename(filename),
+  initial_comment = basename(filename),
+  channels = "",
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+)
 }
 \arguments{
 \item{filename}{path to file}
@@ -22,7 +30,7 @@ slackrUpload(filename, title = basename(filename),
 
 \item{channels}{Slack channels to save to (optional)}
 
-\item{api_token}{full API token}
+\item{bot_user_oauth_token}{Slack bot user OAuth token}
 }
 \value{
 \code{httr} response object from \code{POST} call (invisibly)

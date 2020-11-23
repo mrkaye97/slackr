@@ -24,14 +24,11 @@ The `slackr` package contains functions that make it possible to interact with t
 
 ### BREAKING CHANGES
 
-Versions 1.4+ BREAK THINGS. 
-
-Support has been removed for the "old style" incoming web hooks (see "Setup" below for the required incoming web hook URL format). 
-
-The incoming webhook "token" is no longer required or used.
+Version 2.0.0+ is updated to work with the new Slack API structure!
 
 ### News
 
+- Version `2.0.0` fixes broken package because of changes to the Slack API
 - Version `1.4.2` fixes for changes to the Slack API causing duplicate column names and breaking functions
 - Version `1.4.0.9000` new `slackr_msg()` + many fixes and BREAKING CHANGES (see above)
 - Version `1.3.1.9000` Removed `data.table` dependency (replaced with `dplyr`); added access to `im.list` (https://api.slack.com/methods/im.list) thx to PR from Quinn Weber 
@@ -70,15 +67,13 @@ The following functions are implemented:
 - `slackr_groups` : get a data frame of Slack groups
 - `text_slackr` : Send regular or preformatted messages to Slack
 - `slackr_msg` : Slightly different version of `text_slackr()`
-- `slackr_history`: Return message history of a Slack channel to a data.frame
-- `delete_slackr`: Delete messages from a Slack channel
 - `register_onexit`: Append an `on.exit` call to R functions (can be used with other package functions) and its output will be sent to a Slack channel.
 
 ### SETUP
 
 The `slackr_setup()` function will try to read setup values from a `~/.slackr` (you can change the default) configuration file, which may be easier and more secure than passing them in manually (plus, will allow you to have multiple slackr configs for multiple Slack.com teams). The file is in Debian Control File (DCF) format since it really doesn't need to be JSON and R has a handy `read.dcf()` function since that's what `DESCRIPTION` files are coded in. Here's the basic format for the configuration file:
 
-    api_token: YOUR_FULL_API_TOKEN
+    bot_user_oauth_token: Your app's bot user OAuth token
     channel: #general
     username: slackr
     incoming_webhook_url: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX
@@ -88,11 +83,11 @@ You can also change the default emoji icon (from the one you setup at integratio
 ### Installation
 
 ```{r setup, eval=FALSE}
-# stable/CRAN
+# original / no longer maintained
 install.packages("slackr")
 
-# bleeding edge
-devtools::install_github("hrbrmstr/slackr")
+# 2.0.0+
+devtools::install_github("mrkaye97/slackr")
 ```
 
 ```{r opts, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
@@ -134,7 +129,7 @@ library(testthat)
 
 date()
 
-test_dir("tests/")
+devtools::test()
 ```
 
 ### Onexit Usage

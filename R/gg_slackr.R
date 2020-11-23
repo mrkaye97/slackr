@@ -13,11 +13,11 @@
 #' @param dpi dpi to use for raster graphics
 #' @param limitsize when TRUE (the default), ggsave will not save images larger
 #'        than 50x50 inches, to prevent the common error of specifying dimensions in pixels.
-#' @param api_token the Slack full API token (chr)
+#' @param bot_user_oauth_token the Slack bot user OAuth token (chr)
 #' @param file prefix for filenames (defaults to \code{ggplot})
 #' @param ... other arguments passed to graphics device
-#' @note You need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
-#'       Also, uou can pass in \code{as_user=TRUE} as part of the \code{...}
+#' @note You need to setup a bot user OAuth token for this to work.
+#'       Also, you can pass in \code{as_user=TRUE} as part of the \code{...}
 #'       parameters and the Slack API will post the message as your logged-in user
 #'       account (this will override anything set in \code{username})
 #' @return \code{httr} response object (invisibly)
@@ -35,7 +35,7 @@ ggslackr <- function(plot=last_plot(),
                      units=c("in", "cm", "mm"),
                      dpi=300,
                      limitsize=TRUE,
-                     api_token=Sys.getenv("SLACK_API_TOKEN"),
+                     bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                      file="ggplot",
                      ...) {
 
@@ -51,14 +51,15 @@ ggslackr <- function(plot=last_plot(),
          height=height,
          units=units,
          dpi=dpi,
-         limitsize=limitsize, ...)
+         limitsize=limitsize,
+         ... = ...)
 
   modchan <- slackr_chtrans(channels)
 
   res <- POST(url="https://slack.com/api/files.upload",
               add_headers(`Content-Type`="multipart/form-data"),
               body=list(file=upload_file(ftmp),
-                        token=api_token,
+                        token=bot_user_oauth_token,
                         channels=modchan))
 
   invisible(res)

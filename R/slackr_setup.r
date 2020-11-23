@@ -10,7 +10,7 @@
 #' values there will be used. The fields should be specified as such in the file:
 #'
 #' \preformatted{
-#'  api_token: YOUR_FULL_API_TOKEN
+#'  bot_user_oauth_token: SLACK_BOT_USER_OAUTH_TOKEN
 #'  channel: #general
 #'  username: slackr
 #'  incoming_webhook_url: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX
@@ -21,7 +21,7 @@
 #' @param icon_emoji which emoji picture to use (chr) defaults to none (can be
 #'        left blank in config file as well)
 #' @param incoming_webhook_url the Slack URL prefix to use (chr) defaults to none
-#' @param api_token the Slack full API token (chr)
+#' @param bot_user_oauth_token the Slack full bot user OAuth token (chr)
 #' @param config_file a configuration file (DCF) - see \link{read.dcf} - format
 #'        with the config values.
 #' @param echo display the configuration variables (bool) initially \code{FALSE}
@@ -47,7 +47,7 @@ slackr_setup <- function(channel="#general",
                          username="slackr",
                          icon_emoji="",
                          incoming_webhook_url="",
-                         api_token="",
+                         bot_user_oauth_token="",
                          config_file="~/.slackr",
                          echo=FALSE) {
 
@@ -55,13 +55,13 @@ slackr_setup <- function(channel="#general",
 
     config <- read.dcf(config_file,
                        fields=c("channel", "icon_emoji",
-                                "username", "incoming_webhook_url", "api_token"))
+                                "username", "incoming_webhook_url", "bot_user_oauth_token"))
 
     Sys.setenv(SLACK_CHANNEL=config[,"channel"])
     Sys.setenv(SLACK_USERNAME=config[,"username"])
     Sys.setenv(SLACK_ICON_EMOJI=config[,"icon_emoji"])
     Sys.setenv(SLACK_INCOMING_URL_PREFIX=config[,"incoming_webhook_url"])
-    Sys.setenv(SLACK_API_TOKEN=config[,"api_token"])
+    Sys.setenv(SLACK_BOT_USER_OAUTH_TOKEN=config[,"bot_user_oauth_token"])
 
   } else {
 
@@ -69,7 +69,7 @@ slackr_setup <- function(channel="#general",
     Sys.setenv(SLACK_USERNAME=username)
     Sys.setenv(SLACK_ICON_EMOJI=icon_emoji)
     Sys.setenv(SLACK_INCOMING_URL_PREFIX=incoming_webhook_url)
-    Sys.setenv(SLACK_API_TOKEN=api_token)
+    Sys.setenv(SLACK_BOT_USER_OAUTH_TOKEN=bot_user_oauth_token)
 
   }
 
@@ -88,7 +88,7 @@ slackr_setup <- function(channel="#general",
   if (echo) {
     print(toJSON(as.list(Sys.getenv(c("SLACK_CHANNEL", "SLACK_USERNAME",
                                       "SLACK_ICON_EMOJI",
-                                      "SLACK_INCOMING_URL_PREFIX", "SLACK_API_TOKEN"))),
+                                      "SLACK_INCOMING_URL_PREFIX", "SLACK_BOT_USER_OAUTH_TOKEN"))),
                  pretty=TRUE))
   }
 

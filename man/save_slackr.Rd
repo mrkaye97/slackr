@@ -5,11 +5,19 @@
 \alias{save.slackr}
 \title{Save R objects to an RData file on Slack}
 \usage{
-save_slackr(..., channels = "", file = "slackr",
-  api_token = Sys.getenv("SLACK_API_TOKEN"))
+save_slackr(
+  ...,
+  channels = "",
+  file = "slackr",
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+)
 
-save.slackr(..., channels = "", file = "slackr",
-  api_token = Sys.getenv("SLACK_API_TOKEN"))
+save.slackr(
+  ...,
+  channels = "",
+  file = "slackr",
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+)
 }
 \arguments{
 \item{...}{objects to store in the R data file}
@@ -18,7 +26,7 @@ save.slackr(..., channels = "", file = "slackr",
 
 \item{file}{filename (without extension) to use}
 
-\item{api_token}{full API token}
+\item{bot_user_oauth_token}{Slack bot user OAuth token}
 }
 \value{
 \code{httr} response object from \code{POST} call

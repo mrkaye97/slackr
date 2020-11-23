@@ -4,22 +4,27 @@
 \alias{tex_slackr}
 \title{Post a tex output to a Slack channel}
 \usage{
-tex_slackr(obj, channels = Sys.getenv("SLACK_CHANNEL"),
-  api_token = Sys.getenv("SLACK_API_TOKEN"), ext = "png", path = NULL,
-  ...)
+tex_slackr(
+  obj,
+  channels = Sys.getenv("SLACK_CHANNEL"),
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+  ext = "png",
+  path = NULL,
+  ...
+)
 }
 \arguments{
 \item{obj}{character object containing tex to compile}
 
 \item{channels}{list of channels to post image to}
 
-\item{api_token}{the Slack full API token (chr)}
-
 \item{ext}{character, type of format to return, can be tex, pdf, or any image device, Default: 'png'}
 
 \item{path}{character, path to save texPreview outputs, if NULL then tempdir is used, Default: NULL}
 
 \item{...}{other arguments passed to \code{\link[texPreview]{texPreview}}}
+
+\item{api_token}{the Slack full API token (chr)}
 }
 \value{
 \code{httr} response object (invisibly)

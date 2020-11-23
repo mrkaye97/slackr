@@ -29,8 +29,8 @@
 #' dev_slackr("@@jayjacobs")
 #' }
 #' @export
-dev_slackr <- function(channels=Sys.getenv("SLACK_CHANNEL"), ...,
-                       api_token=Sys.getenv("SLACK_API_TOKEN"),
+dev_slackr <- function(channels=Sys.getenv("SLACK_CHANNEL"),
+                       api_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                        file="plot") {
 
   loc <- Sys.getlocale('LC_CTYPE')
@@ -38,7 +38,7 @@ dev_slackr <- function(channels=Sys.getenv("SLACK_CHANNEL"), ...,
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   ftmp <- tempfile(file, fileext=".png")
-  dev.copy(png, file=ftmp, ...)
+  dev.copy(png, file=ftmp)
   dev.off()
 
   modchan <- slackrChTrans(channels, api_token)

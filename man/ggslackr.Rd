@@ -4,10 +4,19 @@
 \alias{ggslackr}
 \title{Post a ggplot to a Slack channel}
 \usage{
-ggslackr(plot = last_plot(), channels = Sys.getenv("SLACK_CHANNEL"),
-  scale = 1, width = par("din")[1], height = par("din")[2],
-  units = c("in", "cm", "mm"), dpi = 300, limitsize = TRUE,
-  api_token = Sys.getenv("SLACK_API_TOKEN"), file = "ggplot", ...)
+ggslackr(
+  plot = last_plot(),
+  channels = Sys.getenv("SLACK_CHANNEL"),
+  scale = 1,
+  width = par("din")[1],
+  height = par("din")[2],
+  units = c("in", "cm", "mm"),
+  dpi = 300,
+  limitsize = TRUE,
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+  file = "ggplot",
+  ...
+)
 }
 \arguments{
 \item{plot}{ggplot object to save, defaults to last plot displayed}
@@ -28,7 +37,7 @@ ggslackr(plot = last_plot(), channels = Sys.getenv("SLACK_CHANNEL"),
 \item{limitsize}{when TRUE (the default), ggsave will not save images larger
 than 50x50 inches, to prevent the common error of specifying dimensions in pixels.}
 
-\item{api_token}{the Slack full API token (chr)}
+\item{bot_user_oauth_token}{the Slack bot user OAuth token (chr)}
 
 \item{file}{prefix for filenames (defaults to \code{ggplot})}
 
@@ -42,8 +51,8 @@ Unlike the \code{\link{dev_slackr}} function, this one takes a \code{ggplot} obj
 eliminating the need to have a graphics device (think use in scripts).
 }
 \note{
-You need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
-      Also, uou can pass in \code{as_user=TRUE} as part of the \code{...}
+You need to setup a bot user OAuth token for this to work.
+      Also, you can pass in \code{as_user=TRUE} as part of the \code{...}
       parameters and the Slack API will post the message as your logged-in user
       account (this will override anything set in \code{username})
 }

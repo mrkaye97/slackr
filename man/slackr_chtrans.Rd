@@ -6,16 +6,25 @@
 \alias{slackrChTrans}
 \title{Translate vector of channel names to channel ID's for API}
 \usage{
-slackr_chtrans(channels, api_token = Sys.getenv("SLACK_API_TOKEN"))
+slackr_chtrans(
+  channels,
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+)
 
-slackrChtrans(channels, api_token = Sys.getenv("SLACK_API_TOKEN"))
+slackrChtrans(
+  channels,
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+)
 
-slackrChTrans(channels, api_token = Sys.getenv("SLACK_API_TOKEN"))
+slackrChTrans(
+  channels,
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+)
 }
 \arguments{
 \item{channels}{vector of channel names to parse}
 
-\item{api_token}{the Slack full API token (chr)}
+\item{bot_user_oauth_token}{the Slack bot user OAuth token (chr)}
 }
 \value{
 character vector - original channel list with \code{#} or
@@ -24,7 +33,7 @@ character vector - original channel list with \code{#} or
 \description{
 Given a vector of one or more channel names, it will retrieve list of
 active channels and try to replace channels that begin with "\code{#}" or "\code{@}"
-with the channel ID for that channel. Also incorporates groups.
+with the channel ID for that channel.
 }
 \author{
 Quinn Weber [ctb], Bob Rudis [aut]
