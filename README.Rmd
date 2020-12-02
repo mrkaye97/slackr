@@ -90,6 +90,19 @@ install.packages("slackr")
 devtools::install_github("mrkaye97/slackr")
 ```
 
+#### LaTeX for version `2.0.0+`
+
+For versions `2.0.0+` (on Windows 10 and Ubuntu 20.04 as tested), if on loading the package you see error messages like below:
+
+```{r latex, eval=FALSE}
+#> Error: package or namespace load failed for ‘slackr’:
+#> .onLoad failed in loadNamespace() for 'texPreview', details:
+#>  call: FUN(X[[i]], ...)
+#>  error: neither tlmgr or mpm are installed and in %PATH%
+```
+
+Try installing a version of LaTeX (e.g. MikTeX or Tex Live) on your system, and depending on the LaTeX version you may see warnings about various missing packages for `texPreview`, but they can be ignored.
+
 ```{r opts, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
 options(width=120)
 ```
