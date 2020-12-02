@@ -116,20 +116,21 @@ devtools::install_github("mrkaye97/slackr")
 
 #### LaTeX for version `2.0.0+`
 
-For versions `2.0.0+` (on Windows 10 and Ubuntu 20.04 as tested), if on
-loading the package you see error messages like below:
+For versions `2.0.0+` (on Windows 10 and Ubuntu 20.04 as tested, and
+likely on Mac as well), if on loading the package you see error messages
+like below:
 
 ``` r
-library(slackr)
 #> Error: package or namespace load failed for ‘slackr’:
 #> .onLoad failed in loadNamespace() for 'texPreview', details:
 #>  call: FUN(X[[i]], ...)
 #>  error: neither tlmgr or mpm are installed and in %PATH%
 ```
 
-Try installing a version of LaTeX (e.g. MikTeX or Tex Live) on your
-system, and depending on the LaTeX version you may see warnings about
-various missing packages for `texPreview`, but they can be ignored.
+Try installing a version of LaTeX (e.g. MikTeX or TeX Live, or MacTeX on
+the Mac) on your system, and depending on the LaTeX version you may see
+warnings about various missing packages for `texPreview`, but they can
+be ignored.
 
 ### Usage
 
@@ -165,16 +166,16 @@ library(slackr)
 library(testthat)
 
 date()
-#> [1] "Wed Dec 02 14:35:10 2020"
+#> [1] "Wed Dec 02 15:44:10 2020"
 
 devtools::test()
 #> Loading slackr
 #> Testing slackr
 #> v |  OK F W S | Context
-#> / |   0       | slackr                                                                                                  / |   0       | slackr                                                                                                  - |   1       | slackr                                                                                                  v |   1       | slackr [0.8 s]
+#> / |   0       | slackr                                                                                                  / |   0       | slackr                                                                                                  - |   1       | slackr                                                                                                  v |   1       | slackr [0.7 s]
 #> 
 #> == Results =============================================================================================================
-#> Duration: 0.8 s
+#> Duration: 0.7 s
 #> 
 #> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
 ```
