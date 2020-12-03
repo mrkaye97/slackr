@@ -16,7 +16,7 @@
 #' @return \code{httr} response object (invisibly)
 #' @details Please make sure \code{texPreview} package is installed before running this function.
 #'          For TeX setup refer to the
-#'          \href{https://github.com/hrbrmstr/slackr#installation}{installation notes}.
+#'          \href{https://github.com/hrbrmstr/slackr#latex-for-tex_slackr}{installation notes}.
 #' @examples
 #' \dontrun{
 #' slackr_setup()
