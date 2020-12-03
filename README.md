@@ -114,23 +114,16 @@ install.packages("slackr")
 devtools::install_github("mrkaye97/slackr")
 ```
 
-#### LaTeX for version `2.0.0+`
+#### LaTeX for `tex_slackr`
 
-For versions `2.0.0+` (on Windows 10 and Ubuntu 20.04 as tested, and
-likely on Mac as well), if on loading the package you see error messages
-like below:
+The new function `tex_slackr` in versions `2.0.0+` requires package
+[`texPreview`](https://github.com/yonicd/texPreview) which is
+lazy-loaded when the former is called.
 
-``` r
-#> Error: package or namespace load failed for ‘slackr’:
-#> .onLoad failed in loadNamespace() for 'texPreview', details:
-#>  call: FUN(X[[i]], ...)
-#>  error: neither tlmgr or mpm are installed and in %PATH%
-```
-
-Try installing a version of LaTeX (e.g. MikTeX or TeX Live, or MacTeX on
-the Mac) on your system, and depending on the LaTeX version you may see
-warnings about various missing packages for `texPreview`, but they can
-be ignored.
+For setting up LaTeX see [`texPreview`’s System
+Requirements](https://github.com/yonicd/texPreview#functionality), and
+for specific OS setup check out its Github Actions like [this MacOS
+example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-mac.yml#L46).
 
 ### Usage
 
@@ -166,18 +159,27 @@ library(slackr)
 library(testthat)
 
 date()
-#> [1] "Wed Dec 02 15:44:10 2020"
+#> [1] "Wed Dec 02 20:00:31 2020"
 
 devtools::test()
 #> Loading slackr
 #> Testing slackr
 #> v |  OK F W S | Context
-#> / |   0       | slackr                                                                                                  / |   0       | slackr                                                                                                  - |   1       | slackr                                                                                                  v |   1       | slackr [0.7 s]
+#> / |   0       | slackr                                                                                                  / |   0       | slackr                                                                                                  x |   0 1     | slackr
+#> ------------------------------------------------------------------------------------------------------------------------
+#> FAILURE (test_slackr.R:6:3): non-syntactic grouping variable is preserved (#1138)
+#> `testresult` not equal to NULL.
+#> Modes: character, NULL
+#> Lengths: 1, 0
+#> Attributes: < Modes: list, NULL >
+#> Attributes: < Lengths: 2, 0 >
+#> Attributes: < names for target but not for current >
+#> Attributes: < current is not list-like >
+#> target is try-error, current is NULL
+#> ------------------------------------------------------------------------------------------------------------------------
 #> 
 #> == Results =============================================================================================================
-#> Duration: 0.7 s
-#> 
-#> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
+#> [ FAIL 1 | WARN 0 | SKIP 0 | PASS 0 ]
 ```
 
 ### Onexit Usage

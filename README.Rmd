@@ -90,18 +90,11 @@ install.packages("slackr")
 devtools::install_github("mrkaye97/slackr")
 ```
 
-#### LaTeX for version `2.0.0+`
+#### LaTeX for `tex_slackr`
 
-For versions `2.0.0+` (on Windows 10 and Ubuntu 20.04 as tested, and likely on Mac as well), if on loading the package you see error messages like below:
+The new function `tex_slackr` in versions `2.0.0+` requires package [`texPreview`](https://github.com/yonicd/texPreview) which is lazy-loaded when the former is called.
 
-```{r latex, eval=FALSE}
-#> Error: package or namespace load failed for ‘slackr’:
-#> .onLoad failed in loadNamespace() for 'texPreview', details:
-#>  call: FUN(X[[i]], ...)
-#>  error: neither tlmgr or mpm are installed and in %PATH%
-```
-
-Try installing a version of LaTeX (e.g. MikTeX or TeX Live, or MacTeX on the Mac) on your system, and depending on the LaTeX version you may see warnings about various missing packages for `texPreview`, but they can be ignored.
+For setting up LaTeX see [`texPreview`'s System Requirements](https://github.com/yonicd/texPreview#functionality), and for specific OS setup check out its Github Actions like [this MacOS example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-mac.yml#L46).
 
 ```{r opts, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
 options(width=120)
