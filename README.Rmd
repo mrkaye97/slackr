@@ -156,7 +156,8 @@ ggslackr(qplot(mpg, wt, data=mtcars))
 ```{r test}
 library(slackr)
 library(testthat)
-slackr_setup()
+
+slackrSetup()
 
 date()
 

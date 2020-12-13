@@ -181,24 +181,25 @@ example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-ma
 
 ### Test Results
 
-    library(slackr)
-    library(testthat)
-    #> Warning: package 'testthat' was built under R version 4.0.2
-    slackr_setup()
+``` r
+library(slackr)
+library(testthat)
+slackrSetup()
 
-    date()
-    #> [1] "Sun Dec 13 09:47:36 2020"
+date()
+#> [1] "Sun Dec 13 14:35:31 2020"
 
-    devtools::test()
-    #> Loading slackr
-    #> Testing slackr
-    #> ✓ |  OK F W S | Context
-    #> ⠏ |   0       | slackr                                                                                                  ⠏ |   0       | slackr                                                                                                  ⠋ |   1       | slackr                                                                                                  ✓ |   1       | slackr [0.5 s]
-    #> 
-    #> ══ Results ═════════════════════════════════════════════════════════════════════════════════════════════════════════════
-    #> Duration: 0.5 s
-    #> 
-    #> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
+devtools::test()
+#> Loading slackr
+#> Testing slackr
+#> v |  OK F W S | Context
+#> / |   0       | slackr                                                                                                  / |   0       | slackr                                                                                                  - |   1       | slackr                                                                                                  v |   1       | slackr [0.7 s]
+#> 
+#> == Results =============================================================================================================
+#> Duration: 0.7 s
+#> 
+#> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
+```
 
 ### Onexit Usage
 
