@@ -153,7 +153,7 @@ example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-ma
 
     # current verison
     packageVersion("slackr")
-    #> [1] '2.0.0'
+    #> [1] '2.0.1'
 
     slackrSetup(channel="#code", 
                 incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX")
@@ -170,6 +170,13 @@ example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-ma
 
     ggslackr(qplot(mpg, wt, data=mtcars))
 
+### Known Issues
+
+-   Depending on your scopes, `slackr` could quietly fail (i.e. not
+    throw an error, but also not post anything to your channel). If this
+    happens, try explicitly adding the `slackr` app to your channel in
+    your Slack workspace.
+
 ### Test Results
 
     library(slackr)
@@ -177,7 +184,7 @@ example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-ma
     #> Warning: package 'testthat' was built under R version 4.0.2
 
     date()
-    #> [1] "Sat Dec 12 23:35:20 2020"
+    #> [1] "Sat Dec 12 23:39:22 2020"
 
     devtools::test()
     #> Loading slackr
@@ -198,6 +205,8 @@ example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-ma
     #> 
     #> ══ Results ═════════════════════════════════════════════════════════════════════════════════════════════════════════════
     #> [ FAIL 1 | WARN 0 | SKIP 0 | PASS 0 ]
+    #> 
+    #> Frustration is a natural part of programming :)
 
 ### Onexit Usage
 
