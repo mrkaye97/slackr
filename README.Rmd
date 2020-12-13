@@ -90,6 +90,12 @@ install.packages("slackr")
 devtools::install_github("mrkaye97/slackr")
 ```
 
+#### LaTeX for `tex_slackr`
+
+The new function `tex_slackr` in versions `2.0.0+` requires package [`texPreview`](https://github.com/yonicd/texPreview) which is lazy-loaded when the former is called.
+
+For setting up LaTeX see [`texPreview`'s System Requirements](https://github.com/yonicd/texPreview#functionality), and for specific OS setup check out its Github Actions like [this MacOS example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-mac.yml#L46).
+
 ```{r opts, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
 options(width=120)
 ```

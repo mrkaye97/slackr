@@ -6,14 +6,17 @@
 #' @param obj character object containing tex to compile
 #' @param channels list of channels to post image to
 #' @param ext character, type of format to return, can be tex, pdf, or any image device, Default: 'png'
-#' @param path character, path to save texPreview outputs, if NULL then tempdir is used, Default: NULL
+#' @param path character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL
 #' @param api_token the Slack full API token (chr)
-#' @param ... other arguments passed to \code{\link[texPreview]{texPreview}}
+#' @param ... other arguments passed to \code{\link[texPreview]{tex_preview}}, see Details
 #' @note You need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
-#'       Also, uou can pass in \code{add_user=TRUE} as part of the \code{...}
+#'       Also, you can pass in \code{add_user=TRUE} as part of the \code{...}
 #'       parameters and the Slack API will post the message as your logged-in user
 #'       account (this will override anything set in \code{username})
 #' @return \code{httr} response object (invisibly)
+#' @details Please make sure \code{texPreview} package is installed before running this function.
+#'          For TeX setup refer to the
+#'          \href{https://github.com/hrbrmstr/slackr#latex-for-tex_slackr}{installation notes}.
 #' @examples
 #' \dontrun{
 #' slackr_setup()
@@ -27,8 +30,7 @@
 #' tex_slackr(obj,path='testdir',print.xtable.opts=list(scalebox=getOption("xtable.scalebox", 0.8)))
 #' }
 #' @seealso
-#'  \code{\link[texPreview]{texPreview}} \code{\link[xtable]{print.xtable}}
-#' @importFrom texPreview texPreview
+#'  \code{\link[texPreview]{tex_preview}} \code{\link[xtable]{print.xtable}}
 #' @author Jonathan Sidi [aut]
 #' @export
 tex_slackr <- function(obj,
@@ -37,6 +39,9 @@ tex_slackr <- function(obj,
                      ext='png',
                      path=NULL,
                      ...) {
+
+  # check if texPreview is installed, if not provide feedback
+  check_tex_pkg()
 
   loc <- Sys.getlocale('LC_CTYPE')
   Sys.setlocale('LC_CTYPE','C')
@@ -50,7 +55,7 @@ tex_slackr <- function(obj,
 
   if(!dir.exists(td)) dir.create(td)
 
-  texPreview::texPreview(
+  texPreview::tex_preview(
     obj = obj,
     stem = 'slack',
     fileDir = td,
@@ -72,4 +77,20 @@ tex_slackr <- function(obj,
 
   invisible(res)
 
+}
+
+
+
+#' @description Install or load texPreview package,
+#'   inspired by the \code{parsnip} package
+#'
+check_tex_pkg <- function() {
+  is_installed <- try(
+    suppressPackageStartupMessages(
+      requireNamespace('texPreview', quietly = TRUE)),
+    silent = TRUE)
+
+  if (!is_installed) {
+    stop('texPreview package is not installed, run ?tex_slackr and see Details.', call. = FALSE)
+  }
 }
