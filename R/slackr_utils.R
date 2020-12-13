@@ -15,8 +15,13 @@
 slackr_chtrans <- function(channels, bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
   chan <- slackr::slackr_channels(bot_user_oauth_token)
+  if (nrow(chan) == 0) {
+    stop("slackr is not seeing any channels in your workspace. Are you sure you have the right scopes enabled? See the readme for details.")
+  }
   users <- slackr::slackr_ims(bot_user_oauth_token)
-
+  if (nrow(chan) == 0) {
+    stop("slackr is not seeing any users in your workspace. Are you sure you have the right scopes enabled? See the ReadMe for details.")
+  }
   chan$name <- sprintf("#%s", chan$name)
   users$name <- sprintf("@%s", users$name)
 
@@ -93,5 +98,9 @@ slackr_ims <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOK
   tmp <- httr::POST("https://slack.com/api/conversations.list?types=im", body=list(token=bot_user_oauth_token))
   ims <- jsonlite::fromJSON(httr::content(tmp, as="text"))$channels
   users <- slackr_users(bot_user_oauth_token)
+
+  if ((nrow(ims) == 0) | (nrow(users) == 0)) {
+    stop("slackr is not seeing any users in your workspace. Are you sure you have the right scopes enabled? See the readme for details.")
+  }
   dplyr::left_join(users, ims, by="id")
 }
