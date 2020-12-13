@@ -184,29 +184,21 @@ example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-ma
     library(slackr)
     library(testthat)
     #> Warning: package 'testthat' was built under R version 4.0.2
+    slackr_setup()
 
     date()
-    #> [1] "Sun Dec 13 09:14:03 2020"
+    #> [1] "Sun Dec 13 09:47:36 2020"
 
     devtools::test()
     #> Loading slackr
     #> Testing slackr
     #> ✓ |  OK F W S | Context
-    #> ⠏ |   0       | slackr                                                                                                  ⠏ |   0       | slackr                                                                                                  x |   0 1     | slackr
-    #> ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-    #> FAILURE (test_slackr.R:6:3): non-syntactic grouping variable is preserved (#1138)
-    #> `testresult` not equal to NULL.
-    #> Modes: character, NULL
-    #> Lengths: 1, 0
-    #> Attributes: < Modes: list, NULL >
-    #> Attributes: < Lengths: 2, 0 >
-    #> Attributes: < names for target but not for current >
-    #> Attributes: < current is not list-like >
-    #> target is try-error, current is NULL
-    #> ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+    #> ⠏ |   0       | slackr                                                                                                  ⠏ |   0       | slackr                                                                                                  ⠋ |   1       | slackr                                                                                                  ✓ |   1       | slackr [0.5 s]
     #> 
     #> ══ Results ═════════════════════════════════════════════════════════════════════════════════════════════════════════════
-    #> [ FAIL 1 | WARN 0 | SKIP 0 | PASS 0 ]
+    #> Duration: 0.5 s
+    #> 
+    #> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
 
 ### Onexit Usage
 
