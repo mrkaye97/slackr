@@ -28,6 +28,7 @@ Version 2.0.0+ is updated to work with the new Slack API structure!
 
 ## News
 
+- Version `2.0.1` adds documentation and suggested fixes to common bugs
 - Version `2.0.0` fixes broken package because of changes to the Slack API
 - Version `1.4.2` fixes for changes to the Slack API causing duplicate column names and breaking functions
 - Version `1.4.0.9000` new `slackr_msg()` + many fixes and BREAKING CHANGES (see above)

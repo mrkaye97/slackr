@@ -29,6 +29,8 @@ Version 2.0.0+ is updated to work with the new Slack API structure!
 News
 ----
 
+-   Version `2.0.1` adds documentation and suggested fixes to common
+    bugs
 -   Version `2.0.0` fixes broken package because of changes to the Slack
     API
 -   Version `1.4.2` fixes for changes to the Slack API causing duplicate
@@ -184,7 +186,7 @@ example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-ma
     #> Warning: package 'testthat' was built under R version 4.0.2
 
     date()
-    #> [1] "Sat Dec 12 23:39:22 2020"
+    #> [1] "Sun Dec 13 09:14:03 2020"
 
     devtools::test()
     #> Loading slackr
@@ -205,8 +207,6 @@ example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-ma
     #> 
     #> ══ Results ═════════════════════════════════════════════════════════════════════════════════════════════════════════════
     #> [ FAIL 1 | WARN 0 | SKIP 0 | PASS 0 ]
-    #> 
-    #> Frustration is a natural part of programming :)
 
 ### Onexit Usage
 
