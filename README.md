@@ -118,6 +118,16 @@ You will need to have the following Bot Token Scopes enabled: \*
 
 Without these scopes, only certain functions will work.
 
+### Private Channels
+
+In some cases, it seems that the Slack API is not seeing private
+channels, and `slackr` fails as a result. If you are getting errors
+about not being able to find a channel, try making the channel public.
+You can test whether or not `slackr` will be able to see your channel by
+going [to this Slack API tester
+page](https://api.slack.com/methods/conversations.list/test), putting in
+your credentials, and seeing if your channel shows up.
+
 ### LaTeX for `tex_slackr`
 
 The new function `tex_slackr` in versions `2.0.0+` requires package
@@ -167,7 +177,7 @@ example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-ma
     #> Warning: package 'testthat' was built under R version 4.0.2
 
     date()
-    #> [1] "Sat Dec 12 23:25:57 2020"
+    #> [1] "Sat Dec 12 23:35:20 2020"
 
     devtools::test()
     #> Loading slackr
