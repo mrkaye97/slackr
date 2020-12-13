@@ -157,29 +157,21 @@ ggslackr(qplot(mpg, wt, data=mtcars))
 ``` r
 library(slackr)
 library(testthat)
+slackrSetup()
 
 date()
-#> [1] "Wed Dec 02 20:00:31 2020"
+#> [1] "Sun Dec 13 14:35:31 2020"
 
 devtools::test()
 #> Loading slackr
 #> Testing slackr
 #> v |  OK F W S | Context
-#> / |   0       | slackr                                                                                                  / |   0       | slackr                                                                                                  x |   0 1     | slackr
-#> ------------------------------------------------------------------------------------------------------------------------
-#> FAILURE (test_slackr.R:6:3): non-syntactic grouping variable is preserved (#1138)
-#> `testresult` not equal to NULL.
-#> Modes: character, NULL
-#> Lengths: 1, 0
-#> Attributes: < Modes: list, NULL >
-#> Attributes: < Lengths: 2, 0 >
-#> Attributes: < names for target but not for current >
-#> Attributes: < current is not list-like >
-#> target is try-error, current is NULL
-#> ------------------------------------------------------------------------------------------------------------------------
+#> / |   0       | slackr                                                                                                  / |   0       | slackr                                                                                                  - |   1       | slackr                                                                                                  v |   1       | slackr [0.7 s]
 #> 
 #> == Results =============================================================================================================
-#> [ FAIL 1 | WARN 0 | SKIP 0 | PASS 0 ]
+#> Duration: 0.7 s
+#> 
+#> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
 ```
 
 ### Onexit Usage
