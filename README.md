@@ -113,12 +113,19 @@ integration creation time) with `icon_emoji`.
 
 ### Scopes
 
-You will need to have the following Bot Token Scopes enabled: \*
-`channels:read` \* `users:read` \* `files:read` \* `chat:write` \*
-`chat:write.customize` \* `chat:write.public` \* `im:write` \*
-`incoming-webhook`
+You will need to have the following Bot Token Scopes enabled:
 
-Without these scopes, only certain functions will work.
+-   `channels:read`
+-   `users:read`
+-   `files:read`
+-   `chat:write`
+-   `chat:write.customize`
+-   `chat:write.public`
+-   `im:write`
+-   `incoming-webhook`
+
+Without these scopes, only certain functions will work. Which ones
+depends on which scopes you have enabled.
 
 ### Private Channels
 
@@ -179,6 +186,7 @@ example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-ma
     throw an error, but also not post anything to your channel). If this
     happens, try explicitly adding the `slackr` app to your channel in
     your Slack workspace.
+-   Private channels are not seen by `slackr` in some cases.
 
 ### Test Results
 
@@ -189,20 +197,18 @@ example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-ma
     slackrSetup()
 
     date()
-    #> [1] "Sun Dec 13 10:03:50 2020"
+    #> [1] "Sun Dec 13 17:37:39 2020"
 
     devtools::test()
     #> Loading slackr
     #> Testing slackr
     #> ✓ |  OK F W S | Context
-    #> ⠏ |   0       | slackr                                                                                                  ⠏ |   0       | slackr                                                                                                  ⠋ |   1       | slackr                                                                                                  ✓ |   1       | slackr [0.5 s]
+    #> ⠏ |   0       | slackr                                                                                                  ⠏ |   0       | slackr                                                                                                  ⠋ |   1       | slackr                                                                                                  ✓ |   1       | slackr [0.6 s]
     #> 
     #> ══ Results ═════════════════════════════════════════════════════════════════════════════════════════════════════════════
-    #> Duration: 0.5 s
+    #> Duration: 0.7 s
     #> 
     #> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
-    #> 
-    #> 🧿 Your tests look perfect 🧿
 
 ### Onexit Usage
 
