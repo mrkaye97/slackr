@@ -21,12 +21,16 @@ teammates at the same time with little effort. You can also send images
 from the current graphics device, R objects (as R data files), and
 upload files.
 
-### BREAKING CHANGES
+BREAKING CHANGES
+----------------
 
 Version 2.0.0+ is updated to work with the new Slack API structure!
 
-### News
+News
+----
 
+-   Version `2.0.1` adds documentation and suggested fixes to common
+    bugs
 -   Version `2.0.0` fixes broken package because of changes to the Slack
     API
 -   Version `1.4.2` fixes for changes to the Slack API causing duplicate
@@ -63,6 +67,8 @@ Many thanks to:
 -   [Ed Niles](https://github.com/eniles)
 -   [Rick Saporta](https://github.com/rsaporta)
 -   [Jonathan Sidi](https://github.com/yonicd)
+-   [Matt Kaye](https://github.com/mrkaye97)
+-   [Xinye Li](https://github.com/xinye1)
 
 for their contributions to the package!
 
@@ -79,14 +85,14 @@ The following functions are implemented:
 -   `slackr_upload` : upload any file to Slack
 -   `slackr_users` : get a data frame of Slack
 -   `slackr_channels` : get a data frame of Slack
--   `slackr_groups` : get a data frame of Slack groups
 -   `text_slackr` : Send regular or preformatted messages to Slack
 -   `slackr_msg` : Slightly different version of `text_slackr()`
 -   `register_onexit`: Append an `on.exit` call to R functions (can be
     used with other package functions) and its output will be sent to a
     Slack channel.
 
-### SETUP
+Setup
+-----
 
 The `slackr_setup()` function will try to read setup values from a
 `~/.slackr` (you can change the default) configuration file, which may
@@ -105,6 +111,36 @@ configuration file:
 You can also change the default emoji icon (from the one you setup at
 integration creation time) with `icon_emoji`.
 
+### Scopes
+
+You will need to have the following Bot Token Scopes enabled: \*
+`channels:read` \* `users:read` \* `files:read` \* `chat:write` \*
+`chat:write.customize` \* `chat:write.public` \* `im:write` \*
+`incoming-webhook`
+
+Without these scopes, only certain functions will work.
+
+### Private Channels
+
+In some cases, it seems that the Slack API is not seeing private
+channels, and `slackr` fails as a result. If you are getting errors
+about not being able to find a channel, try making the channel public.
+You can test whether or not `slackr` will be able to see your channel by
+going [to this Slack API tester
+page](https://api.slack.com/methods/conversations.list/test), putting in
+your credentials, and seeing if your channel shows up.
+
+### LaTeX for `tex_slackr`
+
+The new function `tex_slackr` in versions `2.0.0+` requires package
+[`texPreview`](https://github.com/yonicd/texPreview) which is
+lazy-loaded when the former is called.
+
+For setting up LaTeX see [`texPreview`’s System
+Requirements](https://github.com/yonicd/texPreview#functionality), and
+for specific OS setup check out its Github Actions like [this MacOS
+example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-mac.yml#L46).
+
 ### Installation
 
     # original / no longer maintained
@@ -119,10 +155,11 @@ integration creation time) with `icon_emoji`.
 
     # current verison
     packageVersion("slackr")
-    #> [1] '2.0.0'
+    #> [1] '2.0.1'
 
-    slackrSetup(channel="#code", 
-                incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX")
+    slackrSetup(channel="#channel", 
+                incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX",
+                bot_user_oauth_token='token')
 
     slackr(str(iris))
 
@@ -136,25 +173,36 @@ integration creation time) with `icon_emoji`.
 
     ggslackr(qplot(mpg, wt, data=mtcars))
 
+### Known Issues
+
+-   Depending on your scopes, `slackr` could quietly fail (i.e. not
+    throw an error, but also not post anything to your channel). If this
+    happens, try explicitly adding the `slackr` app to your channel in
+    your Slack workspace.
+
 ### Test Results
 
     library(slackr)
     library(testthat)
     #> Warning: package 'testthat' was built under R version 4.0.2
 
+    slackrSetup()
+
     date()
-    #> [1] "Sat Nov 21 14:16:26 2020"
+    #> [1] "Sun Dec 13 10:03:50 2020"
 
     devtools::test()
     #> Loading slackr
     #> Testing slackr
     #> ✓ |  OK F W S | Context
-    #> ⠏ |   0       | slackr                                                                                                  ⠏ |   0       | slackr                                                                                                  ⠋ |   1       | slackr                                                                                                  ✓ |   1       | slackr [1.0 s]
+    #> ⠏ |   0       | slackr                                                                                                  ⠏ |   0       | slackr                                                                                                  ⠋ |   1       | slackr                                                                                                  ✓ |   1       | slackr [0.5 s]
     #> 
     #> ══ Results ═════════════════════════════════════════════════════════════════════════════════════════════════════════════
-    #> Duration: 1.0 s
+    #> Duration: 0.5 s
     #> 
     #> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
+    #> 
+    #> 🧿 Your tests look perfect 🧿
 
 ### Onexit Usage
 

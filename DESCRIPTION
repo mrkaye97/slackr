@@ -1,12 +1,12 @@
 Package: slackr
 Type: Package
 Title: Send Messages, Images, R Objects and Files to 'Slack' Channels/Users
-Version: 2.0.0
+Version: 2.0.1
 Date: 2020-11-21
 Author: Bob Rudis [aut, cre], Jay Jacobs [ctb], David Severski [ctb],
     Quinn Weber [ctb], Konrad Karczewski [ctb], Shinya Uryu [ctb],
     Gregory Jefferis [ctb], Ed Niles [ctb], Rick Saporta [ctb],
-    Jonathan Sidi [aut, ctb], Matt Kaye [ctb]
+    Jonathan Sidi [aut, ctb], Matt Kaye [ctb], Xinye Li [ctb]
 Maintainer: Matt Kaye <mrkaye97@gmail.com>
 Description: 'Slack' <https://slack.com/> provides a service for teams to
     collaborate by sharing messages, images, links, files and more. Functions are provided
@@ -20,7 +20,8 @@ URL: https://github.com/hrbrmstr/slackr
 BugReports: https://github.com/hrbrmstr/slackr/issues
 License: MIT + file LICENSE
 Suggests:
-    testthat
+    testthat,
+    texPreview
 Encoding: UTF-8
 Depends:
     R (>= 4.0.0)
@@ -32,6 +33,5 @@ Imports:
     methods,
     dplyr (>= 1.0.0),
     graphics,
-    grDevices,
-    texPreview
-RoxygenNote: 7.1.0
+    grDevices
+RoxygenNote: 7.1.1
