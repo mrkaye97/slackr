@@ -2,6 +2,8 @@
 .Rhistory
 .RData
 .Rproj
+.channel_cache
+.DS_Store
 src/*.o
 src/*.so
 src/*.dll

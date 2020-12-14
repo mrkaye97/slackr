@@ -4,8 +4,7 @@
 #' specified Slack channel.
 #'
 #' @param channels list of channels to post image to
-#' @param ... other arguments passed into png device
-#' @param api_token the Slack full API token (chr)
+#' @param bot_user_oauth_token the Slack full bot user OAuth token (chr)
 #' @param file prefix for filenames (defaults to \code{plot})
 #' @return \code{httr} response object from \code{POST} call
 #' @seealso \code{\link{slackrSetup}}, \code{\link{save.slackr}}, \code{\link{slackrUpload}}
@@ -30,7 +29,7 @@
 #' }
 #' @export
 dev_slackr <- function(channels=Sys.getenv("SLACK_CHANNEL"),
-                       api_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                       bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                        file="plot") {
 
   loc <- Sys.getlocale('LC_CTYPE')
@@ -41,10 +40,10 @@ dev_slackr <- function(channels=Sys.getenv("SLACK_CHANNEL"),
   dev.copy(png, file=ftmp)
   dev.off()
 
-  modchan <- slackrChTrans(channels, api_token)
+  modchan <- slackrChTrans(channels, bot_user_oauth_token)
 
   httr::POST(url="https://slack.com/api/files.upload",
              httr::add_headers(`Content-Type`="multipart/form-data"),
-             body=list( file=upload_file(ftmp), token=api_token, channels=modchan))
+             body=list( file=upload_file(ftmp), token=bot_user_oauth_token, channels=modchan))
 
 }

@@ -25,6 +25,7 @@
 #' @param config_file a configuration file (DCF) - see \link{read.dcf} - format
 #'        with the config values.
 #' @param echo display the configuration variables (bool) initially \code{FALSE}
+#' @param cacheChannels a boolean for whether or not you want to cache channels to limit API requests
 #' @note You need a \href{slack.com}{Slack} account and all your API URLs & tokens setup
 #'       to use this package.
 #' @seealso \code{\link{slackr}}, \code{\link{dev_slackr}}, \code{\link{save_slackr}},
@@ -49,7 +50,8 @@ slackr_setup <- function(channel="#general",
                          incoming_webhook_url="",
                          bot_user_oauth_token="",
                          config_file="~/.slackr",
-                         echo=FALSE) {
+                         echo=FALSE,
+                         cacheChannels = TRUE) {
 
   if (file.exists(config_file)) {
 
@@ -92,4 +94,9 @@ slackr_setup <- function(channel="#general",
                  pretty=TRUE))
   }
 
+  if (cacheChannels) {
+    slackr_createcache(Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"))
+  } else if (file.exists('.channel_cache')) {
+    unlink('.channel_cache')
+  }
 }

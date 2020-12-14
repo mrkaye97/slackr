@@ -60,7 +60,7 @@ register_onexit <- function(f,
                             channel = Sys.getenv("SLACK_CHANNEL"),
                             username = Sys.getenv("SLACK_USERNAME"),
                             icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-                            api_token = Sys.getenv("SLACK_API_TOKEN")){
+                            bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")){
 
   f.val <- deparse(match.call()[[2]])
 
@@ -76,12 +76,12 @@ register_onexit <- function(f,
   b[[length(b)]] <- substitute(on.exit({
 
     if(!is.null(header_msg))
-      slackr(header_msg,channel=channel,username=username,icon_emoji = icon_emoji, api_token = api_token)
+      slackr(header_msg,channel=channel,username=username,icon_emoji = icon_emoji, bot_user_oauth_token = bot_user_oauth_token)
 
-    slackr(...,channel=channel,username=username,icon_emoji = icon_emoji, api_token = api_token)
+    slackr(...,channel=channel,username=username,icon_emoji = icon_emoji, bot_user_oauth_token = bot_user_oauth_token)
 
     if(use_device&!is.null(dev.list()))
-      dev_slackr(channels=channel,api_token = api_token)
+      dev_slackr(channels=channel,bot_user_oauth_token = bot_user_oauth_token)
 
     },
     add = TRUE))

@@ -12,7 +12,8 @@ slackr_setup(
   incoming_webhook_url = "",
   bot_user_oauth_token = "",
   config_file = "~/.slackr",
-  echo = FALSE
+  echo = FALSE,
+  cacheChannels = TRUE
 )
 
 slackrSetup(
@@ -22,7 +23,8 @@ slackrSetup(
   incoming_webhook_url = "",
   bot_user_oauth_token = "",
   config_file = "~/.slackr",
-  echo = FALSE
+  echo = FALSE,
+  cacheChannels = TRUE
 )
 }
 \arguments{
@@ -41,6 +43,8 @@ left blank in config file as well)}
 with the config values.}
 
 \item{echo}{display the configuration variables (bool) initially \code{FALSE}}
+
+\item{cacheChannels}{a boolean for whether or not you want to cache channels to limit API requests}
 }
 \description{
 Initialize all the environment variables \code{\link{slackr}} will need to use to
