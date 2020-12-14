@@ -95,6 +95,8 @@ slackr_setup <- function(channel="#general",
   }
 
   if (cacheChannels) {
-    slackr:::slackr_createcache(Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"))
+    slackr_createcache(Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"))
+  } else if (file.exists('.channel_cache')) {
+    unlink('.channel_cache')
   }
 }

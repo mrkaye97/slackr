@@ -11,9 +11,6 @@ slackr_createcache(
 \arguments{
 \item{bot_user_oauth_token}{the Slack bot OAuth token (chr)}
 }
-\value{
-TRUE
-}
 \description{
 Create a cache of the users and channels in the workspace in order to limit API requests
 }

@@ -13,8 +13,10 @@
 #' @import dplyr
 #' @export
 slackr_chtrans <- function(channels, bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-  if (!exists("channel_cache")) {
-    channel_cache <- slackr:::slackr_census()
+  if (!file.exists(".channel_cache")) {
+    channel_cache <- slackr_census()
+  } else {
+    channel_cache <- read.csv('.channel_cache', sep=',')
   }
 
   chan_xref <- channel_cache[(channel_cache$name %in% channels ) | (channel_cache$real_name %in% channels), ]
@@ -31,11 +33,11 @@ slackr_chtrans <- function(channels, bot_user_oauth_token=Sys.getenv("SLACK_BOT_
 #' @rdname slackr_census
 #'
 slackr_census <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-  chan <- slackr::slackr_channels(bot_user_oauth_token)
+  chan <- slackr_channels(bot_user_oauth_token)
   if (nrow(chan) == 0) {
     stop("slackr is not seeing any channels in your workspace. Are you sure you have the right scopes enabled? See the readme for details.")
   }
-  users <- slackr::slackr_ims(bot_user_oauth_token)
+  users <- slackr_ims(bot_user_oauth_token)
   if (nrow(chan) == 0) {
     stop("slackr is not seeing any users in your workspace. Are you sure you have the right scopes enabled? See the ReadMe for details.")
   }
@@ -57,14 +59,14 @@ slackr_census <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_
 #' Create a cache of the users and channels in the workspace in order to limit API requests
 #'
 #' @param bot_user_oauth_token the Slack bot OAuth token (chr)
-#' @return TRUE
+#' @return NULL
 #' @rdname slackr_createcache
 #'
 slackr_createcache <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
   census <- slackr_census(bot_user_oauth_token)
-  assign(x = "channel_cache", value = census, envir = .GlobalEnv)
+  write.table(census, file = '.channel_cache', sep = ',', row.names = FALSE, append = FALSE)
 
-  return(TRUE)
+  return("Channel cache located in working directory, named .channel_cache")
 }
 
 #' Get a data frame of Slack users
