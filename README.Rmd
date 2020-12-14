@@ -89,6 +89,8 @@ You will need to have the following Bot Token Scopes enabled:
 * `channels:read`
 * `users:read`
 * `files:read`
+* `groups:read`
+* `groups:write`
 * `chat:write`
 * `chat:write.customize`
 * `chat:write.public`

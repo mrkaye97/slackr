@@ -118,6 +118,8 @@ You will need to have the following Bot Token Scopes enabled:
 -   `channels:read`
 -   `users:read`
 -   `files:read`
+-   `groups:read`
+-   `groups:write`
 -   `chat:write`
 -   `chat:write.customize`
 -   `chat:write.public`
@@ -197,16 +199,16 @@ example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-ma
     slackrSetup()
 
     date()
-    #> [1] "Sun Dec 13 17:37:39 2020"
+    #> [1] "Sun Dec 13 21:14:04 2020"
 
     devtools::test()
     #> Loading slackr
     #> Testing slackr
     #> ✓ |  OK F W S | Context
-    #> ⠏ |   0       | slackr                                                                                                  ⠏ |   0       | slackr                                                                                                  ⠋ |   1       | slackr                                                                                                  ✓ |   1       | slackr [0.6 s]
+    #> ⠏ |   0       | slackr                                                                                                  ⠏ |   0       | slackr                                                                                                  ⠋ |   1       | slackr                                                                                                  ✓ |   1       | slackr [2.0 s]
     #> 
     #> ══ Results ═════════════════════════════════════════════════════════════════════════════════════════════════════════════
-    #> Duration: 0.7 s
+    #> Duration: 2.0 s
     #> 
     #> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
 
