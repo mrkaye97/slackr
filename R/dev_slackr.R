@@ -4,7 +4,6 @@
 #' specified Slack channel.
 #'
 #' @param channels list of channels to post image to
-#' @param ... other arguments passed into png device
 #' @param bot_user_oauth_token the Slack full bot user OAuth token (chr)
 #' @param file prefix for filenames (defaults to \code{plot})
 #' @return \code{httr} response object from \code{POST} call
