@@ -18,13 +18,13 @@ tex_slackr(
 
 \item{channels}{list of channels to post image to}
 
+\item{bot_user_oauth_token}{the Slack full bot user OAuth token (chr)}
+
 \item{ext}{character, type of format to return, can be tex, pdf, or any image device, Default: 'png'}
 
 \item{path}{character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL}
 
 \item{...}{other arguments passed to \code{\link[texPreview]{tex_preview}}, see Details}
-
-\item{api_token}{the Slack full API token (chr)}
 }
 \value{
 \code{httr} response object (invisibly)

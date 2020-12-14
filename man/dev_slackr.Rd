@@ -20,11 +20,11 @@ dev.slackr(
 \arguments{
 \item{channels}{list of channels to post image to}
 
+\item{bot_user_oauth_token}{the Slack full bot user OAuth token (chr)}
+
 \item{file}{prefix for filenames (defaults to \code{plot})}
 
 \item{...}{other arguments passed into png device}
-
-\item{api_token}{the Slack full API token (chr)}
 }
 \value{
 \code{httr} response object from \code{POST} call

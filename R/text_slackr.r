@@ -9,7 +9,7 @@
 #'  Prepend direct messages with an @@
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
-#' @param api_token your full Slack API token
+#' @param bot_user_oauth_token your full Slack bot user OAuth token
 #' @return \code{httr} response object (invislbly)
 #' @author Quinn Weber [aut], Bob Rudis [ctb]
 #' @note You can pass in \code{as_user=TRUE} as part of the \code{...} parameters and the Slack API

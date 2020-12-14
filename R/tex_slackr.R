@@ -7,7 +7,7 @@
 #' @param channels list of channels to post image to
 #' @param ext character, type of format to return, can be tex, pdf, or any image device, Default: 'png'
 #' @param path character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL
-#' @param api_token the Slack full API token (chr)
+#' @param bot_user_oauth_token the Slack full bot user OAuth token (chr)
 #' @param ... other arguments passed to \code{\link[texPreview]{tex_preview}}, see Details
 #' @note You need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
 #'       Also, you can pass in \code{add_user=TRUE} as part of the \code{...}
