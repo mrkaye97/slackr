@@ -65,7 +65,7 @@ values there will be used. The fields should be specified as such in the file:
 }
 }
 \note{
-You need a \href{slack.com}{Slack} account and all your API URLs & tokens setup
+You need a \href{https://slack.com}{Slack} account and all your API URLs & tokens setup
       to use this package.
 }
 \examples{
