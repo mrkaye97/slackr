@@ -39,7 +39,7 @@ slackr_census <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_
   }
   users <- slackr_ims(bot_user_oauth_token)
   if (nrow(chan) == 0) {
-    stop("slackr is not seeing any users in your workspace. Are you sure you have the right scopes enabled? See the ReadMe for details.")
+    stop("slackr is not seeing any users in your workspace. Are you sure you have the right scopes enabled? See the readme for details.")
   }
   chan$name <- sprintf("#%s", chan$name)
   users$name <- sprintf("@%s", users$name)

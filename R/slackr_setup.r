@@ -26,7 +26,7 @@
 #'        with the config values.
 #' @param echo display the configuration variables (bool) initially \code{FALSE}
 #' @param cacheChannels a boolean for whether or not you want to cache channels to limit API requests
-#' @note You need a \href{slack.com}{Slack} account and all your API URLs & tokens setup
+#' @note You need a \href{https://slack.com}{Slack} account and all your API URLs & tokens setup
 #'       to use this package.
 #' @seealso \code{\link{slackr}}, \code{\link{dev_slackr}}, \code{\link{save_slackr}},
 #'          \code{\link{slackr_upload}}
