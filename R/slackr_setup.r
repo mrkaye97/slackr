@@ -66,7 +66,9 @@ slackr_setup <- function(channel="#general",
     Sys.setenv(SLACK_BOT_USER_OAUTH_TOKEN=config[,"bot_user_oauth_token"])
 
   } else {
-
+    if (bot_user_oauth_token == '') {
+      stop("No config file found. Please specify your Slack bot OAuth token\n   with the bot_user_oauth_token argument in slackr_setup().")
+    }
     Sys.setenv(SLACK_CHANNEL=channel)
     Sys.setenv(SLACK_USERNAME=username)
     Sys.setenv(SLACK_ICON_EMOJI=icon_emoji)
