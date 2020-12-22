@@ -124,6 +124,7 @@ You will need to have the following Bot Token Scopes enabled:
 -   `chat:write.customize`
 -   `chat:write.public`
 -   `im:write`
+-   `im:read`
 -   `incoming-webhook`
 
 Without these scopes, only certain functions will work. Which ones
