@@ -118,6 +118,7 @@ You will need to have the following Bot Token Scopes enabled:
 -   `channels:read`
 -   `users:read`
 -   `files:read`
+-   `files:write`
 -   `groups:read`
 -   `groups:write`
 -   `chat:write`
