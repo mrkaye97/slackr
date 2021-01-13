@@ -158,7 +158,7 @@ example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-ma
     install.packages("slackr")
 
     # 2.0.0+
-    devtools::install_github("mrkaye97/slackr")
+    devtools::install_github("hrbrmstr/slackr")
 
 ### Usage
 
