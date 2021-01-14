@@ -34,11 +34,11 @@ slackr_chtrans <- function(channels, bot_user_oauth_token=Sys.getenv("SLACK_BOT_
 #'
 slackr_census <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
   chan <- slackr_channels(bot_user_oauth_token)
-  if (nrow(chan) == 0) {
+  if (is.null(chan) || nrow(chan) == 0) {
     stop("slackr is not seeing any channels in your workspace. Are you sure you have the right scopes enabled? See the readme for details.")
   }
   users <- slackr_ims(bot_user_oauth_token)
-  if (nrow(chan) == 0) {
+  if (is.null(chan) || nrow(chan) == 0) {
     stop("slackr is not seeing any users in your workspace. Are you sure you have the right scopes enabled? See the readme for details.")
   }
   chan$name <- sprintf("#%s", chan$name)
@@ -88,6 +88,23 @@ slackr_users <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_T
   cbind.data.frame(members[,cols], members$profile, stringsAsFactors=FALSE)
 
 }
+
+stop_for_status <- function(r) {
+  httr::stop_for_status(r)
+  cr <- httr::content(r)
+
+  # A response code of 200 doesn't mean everything is ok, so check of the
+  # response is not ok
+  if (httr::status_code(r) == 200 && !is.null(cr$ok) && !cr$ok) {
+    warning(
+      "The slack API returned an error: ",
+      content(r)$error,
+      call. = FALSE,
+      immediate. = TRUE
+    )
+  }
+}
+
 
 #' Get a data frame of Slack channels
 #'
