@@ -21,10 +21,11 @@ BugReports: https://github.com/hrbrmstr/slackr/issues
 License: MIT + file LICENSE
 Suggests:
     testthat,
-    texPreview
+    texPreview,
+    covr
 Encoding: UTF-8
 Depends:
-    R (>= 4.0.0)
+    R (>= 3.3.0)
 Imports:
     httr (>= 1.4.2),
     jsonlite,
@@ -33,5 +34,6 @@ Imports:
     methods,
     dplyr (>= 1.0.0),
     graphics,
-    grDevices
+    grDevices,
+    xtable (>= 1.8.4)
 RoxygenNote: 7.1.1

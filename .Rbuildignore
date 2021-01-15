@@ -5,3 +5,5 @@
 ^\.travis\.yml$
 ^slackr\.png$
 ^cran-comments\.md$
+^codecov\.yml$
+^\.github$
