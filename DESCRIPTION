@@ -25,7 +25,7 @@ Suggests:
     covr
 Encoding: UTF-8
 Depends:
-    R (>= 3.6.0)
+    R (>= 3.3.0)
 Imports:
     httr (>= 1.4.2),
     jsonlite,
