@@ -99,6 +99,7 @@ slackr_users <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_T
 #' @return NULL
 #' @importFrom httr status_code content
 #' @keywords Internal
+#' @noRd
 #'
 stop_for_status <- function(r) {
   # note that httr::stop_for_status should be called explicitly
