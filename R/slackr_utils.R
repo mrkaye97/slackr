@@ -34,11 +34,11 @@ slackr_chtrans <- function(channels, bot_user_oauth_token=Sys.getenv("SLACK_BOT_
 #'
 slackr_census <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
   chan <- slackr_channels(bot_user_oauth_token)
-  if (nrow(chan) == 0) {
+  if (is.null(chan) || nrow(chan) == 0) {
     stop("slackr is not seeing any channels in your workspace. Are you sure you have the right scopes enabled? See the readme for details.")
   }
   users <- slackr_ims(bot_user_oauth_token)
-  if (nrow(chan) == 0) {
+  if (is.null(chan) || nrow(chan) == 0) {
     stop("slackr is not seeing any users in your workspace. Are you sure you have the right scopes enabled? See the readme for details.")
   }
   chan$name <- sprintf("#%s", chan$name)
@@ -89,6 +89,37 @@ slackr_users <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_T
 
 }
 
+
+#' Internal function to warn if Slack API call is not ok.
+#'
+#' The function is called for the side effect of warning when the API response has errors, and is a thin wrapper around httr::stop_for_status
+#'
+#' @param r The response from a call to the Slack API
+#'
+#' @return NULL
+#' @importFrom httr status_code content
+#' @keywords Internal
+#' @noRd
+#'
+stop_for_status <- function(r) {
+  # note that httr::stop_for_status should be called explicitly
+  httr::stop_for_status(r)
+  cr <- content(r)
+
+  # A response code of 200 doesn't mean everything is ok, so check if the
+  # response is not ok
+  if (status_code(r) == 200 && !is.null(cr$ok) && !cr$ok) {
+    warning(
+      "The slack API returned an error: ",
+      content(r)$error,
+      call. = FALSE,
+      immediate. = TRUE
+    )
+  }
+  invisible(NULL)
+}
+
+
 #' Get a data frame of Slack channels
 #'
 #' @param bot_user_oauth_token the Slack bot OAuth token (chr)
@@ -102,7 +133,7 @@ slackr_channels <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUT
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   tmp <- POST("https://slack.com/api/conversations.list?limit=500&types=public_channel,private_channel",
-              body=list(token=bot_user_oauth_token))
+              httr::add_headers(Authorization = bot_user_oauth_token))
   stop_for_status(tmp)
   jsonlite::fromJSON(content(tmp, as="text"))$channels
 
