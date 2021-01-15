@@ -21,7 +21,8 @@ BugReports: https://github.com/hrbrmstr/slackr/issues
 License: MIT + file LICENSE
 Suggests:
     testthat,
-    texPreview
+    texPreview,
+    covr
 Encoding: UTF-8
 Depends:
     R (>= 4.0.0)
