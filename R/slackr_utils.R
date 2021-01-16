@@ -133,7 +133,7 @@ slackr_channels <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUT
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   tmp <- POST("https://slack.com/api/conversations.list?limit=500&types=public_channel,private_channel",
-              httr::add_headers(Authorization = bot_user_oauth_token))
+              body=list(token=bot_user_oauth_token))
   stop_for_status(tmp)
   jsonlite::fromJSON(content(tmp, as="text"))$channels
 
