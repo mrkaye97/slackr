@@ -33,27 +33,38 @@ slackr_chtrans <- function(channels, bot_user_oauth_token=Sys.getenv("SLACK_BOT_
 #' @rdname slackr_census
 #'
 slackr_census <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+
+  msg <- "Are you sure you have the right scopes enabled? See the readme for details."
+
   chan <- slackr_channels(bot_user_oauth_token)
   if (is.null(chan) || nrow(chan) == 0) {
-    stop("slackr is not seeing any channels in your workspace. Are you sure you have the right scopes enabled? See the readme for details.")
+    stop("slackr is not seeing any channels in your workspace. ", msg)
   }
+
   users <- slackr_ims(bot_user_oauth_token)
   if (is.null(chan) || nrow(chan) == 0) {
-    stop("slackr is not seeing any users in your workspace. Are you sure you have the right scopes enabled? See the readme for details.")
+    stop("slackr is not seeing any users in your workspace. ", msg)
   }
+
   chan$name <- sprintf("#%s", chan$name)
   users$name <- sprintf("@%s", users$name)
 
-  chan_list <- data.frame(id=character(0), name=character(0), real_name=character(0))
+  chan_list <- tibble(
+    id        = character(0),
+    name      = character(0),
+    real_name = character(0)
+  )
 
-  if (length(chan) > 0) { chan_list <- dplyr::bind_rows(chan_list, chan[, c("id", "name")])  }
-  if (length(users) > 0) { chan_list <- dplyr::bind_rows(chan_list, users[, c("id", "name", "real_name")]) }
+  if (length(chan) > 0) {
+    chan_list <- dplyr::bind_rows(chan_list, chan[, c("id", "name")])
+  }
+  if (length(users) > 0) {
+    chan_list <- dplyr::bind_rows(chan_list, users[, c("id", "name", "real_name")])
+  }
 
-  chan_list <- dplyr::distinct(chan_list)
+  dplyr::distinct(chan_list) %>%
+    as_tibble(chan_list)
 
-  chan_list <- data.frame(chan_list, stringsAsFactors=FALSE)
-
-  return(chan_list)
 }
 
 #' Create a cache of the users and channels in the workspace in order to limit API requests
@@ -64,10 +75,19 @@ slackr_census <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_
 #'
 slackr_createcache <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
   census <- slackr_census(bot_user_oauth_token)
-  write.table(census, file = '.channel_cache', sep = ',', row.names = FALSE, append = FALSE)
+  file_name <- '.channel_cache'
+  write.table(
+    census,
+    file = file_name,
+    sep = ',',
+    row.names = FALSE,
+    append = FALSE
+  )
 
-  return("Channel cache located in working directory, named .channel_cache")
+  message("Channel cache located in working directory, named .channel_cache")
+  invisible(normalizePath(file_name))
 }
+
 
 #' Get a data frame of Slack users
 #'
@@ -77,22 +97,20 @@ slackr_createcache <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_O
 #' @export
 slackr_users <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
-  loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
-  on.exit(Sys.setlocale("LC_CTYPE", loc))
-
-  tmp <- httr::POST("https://slack.com/api/users.list", body=list(token=bot_user_oauth_token))
-  httr::stop_for_status(tmp)
-  members <- jsonlite::fromJSON(httr::content(tmp, as="text"))$members
+  members <- list_users()
   cols <- setdiff(colnames(members), c("profile", "real_name"))
-  cbind.data.frame(members[,cols], members$profile, stringsAsFactors=FALSE)
+  bind_cols(
+    members[, cols],
+    members$profile
+  )
 
 }
 
 
 #' Internal function to warn if Slack API call is not ok.
 #'
-#' The function is called for the side effect of warning when the API response has errors, and is a thin wrapper around httr::stop_for_status
+#' The function is called for the side effect of warning when the API response
+#' has errors, and is a thin wrapper around httr::stop_for_status
 #'
 #' @param r The response from a call to the Slack API
 #'
@@ -109,9 +127,17 @@ stop_for_status <- function(r) {
   # A response code of 200 doesn't mean everything is ok, so check if the
   # response is not ok
   if (status_code(r) == 200 && !is.null(cr$ok) && !cr$ok) {
+    error_msg <- cr$error
+    cr$ok <- NULL
+    cr$error <- NULL
+    additional_msg <- paste(
+      sapply(seq_along(cr), function(i)paste(names(cr)[i], ":=", unname(cr)[i])),
+      collapse = "\n"
+    )
     warning(
-      "The slack API returned an error: ",
-      content(r)$error,
+      "\n",
+      "The slack API returned an error: ", error_msg, "\n",
+      additional_msg,
       call. = FALSE,
       immediate. = TRUE
     )
@@ -126,16 +152,12 @@ stop_for_status <- function(r) {
 #' @return data.table of channels
 #' @rdname slackr_channels
 #' @export
-slackr_channels <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+slackr_channels <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
-  loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
-  on.exit(Sys.setlocale("LC_CTYPE", loc))
+  c1 <- list_channels(bot_user_oauth_token = bot_user_oauth_token, types = "public_channel")
+  c2 <- list_channels(bot_user_oauth_token = bot_user_oauth_token, types = "private_channel")
 
-  tmp <- POST("https://slack.com/api/conversations.list?limit=500&types=public_channel,private_channel",
-              httr::add_headers(Authorization = bot_user_oauth_token))
-  stop_for_status(tmp)
-  jsonlite::fromJSON(content(tmp, as="text"))$channels
+  bind_rows(c1, c2)
 
 }
 
@@ -153,9 +175,9 @@ slackr_ims <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOK
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-  tmp <- httr::POST("https://slack.com/api/conversations.list?types=im", body=list(token=bot_user_oauth_token))
-  ims <- jsonlite::fromJSON(httr::content(tmp, as="text"))$channels
-  users <- slackr_users(bot_user_oauth_token)
+  ims <- list_channels(bot_user_oauth_token = bot_user_oauth_token, types = "im")
+
+  users <- slackr_users(bot_user_oauth_token = bot_user_oauth_token)
 
   if ((nrow(ims) == 0) | (nrow(users) == 0)) {
     stop("slackr is not seeing any users in your workspace. Are you sure you have the right scopes enabled? See the readme for details.")

@@ -85,27 +85,29 @@ slackr_bot <- function(...,
       expr <- args[[i]]
 
       # do something, note all the newlines...Slack ``` needs them
-      tmp <- switch(mode(expr),
-                    # if it's actually an expresison, iterate over it
-                    expression = {
-                      cat(sprintf("> %s\n", deparse(expr)))
-                      lapply(expr, evalVis)
-                    },
-                    # if it's a call or a name, eval, printing run output as if in console
-                    call = ,
-                    name = {
-                      cat(sprintf("> %s\n", deparse(expr)))
-                      list(evalVis(expr))
-                    },
-                    # if pretty much anything else (i.e. a bare value) just output it
-                    integer = ,
-                    double = ,
-                    complex = ,
-                    raw = ,
-                    logical = ,
-                    numeric = cat(sprintf("%s\n\n", as.character(expr))),
-                    character = cat(sprintf("%s\n\n", expr)),
-                    stop("mode of argument not handled at present by slackr"))
+      tmp <- switch(
+        mode(expr),
+        # if it's actually an expression, iterate over it
+        expression = {
+          cat(sprintf("> %s\n", deparse(expr)))
+          lapply(expr, evalVis)
+        },
+        # if it's a call or a name, eval, printing run output as if in console
+        call = ,
+        name = {
+          cat(sprintf("> %s\n", deparse(expr)))
+          list(evalVis(expr))
+        },
+        # if pretty much anything else (i.e. a bare value) just output it
+        integer = ,
+        double = ,
+        complex = ,
+        raw = ,
+        logical = ,
+        numeric = cat(sprintf("%s\n\n", as.character(expr))),
+        character = cat(sprintf("%s\n\n", expr)),
+        stop("mode of argument not handled at present by slackr")
+      )
 
       for (item in tmp) if (item$visible) { print(item$value, quote = FALSE); cat("\n") }
     }
@@ -122,10 +124,19 @@ slackr_bot <- function(...,
     Sys.setlocale('LC_CTYPE','C')
     on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-    resp <- POST(url = incoming_webhook_url, encode = "form",
-                 add_headers(`Content-Type` = "application/x-www-form-urlencoded",
-                             Accept = "*/*"), body = URLencode(sprintf("payload={\"channel\": \"%s\", \"username\": \"%s\", \"text\": \"```%s```\"%s}",
-                                                                       channel, username, output, icon_emoji)))
+    resp <- POST(
+      url = incoming_webhook_url,
+      encode = "form",
+      add_headers(
+        `Content-Type` = "application/x-www-form-urlencoded",
+        Accept = "*/*"
+        ),
+      body = URLencode(
+        sprintf(
+          "payload={\"channel\": \"%s\", \"username\": \"%s\", \"text\": \"```%s```\"%s}",
+          channel, username, output, icon_emoji)
+        )
+      )
     warn_for_status(resp)
   }
   return(invisible())

@@ -55,9 +55,11 @@ slackr_setup <- function(channel="#general",
 
   if (file.exists(config_file)) {
 
-    config <- read.dcf(config_file,
-                       fields=c("channel", "icon_emoji",
-                                "username", "incoming_webhook_url", "bot_user_oauth_token"))
+    config <- read.dcf(
+      config_file,
+      fields=c("channel", "icon_emoji",
+               "username", "incoming_webhook_url", "bot_user_oauth_token")
+      )
 
     Sys.setenv(SLACK_CHANNEL=config[,"channel"])
     Sys.setenv(SLACK_USERNAME=config[,"username"])
@@ -101,4 +103,5 @@ slackr_setup <- function(channel="#general",
   } else if (file.exists('.channel_cache')) {
     unlink('.channel_cache')
   }
+  invisible(NULL)
 }

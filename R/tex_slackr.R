@@ -83,6 +83,7 @@ tex_slackr <- function(obj,
 
 #' @description Install or load texPreview package,
 #'   inspired by the \code{parsnip} package
+#' @noRd
 #'
 check_tex_pkg <- function() {
   is_installed <- try(
