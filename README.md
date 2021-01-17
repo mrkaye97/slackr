@@ -29,6 +29,7 @@ Version 2.0.0+ is updated to work with the new Slack API structure!
 News
 ----
 
+-   Version `2.0.2` adds a few more bug fixes and sets up CI with GH Actions
 -   Version `2.0.1` adds documentation and suggested fixes to common
     bugs
 -   Version `2.0.0` fixes broken package because of changes to the Slack
@@ -158,7 +159,7 @@ example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-ma
     install.packages("slackr")
 
     # 2.0.0+
-    devtools::install_github("mrkaye97/slackr")
+    devtools::install_github("hrbrmstr/slackr")
 
 ### Usage
 
