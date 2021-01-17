@@ -115,7 +115,7 @@ slackr <- function(...,
                            text=sprintf("```%s```", output),
                            link_names=1))
 
-    warn_for_status(resp)
+    stop_for_status(resp)
 
   }
 
@@ -172,15 +172,18 @@ slackr_msg <- function(txt="",
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-  resp <- POST(url="https://slack.com/api/chat.postMessage",
-               body=list(token=bot_user_oauth_token,
-                         channel=slackr_chtrans(channel),
-                         username=username,
-                         icon_emoji=icon_emoji,
-                         text=output,
-                         as_user=TRUE,
-                         link_names=1,
-                         ...))
+  resp <- POST(
+    url  = "https://slack.com/api/chat.postMessage",
+    body = list(
+      token      = bot_user_oauth_token,
+      channel    = slackr_chtrans(channel),
+      username   = username,
+      icon_emoji = icon_emoji,
+      text       = output,
+      as_user    = TRUE,
+      link_names = 1,
+      ...)
+    )
 
   warn_for_status(resp)
 

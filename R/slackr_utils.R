@@ -154,7 +154,10 @@ stop_for_status <- function(r) {
 #' @export
 slackr_channels <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
+  message("Reading public channels list")
   c1 <- list_channels(bot_user_oauth_token = bot_user_oauth_token, types = "public_channel")
+
+  message("Reading private channels list")
   c2 <- list_channels(bot_user_oauth_token = bot_user_oauth_token, types = "private_channel")
 
   bind_rows(c1, c2)
@@ -175,8 +178,10 @@ slackr_ims <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOK
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
+  message("Reading im channels list")
   ims <- list_channels(bot_user_oauth_token = bot_user_oauth_token, types = "im")
 
+  message("Reading users list")
   users <- slackr_users(bot_user_oauth_token = bot_user_oauth_token)
 
   if ((nrow(ims) == 0) | (nrow(users) == 0)) {

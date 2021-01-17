@@ -58,7 +58,7 @@ text_slackr <- function(text,
                          link_names=1,
                          ...))
 
-  warn_for_status(resp)
+  stop_for_status(resp)
 
   return(invisible(resp))
 
