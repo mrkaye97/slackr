@@ -3,14 +3,16 @@ POST <- "POST"
 
 call_slack_api <- function(path, ..., body = NULL, .method = c("GET", "POST"),
                            bot_user_oauth_token,
-                           .verbose = Sys.getenv("SLACKR_VERBOSE", FALSE)
+                           .verbose = Sys.getenv("SLACKR_VERBOSE", "FALSE")
 
 ) {
   if (missing(bot_user_oauth_token) || is.null(bot_user_oauth_token)) {
     bot_user_oauth_token <- Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN", "")
   }
   if (is.null(bot_user_oauth_token) || bot_user_oauth_token == "") {
-    warning("Provide a value for bot_user_oauth_token", immediate. = TRUE, call. = FALSE)
+    warning("Provide a value for bot_user_oauth_token",
+            immediate. = TRUE,
+            call. = FALSE)
   }
   url <- "https://slack.com"
   .method <- match.arg(.method)
@@ -32,15 +34,19 @@ call_slack_api <- function(path, ..., body = NULL, .method = c("GET", "POST"),
       httr::GET(
         url = url,
         path = path,
-        httr::add_headers(.headers = c(Authorization = paste("Bearer", bot_user_oauth_token))),
+        httr::add_headers(
+          .headers = c(Authorization = paste("Bearer", bot_user_oauth_token))
+        ),
         query = add_cursor_get(...)
-          # ...
+        # ...
       )
     } else if (.method == "POST") {
       httr::POST(
         url = url,
         path = path,
-        httr::add_headers(.headers = c(Authorization = paste("Bearer", bot_user_oauth_token))),
+        httr::add_headers(
+          .headers = c(Authorization = paste("Bearer", bot_user_oauth_token))
+        ),
         body = add_cursor_post(body)
       )
     }
@@ -98,6 +104,7 @@ with_pagination <- function(fun, extract) {
       message("Cursoring: ", gn)
       SLACK_CURSOR$value <<-  gn
       old_cursor <- gn
+      # Sys.sleep(0.1)
     }
     if (isTRUE(is.na(result))) {
       result <- r %>% convert_response_to_tibble(extract)
@@ -106,7 +113,6 @@ with_pagination <- function(fun, extract) {
         result, r %>% convert_response_to_tibble(extract)
       )
     }
-    Sys.sleep(0.5)
   }
   result
 }
