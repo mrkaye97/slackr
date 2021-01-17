@@ -1,9 +1,9 @@
 #' Lists all channels in a Slack team.
 #'
-#' @inheritParams list_channels
-#'
-#' @references https://api.slack.com/methods/conversations.list
+#' @inheritParams auth_test
 #' @keywords internal
+#' @noRd
+#' @references https://api.slack.com/methods/conversations.list
 list_channels <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"), types = "public_channel", ...) {
   with_pagination(
     function() {
@@ -21,7 +21,9 @@ list_channels <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUT
 
 #' Lists all users in a Slack team.
 #'
-#' @inheritParams list_channels
+#' @inheritParams auth_test
+#' @keywords internal
+#' @noRd
 #' @references https://api.slack.com/methods/users.list
 list_users <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"), ...) {
   with_pagination(
@@ -38,21 +40,35 @@ list_users <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_T
 
 #' Sends a message to a channel.
 #'
-#' @inheritParams list_channels
+#' @inheritParams auth_test
+#' @keywords internal
+#' @noRd
+#'
+#' @param txt Passed to `text` parameter of `chat.postMessage` API
+#' @param channel Passed to `channel` parameter of `chat.postMessage` API
+#' @param username Passed to `username` parameter of `chat.postMessage` API
+#' @param as_user Passed to `as_user` parameter of `chat.postMessage` API
+#' @param link_names Passed to `link_names` parameter of `chat.postMessage` API
+#'
 #' @references https://api.slack.com/methods/chat.postMessage
-post_message <- function(txt, channel, bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"), ...) {
-  with_pagination(
-    function() {
-      call_slack_api(
-        "/api/chat.postMessage",
-        .method = POST,
-        body = list(
-          text = txt,
-          channel = slackr_chtrans(channel),
-          as_user = TRUE
-        )
-      )
-    },
-    extract = "message"
+post_message <- function(
+  txt,
+  channel,
+  username = Sys.getenv("SLACK_USERNAME"),
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+  ...)
+{
+  call_slack_api(
+    "/api/chat.postMessage",
+    .method = POST,
+    body = list(
+      text = txt,
+      channel = slackr_chtrans(channel),
+      username   = username,
+      as_user = TRUE,
+      link_names = 1,
+      ...
+    )
   )
+  invisible(NULL)
 }
