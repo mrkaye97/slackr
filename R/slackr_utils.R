@@ -14,7 +14,7 @@
 #' @export
 slackr_chtrans <- function(channels, bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
   if (!file.exists(".channel_cache")) {
-    channel_cache <- slackr_census()
+    channel_cache <- slackr_census(bot_user_oauth_token)
   } else {
     channel_cache <- read.csv('.channel_cache', sep=',')
   }
