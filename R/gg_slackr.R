@@ -27,41 +27,46 @@
 #' ggslackr(qplot(mpg, wt, data=mtcars))
 #' }
 #' @export
-ggslackr <- function(plot=last_plot(),
-                     channels=Sys.getenv("SLACK_CHANNEL"),
-                     scale=1,
-                     width=par("din")[1],
-                     height=par("din")[2],
-                     units=c("in", "cm", "mm"),
-                     dpi=300,
-                     limitsize=TRUE,
-                     bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
-                     file="ggplot",
-                     ...) {
+ggslackr <- function(
+  plot = last_plot(),
+  channels = Sys.getenv("SLACK_CHANNEL"),
+  scale = 1,
+  width = par("din")[1],
+  height = par("din")[2],
+  units = c("in", "cm", "mm"),
+  dpi = 300,
+  limitsize = TRUE,
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+  file = "ggplot",
+  ...
+) {
 
   loc <- Sys.getlocale('LC_CTYPE')
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   ftmp <- tempfile(file, fileext=".png")
-  ggsave(filename=ftmp,
-         plot=plot,
-         scale=scale,
-         width=width,
-         height=height,
-         units=units,
-         dpi=dpi,
-         limitsize=limitsize,
-         ... = ...)
+  ggsave(
+    filename  = ftmp,
+    plot      = plot,
+    scale     = scale,
+    width     = width,
+    height    = height,
+    units     = units,
+    dpi       = dpi,
+    limitsize = limitsize,
+    ...       = ...
+  )
 
   modchan <- slackr_chtrans(channels)
 
-  res <- POST(url="https://slack.com/api/files.upload",
-              add_headers(`Content-Type`="multipart/form-data"),
-              body=list(file=upload_file(ftmp),
-                        token=bot_user_oauth_token,
-                        channels=modchan))
+  res <-
+    files_upload(
+      file = ftmp,
+      channel = modchan,
+      bot_user_oauth_token = bot_user_oauth_token
+      )
 
-  invisible(res)
+  invisible(content(res))
 
 }
