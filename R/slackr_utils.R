@@ -19,11 +19,16 @@ slackr_chtrans <- function(channels, bot_user_oauth_token=Sys.getenv("SLACK_BOT_
     channel_cache <- read.csv('.channel_cache', sep=',')
   }
 
-  chan_xref <- channel_cache[(channel_cache$name %in% channels ) | (channel_cache$real_name %in% channels), ]
+  chan_xref <-
+    channel_cache[(channel_cache$name        %in% channels ) |
+                    (channel_cache$real_name %in% channels) |
+                    (channel_cache$id        %in% channels), ]
 
-  ifelse(is.na(chan_xref$id),
-         as.character(chan_xref$name),
-         as.character(chan_xref$id))
+  ifelse(
+    is.na(chan_xref$id),
+    as.character(chan_xref$name),
+    as.character(chan_xref$id)
+  )
 }
 
 #' Create a cache of the users and channels in the workspace in order to limit API requests
