@@ -58,7 +58,8 @@ post_message <- function(
   bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
   ...)
 {
-  call_slack_api(
+  z <-
+    call_slack_api(
     "/api/chat.postMessage",
     .method = POST,
     body = list(
@@ -70,5 +71,80 @@ post_message <- function(
       ...
     )
   )
-  invisible(NULL)
+  invisible(content(z))
 }
+
+
+#' Sends a message to a channel.
+#'
+#' @inheritParams auth_test
+#' @keywords internal
+#' @noRd
+#'
+#' @param txt Passed to `text` parameter of `chat.postMessage` API
+#' @param channel Passed to `channel` parameter of `chat.postMessage` API
+#' @param username Passed to `username` parameter of `chat.postMessage` API
+#' @param as_user Passed to `as_user` parameter of `chat.postMessage` API
+#' @param link_names Passed to `link_names` parameter of `chat.postMessage` API
+#'
+#' @references https://api.slack.com/methods/chat.postMessage
+post_message <- function(
+  txt,
+  channel,
+  username = Sys.getenv("SLACK_USERNAME"),
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+  ...)
+{
+  z <- call_slack_api(
+    "/api/chat.postMessage",
+    .method = POST,
+    body = list(
+      text = txt,
+      channel = slackr_chtrans(channel),
+      username   = username,
+      as_user = TRUE,
+      link_names = 1,
+      ...
+    )
+  )
+  invisible(content(z))
+}
+
+
+#' Uploads or creates a file.
+#'
+#' This needs the scope `files:write:user`
+#'
+#' @inheritParams auth_test
+#' @inheritParams post_message
+#'
+#' @param file Name of file to upload
+#'
+#' @keywords internal
+#' @noRd
+#'
+#'
+#' @references https://api.slack.com/methods/files.upload
+files_upload <- function(
+  file,
+  channel,
+  txt = "",
+  username = Sys.getenv("SLACK_USERNAME"),
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+  ...)
+{
+  z <- call_slack_api(
+    "/api/files.upload",
+    .method = POST,
+    body = list(
+      file            = httr::upload_file(file),
+      initial_comment = txt,
+      channels        = slackr_chtrans(channel),
+      username        = username,
+      ...
+    )
+  )
+  invisible(content(z))
+}
+
+
