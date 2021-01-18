@@ -22,5 +22,5 @@ Get a data frame of Slack IM ids
 \url{https://github.com/hrbrmstr/slackr/pull/13}
 }
 \author{
-Quinn Weber [aut], Bob Rudis [ctb]
+Quinn Weber (aut), Bob Rudis (ctb)
 }

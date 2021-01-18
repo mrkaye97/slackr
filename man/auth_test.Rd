@@ -7,7 +7,7 @@
 auth_test(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"))
 }
 \arguments{
-\item{bot_user_oauth_token}{The Slack bot OAuth token <character vector>}
+\item{bot_user_oauth_token}{The Slack bot OAuth token {character vector}}
 }
 \description{
 Checks authentication & identity against the Slack API.

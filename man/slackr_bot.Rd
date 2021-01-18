@@ -31,7 +31,7 @@ slackrBot(
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
 
 \item{incoming_webhook_url}{which \code{slack.com} API endpoint URL to use
-(see section \bold{Webhook URLs} for details)}
+(see section \strong{Webhook URLs} for details)}
 }
 \description{
 Takes an \code{expr}, evaluates it and sends the output to a Slack
@@ -41,22 +41,22 @@ compute tasks or general information sharing.
 \details{
 By default, everyting but \code{expr} will be looked for in a "\code{SLACK_}"
 environment variable. You can override or just specify these values directly
-instead, but it's probably better to call \code{\link{slackr_setup}} first.
+instead, but it's probably better to call \code{\link[=slackr_setup]{slackr_setup()}} first.
 
 This function uses the incoming webhook API. The webhook will have a default
 channel, username, icon etc, but these can be overridden.
 }
 \note{
 You need a \url{https://www.slack.com} account and will also need to
-  setup an incoming webhook: \url{https://api.slack.com/}. Old style webhooks are
-  no longer supported.
+setup an incoming webhook: \url{https://api.slack.com/}. Old style webhooks are
+no longer supported.
 }
 \section{Webhook URLs}{
  Webhook URLs look like: \itemize{
 
-  \item \code{https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX}
+\item \verb{https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX}
 
-  }
+}
 
 OLD STYLE WEBHOOKS ARE NO LONGER SUPPORTED
 }
@@ -72,7 +72,7 @@ slackr_bot("Test message", username="slackr", channel="#random",
 }
 }
 \seealso{
-\code{\link{slackrSetup}}, \code{\link{slackr}},
-  \code{\link{dev_slackr}}, \code{\link{save_slackr}},
-  \code{\link{slackr_upload}}
+\code{\link[=slackrSetup]{slackrSetup()}}, \code{\link[=slackr]{slackr()}},
+\code{\link[=dev_slackr]{dev_slackr()}}, \code{\link[=save_slackr]{save_slackr()}},
+\code{\link[=slackr_upload]{slackr_upload()}}
 }

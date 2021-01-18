@@ -3,23 +3,23 @@
 #' Mega thanks to:
 #'
 #' \itemize{
-#'   \item \href{https://github.com/jayjacobs}{Jay Jacobs}
-#'   \item \href{https://github.com/davidski}{David Severski}
-#'   \item \href{https://github.com/qsweber}{Quinn Weber}
-#'   \item \href{https://github.com/konradjk}{Konrad Karczewski}
-#'   \item \href{https://github.com/eniles}{Ed Niles}
-#'   \item \href{https://github.com/rsaporta}{Rick Saporta}
+#'   \item [Jay Jacobs](https://github.com/jayjacobs)
+#'   \item [David Severski](https://github.com/davidski)
+#'   \item [Quinn Weber](https://github.com/qsweber)
+#'   \item [Konrad Karczewski](https://github.com/konradjk)
+#'   \item [Ed Niles](https://github.com/eniles)
+#'   \item [Rick Saporta](https://github.com/rsaporta)
 #' }
 #'
 #' for their contributions to the package!
 #'
 #' Check out:
 #' \itemize{
-#'   \item the \link{slackr} function to send messages,
-#'   \item the \link{dev_slackr} function to send images (copies from current graphics device)
-#'   \item the \link{ggslackr} function to send ggplot objects (without plotting to a device first)
-#'   \item the \link{save_slackr} function to send R objects (as RData files)
-#'   \item the \link{slackr_upload} function to send files
+#'   \item the [slackr] function to send messages,
+#'   \item the [dev_slackr] function to send images (copies from current graphics device)
+#'   \item the [ggslackr] function to send ggplot objects (without plotting to a device first)
+#'   \item the [save_slackr] function to send R objects (as RData files)
+#'   \item the [slackr_upload] function to send files
 #' }
 #'
 #' @name slackr-package

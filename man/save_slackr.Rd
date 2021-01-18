@@ -38,8 +38,8 @@ to Slack and (optionally) post them to one or more channels
 }
 \note{
 You can pass in \code{add_user=TRUE} as part of the \code{...} parameters and the Slack API
-      will post the message as your logged-in user account (this will override anything set in
-      \code{username})
+will post the message as your logged-in user account (this will override anything set in
+\code{username})
 }
 \examples{
 \dontrun{
@@ -48,5 +48,5 @@ save_slackr(mtcars, channels="#slackr", file="mtcars")
 }
 }
 \seealso{
-\code{\link{slackr_setup}}, \code{\link{dev_slackr}}, \code{\link{slackr_upload}}
+\code{\link[=slackr_setup]{slackr_setup()}}, \code{\link[=dev_slackr]{dev_slackr()}}, \code{\link[=slackr_upload]{slackr_upload()}}
 }

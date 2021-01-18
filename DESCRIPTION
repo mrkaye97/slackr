@@ -37,3 +37,4 @@ Imports:
     grDevices,
     xtable (>= 1.8.4)
 RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE)

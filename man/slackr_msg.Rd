@@ -45,14 +45,14 @@ general information sharing.
 \details{
 By default, everything but \code{expr} will be looked for in a "\code{SLACK_}"
 environment variable. You can override or just specify these values directly instead,
-but it's probably better to call \code{\link{slackrSetup}} first.
+but it's probably better to call \code{\link[=slackrSetup]{slackrSetup()}} first.
 }
 \note{
 You need a \url{https://www.slack.com} account and will also need to
-      setup an API token \url{https://api.slack.com/}
-      Also, you can pass in \code{add_user=TRUE} as part of the \code{...}
-      parameters and the Slack API will post the message as your logged-in
-      user account (this will override anything set in \code{username})
+setup an API token \url{https://api.slack.com/}
+Also, you can pass in \code{add_user=TRUE} as part of the \code{...}
+parameters and the Slack API will post the message as your logged-in
+user account (this will override anything set in \code{username})
 }
 \examples{
 \dontrun{
@@ -61,6 +61,6 @@ slackr_msg("Hi")
 }
 }
 \seealso{
-\code{\link{slackr_setup}}, \code{\link{slackr_bot}}, \code{\link{dev_slackr}},
-         \code{\link{save_slackr}}, \code{\link{slackr_upload}}
+\code{\link[=slackr_setup]{slackr_setup()}}, \code{\link[=slackr_bot]{slackr_bot()}}, \code{\link[=dev_slackr]{dev_slackr()}},
+\code{\link[=save_slackr]{save_slackr()}}, \code{\link[=slackr_upload]{slackr_upload()}}
 }

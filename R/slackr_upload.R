@@ -1,7 +1,7 @@
 #' Send a file to Slack
 #'
-#' \code{slackr_upload} enables you upload files to Slack and
-#' (optionally) post them to one or more channels (if \code{channels} is not empty).
+#' `slackr_upload` enables you upload files to Slack and
+#' (optionally) post them to one or more channels (if `channels` is not empty).
 #'
 #' @rdname slackr_upload
 #' @param filename path to file
@@ -9,10 +9,10 @@
 #' @param initial_comment comment for file on slack (optional - defaults to filename)
 #' @param channels Slack channels to save to (optional)
 #' @param bot_user_oauth_token Slack bot user OAuth token
-#' @return \code{httr} response object from \code{POST} call (invisibly)
-#' @author Quinn Weber [ctb], Bob Rudis [aut]
-#' @references \url{https://github.com/hrbrmstr/slackr/pull/15/files}
-#' @seealso \code{\link{slackr_setup}}, \code{\link{dev_slackr}}, \code{\link{save_slackr}}
+#' @return `httr` response object from `POST` call (invisibly)
+#' @author Quinn Weber (ctb), Bob Rudis (aut)
+#' @references <https://github.com/hrbrmstr/slackr/pull/15/files>
+#' @seealso [slackr_setup()], [dev_slackr()], [save_slackr()]
 #' @export
 slackr_upload <- function(filename, title=basename(filename),
                           initial_comment=basename(filename),

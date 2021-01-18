@@ -33,8 +33,8 @@ specified Slack channel.
 }
 \note{
 You can pass in \code{as_user=TRUE} as part of the \code{...} parameters and the Slack API
-      will post the message as your logged-in user account (this will override anything set in
-      \code{username}).
+will post the message as your logged-in user account (this will override anything set in
+\code{username}).
 }
 \examples{
 \dontrun{
@@ -54,8 +54,8 @@ dev_slackr("@jayjacobs")
 \url{https://github.com/hrbrmstr/slackr/pull/12/files}
 }
 \seealso{
-\code{\link{slackrSetup}}, \code{\link{save.slackr}}, \code{\link{slackrUpload}}
+\code{\link[=slackrSetup]{slackrSetup()}}, \code{\link[=save.slackr]{save.slackr()}}, \code{\link[=slackrUpload]{slackrUpload()}}
 }
 \author{
-Konrad Karczewski [ctb], Bob Rudis [aut]
+Konrad Karczewski (ctb), Bob Rudis (aut)
 }

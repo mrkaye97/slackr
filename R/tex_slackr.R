@@ -1,6 +1,6 @@
 #' Post a tex output to a Slack channel
 #'
-#' Unlike the \code{\link{dev_slackr}} function, this one takes a \code{tex} object,
+#' Unlike the [dev_slackr()] function, this one takes a `tex` object,
 #' eliminating the need write to pdf and convert to png to pass to slack.
 #'
 #' @param obj character object containing tex to compile
@@ -8,15 +8,15 @@
 #' @param ext character, type of format to return, can be tex, pdf, or any image device, Default: 'png'
 #' @param path character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL
 #' @param bot_user_oauth_token the Slack full bot user OAuth token (chr)
-#' @param ... other arguments passed to \code{\link[texPreview]{tex_preview}}, see Details
+#' @param ... other arguments passed to [texPreview::tex_preview()], see Details
 #' @note You need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
-#'       Also, you can pass in \code{add_user=TRUE} as part of the \code{...}
+#'       Also, you can pass in `add_user=TRUE` as part of the `...`
 #'       parameters and the Slack API will post the message as your logged-in user
-#'       account (this will override anything set in \code{username})
-#' @return \code{httr} response object (invisibly)
-#' @details Please make sure \code{texPreview} package is installed before running this function.
+#'       account (this will override anything set in `username`)
+#' @return `httr` response object (invisibly)
+#' @details Please make sure `texPreview` package is installed before running this function.
 #'          For TeX setup refer to the
-#'          \href{https://github.com/hrbrmstr/slackr#latex-for-tex_slackr}{Setup notes on \code{LaTeX}}.
+#'          [Setup notes on `LaTeX`](https://github.com/hrbrmstr/slackr#latex-for-tex_slackr).
 #' @examples
 #' \dontrun{
 #' slackr_setup()
@@ -30,8 +30,8 @@
 #' tex_slackr(obj,path='testdir',print.xtable.opts=list(scalebox=getOption("xtable.scalebox", 0.8)))
 #' }
 #' @seealso
-#'  \code{\link[texPreview]{tex_preview}} \code{\link[xtable]{print.xtable}}
-#' @author Jonathan Sidi [aut]
+#'  [texPreview::tex_preview()] [xtable::print.xtable()]
+#' @author Jonathan Sidi (aut)
 #' @export
 tex_slackr <- function(obj,
                      channels=Sys.getenv("SLACK_CHANNEL"),
@@ -82,7 +82,7 @@ tex_slackr <- function(obj,
 
 
 #' @description Install or load texPreview package,
-#'   inspired by the \code{parsnip} package
+#'   inspired by the `parsnip` package
 #' @noRd
 #'
 check_tex_pkg <- function() {

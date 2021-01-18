@@ -120,7 +120,7 @@ with_pagination <- function(fun, extract) {
 
 #' Checks authentication & identity against the Slack API.
 #'
-#' @param bot_user_oauth_token The Slack bot OAuth token <character vector>
+#' @param bot_user_oauth_token The Slack bot OAuth token {character vector}
 #'
 #' @references https://api.slack.com/methods/auth.test
 #' @export

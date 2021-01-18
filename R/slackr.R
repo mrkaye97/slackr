@@ -1,27 +1,27 @@
 #' Output R expressions to a Slack channel/user
 #'
-#' Takes an \code{expr}, evaluates it and sends the output to a Slack
+#' Takes an `expr`, evaluates it and sends the output to a Slack
 #' chat destination. Useful for logging, messaging on long compute tasks or
 #' general information sharing.
 #'
-#' By default, everything but \code{expr} will be looked for in a "\code{SLACK_}"
+#' By default, everything but `expr` will be looked for in a "`SLACK_`"
 #' environment variable. You can override or just specify these values directly instead,
-#' but it's probably better to call \code{\link{slackr_setup}} first.
+#' but it's probably better to call [slackr_setup()] first.
 #'
 #' @param ... expressions to be sent to Slack
 #' @param channel which channel to post the message to (chr)
 #' @param username what user should the bot be named as (chr)
-#' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
+#' @param icon_emoji what emoji to use (chr) `""` will mean use the default
 #' @param bot_user_oauth_token Slack bot user OAuth token
-#' @note You need a \url{https://www.slack.com} account and will also need to
-#'       setup an API token \url{https://api.slack.com/}
-#'       Also, you can pass in \code{as_user=TRUE}, the default, as part of the \code{...}
+#' @note You need a <https://www.slack.com> account and will also need to
+#'       setup an API token <https://api.slack.com/>
+#'       Also, you can pass in `as_user=TRUE`, the default, as part of the `...`
 #'       parameters and the Slack API will post the message as your logged-in
-#'       user account (this will override anything set in \code{username}).
-#'       Passing \code{as_user=FALSE}, results in the Slack API posting the
-#'       message as set in \code{username}
-#' @seealso \code{\link{slackr_setup}}, \code{\link{slackr_bot}}, \code{\link{dev_slackr}},
-#'          \code{\link{save_slackr}}, \code{\link{slackr_upload}}
+#'       user account (this will override anything set in `username`).
+#'       Passing `as_user=FALSE`, results in the Slack API posting the
+#'       message as set in `username`
+#' @seealso [slackr_setup()], [slackr_bot()], [dev_slackr()],
+#'          [save_slackr()], [slackr_upload()]
 #' @examples
 #' \dontrun{
 #' slackr_setup()
@@ -125,28 +125,28 @@ slackr <- function(...,
 
 #' Output R expressions to a Slack channel/user
 #'
-#' Takes an \code{expr}, evaluates it and sends the output to a Slack
+#' Takes an `expr`, evaluates it and sends the output to a Slack
 #' chat destination. Useful for logging, messaging on long compute tasks or
 #' general information sharing.
 #'
-#' By default, everything but \code{expr} will be looked for in a "\code{SLACK_}"
+#' By default, everything but `expr` will be looked for in a "`SLACK_`"
 #' environment variable. You can override or just specify these values directly instead,
-#' but it's probably better to call \code{\link{slackrSetup}} first.
+#' but it's probably better to call [slackrSetup()] first.
 #'
 #' @param txt text message to send to Slack. If a character vector of length > 1
 #'        is passed in, they will be combined and separated by newlines.
 #' @param channel which channel to post the message to (chr)
 #' @param username what user should the bot be named as (chr)
-#' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
+#' @param icon_emoji what emoji to use (chr) `""` will mean use the default
 #' @param bot_user_oauth_token Slack bot user OAuth token
-#' @param ... other arguments passed to the Slack API \code{chat.postMessage} call
-#' @note You need a \url{https://www.slack.com} account and will also need to
-#'       setup an API token \url{https://api.slack.com/}
-#'       Also, you can pass in \code{add_user=TRUE} as part of the \code{...}
+#' @param ... other arguments passed to the Slack API `chat.postMessage` call
+#' @note You need a <https://www.slack.com> account and will also need to
+#'       setup an API token <https://api.slack.com/>
+#'       Also, you can pass in `add_user=TRUE` as part of the `...`
 #'       parameters and the Slack API will post the message as your logged-in
-#'       user account (this will override anything set in \code{username})
-#' @seealso \code{\link{slackr_setup}}, \code{\link{slackr_bot}}, \code{\link{dev_slackr}},
-#'          \code{\link{save_slackr}}, \code{\link{slackr_upload}}
+#'       user account (this will override anything set in `username`)
+#' @seealso [slackr_setup()], [slackr_bot()], [dev_slackr()],
+#'          [save_slackr()], [slackr_upload()]
 #' @examples
 #' \dontrun{
 #' slackr_setup()

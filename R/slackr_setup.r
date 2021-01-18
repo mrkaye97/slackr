@@ -1,12 +1,12 @@
 #' Setup environment variables for Slack API access
 #'
-#' Initialize all the environment variables \code{\link{slackr}} will need to use to
+#' Initialize all the environment variables [slackr()] will need to use to
 #' work properly.
 #'
-#' By default, \code{\link{slackr}} (and other functions) will use the \code{#general}
-#' room and a username of \code{slackr()} with no emoji.
+#' By default, [slackr()] (and other functions) will use the `#general`
+#' room and a username of `slackr()` with no emoji.
 #'
-#' If a valid file is found at the locaiton pointed to by \code{config_file}, the
+#' If a valid file is found at the locaiton pointed to by `config_file`, the
 #' values there will be used. The fields should be specified as such in the file:
 #'
 #' \preformatted{
@@ -16,20 +16,20 @@
 #'  incoming_webhook_url: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX
 #' }
 #'
-#' @param channel default channel to send the output to (chr) defaults to \code{#general}
-#' @param username the username output will appear from (chr) defaults to \code{slackr}
+#' @param channel default channel to send the output to (chr) defaults to `#general`
+#' @param username the username output will appear from (chr) defaults to `slackr`
 #' @param icon_emoji which emoji picture to use (chr) defaults to none (can be
 #'        left blank in config file as well)
 #' @param incoming_webhook_url the Slack URL prefix to use (chr) defaults to none
 #' @param bot_user_oauth_token the Slack full bot user OAuth token (chr)
-#' @param config_file a configuration file (DCF) - see \link{read.dcf} - format
+#' @param config_file a configuration file (DCF) - see [read.dcf] - format
 #'        with the config values.
-#' @param echo display the configuration variables (bool) initially \code{FALSE}
+#' @param echo display the configuration variables (bool) initially `FALSE`
 #' @param cacheChannels a boolean for whether or not you want to cache channels to limit API requests
-#' @note You need a \href{https://slack.com}{Slack} account and all your API URLs & tokens setup
+#' @note You need a [Slack](https://slack.com) account and all your API URLs & tokens setup
 #'       to use this package.
-#' @seealso \code{\link{slackr}}, \code{\link{dev_slackr}}, \code{\link{save_slackr}},
-#'          \code{\link{slackr_upload}}
+#' @seealso [slackr()], [dev_slackr()], [save_slackr()],
+#'          [slackr_upload()]
 #' @rdname slackr_setup
 #' @examples
 #' \dontrun{

@@ -1,5 +1,5 @@
 #' Sends basic text to a slack channel. Calls the chat.postMessage method on the Slack Web API.
-#' Information on this method can be found here: \url{https://api.slack.com/methods/chat.postMessage}
+#' Information on this method can be found here: <https://api.slack.com/methods/chat.postMessage>
 #'
 #' @param text The character vector to be posted
 #' @param ... Optional arguments such as: as_user, parse, unfurl_links, etc.
@@ -8,15 +8,15 @@
 #'  Prepend channel names with a hashtag. Prepend private-groups with nothing.
 #'  Prepend direct messages with an @@
 #' @param username what user should the bot be named as (chr)
-#' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
+#' @param icon_emoji what emoji to use (chr) `""` will mean use the default
 #' @param bot_user_oauth_token your full Slack bot user OAuth token
-#' @return \code{httr} response object (invislbly)
-#' @author Quinn Weber [aut], Bob Rudis [ctb]
-#' @note You can pass in \code{as_user=TRUE} as part of the \code{...} parameters and the Slack API
+#' @return `httr` response object (invislbly)
+#' @author Quinn Weber (aut), Bob Rudis (ctb)
+#' @note You can pass in `as_user=TRUE` as part of the `...` parameters and the Slack API
 #'       will post the message as your logged-in user account (this will override anything set in
-#'       \code{username})
-#' @references \url{https://github.com/hrbrmstr/slackr/pull/11}
-#' @seealso \url{https://api.slack.com/methods/chat.postMessage}
+#'       `username`)
+#' @references <https://github.com/hrbrmstr/slackr/pull/11>
+#' @seealso <https://api.slack.com/methods/chat.postMessage>
 #' @rdname text_slackr
 #' @examples
 #' \dontrun{
