@@ -51,7 +51,7 @@ dev_slackr("@jayjacobs")
 }
 }
 \references{
-\url{https://github.com/hrbrmstr/slackr/pull/12/files}
+\url{https://github.com/mrkaye97/slackr/pull/12/files}
 }
 \seealso{
 \code{\link{slackrSetup}}, \code{\link{save.slackr}}, \code{\link{slackrUpload}}

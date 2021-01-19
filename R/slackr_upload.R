@@ -11,7 +11,7 @@
 #' @param bot_user_oauth_token Slack bot user OAuth token
 #' @return \code{httr} response object from \code{POST} call (invisibly)
 #' @author Quinn Weber [ctb], Bob Rudis [aut]
-#' @references \url{https://github.com/hrbrmstr/slackr/pull/15/files}
+#' @references \url{https://github.com/mrkaye97/slackr/pull/15/files}
 #' @seealso \code{\link{slackr_setup}}, \code{\link{dev_slackr}}, \code{\link{save_slackr}}
 #' @export
 slackr_upload <- function(filename, title=basename(filename),

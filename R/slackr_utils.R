@@ -144,7 +144,7 @@ slackr_channels <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUT
 #' @param bot_user_oauth_token the Slack both OAuth token (chr)
 #' @rdname slackr_ims
 #' @author Quinn Weber [aut], Bob Rudis [ctb]
-#' @references \url{https://github.com/hrbrmstr/slackr/pull/13}
+#' @references \url{https://github.com/mrkaye97/slackr/pull/13}
 #' @return \code{data.frame} of im ids and user names
 #' @export
 slackr_ims <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {

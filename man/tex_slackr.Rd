@@ -36,7 +36,7 @@ eliminating the need write to pdf and convert to png to pass to slack.
 \details{
 Please make sure \code{texPreview} package is installed before running this function.
          For TeX setup refer to the
-         \href{https://github.com/hrbrmstr/slackr#latex-for-tex_slackr}{Setup notes on \code{LaTeX}}.
+         \href{https://github.com/mrkaye97/slackr#latex-for-tex_slackr}{Setup notes on \code{LaTeX}}.
 }
 \note{
 You need to setup a full API token (i.e. not a webhook & not OAuth) for this to work

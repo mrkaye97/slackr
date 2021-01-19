@@ -44,10 +44,10 @@ Version 2.0.0+ is updated to work with the new Slack API structure\!
     need for ending `?` on webhook URL and added defaults for missing
     setup parameters.
   - Version `1.2.2` fixed
-    [issue](https://github.com/hrbrmstr/slackr/issues/4) (bug in `1.2.1`
+    [issue](https://github.com/mrkaye97/slackr/issues/4) (bug in `1.2.1`
     fix)
   - Version `1.2.1` fixed
-    [issue](https://github.com/hrbrmstr/slackr/issues/3) when there are
+    [issue](https://github.com/mrkaye97/slackr/issues/3) when there are
     no private groups defined
   - Version `1.2` re-introduced `ggslackr()` (first [CRAN
     version](http://cran.at.r-project.org/web/packages/slackr/index.html))
@@ -153,7 +153,7 @@ example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-ma
 install.packages("slackr")
 
 # 2.0.0+
-devtools::install_github("hrbrmstr/slackr")
+devtools::install_github("mrkaye97/slackr")
 ```
 
 ### Usage
