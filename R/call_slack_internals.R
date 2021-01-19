@@ -75,40 +75,7 @@ post_message <- function(
 }
 
 
-#' Sends a message to a channel.
-#'
-#' @inheritParams auth_test
-#' @keywords internal
-#' @noRd
-#'
-#' @param txt Passed to `text` parameter of `chat.postMessage` API
-#' @param channel Passed to `channel` parameter of `chat.postMessage` API
-#' @param username Passed to `username` parameter of `chat.postMessage` API
-#' @param as_user Passed to `as_user` parameter of `chat.postMessage` API
-#' @param link_names Passed to `link_names` parameter of `chat.postMessage` API
-#'
-#' @references https://api.slack.com/methods/chat.postMessage
-post_message <- function(
-  txt,
-  channel,
-  username = Sys.getenv("SLACK_USERNAME"),
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
-  ...)
-{
-  z <- call_slack_api(
-    "/api/chat.postMessage",
-    .method = POST,
-    body = list(
-      text = txt,
-      channel = slackr_chtrans(channel),
-      username   = username,
-      as_user = TRUE,
-      link_names = 1,
-      ...
-    )
-  )
-  invisible(content(z))
-}
+
 
 
 #' Uploads or creates a file.

@@ -147,9 +147,7 @@ auth_test <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TO
 #' @return A tibble
 #' @noRd
 convert_response_to_tibble <- function(x, element) {
-  x %>%
-    content(as = "text") %>%
-    jsonlite::fromJSON() %>%
-    .[[element]] %>%
-    as_tibble()
+  as_tibble(
+    jsonlite::fromJSON(content(x, as = "text"))[[element]]
+  )
 }
