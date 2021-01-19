@@ -7,7 +7,7 @@ developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repos
 ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/slackr)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/slackr)](http://cran.r-project.org/package=slackr)
 
-[![Logo](slackr.png)](https://github.com/mrkaye97/slackr/blob/master/slackr.png)
+![Logo](https://raw.githubusercontent.com/mrkaye97/slackr/master/slackr.png)
 
 `slackr` - a package to send user messages & webhook API messages to
 Slack channels/users
@@ -202,7 +202,7 @@ slackr_setup(config_file = ".slackr")
 #> [1] "Channel cache is located in .channel_cache in the working directory."
 
 date()
-#> [1] "Mon Jan 18 21:54:48 2021"
+#> [1] "Mon Jan 18 22:02:21 2021"
 
 devtools::test()
 #> Loading slackr
@@ -210,8 +210,14 @@ devtools::test()
 #> ✓ |  OK F W S | Context
 #> ⠏ |   0       | connection                                                                                              ⠋ |   1       | connection                                                                                              ⠼ |   5       | connection                                                                                              ✓ |   5       | connection [0.6 s]
 #> <e2><a0><8f> |   0       | posting                                                                                                 <e2><a0><8b> |   1       | posting                                                                                                 <e2><a0><99> |   2       | posting                                                                                                 <e2><a0><b9> |   3       | posting
-#> ⠸ |   4       | posting                                                                                                 ⠼ |   5       | posting                                                                                                 ⠴ |   6       | posting                                                                                                 ⠦ |   7       | posting                                                                                                 ⠧ |   8       | posting                                                                                                 ⠇ |   9       | posting                                                                                                 ⠋ |  10   1   | posting                                                                                                 ✓ |  10   1   | posting [5.5 s]
+#> ⠸ |   4       | posting                                                                                                 ⠼ |   5       | posting                                                                                                 ⠴ |   6       | posting                                                                                                 ⠦ |   6 1     | posting                                                                                                 ⠧ |   7 1     | posting                                                                                                 ⠇ |   8 1     | posting                                                                                                 ⠋ |   9 1 1   | posting                                                                                                 x |   9 1 1   | posting [5.4 s]
 #> ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> FAILURE (test-posting.R:42:3): slackr_delete works
+#> content(slackr_delete_test[[1]])$ok (`actual`) not equal to TRUE (`expected`).
+#> 
+#> `actual`:   FALSE
+#> `expected`: TRUE 
+#> 
 #> Warning (test-posting.R:66:3): save_slackr posts
 #> object 'y' not found
 #> Backtrace:
@@ -219,9 +225,9 @@ devtools::test()
 #> ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> 
 #> ══ Results ═════════════════════════════════════════════════════════════════════════════════════════════════════════════
-#> Duration: 6.2 s
+#> Duration: 6.0 s
 #> 
-#> [ FAIL 0 | WARN 1 | SKIP 0 | PASS 15 ]
+#> [ FAIL 1 | WARN 1 | SKIP 0 | PASS 14 ]
 ```
 
 ### Onexit Usage

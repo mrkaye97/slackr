@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/slackr)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/slackr)](http://cran.r-project.org/package=slackr)
 
-[![Logo](slackr.png)](https://github.com/mrkaye97/slackr/blob/master/slackr.png)
+![Logo](https://raw.githubusercontent.com/mrkaye97/slackr/master/slackr.png)
 
 `slackr` - a package to send user messages & webhook API messages to Slack channels/users
 
