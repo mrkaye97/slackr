@@ -38,7 +38,7 @@ save_slackr <- function(..., channels="",
   modchan <- slackr_chtrans(channels)
   if (length(modchan) == 0) modchan <- ""
 
-  res < POST(url="https://slack.com/api/files.upload",
+  res <- POST(url="https://slack.com/api/files.upload",
              add_headers(`Content-Type`="multipart/form-data"),
              body=list(file=upload_file(ftmp),
                        filename=sprintf("%s.Rdata", file),
