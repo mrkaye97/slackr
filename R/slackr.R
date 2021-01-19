@@ -123,15 +123,7 @@ slackr <- function(...,
 
 }
 
-#' Output R expressions to a Slack channel/user
-#'
-#' Takes an `expr`, evaluates it and sends the output to a Slack
-#' chat destination. Useful for logging, messaging on long compute tasks or
-#' general information sharing.
-#'
-#' By default, everything but `expr` will be looked for in a "`SLACK_`"
-#' environment variable. You can override or just specify these values directly instead,
-#' but it's probably better to call [slackrSetup()] first.
+#' Sends a message to a slack channel.
 #'
 #' @param txt text message to send to Slack. If a character vector of length > 1
 #'        is passed in, they will be combined and separated by newlines.
@@ -172,21 +164,14 @@ slackr_msg <- function(txt="",
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-  resp <- POST(
-    url  = "https://slack.com/api/chat.postMessage",
-    body = list(
-      token      = bot_user_oauth_token,
+  z <-
+    post_message(
+      txt        = output,
+      emoji = icon_emoji,
       channel    = slackr_chtrans(channel),
-      username   = username,
-      icon_emoji = icon_emoji,
-      text       = output,
-      as_user    = TRUE,
-      link_names = 1,
-      ...)
+      bot_user_oauth_token = bot_user_oauth_token,
+      ...
     )
 
-  warn_for_status(resp)
-
-  return(invisible())
-
+  invisible(z)
 }
