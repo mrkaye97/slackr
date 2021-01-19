@@ -1,18 +1,18 @@
 #' Send the graphics contents of the current device to a Slack channel
 #'
-#' \code{dev.slackr} sends the graphics contents of the current device to the
+#' `dev.slackr` sends the graphics contents of the current device to the
 #' specified Slack channel.
 #'
 #' @param channels list of channels to post image to
 #' @param bot_user_oauth_token the Slack full bot user OAuth token (chr)
-#' @param file prefix for filenames (defaults to \code{plot})
-#' @return \code{httr} response object from \code{POST} call
-#' @seealso \code{\link{slackrSetup}}, \code{\link{save.slackr}}, \code{\link{slackrUpload}}
-#' @author Konrad Karczewski [ctb], Bob Rudis [aut]
-#' @note You can pass in \code{as_user=TRUE} as part of the \code{...} parameters and the Slack API
+#' @param file prefix for filenames (defaults to `plot`)
+#' @return `httr` response object from `POST` call
+#' @seealso [slackrSetup()], [save.slackr()], [slackrUpload()]
+#' @author Konrad Karczewski (ctb), Bob Rudis (aut)
+#' @note You can pass in `as_user=TRUE` as part of the `...` parameters and the Slack API
 #'       will post the message as your logged-in user account (this will override anything set in
-#'       \code{username}).
-#' @references \url{https://github.com/hrbrmstr/slackr/pull/12/files}
+#'       `username`).
+#' @references <https://github.com/hrbrmstr/slackr/pull/12/files>
 #' @rdname dev_slackr
 #' @examples
 #' \dontrun{

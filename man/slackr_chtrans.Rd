@@ -27,14 +27,14 @@ slackrChTrans(
 \item{bot_user_oauth_token}{the Slack bot user OAuth token (chr)}
 }
 \value{
-character vector - original channel list with \code{#} or
-         \code{@} channels replaced with ID's.
+character vector - original channel list with \verb{#} or
+\code{@} channels replaced with ID's.
 }
 \description{
 Given a vector of one or more channel names, it will retrieve list of
-active channels and try to replace channels that begin with "\code{#}" or "\code{@}"
+active channels and try to replace channels that begin with "\verb{#}" or "\code{@}"
 with the channel ID for that channel.
 }
 \author{
-Quinn Weber [ctb], Bob Rudis [aut]
+Quinn Weber (ctb), Bob Rudis (aut)
 }

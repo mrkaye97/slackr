@@ -28,7 +28,7 @@ slackrSetup(
 )
 }
 \arguments{
-\item{channel}{default channel to send the output to (chr) defaults to \code{#general}}
+\item{channel}{default channel to send the output to (chr) defaults to \verb{#general}}
 
 \item{username}{the username output will appear from (chr) defaults to \code{slackr}}
 
@@ -47,11 +47,11 @@ with the config values.}
 \item{cacheChannels}{a boolean for whether or not you want to cache channels to limit API requests}
 }
 \description{
-Initialize all the environment variables \code{\link{slackr}} will need to use to
+Initialize all the environment variables \code{\link[=slackr]{slackr()}} will need to use to
 work properly.
 }
 \details{
-By default, \code{\link{slackr}} (and other functions) will use the \code{#general}
+By default, \code{\link[=slackr]{slackr()}} (and other functions) will use the \verb{#general}
 room and a username of \code{slackr()} with no emoji.
 
 If a valid file is found at the locaiton pointed to by \code{config_file}, the
@@ -66,7 +66,7 @@ values there will be used. The fields should be specified as such in the file:
 }
 \note{
 You need a \href{https://slack.com}{Slack} account and all your API URLs & tokens setup
-      to use this package.
+to use this package.
 }
 \examples{
 \dontrun{
@@ -82,6 +82,6 @@ slackr_setup(channel="#code",
 }
 }
 \seealso{
-\code{\link{slackr}}, \code{\link{dev_slackr}}, \code{\link{save_slackr}},
-         \code{\link{slackr_upload}}
+\code{\link[=slackr]{slackr()}}, \code{\link[=dev_slackr]{dev_slackr()}}, \code{\link[=save_slackr]{save_slackr()}},
+\code{\link[=slackr_upload]{slackr_upload()}}
 }

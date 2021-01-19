@@ -43,8 +43,8 @@ slackrUpload(
 \url{https://github.com/hrbrmstr/slackr/pull/15/files}
 }
 \seealso{
-\code{\link{slackr_setup}}, \code{\link{dev_slackr}}, \code{\link{save_slackr}}
+\code{\link[=slackr_setup]{slackr_setup()}}, \code{\link[=dev_slackr]{dev_slackr()}}, \code{\link[=save_slackr]{save_slackr()}}
 }
 \author{
-Quinn Weber [ctb], Bob Rudis [aut]
+Quinn Weber (ctb), Bob Rudis (aut)
 }

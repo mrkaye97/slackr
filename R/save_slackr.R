@@ -1,19 +1,19 @@
 #' Save R objects to an RData file on Slack
 #'
-#' \code{save_slackr} enables you upload R objects (as an R data file)
+#' `save_slackr` enables you upload R objects (as an R data file)
 #' to Slack and (optionally) post them to one or more channels
-#' (if \code{channels} is not empty).
+#' (if `channels` is not empty).
 #'
 #' @param ... objects to store in the R data file
 #' @param channels Slack channels to save to (optional)
 #' @param file filename (without extension) to use
 #' @param bot_user_oauth_token Slack bot user OAuth token
 #' @rdname save_slackr
-#' @note You can pass in \code{add_user=TRUE} as part of the \code{...} parameters and the Slack API
+#' @note You can pass in `add_user=TRUE` as part of the `...` parameters and the Slack API
 #'       will post the message as your logged-in user account (this will override anything set in
-#'       \code{username})
-#' @return \code{httr} response object from \code{POST} call
-#' @seealso \code{\link{slackr_setup}}, \code{\link{dev_slackr}}, \code{\link{slackr_upload}}
+#'       `username`)
+#' @return `httr` response object from `POST` call
+#' @seealso [slackr_setup()], [dev_slackr()], [slackr_upload()]
 #' @export
 #' @examples \dontrun{
 #' slackr_setup()

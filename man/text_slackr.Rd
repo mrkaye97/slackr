@@ -52,8 +52,8 @@ Information on this method can be found here: \url{https://api.slack.com/methods
 }
 \note{
 You can pass in \code{as_user=TRUE} as part of the \code{...} parameters and the Slack API
-      will post the message as your logged-in user account (this will override anything set in
-      \code{username})
+will post the message as your logged-in user account (this will override anything set in
+\code{username})
 }
 \examples{
 \dontrun{
@@ -68,5 +68,5 @@ text_slackr('hello world', as_user=TRUE)
 \url{https://api.slack.com/methods/chat.postMessage}
 }
 \author{
-Quinn Weber [aut], Bob Rudis [ctb]
+Quinn Weber (aut), Bob Rudis (ctb)
 }
