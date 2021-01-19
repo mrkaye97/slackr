@@ -39,5 +39,5 @@ slackr_delete <- function(count,
   simplify = FALSE
   )
 
-  invisible(content(resp))
+  invisible(resp)
 }
