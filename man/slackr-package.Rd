@@ -17,6 +17,8 @@ Mega thanks to:
   \item \href{https://github.com/konradjk}{Konrad Karczewski}
   \item \href{https://github.com/eniles}{Ed Niles}
   \item \href{https://github.com/rsaporta}{Rick Saporta}
+  \item \href{https://github.com/mrkaye97}{Matt Kaye}
+  \item \href{https://github.com/andrie}{Andrie de Vries}
 }
 
 for their contributions to the package!
