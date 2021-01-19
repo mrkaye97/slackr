@@ -11,7 +11,7 @@
 #' @param bot_user_oauth_token Slack bot user OAuth token
 #' @return `httr` response object from `POST` call (invisibly)
 #' @author Quinn Weber (ctb), Bob Rudis (aut)
-#' @references <https://github.com/hrbrmstr/slackr/pull/15/files>
+#' @references <https://github.com/mrkaye97/slackr/pull/15/files>
 #' @seealso [slackr_setup()], [dev_slackr()], [save_slackr()]
 #' @return \code{httr} response object from \code{POST} call (invisibly)
 #' @export

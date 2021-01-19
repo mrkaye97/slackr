@@ -15,7 +15,7 @@
 #' @note You can pass in `as_user=TRUE` as part of the `...` parameters and the Slack API
 #'       will post the message as your logged-in user account (this will override anything set in
 #'       `username`)
-#' @references <https://github.com/hrbrmstr/slackr/pull/11>
+#' @references <https://github.com/mrkaye97/slackr/pull/11>
 #' @seealso <https://api.slack.com/methods/chat.postMessage>
 #' @rdname text_slackr
 #' @examples

@@ -12,7 +12,7 @@
 #' @note You can pass in `as_user=TRUE` as part of the `...` parameters and the Slack API
 #'       will post the message as your logged-in user account (this will override anything set in
 #'       `username`).
-#' @references <https://github.com/hrbrmstr/slackr/pull/12/files>
+#' @references <https://github.com/mrkaye97/slackr/pull/12/files>
 #' @rdname dev_slackr
 #' @examples
 #' \dontrun{
