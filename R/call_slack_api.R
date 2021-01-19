@@ -133,6 +133,7 @@ auth_test <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TO
   call_slack_api(
     "/api/auth.test",
     .method = GET,
+    bot_user_oauth_token = bot_user_oauth_token,
     types = "public_channel,private_channel"
   ) %>%
     content()
