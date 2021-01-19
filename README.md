@@ -202,15 +202,15 @@ slackr_setup(config_file = ".slackr")
 #> [1] "Channel cache is located in .channel_cache in the working directory."
 
 date()
-#> [1] "Mon Jan 18 21:25:20 2021"
+#> [1] "Mon Jan 18 21:54:48 2021"
 
 devtools::test()
 #> Loading slackr
 #> Testing slackr
 #> ✓ |  OK F W S | Context
-#> ⠏ |   0       | connection                                                                                              ⠋ |   1       | connection                                                                                              ⠼ |   5       | connection                                                                                              ✓ |   5       | connection [0.7 s]
+#> ⠏ |   0       | connection                                                                                              ⠋ |   1       | connection                                                                                              ⠼ |   5       | connection                                                                                              ✓ |   5       | connection [0.6 s]
 #> <e2><a0><8f> |   0       | posting                                                                                                 <e2><a0><8b> |   1       | posting                                                                                                 <e2><a0><99> |   2       | posting                                                                                                 <e2><a0><b9> |   3       | posting
-#> ⠸ |   4       | posting                                                                                                 ⠼ |   5       | posting                                                                                                 ⠴ |   6       | posting                                                                                                 ⠦ |   7       | posting                                                                                                 ⠧ |   8       | posting                                                                                                 ⠇ |   9       | posting                                                                                                 ⠋ |  10   1   | posting                                                                                                 ✓ |  10   1   | posting [5.9 s]
+#> ⠸ |   4       | posting                                                                                                 ⠼ |   5       | posting                                                                                                 ⠴ |   6       | posting                                                                                                 ⠦ |   7       | posting                                                                                                 ⠧ |   8       | posting                                                                                                 ⠇ |   9       | posting                                                                                                 ⠋ |  10   1   | posting                                                                                                 ✓ |  10   1   | posting [5.5 s]
 #> ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> Warning (test-posting.R:66:3): save_slackr posts
 #> object 'y' not found
@@ -219,7 +219,7 @@ devtools::test()
 #> ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> 
 #> ══ Results ═════════════════════════════════════════════════════════════════════════════════════════════════════════════
-#> Duration: 6.6 s
+#> Duration: 6.2 s
 #> 
 #> [ FAIL 0 | WARN 1 | SKIP 0 | PASS 15 ]
 ```
