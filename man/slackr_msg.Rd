@@ -3,7 +3,7 @@
 \name{slackr_msg}
 \alias{slackr_msg}
 \alias{slackrMsg}
-\title{Output R expressions to a Slack channel/user}
+\title{Sends a message to a slack channel.}
 \usage{
 slackr_msg(
   txt = "",
@@ -41,14 +41,7 @@ is passed in, they will be combined and separated by newlines.}
 the response (invisibly)
 }
 \description{
-Takes an \code{expr}, evaluates it and sends the output to a Slack
-chat destination. Useful for logging, messaging on long compute tasks or
-general information sharing.
-}
-\details{
-By default, everything but \code{expr} will be looked for in a "\code{SLACK_}"
-environment variable. You can override or just specify these values directly instead,
-but it's probably better to call \code{\link[=slackrSetup]{slackrSetup()}} first.
+Sends a message to a slack channel.
 }
 \note{
 You need a \url{https://www.slack.com} account and will also need to

@@ -34,6 +34,8 @@ slackrUpload(
 }
 \value{
 \code{httr} response object from \code{POST} call (invisibly)
+
+\code{httr} response object from \code{POST} call (invisibly)
 }
 \description{
 \code{slackr_upload} enables you upload files to Slack and

@@ -14,9 +14,9 @@
 #' @param icon_emoji what emoji to use (chr) `""` will mean use the default
 #' @param bot_user_oauth_token Slack bot user OAuth token
 #' @return the response (invisibly)
-#' @note You need a \url{https://www.slack.com} account and will also need to
-#'       setup an API token \url{https://api.slack.com/}
-#'       Also, you can pass in \code{as_user=TRUE}, the default, as part of the \code{...}
+#' @note You need a <https://www.slack.com> account and will also need to
+#'       setup an API token <https://api.slack.com/>
+#'       Also, you can pass in `as_user=TRUE`, the default, as part of the `...`
 #'       parameters and the Slack API will post the message as your logged-in
 #'       user account (this will override anything set in `username`).
 #'       Passing `as_user=FALSE`, results in the Slack API posting the

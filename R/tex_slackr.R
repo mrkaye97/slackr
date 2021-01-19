@@ -16,7 +16,7 @@
 #' @return `httr` response object (invisibly)
 #' @details Please make sure `texPreview` package is installed before running this function.
 #'          For TeX setup refer to the
-#'          \href{https://github.com/mrkaye97/slackr#latex-for-tex_slackr}{Setup notes on \code{LaTeX}}.
+#'          [Setup notes on `LaTeX`](https://github.com/mrkaye97/slackr#latex-for-tex_slackr).
 #' @examples
 #' \dontrun{
 #' slackr_setup()

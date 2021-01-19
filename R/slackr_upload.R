@@ -13,7 +13,7 @@
 #' @author Quinn Weber (ctb), Bob Rudis (aut)
 #' @references <https://github.com/mrkaye97/slackr/pull/15/files>
 #' @seealso [slackr_setup()], [dev_slackr()], [save_slackr()]
-#' @return \code{httr} response object from \code{POST} call (invisibly)
+#' @return `httr` response object from `POST` call (invisibly)
 #' @export
 slackr_upload <- function(filename, title=basename(filename),
                           initial_comment=basename(filename),
