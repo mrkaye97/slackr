@@ -27,6 +27,7 @@
 #' barplot(VADeaths)
 #' dev_slackr("@@jayjacobs")
 #' }
+#' @importFrom httr POST add_headers
 #' @export
 dev_slackr <- function(channels=Sys.getenv("SLACK_CHANNEL"),
                        bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
@@ -42,8 +43,8 @@ dev_slackr <- function(channels=Sys.getenv("SLACK_CHANNEL"),
 
   modchan <- slackrChTrans(channels, bot_user_oauth_token)
 
-  httr::POST(url="https://slack.com/api/files.upload",
-             httr::add_headers(`Content-Type`="multipart/form-data"),
-             body=list( file=upload_file(ftmp), token=bot_user_oauth_token, channels=modchan))
+  POST(url="https://slack.com/api/files.upload",
+       add_headers(`Content-Type`="multipart/form-data"),
+       body=list( file=upload_file(ftmp), token=bot_user_oauth_token, channels=modchan))
 
 }

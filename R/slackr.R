@@ -28,6 +28,7 @@
 #' slackr_setup()
 #' slackr("iris info", head(iris), str(iris))
 #' }
+#' @importFrom httr POST
 #' @export
 slackr <- function(...,
                    channel=Sys.getenv("SLACK_CHANNEL"),
@@ -154,6 +155,7 @@ slackr <- function(...,
 #' slackr_setup()
 #' slackr_msg("Hi")
 #' }
+#' @importFrom httr POST
 #' @export
 slackr_msg <- function(txt="",
                        channel=Sys.getenv("SLACK_CHANNEL"),

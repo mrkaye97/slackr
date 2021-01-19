@@ -14,6 +14,7 @@
 #'       \code{username})
 #' @return \code{httr} response object from \code{POST} call
 #' @seealso \code{\link{slackr_setup}}, \code{\link{dev_slackr}}, \code{\link{slackr_upload}}
+#' @importFrom httr POST add_headers upload_file
 #' @export
 #' @examples \dontrun{
 #' slackr_setup()
@@ -37,12 +38,12 @@ save_slackr <- function(..., channels="",
   modchan <- slackr_chtrans(channels)
   if (length(modchan) == 0) modchan <- ""
 
-  res <-httr::POST(url="https://slack.com/api/files.upload",
-                   httr::add_headers(`Content-Type`="multipart/form-data"),
-                   body=list(file=httr::upload_file(ftmp),
-                             filename=sprintf("%s.Rdata", file),
-                             token=bot_user_oauth_token,
-                             channels=modchan))
+  res < POST(url="https://slack.com/api/files.upload",
+             add_headers(`Content-Type`="multipart/form-data"),
+             body=list(file=upload_file(ftmp),
+                       filename=sprintf("%s.Rdata", file),
+                       token=bot_user_oauth_token,
+                       channels=modchan))
 
   stop_for_status(res)
 

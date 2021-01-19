@@ -26,6 +26,7 @@
 #' slackr_setup()
 #' ggslackr(qplot(mpg, wt, data=mtcars))
 #' }
+#' @importFrom httr POST add_headers
 #' @export
 ggslackr <- function(plot=last_plot(),
                      channels=Sys.getenv("SLACK_CHANNEL"),
