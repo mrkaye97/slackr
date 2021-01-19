@@ -202,32 +202,20 @@ slackr_setup(config_file = ".slackr")
 #> [1] "Channel cache is located in .channel_cache in the working directory."
 
 date()
-#> [1] "Mon Jan 18 22:02:21 2021"
+#> [1] "Mon Jan 18 22:45:18 2021"
 
 devtools::test()
 #> Loading slackr
 #> Testing slackr
 #> ✓ |  OK F W S | Context
-#> ⠏ |   0       | connection                                                                                              ⠋ |   1       | connection                                                                                              ⠼ |   5       | connection                                                                                              ✓ |   5       | connection [0.6 s]
+#> ⠏ |   0       | connection                                                                                              ⠋ |   1       | connection                                                                                              ⠼ |   5       | connection                                                                                              ✓ |   5       | connection [0.7 s]
 #> <e2><a0><8f> |   0       | posting                                                                                                 <e2><a0><8b> |   1       | posting                                                                                                 <e2><a0><99> |   2       | posting                                                                                                 <e2><a0><b9> |   3       | posting
-#> ⠸ |   4       | posting                                                                                                 ⠼ |   5       | posting                                                                                                 ⠴ |   6       | posting                                                                                                 ⠦ |   6 1     | posting                                                                                                 ⠧ |   7 1     | posting                                                                                                 ⠇ |   8 1     | posting                                                                                                 ⠋ |   9 1 1   | posting                                                                                                 x |   9 1 1   | posting [5.4 s]
-#> ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-#> FAILURE (test-posting.R:42:3): slackr_delete works
-#> content(slackr_delete_test[[1]])$ok (`actual`) not equal to TRUE (`expected`).
-#> 
-#> `actual`:   FALSE
-#> `expected`: TRUE 
-#> 
-#> Warning (test-posting.R:66:3): save_slackr posts
-#> object 'y' not found
-#> Backtrace:
-#>  1. base::rm(y) test-posting.R:66:2
-#> ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ⠸ |   4       | posting                                                                                                 ⠼ |   5       | posting                                                                                                 ⠴ |   6       | posting                                                                                                 ⠦ |   7       | posting                                                                                                 ⠧ |   8       | posting                                                                                                 ⠇ |   9       | posting                                                                                                 ✓ |   9       | posting [5.0 s]
 #> 
 #> ══ Results ═════════════════════════════════════════════════════════════════════════════════════════════════════════════
-#> Duration: 6.0 s
+#> Duration: 5.7 s
 #> 
-#> [ FAIL 1 | WARN 1 | SKIP 0 | PASS 14 ]
+#> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 14 ]
 ```
 
 ### Onexit Usage
