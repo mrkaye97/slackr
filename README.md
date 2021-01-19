@@ -7,7 +7,7 @@ developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repos
 ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/slackr)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/slackr)](http://cran.r-project.org/package=slackr)
 
-![](slackr.png)
+![](https://raw.githubusercontent.com/mrkaye97/slackr/master/slackr.png)
 
 `slackr` - a package to send user messages & webhook API messages to
 Slack channels/users
