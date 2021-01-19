@@ -63,5 +63,4 @@ ggslackr <- function(plot=last_plot(),
                         channels=modchan))
 
   invisible(res)
-
 }

@@ -128,5 +128,5 @@ slackr_bot <- function(...,
                                                                        channel, username, output, icon_emoji)))
     warn_for_status(resp)
   }
-  return(invisible())
+  return(invisible(resp))
 }

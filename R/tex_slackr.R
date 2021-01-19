@@ -81,6 +81,9 @@ tex_slackr <- function(obj,
 
 
 
+#' check_tex_pkg
+#'
+#' Check if texPreview is intalled
 #' @description Install or load texPreview package,
 #'   inspired by the \code{parsnip} package
 #'

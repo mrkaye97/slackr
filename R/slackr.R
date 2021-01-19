@@ -13,6 +13,7 @@
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
 #' @param bot_user_oauth_token Slack bot user OAuth token
+#' @return the response (invisibly)
 #' @note You need a \url{https://www.slack.com} account and will also need to
 #'       setup an API token \url{https://api.slack.com/}
 #'       Also, you can pass in \code{as_user=TRUE}, the default, as part of the \code{...}
@@ -119,7 +120,7 @@ slackr <- function(...,
 
   }
 
-  return(invisible())
+  return(invisible(resp))
 
 }
 
@@ -140,6 +141,7 @@ slackr <- function(...,
 #' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
 #' @param bot_user_oauth_token Slack bot user OAuth token
 #' @param ... other arguments passed to the Slack API \code{chat.postMessage} call
+#' @return the response (invisibly)
 #' @note You need a \url{https://www.slack.com} account and will also need to
 #'       setup an API token \url{https://api.slack.com/}
 #'       Also, you can pass in \code{add_user=TRUE} as part of the \code{...}
@@ -184,6 +186,6 @@ slackr_msg <- function(txt="",
 
   warn_for_status(resp)
 
-  return(invisible())
+  return(invisible(resp))
 
 }
