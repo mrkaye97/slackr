@@ -59,9 +59,11 @@ test_that("slackr_upload posts", {
 # })
 
 test_that("save_slackr posts", {
-  y <- 1:10
+  ## this doesn't work without global assignment for some reason
+  y <<- 1:10
   save_slackr_test <- save_slackr(y, channels = '#test', file = 'save_slackr_test.Rdata')
   expect_equal(content(save_slackr_test)$ok, TRUE)
+  rm(y)
 })
 
 test_that("slackr can post to other channels", {
