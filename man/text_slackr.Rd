@@ -62,7 +62,7 @@ text_slackr('hello world', as_user=TRUE)
 }
 }
 \references{
-\url{https://github.com/hrbrmstr/slackr/pull/11}
+\url{https://github.com/mrkaye97/slackr/pull/11}
 }
 \seealso{
 \url{https://api.slack.com/methods/chat.postMessage}

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/slackr)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/slackr)](http://cran.r-project.org/package=slackr)
 
-![](slackr.png)
+![Logo](https://raw.githubusercontent.com/mrkaye97/slackr/master/slackr.png)
 
 `slackr` - a package to send user messages & webhook API messages to Slack channels/users
 
@@ -35,8 +35,8 @@ Version 2.0.0+ is updated to work with the new Slack API structure!
 - Version `1.3.1.9000` Removed `data.table` dependency (replaced with `dplyr`); added access to `im.list` (https://api.slack.com/methods/im.list) thx to PR from Quinn Weber 
 - Version `1.3.0.9000` Radically changed how `slackr` works. Functions have camelCase and under_score versions
 - Version `1.2.3` added more parameter error cheking, remobved the need for ending `?` on webhook URL and added defaults for missing setup parameters.
-- Version `1.2.2` fixed [issue](https://github.com/hrbrmstr/slackr/issues/4) (bug in `1.2.1` fix)
-- Version `1.2.1` fixed [issue](https://github.com/hrbrmstr/slackr/issues/3) when there are no private groups defined 
+- Version `1.2.2` fixed [issue](https://github.com/mrkaye97/slackr/issues/4) (bug in `1.2.1` fix)
+- Version `1.2.1` fixed [issue](https://github.com/mrkaye97/slackr/issues/3) when there are no private groups defined 
 - Version `1.2` re-introduced `ggslackr()` (first [CRAN version](http://cran.at.r-project.org/web/packages/slackr/index.html))
 - Version `1.1.1` fixed a bug in the new full API `slackr()` function
 - Version `1.1` added graphics & files capability
@@ -120,7 +120,7 @@ options(width=120)
 install.packages("slackr")
 
 # 2.0.0+
-devtools::install_github("hrbrmstr/slackr")
+devtools::install_github("mrkaye97/slackr")
 ```
 
 ### Usage
@@ -162,7 +162,7 @@ ggslackr(qplot(mpg, wt, data=mtcars))
 library(slackr)
 library(testthat)
 
-slackrSetup()
+slackr_setup(config_file = ".slackr")
 
 date()
 

@@ -23,6 +23,9 @@ slackr(
 
 \item{bot_user_oauth_token}{Slack bot user OAuth token}
 }
+\value{
+the response (invisibly)
+}
 \description{
 Takes an \code{expr}, evaluates it and sends the output to a Slack
 chat destination. Useful for logging, messaging on long compute tasks or

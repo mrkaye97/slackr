@@ -37,6 +37,9 @@ is passed in, they will be combined and separated by newlines.}
 
 \item{...}{other arguments passed to the Slack API \code{chat.postMessage} call}
 }
+\value{
+the response (invisibly)
+}
 \description{
 Takes an \code{expr}, evaluates it and sends the output to a Slack
 chat destination. Useful for logging, messaging on long compute tasks or

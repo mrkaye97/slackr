@@ -11,6 +11,14 @@ slackr - A package to work with the Slack API
 Mega thanks to:
 
 \itemize{
+  \item \href{https://github.com/jayjacobs}{Jay Jacobs}
+  \item \href{https://github.com/davidski}{David Severski}
+  \item \href{https://github.com/qsweber}{Quinn Weber}
+  \item \href{https://github.com/konradjk}{Konrad Karczewski}
+  \item \href{https://github.com/eniles}{Ed Niles}
+  \item \href{https://github.com/rsaporta}{Rick Saporta}
+  \item \href{https://github.com/mrkaye97}{Matt Kaye}
+  \item \href{https://github.com/andrie}{Andrie de Vries}
 \item \href{https://github.com/jayjacobs}{Jay Jacobs}
 \item \href{https://github.com/davidski}{David Severski}
 \item \href{https://github.com/qsweber}{Quinn Weber}

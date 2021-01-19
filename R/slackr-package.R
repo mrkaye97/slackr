@@ -9,6 +9,8 @@
 #'   \item [Konrad Karczewski](https://github.com/konradjk)
 #'   \item [Ed Niles](https://github.com/eniles)
 #'   \item [Rick Saporta](https://github.com/rsaporta)
+#'   \item \href{https://github.com/andrie}{Andrie de Vries}
+#'   \item \href{https://github.com/mrkaye97}{Matt Kaye}
 #' }
 #'
 #' for their contributions to the package!

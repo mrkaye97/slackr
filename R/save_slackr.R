@@ -14,6 +14,7 @@
 #'       `username`)
 #' @return `httr` response object from `POST` call
 #' @seealso [slackr_setup()], [dev_slackr()], [slackr_upload()]
+#' @importFrom httr POST add_headers upload_file
 #' @export
 #' @examples \dontrun{
 #' slackr_setup()
@@ -23,6 +24,7 @@ save_slackr <- function(..., channels="",
                         file="slackr",
                         bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
+  if (channels == '') stop("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
 
   loc <- Sys.getlocale('LC_CTYPE')
   Sys.setlocale('LC_CTYPE','C')
@@ -36,12 +38,12 @@ save_slackr <- function(..., channels="",
   modchan <- slackr_chtrans(channels)
   if (length(modchan) == 0) modchan <- ""
 
-  res <-httr::POST(url="https://slack.com/api/files.upload",
-                   httr::add_headers(`Content-Type`="multipart/form-data"),
-                   body=list(file=httr::upload_file(ftmp),
-                             filename=sprintf("%s.Rdata", file),
-                             token=bot_user_oauth_token,
-                             channels=modchan))
+  res <- POST(url="https://slack.com/api/files.upload",
+             add_headers(`Content-Type`="multipart/form-data"),
+             body=list(file=upload_file(ftmp),
+                       filename=sprintf("%s.Rdata", file),
+                       token=bot_user_oauth_token,
+                       channels=modchan))
 
   stop_for_status(res)
 

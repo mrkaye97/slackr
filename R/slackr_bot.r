@@ -139,5 +139,5 @@ slackr_bot <- function(...,
       )
     stop_for_status(resp)
   }
-  return(invisible())
+  return(invisible(resp))
 }

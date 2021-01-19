@@ -19,7 +19,7 @@ slackrIms(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"))
 Get a data frame of Slack IM ids
 }
 \references{
-\url{https://github.com/hrbrmstr/slackr/pull/13}
+\url{https://github.com/mrkaye97/slackr/pull/13}
 }
 \author{
 Quinn Weber (aut), Bob Rudis (ctb)

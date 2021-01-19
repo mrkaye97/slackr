@@ -26,6 +26,7 @@
 #'        with the config values.
 #' @param echo display the configuration variables (bool) initially `FALSE`
 #' @param cacheChannels a boolean for whether or not you want to cache channels to limit API requests
+#' @return "Successfully connected to Slack"
 #' @note You need a [Slack](https://slack.com) account and all your API URLs & tokens setup
 #'       to use this package.
 #' @seealso [slackr()], [dev_slackr()], [save_slackr()],
@@ -103,5 +104,7 @@ slackr_setup <- function(channel="#general",
   } else if (file.exists('.channel_cache')) {
     unlink('.channel_cache')
   }
-  invisible(NULL)
+  msg <- 'Successfully connected to Slack'
+  msg <- if (cacheChannels) paste('Channel cache is located in .channel_cache in the working directory.', sep = '. ') else msg
+  return(msg)
 }

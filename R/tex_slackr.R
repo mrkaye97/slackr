@@ -16,7 +16,7 @@
 #' @return `httr` response object (invisibly)
 #' @details Please make sure `texPreview` package is installed before running this function.
 #'          For TeX setup refer to the
-#'          [Setup notes on `LaTeX`](https://github.com/hrbrmstr/slackr#latex-for-tex_slackr).
+#'          \href{https://github.com/mrkaye97/slackr#latex-for-tex_slackr}{Setup notes on \code{LaTeX}}.
 #' @examples
 #' \dontrun{
 #' slackr_setup()
@@ -81,6 +81,9 @@ tex_slackr <- function(obj,
 
 
 
+#' check_tex_pkg
+#'
+#' Check if texPreview is intalled
 #' @description Install or load texPreview package,
 #'   inspired by the `parsnip` package
 #' @noRd

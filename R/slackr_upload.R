@@ -13,11 +13,13 @@
 #' @author Quinn Weber (ctb), Bob Rudis (aut)
 #' @references <https://github.com/hrbrmstr/slackr/pull/15/files>
 #' @seealso [slackr_setup()], [dev_slackr()], [save_slackr()]
+#' @return \code{httr} response object from \code{POST} call (invisibly)
 #' @export
 slackr_upload <- function(filename, title=basename(filename),
                           initial_comment=basename(filename),
                           channels="", bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
+  if (channels == '') stop("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
   f_path <- path.expand(filename)
 
   if (file.exists(f_path)) {

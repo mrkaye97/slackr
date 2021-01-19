@@ -46,6 +46,9 @@ with the config values.}
 
 \item{cacheChannels}{a boolean for whether or not you want to cache channels to limit API requests}
 }
+\value{
+"Successfully connected to Slack"
+}
 \description{
 Initialize all the environment variables \code{\link[=slackr]{slackr()}} will need to use to
 work properly.

@@ -26,6 +26,7 @@
 #' slackr_setup()
 #' ggslackr(qplot(mpg, wt, data=mtcars))
 #' }
+#' @importFrom httr POST add_headers
 #' @export
 ggslackr <- function(
   plot = last_plot(),
@@ -67,6 +68,5 @@ ggslackr <- function(
       bot_user_oauth_token = bot_user_oauth_token
       )
 
-  invisible(content(res))
-
+  invisible(res)
 }
