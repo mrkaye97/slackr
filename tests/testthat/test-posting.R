@@ -43,7 +43,6 @@ test_that("slackr_delete works", {
 })
 
 test_that("slackr_upload posts", {
-  x <- 1:10
   save(x, file = 'slackr_upload_test.Rdata')
   slackr_upload_test <- slackr_upload('slackr_upload_test.Rdata', channels = '#test')
   unlink('slackr_upload_test.Rdata')
@@ -59,11 +58,8 @@ test_that("slackr_upload posts", {
 # })
 
 test_that("save_slackr posts", {
-  ## this doesn't work without global assignment for some reason
-  y <<- 1:10
-  save_slackr_test <- save_slackr(y, channels = '#test', file = 'save_slackr_test.Rdata')
+  save_slackr_test <- save_slackr(x, channels = '#test', file = 'save_slackr_test.Rdata')
   expect_equal(content(save_slackr_test)$ok, TRUE)
-  rm(y)
 })
 
 test_that("slackr can post to other channels", {
