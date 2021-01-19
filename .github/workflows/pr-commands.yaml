@@ -9,6 +9,12 @@ jobs:
     runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
+      SLACK_BOT_USER_OAUTH_TOKEN: ${{ secrets.SLACK_BOT_USER_OAUTH_TOKEN }}
+      SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
+      SLACK_ICON_EMOJI: ${{ secrets.SLACK_ICON_EMOJI }}
+      SLACK_INCOMING_URL_PREFIX: ${{ secrets.SLACK_INCOMING_URL_PREFIX }}
+      SLACK_USERNAME: ${{ secrets.SLACK_USERNAME }}
     steps:
       - uses: actions/checkout@v2
       - uses: r-lib/actions/pr-fetch@v1
@@ -34,6 +40,12 @@ jobs:
     runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
+      SLACK_BOT_USER_OAUTH_TOKEN: ${{ secrets.SLACK_BOT_USER_OAUTH_TOKEN }}
+      SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
+      SLACK_ICON_EMOJI: ${{ secrets.SLACK_ICON_EMOJI }}
+      SLACK_INCOMING_URL_PREFIX: ${{ secrets.SLACK_INCOMING_URL_PREFIX }}
+      SLACK_USERNAME: ${{ secrets.SLACK_USERNAME }}
     steps:
       - uses: actions/checkout@v2
       - uses: r-lib/actions/pr-fetch@v1
