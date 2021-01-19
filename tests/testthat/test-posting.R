@@ -50,18 +50,6 @@ test_that("slackr_upload posts", {
   expect_equal(content(slackr_upload_test)$ok, TRUE)
 })
 
-# this one is bombing on devtools::check() I think because the plot isn't being rendered
-# test_that("dev_slackr posts", {
-#   plot(iris$Sepal.Length, iris$Sepal.Width)
-#   dev_slackr_test <- dev_slackr()
-#   expect_equal(content(dev_slackr_test)$ok, TRUE)
-# })
-
-test_that("save_slackr posts", {
-  save_slackr_test <- save_slackr(x, channels = '#test', file = 'save_slackr_test.Rdata')
-  expect_equal(content(save_slackr_test)$ok, TRUE)
-})
-
 test_that("slackr can post to other channels", {
   slackr_foreign_channel_test <- slackr('testing foreign channel post', channel = '@mrkaye97')
   expect_equal(content(slackr_foreign_channel_test)$ok, TRUE)
