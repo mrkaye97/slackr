@@ -121,7 +121,7 @@ slackr <- function(...,
 
   }
 
-  return(invisible(resp))
+  invisible(content(resp))
 
 }
 

@@ -24,17 +24,20 @@ slackr_delete <- function(count,
   tsvec <- slackr_history(channel = channel, message_count = count)$ts
 
   resp <- sapply(tsvec, function(ts,token,channel) {
-    resp <- POST(url="https://slack.com/api/chat.delete",
-                 body=list(token=token,
-                 channel=channel,
-                 ts=ts))
-    warn_for_status(resp)
-
-    return(resp)
+    resp <- POST(
+      url="https://slack.com/api/chat.delete",
+      body=list(
+        token   = token,
+        channel = channel,
+        ts      = ts)
+    )
+    stop_for_status(resp)
+    resp
   },
-  token=bot_user_oauth_token,
-  channel=slackr_chtrans(channel),simplify = FALSE
+  token    = bot_user_oauth_token,
+  channel  = slackr_chtrans(channel),
+  simplify = FALSE
   )
 
-  return(invisible(resp))
+  invisible(content(resp))
 }

@@ -60,6 +60,6 @@ text_slackr <- function(text,
 
   stop_for_status(resp)
 
-  return(invisible(resp))
+  invisible(content(resp))
 
 }
