@@ -6,53 +6,55 @@
 # })
 
 test_that("slackr posts", {
-  slackr_msg_test <- slackr('Testing')
-  expect_equal(content(slackr_msg_test)$ok, TRUE)
+  res <- slackr('Testing')
+  expect_true(res$ok)
 
-  slackr_tbl_test <- slackr(head(iris))
-  expect_equal(content(slackr_tbl_test)$ok, TRUE)
+  res <- slackr(head(iris))
+  expect_true(res$ok)
 
-  slackr_lm_test <- slackr(
+  res <- slackr(
     summary(lm(Petal.Width ~ Sepal.Width, data = iris))
   )
-  expect_equal(content(slackr_lm_test)$ok, TRUE)
+  expect_true(res$ok)
 })
 
 test_that("ggslackr posts", {
-  slackr_gg_test <- ggslackr(
+  res <- ggslackr(
     ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
       geom_point()
   )
-  expect_equal(content(slackr_gg_test)$ok, TRUE)
+  expect_true(res$ok)
 })
 
 test_that("slackr_msg posts", {
-  slackr_msg_test <- slackr_msg('Testing')
-  expect_equal(content(slackr_msg_test)$ok, TRUE)
+  res <- slackr_msg('Testing')
+  expect_true(res$ok)
 })
 
 test_that("text_slackr posts", {
-  text_slackr_test <- text_slackr('Testing')
-  expect_equal(content(text_slackr_test)$ok, TRUE)
+  res <- text_slackr('Testing')
+  expect_true(res$ok)
 })
 
 test_that("slackr_delete works", {
   slackr_msg('Testing deletion')
-  slackr_delete_test <- slackr_delete(1)
-  expect_equal(content(slackr_delete_test[[1]])$ok, TRUE)
+  res <- slackr_delete(1)
+  expect_true(content(res[[1]])$ok)
 })
 
 test_that("slackr_upload posts", {
-  save(x, file = 'slackr_upload_test.Rdata')
-  slackr_upload_test <- slackr_upload('slackr_upload_test.Rdata', channels = '#test')
-  unlink('slackr_upload_test.Rdata')
+  x <- 1:10
+  tf <- tempfile(fileext = ".Rdata")
+  save(x, file = tf)
+  res <- slackr_upload(tf, channels = '#test')
+  unlink(tf)
 
-  expect_equal(content(slackr_upload_test)$ok, TRUE)
+  expect_equal(content(res)$ok, TRUE)
 })
 
 test_that("slackr can post to other channels", {
-  slackr_foreign_channel_test <- slackr('testing foreign channel post', channel = '@mrkaye97')
-  expect_equal(content(slackr_foreign_channel_test)$ok, TRUE)
+  res <- slackr('testing foreign channel post', channel = '@mrkaye97')
+  expect_true(res$ok)
 })
 
 
