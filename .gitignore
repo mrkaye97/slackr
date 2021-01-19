@@ -10,3 +10,4 @@ src/*.dll
 tests/testthat/.config
 docs
 .config
+.slackr
