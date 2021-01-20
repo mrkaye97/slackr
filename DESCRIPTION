@@ -35,7 +35,8 @@ Imports:
     dplyr (>= 1.0.0),
     graphics,
     grDevices,
-    xtable (>= 1.8.4)
+    xtable (>= 1.8.4),
+    R.cache (>= 0.14.0)
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
