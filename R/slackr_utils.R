@@ -67,9 +67,7 @@ slackr_census <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_
     chan_list <- dplyr::bind_rows(chan_list, users[, c("id", "name", "real_name")])
   }
 
-  dplyr::distinct(chan_list) %>%
-    as_tibble(chan_list)
-
+  dplyr::distinct(chan_list)
 }
 
 #' Create a cache of the users and channels in the workspace in order to limit API requests
