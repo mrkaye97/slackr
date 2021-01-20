@@ -1,6 +1,8 @@
 #' Lists all channels in a Slack team.
 #'
 #' @inheritParams auth_test
+#' @return tibble of channels
+#'
 #' @keywords internal
 #' @noRd
 #' @references https://api.slack.com/methods/conversations.list

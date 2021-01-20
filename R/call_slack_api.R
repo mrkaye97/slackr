@@ -26,7 +26,9 @@ call_slack_api <- function(path, ..., body = NULL, .method = c("GET", "POST"),
   if (.verbose == "TRUE") {
     old_config <- set_config(httr::verbose())
     on.exit(set_config(old_config), add = TRUE)
-  }
+  } #else {
+  #   set_config(httr::verbose(data_out = FALSE, data_in = FALSE, info = FALSE, ssl = FALSE))
+  # }
 
   # Set up the API call
   call_api <-function() {
@@ -88,6 +90,19 @@ get_next_cursor <- function(x) {
 
 SLACK_CURSOR <- new.env(parent = emptyenv())
 
+#' Calls the slack API with pagination using cursors.
+#'
+#' @description
+#' This loops over `fun`, extracts the `next_cursor` from the API response, and
+#' injects this into the next loop.  At the completion of each loop, the function [convert_response_to_tibble()] is run with `extract` as and argument. The results are combined with [dplyr::bind_rows()]
+#'
+#' @param fun A function that calls the slack API
+#' @param extract The name of the element to extract from the API reponse
+#'
+#' @return A `tibble`
+#' @seealso call_slack_api
+#' @export
+#'
 with_pagination <- function(fun, extract) {
   done <- FALSE
   SLACK_CURSOR$value <<- ""
@@ -107,10 +122,10 @@ with_pagination <- function(fun, extract) {
       # Sys.sleep(0.1)
     }
     if (isTRUE(is.na(result))) {
-      result <- r %>% convert_response_to_tibble(extract)
+      result <- convert_response_to_tibble(r, extract)
     } else {
       result <- bind_rows(
-        result, r %>% convert_response_to_tibble(extract)
+        result, convert_response_to_tibble(r, extract)
       )
     }
   }

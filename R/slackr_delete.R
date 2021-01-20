@@ -6,43 +6,36 @@
 #' @param bot_user_oauth_token the Slack bot user OAuth token
 #' @importFrom httr POST
 #' @export
-slackr_delete <- function(count,
-                          channel=Sys.getenv("SLACK_CHANNEL"),
-                          bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+slackr_delete <- function(
+  count,
+  channel=Sys.getenv("SLACK_CHANNEL"),
+  bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+) {
 
-  if ( !is.character(channel) | length(channel) > 1 ) { stop("channel must be a character vector of length one") }
-  if ( !is.character(bot_user_oauth_token) | length(bot_user_oauth_token) > 1 ) { stop("bot_user_oauth_token must be a character vector of length one") }
-
-
-  loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
-  on.exit(Sys.setlocale("LC_CTYPE", loc))
-
-  chnl_map <- loadCache(key = list('channel_cache'))
-
-  if (is.null(chnl_map)) {
-    chnl_map <- slackr_census()
+  if ( !is.character(channel) | length(channel) > 1 ) {
+    stop("channel must be a character vector of length one")
+    }
+  if ( !is.character(bot_user_oauth_token) | length(bot_user_oauth_token) > 1 ) {
+    stop("bot_user_oauth_token must be a character vector of length one")
   }
 
-  chnl_map$name <- sprintf('#%s',chnl_map$name)
 
-  tsvec <- slackr_history(channel = channel, message_count = count)$ts
+  channel  = slackr_chtrans(channel)
+  timestamps <- slackr_history(channel = channel, message_count = count)[["ts"]]
 
-  resp <- sapply(tsvec, function(ts,token,channel) {
-    resp <- POST(
-      url="https://slack.com/api/chat.delete",
-      body=list(
-        token   = token,
+  resp <- lapply(timestamps, function(ts) {
+    r <- call_slack_api(
+      "/api/chat.delete",
+      bot_user_oauth_token = bot_user_oauth_token,
+      .method = POST,
+      body = list(
         channel = channel,
-        ts      = ts)
+        ts      = ts
+      )
     )
-    stop_for_status(resp)
-    resp
-  },
-  token    = bot_user_oauth_token,
-  channel  = slackr_chtrans(channel),
-  simplify = FALSE
-  )
+    stop_for_status(r)
+    content(r)
+  })
 
   invisible(resp)
 }

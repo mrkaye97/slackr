@@ -4,7 +4,7 @@
 \alias{slackr_chtrans}
 \alias{slackrChtrans}
 \alias{slackrChTrans}
-\title{Translate vector of channel names to channel ID's for API}
+\title{Translate vector of channel names to channel IDs for API}
 \usage{
 slackr_chtrans(channels)
 
@@ -20,7 +20,7 @@ character vector - original channel list with \verb{#} or
 \code{@} channels replaced with ID's.
 }
 \description{
-Given a vector of one or more channel names, it will retrieve list of
+Given a vector of one or more channel names, retrieve list of
 active channels and try to replace channels that begin with "\verb{#}" or "\code{@}"
 with the channel ID for that channel.
 }

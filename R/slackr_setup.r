@@ -97,10 +97,12 @@ slackr_setup <- function(channel="#general",
   }
 
   if (echo) {
-    print(toJSON(as.list(Sys.getenv(c("SLACK_CHANNEL", "SLACK_USERNAME",
-                                      "SLACK_ICON_EMOJI",
-                                      "SLACK_INCOMING_URL_PREFIX", "SLACK_BOT_USER_OAUTH_TOKEN"))),
-                 pretty=TRUE))
+    print(toJSON(as.list(
+      Sys.getenv(c("SLACK_CHANNEL", "SLACK_USERNAME",
+                   "SLACK_ICON_EMOJI",
+                   "SLACK_INCOMING_URL_PREFIX", "SLACK_BOT_USER_OAUTH_TOKEN")
+      )),
+      pretty=TRUE))
   }
 
   msg <- 'Successfully connected to Slack'

@@ -1,37 +1,77 @@
-#' slackr_history
+#' Reads history of a channel.
 #'
-#' Returns a dataframe of post history in a channel
+#' Returns a dataframe of post history in a channel.
+#'
+#' @section Scopes:
+#'
+#'   You need one or more of these scopes enabled in your slack app: *
+#'   channels:history * groups:history * im:history * mpim:history
+#'
 #' @param bot_user_oauth_token the Slack bot user OAuth token
-#' @param channel the channel to get history from
-#' @param posted_from_time the first post time to consider (default: time = 0)
-#' @param posted_to_time the last post time to consider (default: current time)
+#'
+#' @param channel The channel to get history from
+#'
+#' @param posted_from_time Timestamp of the first post time to consider
+#'
+#' @param duration Number of hours of history to retrieve.  By default retrieves
+#'   24 hours of history.
+#'
+#' @param posted_to_time Timestamp of the last post to consider (default:
+#'   current time)
+#'
 #' @param message_count the number of messages to retain
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr POST content
+#'
 #' @export
 #'
-slackr_history <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
-                           channel = Sys.getenv("SLACK_CHANNEL"),
-                           posted_from_time = 0L,
-                           posted_to_time = as.numeric(Sys.time()),
-                           message_count = 100L) {
-  out <- tryCatch({
-    chnl <- slackr_chtrans(channel)
-    params <- list(token = bot_user_oauth_token,
-                   channel = chnl,
-                   latest = posted_to_time,
-                   oldest = posted_from_time,
-                   inclusive = "true",
-                   count = message_count)
+#' @return A `tibble` with message metadata
+#'
+#' @references <https://api.slack.com/methods/conversations.history>
+#'
+slackr_history <- function(
+  channel = Sys.getenv("SLACK_CHANNEL"),
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+  posted_to_time = as.numeric(Sys.time()),
+  message_count,
+  duration,
+  posted_from_time,
+  paginate = FALSE
+) {
 
-    response <- POST(url = "https://slack.com/api/conversations.history",
-                          query = params)
+  if (!missing(duration) && !is.null(duration) && !is.null(posted_from_time) && !is.null(posted_from_time)) {
+    posted_from_time <- posted_to_time - duration * 3600
+  } else {
+    posted_from_time <-  NULL
+  }
 
-    fromJSON(content(response, as = "text"))$messages
-  }, error = function(e) {
-    message(paste("Channel", channel, "does not exist."))
-    message(e)
-  })
-
-  return(out)
+  resp <-
+    if (!paginate) {
+      resp <- call_slack_api(
+        "/api/conversations.history",
+        .method   = GET,
+        bot_user_oauth_token = bot_user_oauth_token,
+        channel   = slackr_chtrans(channel),
+        latest    = posted_to_time,
+        oldest    = posted_from_time,
+        inclusive = "true",
+        limit     = message_count
+      )
+      convert_response_to_tibble(resp, "messages")
+    } else {
+      with_pagination(
+        function() {
+          call_slack_api(
+            "/api/conversations.history",
+            .method   = GET,
+            bot_user_oauth_token = bot_user_oauth_token,
+            channel   = slackr_chtrans(channel),
+            latest    = posted_to_time,
+            oldest    = posted_from_time,
+            inclusive = "true",
+            limit     = count
+          )
+        },
+        extract = "messages"
+      )
+    }
+  resp
 }

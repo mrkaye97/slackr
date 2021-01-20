@@ -2,27 +2,41 @@
 % Please edit documentation in R/slackr_history.R
 \name{slackr_history}
 \alias{slackr_history}
-\title{slackr_history}
+\title{Reads history of a channel.}
 \usage{
 slackr_history(
   bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
   channel = Sys.getenv("SLACK_CHANNEL"),
-  posted_from_time = 0L,
   posted_to_time = as.numeric(Sys.time()),
-  message_count = 100L
+  duration = 24,
+  posted_from_time = posted_to_time - duration * 3600
 )
 }
 \arguments{
 \item{bot_user_oauth_token}{the Slack bot user OAuth token}
 
-\item{channel}{the channel to get history from}
+\item{channel}{The channel to get history from}
 
-\item{posted_from_time}{the first post time to consider (default: time = 0)}
+\item{posted_to_time}{Timestamp of the last post to consider (default:
+current time)}
 
-\item{posted_to_time}{the last post time to consider (default: current time)}
+\item{duration}{Number of hours of history to retrieve.  By default retrieves
+24 hours of history.}
+
+\item{posted_from_time}{Timestamp of the first post time to consider}
 
 \item{message_count}{the number of messages to retain}
 }
 \description{
-Returns a dataframe of post history in a channel
+Returns a dataframe of post history in a channel.
+}
+\section{Scopes}{
+
+
+You need one or more of these scopes enabled in your slack app: *
+channels:history * groups:history * im:history * mpim:history
+}
+
+\references{
+\url{https://api.slack.com/methods/conversations.history}
 }

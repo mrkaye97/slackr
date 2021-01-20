@@ -6,13 +6,19 @@
 \title{Get a data frame of Slack channels}
 \usage{
 slackr_channels(
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+  verbose = interactive()
 )
 
-slackrChannels(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"))
+slackrChannels(
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+  verbose = interactive()
+)
 }
 \arguments{
 \item{bot_user_oauth_token}{the Slack bot OAuth token (chr)}
+
+\item{verbose}{If TRUE, prints progress messages.}
 }
 \value{
 data.table of channels

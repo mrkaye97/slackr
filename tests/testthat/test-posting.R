@@ -39,7 +39,7 @@ test_that("text_slackr posts", {
 test_that("slackr_delete works", {
   slackr_msg('Testing deletion')
   res <- slackr_delete(1)
-  expect_true(content(res[[1]])$ok)
+  expect_true(res[[1]]$ok)
 })
 
 test_that("slackr_upload posts", {
