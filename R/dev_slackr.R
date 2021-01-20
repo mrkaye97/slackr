@@ -41,7 +41,7 @@ dev_slackr <- function(channels=Sys.getenv("SLACK_CHANNEL"),
   dev.copy(png, file=ftmp)
   dev.off()
 
-  modchan <- slackrChTrans(channels, bot_user_oauth_token)
+  modchan <- slackr_chtrans(channels)
 
   POST(url="https://slack.com/api/files.upload",
        add_headers(`Content-Type`="multipart/form-data"),
