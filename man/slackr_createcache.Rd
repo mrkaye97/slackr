@@ -4,12 +4,10 @@
 \alias{slackr_createcache}
 \title{Create a cache of the users and channels in the workspace in order to limit API requests}
 \usage{
-slackr_createcache(
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
-)
+slackr_createcache()
 }
-\arguments{
-\item{bot_user_oauth_token}{the Slack bot OAuth token (chr)}
+\value{
+the memoized census function
 }
 \description{
 Create a cache of the users and channels in the workspace in order to limit API requests

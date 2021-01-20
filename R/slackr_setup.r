@@ -54,6 +54,10 @@ slackr_setup <- function(channel="#general",
                          echo=FALSE,
                          cacheChannels = TRUE) {
 
+  if (!missing(cacheChannels)) {
+    warning('cacheChannels parameter is deprecated as of slackr 2.1.0. channels are now auto-cached with memoization')
+  }
+
   if (file.exists(config_file)) {
 
     config <- read.dcf(
@@ -99,12 +103,6 @@ slackr_setup <- function(channel="#general",
                  pretty=TRUE))
   }
 
-  if (cacheChannels) {
-    slackr_createcache(Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"))
-  } else if (file.exists('.channel_cache')) {
-    unlink('.channel_cache')
-  }
   msg <- 'Successfully connected to Slack'
-  msg <- if (cacheChannels) paste('Channel cache is located in .channel_cache in the working directory.', sep = '. ') else msg
   return(msg)
 }

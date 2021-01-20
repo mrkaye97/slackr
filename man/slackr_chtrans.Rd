@@ -6,25 +6,14 @@
 \alias{slackrChTrans}
 \title{Translate vector of channel names to channel ID's for API}
 \usage{
-slackr_chtrans(
-  channels,
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
-)
+slackr_chtrans(channels)
 
-slackrChtrans(
-  channels,
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
-)
+slackrChtrans(channels)
 
-slackrChTrans(
-  channels,
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
-)
+slackrChTrans(channels)
 }
 \arguments{
 \item{channels}{vector of channel names to parse}
-
-\item{bot_user_oauth_token}{the Slack bot user OAuth token (chr)}
 }
 \value{
 character vector - original channel list with \verb{#} or

@@ -5,18 +5,18 @@
 #' with the channel ID for that channel.
 #'
 #' @param channels vector of channel names to parse
-#' @param bot_user_oauth_token the Slack bot user OAuth token (chr)
 #' @rdname slackr_chtrans
 #' @author Quinn Weber (ctb), Bob Rudis (aut)
 #' @return character vector - original channel list with `#` or
 #'          `@@` channels replaced with ID's.
 #' @import dplyr
+#' @importFrom R.cache loadCache
 #' @export
-slackr_chtrans <- function(channels, bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-  if (!file.exists(".channel_cache")) {
+slackr_chtrans <- function(channels) {
+  channel_cache <- loadCache(key = list('channel_cache'))
+
+  if (is.null(channel_cache)) {
     channel_cache <- slackr_census()
-  } else {
-    channel_cache <- read.csv('.channel_cache', sep=',')
   }
 
   chan_xref <-
@@ -72,23 +72,16 @@ slackr_census <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_
 
 #' Create a cache of the users and channels in the workspace in order to limit API requests
 #'
-#' @param bot_user_oauth_token the Slack bot OAuth token (chr)
-#' @return NULL
+#' @return the memoized census function
+#' @importFrom R.cache saveCache
 #' @rdname slackr_createcache
 #'
-slackr_createcache <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-  census <- slackr_census(bot_user_oauth_token)
-  file_name <- '.channel_cache'
-  write.table(
-    census,
-    file = file_name,
-    sep = ',',
-    row.names = FALSE,
-    append = FALSE
-  )
+slackr_createcache <- function() {
+  channel_cache <- slackr_census()
+  saveCache(channel_cache, key = list('channel_cache'))
 
-  message("Channel cache located in working directory, named .channel_cache")
-  invisible(normalizePath(file_name))
+  message('Cache created')
+  return(invisible(NULL))
 }
 
 

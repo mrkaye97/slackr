@@ -18,7 +18,12 @@ slackr_delete <- function(count,
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-  chnl_map <- slackr_channels(bot_user_oauth_token = bot_user_oauth_token)[c('id','name')]
+  chnl_map <- loadCache(key = list('channel_cache'))
+
+  if (is.null(chnl_map)) {
+    chnl_map <- slackr_census()
+  }
+
   chnl_map$name <- sprintf('#%s',chnl_map$name)
 
   tsvec <- slackr_history(channel = channel, message_count = count)$ts
