@@ -53,7 +53,7 @@ test_that("slackr_upload posts", {
 })
 
 test_that("slackr can post to other channels", {
-  res <- slackr('testing foreign channel post', channel = '@mrkaye97')
+  res <- slackr('testing foreign channel post', channel = '#test2')
   expect_true(res$ok)
 })
 
