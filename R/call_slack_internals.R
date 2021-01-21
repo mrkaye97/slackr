@@ -1,12 +1,15 @@
 #' Lists all channels in a Slack team.
 #'
 #' @inheritParams auth_test
+#'
+#' @param exclude_archived If TRUE, excludes archived channels
+#'
 #' @return tibble of channels
 #'
 #' @keywords internal
 #' @noRd
 #' @references https://api.slack.com/methods/conversations.list
-list_channels <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"), types = "public_channel", ...) {
+list_channels <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"), types = "public_channel", exclude_archived = TRUE, ...) {
   with_pagination(
     function(cursor) {
       call_slack_api(
@@ -14,6 +17,8 @@ list_channels <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUT
         .method = GET,
         bot_user_oauth_token = bot_user_oauth_token,
         types = types,
+        exclude_archived = exclude_archived,
+        limit = 1000,
         ...,
         .next_cursor = cursor
       )

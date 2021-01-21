@@ -79,7 +79,7 @@ call_slack_api <- function(
 add_cursor_get = function(..., .next_cursor = "") {
   z <- list(...)
   if (!is.null(.next_cursor) && .next_cursor != "") {
-    message("Appending cursor to query")
+    # message("Appending cursor to query")
     z <- append(z, list(cursor = .next_cursor))
   }
   z
@@ -105,6 +105,10 @@ get_next_cursor <- function(x) {
 }
 
 
+get_retry_after <- function(x) {
+
+}
+
 #' Calls the slack API with pagination using cursors.
 #'
 #' @description
@@ -123,18 +127,21 @@ with_pagination <- function(fun, extract) {
   old_cursor <- ""
   next_cursor <- ""
   result = NA
+  had_to_cursor <- FALSE
   while (!done) {
     # make the api call
     r <- match.fun(fun)(cursor = next_cursor)
     # retrieve the next cursor
     gn <- get_next_cursor(r)
+    # gr <- get_retry_after(r)
 
     if (is.null(gn) || gn == "") {
       done <- TRUE
       next_cursor <- ""
     } else {
       if (gn == old_cursor) stop("Repeating cursor: ", gn)
-      message("Cursoring: ", gn)
+      message(".", appendLF = FALSE)
+      had_to_cursor <- TRUE
       old_cursor <- next_cursor
       next_cursor <- gn
       # Sys.sleep(0.1)
@@ -147,6 +154,7 @@ with_pagination <- function(fun, extract) {
       )
     }
   }
+  if(had_to_cursor) message("")
   result
 }
 
