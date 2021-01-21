@@ -146,6 +146,8 @@ documentation for which scopes are needed.
     throw an error, but also not post anything to your channel). If this
     happens, try explicitly adding the `slackr` app to your channel in
     your Slack workspace with `/invite @your_app_name`
+  - Sometimes, channels may not show up in your workspace. If this
+    happens, try running `R.cache::clearCache()`.
 
 ### LaTeX for `tex_slackr`
 
@@ -165,7 +167,7 @@ library(slackr)
 
 # current verison
 packageVersion("slackr")
-#> [1] '2.0.3'
+#> [1] '2.1.0'
 ```
 
 ``` r
@@ -234,7 +236,7 @@ slackr_setup(config_file = ".slackr")
 #> [1] "Successfully connected to Slack"
 
 date()
-#> [1] "Wed Jan 20 17:53:25 2021"
+#> [1] "Wed Jan 20 18:41:21 2021"
 
 devtools::test()
 #> Loading slackr
@@ -242,12 +244,14 @@ devtools::test()
 #> ✓ |  OK F W S | Context
 #> ⠏ |   0       | connection                                                                                              ⠋ |   1       | connection                                                                                              ✓ |   4       | connection [0.2 s]
 #> <e2><a0><8f> |   0       | posting                                                                                                 <e2><a0><8b> |   1       | posting                                                                                                 <e2><a0><99> |   2       | posting                                                                                                 <e2><a0><b9> |   3       | posting
-#> ⠸ |   4       | posting                                                                                                 ⠼ |   5       | posting                                                                                                 ⠴ |   6       | posting                                                                                                 ⠦ |   7       | posting                                                                                                 ⠧ |   8       | posting                                                                                                 ⠇ |   9       | posting                                                                                                 ✓ |   9       | posting [5.9 s]
+#> ⠸ |   4       | posting                                                                                                 ⠼ |   5       | posting                                                                                                 ⠴ |   6       | posting                                                                                                 ⠦ |   7       | posting                                                                                                 ⠧ |   8       | posting                                                                                                 ⠇ |   9       | posting                                                                                                 ✓ |   9       | posting [4.8 s]
 #> 
 #> ══ Results ═════════════════════════════════════════════════════════════════════════════════════════════════════════════
-#> Duration: 6.1 s
+#> Duration: 5.0 s
 #> 
 #> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 13 ]
+#> 
+#> Nice code.
 ```
 
 Many thanks to:
