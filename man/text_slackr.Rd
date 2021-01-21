@@ -2,30 +2,16 @@
 % Please edit documentation in R/text_slackr.r, R/zcamels.r
 \name{text_slackr}
 \alias{text_slackr}
-\alias{textSlackr}
-\title{Sends basic text to a slack channel. Calls the chat.postMessage method on the Slack Web API.
-Information on this method can be found here: \url{https://api.slack.com/methods/chat.postMessage}}
+\title{text_slackr}
 \usage{
-text_slackr(
-  text,
-  ...,
-  preformatted = TRUE,
-  channel = Sys.getenv("SLACK_CHANNEL"),
-  username = Sys.getenv("SLACK_USERNAME"),
-  icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
-)
+text_slackr(...)
 
-textSlackr(...)
+text_slackr(...)
 }
 \arguments{
-\item{text}{The character vector to be posted}
+\item{...}{arguments to pass to slackr_msg}
 
-\item{...}{
-  Arguments passed on to \code{\link[=dev.slackr]{dev.slackr}}
-  \describe{
-    \item{\code{}}{}
-  }}
+\item{text}{The character vector to be posted}
 
 \item{preformatted}{Should the text be sent as preformatted text. Defaults to TRUE}
 
@@ -45,6 +31,8 @@ Prepend direct messages with an @}
 \description{
 Sends basic text to a slack channel. Calls the chat.postMessage method on the Slack Web API.
 Information on this method can be found here: \url{https://api.slack.com/methods/chat.postMessage}
+
+deprecated
 }
 \note{
 You can pass in \code{as_user=TRUE} as part of the \code{...} parameters and the Slack API
@@ -62,6 +50,8 @@ text_slackr('hello world', as_user=TRUE)
 }
 \seealso{
 \url{https://api.slack.com/methods/chat.postMessage}
+
+\code{\link[slackr]{slackr_msg}}
 }
 \author{
 Quinn Weber (aut), Bob Rudis (ctb)

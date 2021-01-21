@@ -1,8 +1,10 @@
+#' text_slackr
+#'
 #' Sends basic text to a slack channel. Calls the chat.postMessage method on the Slack Web API.
 #' Information on this method can be found here: <https://api.slack.com/methods/chat.postMessage>
 #'
 #' @param text The character vector to be posted
-#' @param ... Optional arguments such as: as_user, parse, unfurl_links, etc.
+#' @param ... Optional arguments such as: parse, unfurl_links, etc.
 #' @param preformatted Should the text be sent as preformatted text. Defaults to TRUE
 #' @param channel The name of the channels to which the DataTable should be sent.
 #'  Prepend channel names with a hashtag. Prepend private-groups with nothing.
@@ -23,9 +25,7 @@
 #' text_slackr('hello world', as_user=TRUE)
 #' }
 #' @export
-text_slackr <- function(text,
-                        ...,
-                        preformatted=TRUE,
+text_slackr <- function(text, ..., preformatted=TRUE,
                         channel=Sys.getenv("SLACK_CHANNEL"),
                         username=Sys.getenv("SLACK_USERNAME"),
                         icon_emoji=Sys.getenv("SLACK_ICON_EMOJI"),
