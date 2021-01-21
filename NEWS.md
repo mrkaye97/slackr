@@ -1,3 +1,11 @@
+# slackr 2.0.2
+
+* A few more bug fixes and sets up CI with GH Actions
+
+# slackr 2.0.1
+
+* Documentation and suggested fixes to common bugs
+
 # slackr 2.0.0
 
 * Fixes to work with new Slack API
@@ -22,3 +30,4 @@
 * Versions 1.4+ BREAK THINGS.
 * Support has been removed for the "old style" incoming web hooks (see "Setup" in the README for the required incoming web hook URL format).
 * the incoming webhook "token" is no longer required or used.
+

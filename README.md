@@ -9,8 +9,7 @@ developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repos
 
 ![Logo](https://raw.githubusercontent.com/mrkaye97/slackr/master/slackr.png)
 
-`slackr` - a package to send user messages & webhook API messages to
-Slack channels/users
+`slackr` - a package to send messages to Slack channels and users
 
 The `slackr` package contains functions that make it possible to
 interact with the Slack messaging platform. When you need to share
@@ -21,74 +20,102 @@ teammates at the same time with little effort. You can also send images
 from the current graphics device, R objects (as R data files), and
 upload files.
 
-## BREAKING CHANGES
+# BREAKING CHANGES
 
 Version 2.0.0+ is updated to work with the new Slack API structure\!
 
-## News
+# Installation
 
-  - Version `2.0.1` adds documentation and suggested fixes to common
-    bugs
-  - Version `2.0.0` fixes broken package because of changes to the Slack
-    API
-  - Version `1.4.2` fixes for changes to the Slack API causing duplicate
-    column names and breaking functions
-  - Version `1.4.0.9000` new `slackr_msg()` + many fixes and BREAKING
-    CHANGES (see above)
-  - Version `1.3.1.9000` Removed `data.table` dependency (replaced with
-    `dplyr`); added access to `im.list`
-    (<https://api.slack.com/methods/im.list>) thx to PR from Quinn Weber
-  - Version `1.3.0.9000` Radically changed how `slackr` works. Functions
-    have camelCase and under\_score versions
-  - Version `1.2.3` added more parameter error cheking, remobved the
-    need for ending `?` on webhook URL and added defaults for missing
-    setup parameters.
-  - Version `1.2.2` fixed
-    [issue](https://github.com/mrkaye97/slackr/issues/4) (bug in `1.2.1`
-    fix)
-  - Version `1.2.1` fixed
-    [issue](https://github.com/mrkaye97/slackr/issues/3) when there are
-    no private groups defined
-  - Version `1.2` re-introduced `ggslackr()` (first [CRAN
-    version](http://cran.at.r-project.org/web/packages/slackr/index.html))
-  - Version `1.1.1` fixed a bug in the new full API `slackr()` function
-  - Version `1.1` added graphics & files capability
-  - Version `1.0` released
+``` r
+# original / no longer maintained
+install.packages("slackr")
 
-Many thanks to:
+# 2.0.0+
+devtools::install_github("mrkaye97/slackr")
+```
 
-  - [Jay Jacobs](https://github.com/jayjacobs)
-  - [David Severski](https://github.com/davidski)
-  - [Quinn Weber](https://github.com/qsweber)
-  - [Konrad Karczewski](https://github.com/konradjk)
-  - [Ed Niles](https://github.com/eniles)
-  - [Rick Saporta](https://github.com/rsaporta)
-  - [Jonathan Sidi](https://github.com/yonicd)
-  - [Matt Kaye](https://github.com/mrkaye97)
-  - [Xinye Li](https://github.com/xinye1)
+# Setup
 
-for their contributions to the package\!
+There are two ways of interfacing with `slackr` currently, that provide
+significantly different functionality.
 
-The following functions are implemented:
+1.  Using only a webook to send messages to a channel (i.e. creating a
+    single-channel bot)
+2.  Creating a bot user to send messages to multiple channels, including
+    plots, tables, files, etc. as well as deleting messages, reading the
+    channels in a workspace, etc. (i.e. creating a fully-functional
+    multi-channel bot)
 
-  - `slackr_setup` : initialize necessary environment variables
-  - `slackr` : send stuff to Slack
-  - `slackr_bot` : send stuff to Slack using an incoming webhook URL
-  - `dev_slackr` : send the graphics contents of the current device to a
-    to Slack channel
-  - `ggslackr` : send a ggplot object to a Slack channel (no existing
-    device plot required, useful for scripts)
-  - `save_slackr` : save R objects to an RData file on Slack
-  - `slackr_upload` : upload any file to Slack
-  - `slackr_users` : get a data frame of Slack
-  - `slackr_channels` : get a data frame of Slack
-  - `text_slackr` : Send regular or preformatted messages to Slack
-  - `slackr_msg` : Slightly different version of `text_slackr()`
-  - `register_onexit`: Append an `on.exit` call to R functions (can be
-    used with other package functions) and its output will be sent to a
-    Slack channel.
+In most cases, we recommend `Option 1` above. This requires the fewest
+permissions and is the simplest to set up, and will allow basic
+messaging to a specific channel.
 
-## Setup
+### Webhook Bot Setup
+
+Setting up the single-channel bot is simple.
+
+1.  Go to <https://api.slack.com/apps>
+2.  Click “Create New App”
+3.  Click “Incoming Webhooks” under “Features”
+4.  Turn the “Activate Incoming Webhooks” switch on
+5.  Click “Add New Webhook to Workspace”
+6.  Select the channel you’d like the bot to post to
+7.  Copy the Webhook URL
+8.  Call `slackr_setup(channel = '#channel_with_webhook',
+    incoming_webhook_url = 'your_webhook')`. You can also follow the
+    config file setup directions below instead of passing the channel
+    and webhook directly.
+
+And that’s it\! You should be able to post a message with
+`slackr_bot('test message')`
+
+### Multi-Functional Bot Setup
+
+Setting up the multi-functional bot is slightly more complex than the
+single-channel one.
+
+1.  Go to <https://api.slack.com/apps>
+2.  Click “Create New App”
+3.  Click “OAuth & Permissions” under “Features”
+4.  Enable the following scopes in order to get all of the
+    functionality:
+
+<!-- end list -->
+
+  - `channels:read`
+  - `users:read`
+  - `files:read`
+  - `groups:read`
+  - `groups:write`
+  - `chat:write`
+  - `chat:write.customize`
+  - `chat:write.public`
+  - `im:write`
+  - `incoming-webhook`
+  - `channels:history`
+
+<!-- end list -->
+
+5.  Click “Install to Workspace”
+6.  Select a channel (for webhook messages)
+7.  Copy the Bot User OAuth Access Token
+8.  Click “Incoming Webhooks” under “Features”
+9.  Copy the Webhook URL
+10. Call
+
+<!-- end list -->
+
+    slackr_setup(channel = '#channel_with_webhook', 
+                 bot_user_oauth_token = 'your_token', 
+                 incoming_webhook_url = 'your_webhook')
+
+You can also follow the config file setup directions below instead of
+passing the channel, token, and webhook directly.
+
+And that’s it\! Once `slackr_setup()` has been run, you should be able
+to post a message with `slackr('test message')`
+
+### Config File Setup
 
 The `slackr_setup()` function will try to read setup values from a
 `~/.slackr` (you can change the default) configuration file, which may
@@ -109,31 +136,16 @@ integration creation time) with `icon_emoji`.
 
 ### Scopes
 
-You will need to have the following Bot Token Scopes enabled:
+Without all of the scopes enabled, only certain functions will work.
+Which ones depends on which scopes you have enabled. See the function
+documentation for which scopes are needed.
 
-  - `channels:read`
-  - `users:read`
-  - `files:read`
-  - `groups:read`
-  - `groups:write`
-  - `chat:write`
-  - `chat:write.customize`
-  - `chat:write.public`
-  - `im:write`
-  - `incoming-webhook`
+### Known Issues
 
-Without these scopes, only certain functions will work. Which ones
-depends on which scopes you have enabled.
-
-### Private Channels
-
-In some cases, it seems that the Slack API is not seeing private
-channels, and `slackr` fails as a result. If you are getting errors
-about not being able to find a channel, try making the channel public.
-You can test whether or not `slackr` will be able to see your channel by
-going [to this Slack API tester
-page](https://api.slack.com/methods/conversations.list/test), putting in
-your credentials, and seeing if your channel shows up.
+  - Depending on your scopes, `slackr` could quietly fail (i.e. not
+    throw an error, but also not post anything to your channel). If this
+    happens, try explicitly adding the `slackr` app to your channel in
+    your Slack workspace with `/invite @your_app_name`
 
 ### LaTeX for `tex_slackr`
 
@@ -146,17 +158,7 @@ Requirements](https://github.com/yonicd/texPreview#functionality), and
 for specific OS setup check out its Github Actions like [this MacOS
 example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-mac.yml#L46).
 
-### Installation
-
-``` r
-# original / no longer maintained
-install.packages("slackr")
-
-# 2.0.0+
-devtools::install_github("mrkaye97/slackr")
-```
-
-### Usage
+# Usage
 
 ``` r
 library(slackr)
@@ -176,49 +178,15 @@ slackr(str(iris))
 # send images
 library(ggplot2)
 qplot(mpg, wt, data=mtcars)
-dev.slackr("#results")
+dev_slackr("#results")
 
 barplot(VADeaths)
-dev.slackr("@jayjacobs")
+dev_slackr("@jayjacobs")
 
 ggslackr(qplot(mpg, wt, data=mtcars))
 ```
 
-### Known Issues
-
-  - Depending on your scopes, `slackr` could quietly fail (i.e. not
-    throw an error, but also not post anything to your channel). If this
-    happens, try explicitly adding the `slackr` app to your channel in
-    your Slack workspace.
-  - Private channels are not seen by `slackr` in some cases.
-
-### Test Results
-
-``` r
-library(slackr)
-library(testthat)
-
-slackr_setup(config_file = ".slackr")
-#> [1] "Channel cache is located in .channel_cache in the working directory."
-
-date()
-#> [1] "Mon Jan 18 22:45:18 2021"
-
-devtools::test()
-#> Loading slackr
-#> Testing slackr
-#> ✓ |  OK F W S | Context
-#> ⠏ |   0       | connection                                                                                              ⠋ |   1       | connection                                                                                              ⠼ |   5       | connection                                                                                              ✓ |   5       | connection [0.7 s]
-#> <e2><a0><8f> |   0       | posting                                                                                                 <e2><a0><8b> |   1       | posting                                                                                                 <e2><a0><99> |   2       | posting                                                                                                 <e2><a0><b9> |   3       | posting
-#> ⠸ |   4       | posting                                                                                                 ⠼ |   5       | posting                                                                                                 ⠴ |   6       | posting                                                                                                 ⠦ |   7       | posting                                                                                                 ⠧ |   8       | posting                                                                                                 ⠇ |   9       | posting                                                                                                 ✓ |   9       | posting [5.0 s]
-#> 
-#> ══ Results ═════════════════════════════════════════════════════════════════════════════════════════════════════════════
-#> Duration: 5.7 s
-#> 
-#> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 14 ]
-```
-
-### Onexit Usage
+# Onexit Usage
 
 ``` r
  ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
@@ -255,3 +223,44 @@ devtools::test()
 #clean up slack channel from examples
 delete_slackr(count = 6,channel = '#general')
 ```
+
+# Test Results
+
+``` r
+library(slackr)
+library(testthat)
+
+slackr_setup(config_file = ".slackr")
+#> [1] "Successfully connected to Slack"
+
+date()
+#> [1] "Wed Jan 20 17:28:56 2021"
+
+devtools::test()
+#> Loading slackr
+#> Testing slackr
+#> ✓ |  OK F W S | Context
+#> ⠏ |   0       | connection                                                                                              ⠋ |   1       | connection                                                                                              ✓ |   4       | connection [0.2 s]
+#> <e2><a0><8f> |   0       | posting                                                                                                 <e2><a0><8b> |   1       | posting                                                                                                 <e2><a0><99> |   2       | posting                                                                                                 <e2><a0><b9> |   3       | posting
+#> ⠸ |   4       | posting                                                                                                 ⠼ |   5       | posting                                                                                                 ⠴ |   6       | posting                                                                                                 ⠦ |   7       | posting                                                                                                 ⠧ |   8       | posting                                                                                                 ⠇ |   9       | posting                                                                                                 ✓ |   9       | posting [5.4 s]
+#> 
+#> ══ Results ═════════════════════════════════════════════════════════════════════════════════════════════════════════════
+#> Duration: 5.7 s
+#> 
+#> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 13 ]
+```
+
+Many thanks to:
+
+  - [Jay Jacobs](https://github.com/jayjacobs)
+  - [David Severski](https://github.com/davidski)
+  - [Quinn Weber](https://github.com/qsweber)
+  - [Konrad Karczewski](https://github.com/konradjk)
+  - [Ed Niles](https://github.com/eniles)
+  - [Rick Saporta](https://github.com/rsaporta)
+  - [Jonathan Sidi](https://github.com/yonicd)
+  - [Matt Kaye](https://github.com/mrkaye97)
+  - [Xinye Li](https://github.com/xinye1)
+  - [Andrie de Vries](https://github.com/andrie)
+
+for their contributions to the package\!
