@@ -75,12 +75,12 @@ post_message <- function(
       text       = txt,
       channel    = slackr_chtrans(channel),
       username   = username,
-      as_user    = TRUE,
       link_names = 1,
       icon_emoji = emoji,
       ...
     )
   )
+
   invisible(content(z))
 }
 
