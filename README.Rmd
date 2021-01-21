@@ -50,7 +50,7 @@ In most cases, we recommend `Option 1` above. This requires the fewest permissio
 Setting up the single-channel bot is simple. 
 
 1. Go to [https://api.slack.com/apps](https://api.slack.com/apps)
-2. Click "Create New App"
+2. Click "Create New App" and then follow the setup instructions
 3. Click "Incoming Webhooks" under "Features"
 4. Turn the "Activate Incoming Webhooks" switch on
 5. Click "Add New Webhook to Workspace"
@@ -65,7 +65,7 @@ And that's it! You should be able to post a message with `slackr_bot('test messa
 Setting up the multi-functional bot is slightly more complex than the single-channel one. 
 
 1. Go to [https://api.slack.com/apps](https://api.slack.com/apps)
-2. Click "Create New App"
+2. Click "Create New App" and then follow the setup instructions
 3. Click "OAuth & Permissions" under "Features"
 4. Enable the following scopes in order to get all of the functionality:
   * `channels:read`
@@ -93,7 +93,7 @@ slackr_setup(channel = '#channel_with_webhook',
 
 You can also follow the config file setup directions below instead of passing the channel, token, and webhook directly.
 
-And that's it! Once `slackr_setup()` has been run, you should be able to post a message with `slackr('test message')`
+And that's it! You should be able to post a message with `slackr('test message')`
 
 ### Config File Setup
 
@@ -108,11 +108,11 @@ You can also change the default emoji icon (from the one you setup at integratio
 
 ### Scopes
 
-Without all of the scopes enabled, only certain functions will work. Which ones depends on which scopes you have enabled. See the function documentation for which scopes are needed.
+Without all of the scopes enabled, only certain functions will work. Which ones depends on which scopes you have enabled. See the function documentation for which scopes are needed for that function.
 
 ### Known Issues
 
-* Depending on your scopes, `slackr` could quietly fail (i.e. not throw an error, but also not post anything to your channel). If this happens, try explicitly adding the `slackr` app to your channel in your Slack workspace with `/invite @your_app_name`
+* Depending on your scopes, `slackr` could quietly fail (i.e. not throw an error, but also not post anything to your channel). If this happens, try explicitly adding the `slackr` app to your channel in your Slack workspace with `/invite @your_app_name` or make sure you have `chat:write.public` enabled.
 * Sometimes, channels may not show up in your workspace. If this happens, try running `R.cache::clearCache()`.
 
 ### LaTeX for `tex_slackr`
@@ -207,6 +207,7 @@ devtools::test()
 
 Many thanks to:
 
+- [Bob Rudis](https://github.com/hrbrmstr)
 - [Jay Jacobs](https://github.com/jayjacobs)
 - [David Severski](https://github.com/davidski)
 - [Quinn Weber](https://github.com/qsweber)
