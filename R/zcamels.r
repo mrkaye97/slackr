@@ -51,7 +51,7 @@ slackrBot <- function(...) {
 #' slackrChtrans
 #'
 #' deprecated
-#'
+#' @rdname slackrChtrans
 #' @param ... arguments to pass to slackr_chtrans
 #' @export
 #' @seealso \code{\link[slackr]{slackr_chtrans}}
@@ -63,7 +63,7 @@ slackrChtrans <- function(...) {
 #' slackrChTrans
 #'
 #' deprecated
-#'
+#' @rdname slackrChtrans
 #' @param ... arguments to pass to slackr_chtrans
 #' @export
 #' @seealso \code{\link[slackr]{slackr_chtrans}}
@@ -148,22 +148,10 @@ slackrUsers <- function(...) {
 #'
 #' deprecated
 #'
-#' @param ... arguments to pass to slackr_msg
+#' @param ... arguments to pass to text_slackr
 #' @export
 #' @seealso \code{\link[slackr]{slackr_msg}}
 textSlackr <- function(...) {
-  .Deprecated(new = 'slackr_msg')
-  slackr_msg(...)
-}
-
-#' text_slackr
-#'
-#' deprecated
-#'
-#' @param ... arguments to pass to slackr_msg
-#' @export
-#' @seealso \code{\link[slackr]{slackr_msg}}
-text_slackr <- function(...) {
-  .Deprecated(new = 'slackr_msg')
-  slackr_msg(...)
+  .Deprecated(new = 'text_slackr')
+  text_slackr(...)
 }

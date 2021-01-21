@@ -7,7 +7,7 @@
 textSlackr(...)
 }
 \arguments{
-\item{...}{arguments to pass to slackr_msg}
+\item{...}{arguments to pass to text_slackr}
 }
 \description{
 deprecated
