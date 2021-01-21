@@ -16,7 +16,11 @@ slackr_bot(
 slackrBot(...)
 }
 \arguments{
-\item{...}{expressions to be sent to Slack}
+\item{...}{
+  Arguments passed on to \code{\link[=dev.slackr]{dev.slackr}}
+  \describe{
+    \item{\code{}}{}
+  }}
 
 \item{channel}{which channel to post the message to (chr)}
 

@@ -1,6 +1,7 @@
 # CAMEL CASE ALL THE THINGS (for legacy support)
 
 #' @rdname slackr_dev
+#' @param ... Passed to superceded function
 #' @export
 dev.slackr <- function(...) {
   .Deprecated(new = 'slackr_dev')
@@ -8,6 +9,7 @@ dev.slackr <- function(...) {
 }
 
 #' @rdname slackr_dev
+#' @inheritDotParams dev.slackr
 #' @export
 dev_slackr <- function(...) {
   .Deprecated(new = 'slackr_dev')
@@ -15,6 +17,7 @@ dev_slackr <- function(...) {
 }
 
 #' @rdname save_slackr
+#' @inheritDotParams dev.slackr
 #' @export
 save.slackr <- function(...) {
   .Deprecated(new = 'save_slackr')
@@ -22,6 +25,7 @@ save.slackr <- function(...) {
 }
 
 #' @rdname slackr_bot
+#' @inheritDotParams dev.slackr
 #' @export
 slackrBot <- function(...) {
   .Deprecated(new = 'slackr_bot')
@@ -29,6 +33,7 @@ slackrBot <- function(...) {
 }
 
 #' @rdname slackr_chtrans
+#' @inheritDotParams dev.slackr
 #' @export
 slackrChtrans <- function(...) {
   .Deprecated(new = 'slackr_chtrans')
@@ -36,6 +41,7 @@ slackrChtrans <- function(...) {
 }
 
 #' @rdname slackr_chtrans
+#' @inheritDotParams dev.slackr
 #' @export
 slackrChTrans <- function(...) {
   .Deprecated(new = 'slackr_chtrans')
@@ -43,6 +49,7 @@ slackrChTrans <- function(...) {
 }
 
 #' @rdname slackr_channels
+#' @inheritDotParams dev.slackr
 #' @export
 slackrChannels <- function(...) {
   .Deprecated(new = 'slackr_channels')
@@ -50,6 +57,7 @@ slackrChannels <- function(...) {
 }
 
 #' @rdname slackr_ims
+#' @inheritDotParams dev.slackr
 #' @export
 slackrIms <- function(...) {
   .Deprecated(new = 'slackr_ims')
@@ -57,6 +65,7 @@ slackrIms <- function(...) {
 }
 
 #' @rdname slackr_msg
+#' @inheritDotParams dev.slackr
 #' @export
 slackrMsg <- function(...) {
   .Deprecated(new = 'slackr_msg')
@@ -64,6 +73,7 @@ slackrMsg <- function(...) {
 }
 
 #' @rdname slackr_setup
+#' @inheritDotParams dev.slackr
 #' @export
 slackrSetup <- function(...) {
   .Deprecated(new = 'slackr_setup')
@@ -71,6 +81,7 @@ slackrSetup <- function(...) {
 }
 
 #' @rdname slackr_upload
+#' @inheritDotParams dev.slackr
 #' @export
 slackrUpload <- function(...) {
   .Deprecated(new = 'slackr_upload')
@@ -78,6 +89,7 @@ slackrUpload <- function(...) {
 }
 
 #' @rdname slackr_users
+#' @inheritDotParams dev.slackr
 #' @export
 slackrUsers <- function(...) {
   .Deprecated(new = 'slackr_users')
@@ -85,6 +97,7 @@ slackrUsers <- function(...) {
 }
 
 #' @rdname text_slackr
+#' @inheritDotParams dev.slackr
 #' @export
 textSlackr <- function(...) {
   .Deprecated(new = 'slackr_msg')

@@ -22,21 +22,14 @@ slackr_history(
 \item{posted_to_time}{Timestamp of the last post to consider (default:
 current time)}
 
-<<<<<<< Updated upstream
-\item{message_count}{the number of messages to retain}
-=======
 \item{message_count}{The number of messages to retrieve (only when \code{paginate = FALSE})}
->>>>>>> Stashed changes
 
 \item{duration}{Number of hours of history to retrieve.  By default retrieves
 24 hours of history.}
 
 \item{posted_from_time}{Timestamp of the first post time to consider}
-<<<<<<< Updated upstream
-=======
 
 \item{paginate}{If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to teh API and retrieves a maximum of \code{message_count} messages}
->>>>>>> Stashed changes
 }
 \value{
 A \code{tibble} with message metadata

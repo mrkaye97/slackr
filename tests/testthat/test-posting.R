@@ -1,8 +1,9 @@
-# this one is bombing on devtools::check because it thinks there's no webhook set up (there is).
-# it also weirdly works fine when I click "Run Tests" in RStudio.
 # test_that("slackr_bot posts", {
-#   slackr_bot_test <- slackr_bot('testing slackr_bot', incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"))
-#   expect_equal(rawToChar(slackr_bot_test$content), 'ok')
+#   res <- slackr_bot(
+#     'testing slackr_bot',
+#     incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX")
+#     )
+#   expect_equal(rawToChar(res$content), 'ok')
 # })
 
 test_that("slackr posts", {

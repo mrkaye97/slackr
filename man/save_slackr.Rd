@@ -15,7 +15,11 @@ save_slackr(
 save.slackr(...)
 }
 \arguments{
-\item{...}{objects to store in the R data file}
+\item{...}{
+  Arguments passed on to \code{\link[=dev.slackr]{dev.slackr}}
+  \describe{
+    \item{\code{}}{}
+  }}
 
 \item{channels}{Slack channels to save to (optional)}
 

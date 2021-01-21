@@ -47,7 +47,6 @@
 #'delete_slackr(count = 6,channel = '#general')
 #'}
 #'
-#' @rdname register_onexit
 #' @seealso
 #' [text_slackr()]
 #' @author Jonathan Sidi (aut)

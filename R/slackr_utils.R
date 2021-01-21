@@ -143,7 +143,6 @@ stop_for_status <- function(r) {
 #' @param bot_user_oauth_token the Slack bot OAuth token (chr)
 #' @param verbose If TRUE, prints progress messages.
 #' @return data.table of channels
-#' @rdname slackr_channels
 #' @export
 slackr_channels <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"), verbose = interactive()) {
 

@@ -8,7 +8,6 @@
 #' @param channels Slack channels to save to (optional)
 #' @param file filename (without extension) to use
 #' @param bot_user_oauth_token Slack bot user OAuth token
-#' @rdname save_slackr
 #' @note You can pass in `add_user=TRUE` as part of the `...` parameters and the Slack API
 #'       will post the message as your logged-in user account (this will override anything set in
 #'       `username`)

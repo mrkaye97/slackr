@@ -3,7 +3,6 @@
 #' `slackr_upload` enables you upload files to Slack and
 #' (optionally) post them to one or more channels (if `channels` is not empty).
 #'
-#' @rdname slackr_upload
 #' @param filename path to file
 #' @param title title on Slack (optional - defaults to filename)
 #' @param initial_comment comment for file on slack (optional - defaults to filename)

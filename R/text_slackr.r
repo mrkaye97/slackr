@@ -17,7 +17,6 @@
 #'       `username`)
 #' @references <https://github.com/mrkaye97/slackr/pull/11>
 #' @seealso <https://api.slack.com/methods/chat.postMessage>
-#' @rdname text_slackr
 #' @examples
 #' \dontrun{
 #' slackr_setup()

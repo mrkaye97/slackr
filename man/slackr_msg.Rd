@@ -28,7 +28,11 @@ is passed in, they will be combined and separated by newlines.}
 
 \item{bot_user_oauth_token}{Slack bot user OAuth token}
 
-\item{...}{other arguments passed to the Slack API \code{chat.postMessage} call}
+\item{...}{
+  Arguments passed on to \code{\link[=dev.slackr]{dev.slackr}}
+  \describe{
+    \item{\code{}}{}
+  }}
 }
 \value{
 the response (invisibly)

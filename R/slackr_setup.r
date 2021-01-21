@@ -31,7 +31,6 @@
 #'       to use this package.
 #' @seealso [slackr()], [dev_slackr()], [save_slackr()],
 #'          [slackr_upload()]
-#' @rdname slackr_setup
 #' @examples
 #' \dontrun{
 #' # reads from default file (i.e. ~/.slackr)

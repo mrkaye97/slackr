@@ -25,6 +25,12 @@ slackrUpload(...)
 \item{channels}{Slack channels to save to (optional)}
 
 \item{bot_user_oauth_token}{Slack bot user OAuth token}
+
+\item{...}{
+  Arguments passed on to \code{\link[=dev.slackr]{dev.slackr}}
+  \describe{
+    \item{\code{}}{}
+  }}
 }
 \value{
 \code{httr} response object from \code{POST} call (invisibly)

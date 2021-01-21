@@ -23,7 +23,6 @@
 #' @seealso [slackrSetup()], [slackr()],
 #'   [dev_slackr()], [save_slackr()],
 #'   [slackr_upload()]
-#' @rdname slackr_bot
 #' @section Webhook URLs: Webhook URLs look like: \itemize{
 #'
 #'   \item `https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX`

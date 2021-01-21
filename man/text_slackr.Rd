@@ -21,7 +21,11 @@ textSlackr(...)
 \arguments{
 \item{text}{The character vector to be posted}
 
-\item{...}{Optional arguments such as: as_user, parse, unfurl_links, etc.}
+\item{...}{
+  Arguments passed on to \code{\link[=dev.slackr]{dev.slackr}}
+  \describe{
+    \item{\code{}}{}
+  }}
 
 \item{preformatted}{Should the text be sent as preformatted text. Defaults to TRUE}
 

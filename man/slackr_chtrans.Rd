@@ -14,6 +14,12 @@ slackrChTrans(...)
 }
 \arguments{
 \item{channels}{vector of channel names to parse}
+
+\item{...}{
+  Arguments passed on to \code{\link[=dev.slackr]{dev.slackr}}, \code{\link[=dev.slackr]{dev.slackr}}
+  \describe{
+    \item{\code{}}{}
+  }}
 }
 \value{
 character vector - original channel list with \verb{#} or

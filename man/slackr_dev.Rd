@@ -22,6 +22,12 @@ dev_slackr(...)
 \item{bot_user_oauth_token}{the Slack full bot user OAuth token (chr)}
 
 \item{file}{prefix for filenames (defaults to \code{plot})}
+
+\item{...}{
+  Arguments passed on to \code{\link[=dev.slackr]{dev.slackr}}
+  \describe{
+    \item{\code{}}{}
+  }}
 }
 \value{
 \code{httr} response object from \code{POST} call

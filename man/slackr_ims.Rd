@@ -16,6 +16,12 @@ slackrIms(...)
 \item{bot_user_oauth_token}{the Slack both OAuth token (chr)}
 
 \item{verbose}{If TRUE, prints progress messages}
+
+\item{...}{
+  Arguments passed on to \code{\link[=dev.slackr]{dev.slackr}}
+  \describe{
+    \item{\code{}}{}
+  }}
 }
 \value{
 \code{data.frame} of im ids and user names
