@@ -19,7 +19,9 @@
 #' @param posted_to_time Timestamp of the last post to consider (default:
 #'   current time)
 #'
-#' @param message_count the number of messages to retain
+#' @param paginate If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to teh API and retrieves a maximum of `message_count` messages
+#'
+#' @param message_count The number of messages to retrieve (only when `paginate = FALSE`)
 #'
 #' @export
 #'
@@ -37,11 +39,13 @@ slackr_history <- function(
   paginate = FALSE
 ) {
 
-  if (!missing(duration) && !is.null(duration) && !is.null(posted_from_time) && !is.null(posted_from_time)) {
+  if (!missing(duration) && !is.null(duration) && !missing(posted_from_time) && !is.null(posted_from_time)) {
     posted_from_time <- posted_to_time - duration * 3600
   } else {
-    posted_from_time <-  NULL
+    posted_from_time <-  ""
   }
+
+  channel <- slackr_chtrans(channel)
 
   resp <-
     if (!paginate) {
@@ -49,7 +53,7 @@ slackr_history <- function(
         "/api/conversations.history",
         .method   = GET,
         bot_user_oauth_token = bot_user_oauth_token,
-        channel   = slackr_chtrans(channel),
+        channel   = channel,
         latest    = posted_to_time,
         oldest    = posted_from_time,
         inclusive = "true",
@@ -58,16 +62,17 @@ slackr_history <- function(
       convert_response_to_tibble(resp, "messages")
     } else {
       with_pagination(
-        function() {
+        function(cursor) {
           call_slack_api(
             "/api/conversations.history",
             .method   = GET,
             bot_user_oauth_token = bot_user_oauth_token,
-            channel   = slackr_chtrans(channel),
+            channel   = channel,
             latest    = posted_to_time,
             oldest    = posted_from_time,
             inclusive = "true",
-            limit     = count
+            limit     = message_count,
+            .next_cursor = cursor
           )
         },
         extract = "messages"

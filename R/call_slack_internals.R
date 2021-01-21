@@ -8,13 +8,14 @@
 #' @references https://api.slack.com/methods/conversations.list
 list_channels <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"), types = "public_channel", ...) {
   with_pagination(
-    function() {
+    function(cursor) {
       call_slack_api(
         "/api/conversations.list",
         .method = GET,
         bot_user_oauth_token = bot_user_oauth_token,
         types = types,
-        ...
+        ...,
+        .next_cursor = cursor
       )
     },
     extract = "channels"
@@ -30,12 +31,13 @@ list_channels <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUT
 #' @references https://api.slack.com/methods/users.list
 list_users <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"), ...) {
   with_pagination(
-    function() {
+    function(cursor) {
       call_slack_api(
         "/api/users.list",
         .method = GET,
         bot_user_oauth_token = bot_user_oauth_token,
-        ...
+        ...,
+        .next_cursor = cursor
       )
     },
     extract = "members"

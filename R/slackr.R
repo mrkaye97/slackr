@@ -108,20 +108,29 @@ slackr <- function(...,
     Sys.setlocale('LC_CTYPE','C')
     on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-    resp <- POST(url="https://slack.com/api/chat.postMessage",
-                 body=list(token=bot_user_oauth_token,
-                           channel=slackr_chtrans(channel),
-                           username=username,
-                           icon_emoji=icon_emoji,
-                           as_user=TRUE,
-                           text=sprintf("```%s```", output),
-                           link_names=1))
+    # resp <- POST(url="https://slack.com/api/chat.postMessage",
+    #              body=list(token=bot_user_oauth_token,
+    #                        channel=slackr_chtrans(channel),
+    #                        username=username,
+    #                        icon_emoji=icon_emoji,
+    #                        as_user=TRUE,
+    #                        text=sprintf("```%s```", output),
+    #                        link_names=1))
 
-    stop_for_status(resp)
+    resp <-
+      post_message(
+        bot_user_oauth_token = bot_user_oauth_token,
+        channel=slackr_chtrans(channel),
+        username=username,
+        icon_emoji=icon_emoji,
+        as_user=TRUE,
+        txt=sprintf("```%s```", output),
+        link_names=1
+    )
 
   }
 
-  invisible(content(resp))
+  invisible(resp)
 
 }
 

@@ -21,7 +21,7 @@ slackr_delete <- function(
 
 
   channel  = slackr_chtrans(channel)
-  timestamps <- slackr_history(channel = channel, message_count = count)[["ts"]]
+  timestamps <- slackr_history(channel = channel, message_count = count, paginate = FALSE)[["ts"]]
 
   resp <- lapply(timestamps, function(ts) {
     r <- call_slack_api(
@@ -33,7 +33,6 @@ slackr_delete <- function(
         ts      = ts
       )
     )
-    stop_for_status(r)
     content(r)
   })
 

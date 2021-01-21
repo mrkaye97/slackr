@@ -1,9 +1,25 @@
 GET <- "GET"
 POST <- "POST"
 
-call_slack_api <- function(path, ..., body = NULL, .method = c("GET", "POST"),
-                           bot_user_oauth_token,
-                           .verbose = Sys.getenv("SLACKR_VERBOSE", "FALSE")
+#' A wrapper function to call the Slack API with authentication and pagination.
+#'
+#' @inheritParams auth_test
+#'
+#' @param path The API definition path, e.g. `/api/auth.test`
+#' @param ... These arguments must be named and will be added to the API query string
+#' @param body If `.method = POST` the `body` gets passed to the API body
+#' @param .method Either "GET" or "POST"
+#' @param .verbose If TRUE, prints `httr` verbose messages.  Useful for debugging.
+#' @param .next_cursor The value of the next cursor, when using pagination.
+#'
+#' @return The API response (a named list)
+#' @export
+#'
+call_slack_api <- function(
+  path, ..., body = NULL, .method = c("GET", "POST"),
+  bot_user_oauth_token,
+  .verbose = Sys.getenv("SLACKR_VERBOSE", "FALSE"),
+  .next_cursor = ""
 
 ) {
   if (missing(bot_user_oauth_token) || is.null(bot_user_oauth_token)) {
@@ -31,7 +47,7 @@ call_slack_api <- function(path, ..., body = NULL, .method = c("GET", "POST"),
   # }
 
   # Set up the API call
-  call_api <-function() {
+  call_api <- function() {
     if (.method == "GET") {
       httr::GET(
         url = url,
@@ -39,7 +55,7 @@ call_slack_api <- function(path, ..., body = NULL, .method = c("GET", "POST"),
         httr::add_headers(
           .headers = c(Authorization = paste("Bearer", bot_user_oauth_token))
         ),
-        query = add_cursor_get(...)
+        query = add_cursor_get(..., .next_cursor = .next_cursor)
         # ...
       )
     } else if (.method == "POST") {
@@ -49,7 +65,7 @@ call_slack_api <- function(path, ..., body = NULL, .method = c("GET", "POST"),
         httr::add_headers(
           .headers = c(Authorization = paste("Bearer", bot_user_oauth_token))
         ),
-        body = add_cursor_post(body)
+        body = add_cursor_post(body, .next_cursor = .next_cursor)
       )
     }
   }
@@ -60,7 +76,7 @@ call_slack_api <- function(path, ..., body = NULL, .method = c("GET", "POST"),
 }
 
 
-add_cursor_get = function(..., .next_cursor = SLACK_CURSOR$value) {
+add_cursor_get = function(..., .next_cursor = "") {
   z <- list(...)
   if (!is.null(.next_cursor) && .next_cursor != "") {
     message("Appending cursor to query")
@@ -69,7 +85,7 @@ add_cursor_get = function(..., .next_cursor = SLACK_CURSOR$value) {
   z
 }
 
-add_cursor_post = function(..., .next_cursor = SLACK_CURSOR$value) {
+add_cursor_post = function(..., .next_cursor = "") {
   z <- list(...)[[1]]
   if (!is.null(.next_cursor) && .next_cursor != "") {
     message("Appending cursor to query")
@@ -88,7 +104,6 @@ get_next_cursor <- function(x) {
   content(x)[["response_metadata"]][["next_cursor"]]
 }
 
-SLACK_CURSOR <- new.env(parent = emptyenv())
 
 #' Calls the slack API with pagination using cursors.
 #'
@@ -105,20 +120,23 @@ SLACK_CURSOR <- new.env(parent = emptyenv())
 #'
 with_pagination <- function(fun, extract) {
   done <- FALSE
-  SLACK_CURSOR$value <<- ""
   old_cursor <- ""
+  next_cursor <- ""
   result = NA
   while (!done) {
-    r <- match.fun(fun)()
+    # make the api call
+    r <- match.fun(fun)(cursor = next_cursor)
+    # retrieve the next cursor
     gn <- get_next_cursor(r)
+
     if (is.null(gn) || gn == "") {
       done <- TRUE
-      SLACK_CURSOR$value <<-  ""
+      next_cursor <- ""
     } else {
       if (gn == old_cursor) stop("Repeating cursor: ", gn)
       message("Cursoring: ", gn)
-      SLACK_CURSOR$value <<-  gn
-      old_cursor <- gn
+      old_cursor <- next_cursor
+      next_cursor <- gn
       # Sys.sleep(0.1)
     }
     if (isTRUE(is.na(result))) {
@@ -156,12 +174,12 @@ auth_test <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TO
 
 #' Convert Slack API json response to tibble.
 #'
-#' @inheritParams list_channels
 #' @param x The Slack API response object, returned from [call_slack_api]
 #' @param element The name of the list element to extract
 #'
 #' @return A tibble
-#' @noRd
+#' @keywords Internal
+#' @export
 convert_response_to_tibble <- function(x, element) {
   as_tibble(
     jsonlite::fromJSON(content(x, as = "text"))[[element]]
