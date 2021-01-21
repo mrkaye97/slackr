@@ -31,6 +31,8 @@ text_slackr <- function(text,
                         icon_emoji=Sys.getenv("SLACK_ICON_EMOJI"),
                         bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
+  .Deprecated(new = 'slackr_msg')
+
   if ( length(text) > 1 ) { stop("text must be a vector of length one") }
   if ( !is.character(channel) | length(channel) > 1 ) { stop("channel must be a character vector of length one") }
   if ( !is.logical(preformatted) | length(preformatted) > 1 ) { stop("preformatted must be a logical vector of length one") }
@@ -47,6 +49,7 @@ text_slackr <- function(text,
   loc <- Sys.getlocale('LC_CTYPE')
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
+
 
   resp <- POST(url="https://slack.com/api/chat.postMessage",
                body=list(token=bot_user_oauth_token,

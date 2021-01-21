@@ -8,11 +8,9 @@
 #' @param channels Slack channels to save to (optional)
 #' @param file filename (without extension) to use
 #' @param bot_user_oauth_token Slack bot user OAuth token
-#' @note You can pass in `add_user=TRUE` as part of the `...` parameters and the Slack API
-#'       will post the message as your logged-in user account (this will override anything set in
-#'       `username`)
+#' @param plot_text the plot text to send with the plot (defaults to "")
 #' @return `httr` response object from `POST` call
-#' @seealso [slackr_setup()], [dev_slackr()], [slackr_upload()]
+#' @seealso [slackr_setup()], [slackr_dev()], [slackr_upload()]
 #' @importFrom httr POST add_headers upload_file
 #' @export
 #' @examples \dontrun{
@@ -21,7 +19,8 @@
 #' }
 save_slackr <- function(..., channels="",
                         file="slackr",
-                        bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+                        bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                        plot_text = '') {
 
   if (channels == '') stop("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
 
@@ -34,18 +33,15 @@ save_slackr <- function(..., channels="",
 
   on.exit(unlink(ftmp), add=TRUE)
 
-  modchan <- slackr_chtrans(channels)
-  if (length(modchan) == 0) modchan <- ""
-
-  res <- POST(url="https://slack.com/api/files.upload",
-             add_headers(`Content-Type`="multipart/form-data"),
-             body=list(file=upload_file(ftmp),
-                       filename=sprintf("%s.Rdata", file),
-                       token=bot_user_oauth_token,
-                       channels=modchan))
+  res <- files_upload(
+    file = ftmp,
+    channel = slackr_chtrans(channels),
+    txt = plot_text,
+    bot_user_oauth_token = bot_user_oauth_token,
+    filename = sprintf("%s.Rdata", file)
+  )
 
   stop_for_status(res)
 
-  invisible(res)
-
+  return(invisible(res))
 }
