@@ -16,16 +16,7 @@ slackr_setup(
   cacheChannels = TRUE
 )
 
-slackrSetup(
-  channel = "#general",
-  username = "slackr",
-  icon_emoji = "",
-  incoming_webhook_url = "",
-  bot_user_oauth_token = "",
-  config_file = "~/.slackr",
-  echo = FALSE,
-  cacheChannels = TRUE
-)
+slackrSetup(...)
 }
 \arguments{
 \item{channel}{default channel to send the output to (chr) defaults to \verb{#general}}

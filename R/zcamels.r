@@ -1,49 +1,92 @@
 # CAMEL CASE ALL THE THINGS (for legacy support)
 
-#' @rdname dev_slackr
+#' @rdname slackr_dev
 #' @export
-dev.slackr <- dev_slackr
+dev.slackr <- function(...) {
+  .Deprecated(new = 'slackr_dev')
+  slackr_dev(...)
+}
+
+#' @rdname slackr_dev
+#' @export
+dev_slackr <- function(...) {
+  .Deprecated(new = 'slackr_dev')
+  slackr_dev(...)
+}
 
 #' @rdname save_slackr
 #' @export
-save.slackr <- save_slackr
+save.slackr <- function(...) {
+  .Deprecated(new = 'save_slackr')
+  save_slackr(...)
+}
 
 #' @rdname slackr_bot
 #' @export
-slackrBot <- slackr_bot
+slackrBot <- function(...) {
+  .Deprecated(new = 'slackr_bot')
+  slackr_bot(...)
+}
 
 #' @rdname slackr_chtrans
 #' @export
-slackrChtrans <- slackr_chtrans
+slackrChtrans <- function(...) {
+  .Deprecated(new = 'slackr_chtrans')
+  slackr_chtrans(...)
+}
 
 #' @rdname slackr_chtrans
 #' @export
-slackrChTrans <- slackr_chtrans
+slackrChTrans <- function(...) {
+  .Deprecated(new = 'slackr_chtrans')
+  slackr_chtrans(...)
+}
 
 #' @rdname slackr_channels
 #' @export
-slackrChannels <- slackr_channels
+slackrChannels <- function(...) {
+  .Deprecated(new = 'slackr_channels')
+  slackr_channels(...)
+}
 
 #' @rdname slackr_ims
 #' @export
-slackrIms <- slackr_ims
+slackrIms <- function(...) {
+  .Deprecated(new = 'slackr_ims')
+  slackr_ims(...)
+}
 
 #' @rdname slackr_msg
 #' @export
-slackrMsg <- slackr_msg
+slackrMsg <- function(...) {
+  .Deprecated(new = 'slackr_msg')
+  slackr_msg(...)
+}
 
 #' @rdname slackr_setup
 #' @export
-slackrSetup <- slackr_setup
+slackrSetup <- function(...) {
+  .Deprecated(new = 'slackr_setup')
+  slackr_setup(...)
+}
 
 #' @rdname slackr_upload
 #' @export
-slackrUpload <- slackr_upload
+slackrUpload <- function(...) {
+  .Deprecated(new = 'slackr_upload')
+  slackr_upload(...)
+}
 
 #' @rdname slackr_users
 #' @export
-slackrUsers <- slackr_users
+slackrUsers <- function(...) {
+  .Deprecated(new = 'slackr_users')
+  slackr_users(...)
+}
 
 #' @rdname text_slackr
 #' @export
-textSlackr <- text_slackr
+textSlackr <- function(...) {
+  .Deprecated(new = 'slackr_msg')
+  text_slackr(...)
+}

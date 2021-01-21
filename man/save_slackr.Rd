@@ -12,12 +12,7 @@ save_slackr(
   bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
 )
 
-save.slackr(
-  ...,
-  channels = "",
-  file = "slackr",
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
-)
+save.slackr(...)
 }
 \arguments{
 \item{...}{objects to store in the R data file}

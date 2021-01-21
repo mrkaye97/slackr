@@ -16,15 +16,7 @@ text_slackr(
   bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
 )
 
-textSlackr(
-  text,
-  ...,
-  preformatted = TRUE,
-  channel = Sys.getenv("SLACK_CHANNEL"),
-  username = Sys.getenv("SLACK_USERNAME"),
-  icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
-)
+textSlackr(...)
 }
 \arguments{
 \item{text}{The character vector to be posted}

@@ -13,13 +13,7 @@ slackr_upload(
   bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
 )
 
-slackrUpload(
-  filename,
-  title = basename(filename),
-  initial_comment = basename(filename),
-  channels = "",
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
-)
+slackrUpload(...)
 }
 \arguments{
 \item{filename}{path to file}

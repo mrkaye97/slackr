@@ -8,9 +8,9 @@
 \usage{
 slackr_chtrans(channels)
 
-slackrChtrans(channels)
+slackrChtrans(...)
 
-slackrChTrans(channels)
+slackrChTrans(...)
 }
 \arguments{
 \item{channels}{vector of channel names to parse}

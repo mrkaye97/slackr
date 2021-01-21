@@ -5,27 +5,32 @@
 \title{Reads history of a channel.}
 \usage{
 slackr_history(
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
   channel = Sys.getenv("SLACK_CHANNEL"),
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
   posted_to_time = as.numeric(Sys.time()),
-  duration = 24,
-  posted_from_time = posted_to_time - duration * 3600
+  message_count,
+  duration,
+  posted_from_time,
+  paginate = FALSE
 )
 }
 \arguments{
-\item{bot_user_oauth_token}{the Slack bot user OAuth token}
-
 \item{channel}{The channel to get history from}
+
+\item{bot_user_oauth_token}{the Slack bot user OAuth token}
 
 \item{posted_to_time}{Timestamp of the last post to consider (default:
 current time)}
+
+\item{message_count}{the number of messages to retain}
 
 \item{duration}{Number of hours of history to retrieve.  By default retrieves
 24 hours of history.}
 
 \item{posted_from_time}{Timestamp of the first post time to consider}
-
-\item{message_count}{the number of messages to retain}
+}
+\value{
+A \code{tibble} with message metadata
 }
 \description{
 Returns a dataframe of post history in a channel.

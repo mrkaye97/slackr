@@ -134,19 +134,19 @@ packageVersion("slackr")
 ```
 
 ```{r demo2, eval=FALSE}
-slackrSetup(channel="#channel", 
-            incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX",
-            bot_user_oauth_token='token')
+slackr_setup(channel="#channel", 
+             incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX",
+             bot_user_oauth_token='token')
 
 slackr(str(iris))
 
 # send images
 library(ggplot2)
 qplot(mpg, wt, data=mtcars)
-dev_slackr("#results")
+slackr_dev("#results")
 
 barplot(VADeaths)
-dev_slackr("@jayjacobs")
+slackr_dev("@jayjacobs")
 
 ggslackr(qplot(mpg, wt, data=mtcars))
 

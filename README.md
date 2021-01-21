@@ -169,19 +169,19 @@ packageVersion("slackr")
 ```
 
 ``` r
-slackrSetup(channel="#channel", 
-            incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX",
-            bot_user_oauth_token='token')
+slackr_setup(channel="#channel", 
+             incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX",
+             bot_user_oauth_token='token')
 
 slackr(str(iris))
 
 # send images
 library(ggplot2)
 qplot(mpg, wt, data=mtcars)
-dev_slackr("#results")
+slackr_dev("#results")
 
 barplot(VADeaths)
-dev_slackr("@jayjacobs")
+slackr_dev("@jayjacobs")
 
 ggslackr(qplot(mpg, wt, data=mtcars))
 ```
@@ -234,7 +234,7 @@ slackr_setup(config_file = ".slackr")
 #> [1] "Successfully connected to Slack"
 
 date()
-#> [1] "Wed Jan 20 17:28:56 2021"
+#> [1] "Wed Jan 20 17:51:25 2021"
 
 devtools::test()
 #> Loading slackr
@@ -242,10 +242,10 @@ devtools::test()
 #> ✓ |  OK F W S | Context
 #> ⠏ |   0       | connection                                                                                              ⠋ |   1       | connection                                                                                              ✓ |   4       | connection [0.2 s]
 #> <e2><a0><8f> |   0       | posting                                                                                                 <e2><a0><8b> |   1       | posting                                                                                                 <e2><a0><99> |   2       | posting                                                                                                 <e2><a0><b9> |   3       | posting
-#> ⠸ |   4       | posting                                                                                                 ⠼ |   5       | posting                                                                                                 ⠴ |   6       | posting                                                                                                 ⠦ |   7       | posting                                                                                                 ⠧ |   8       | posting                                                                                                 ⠇ |   9       | posting                                                                                                 ✓ |   9       | posting [5.4 s]
+#> ⠸ |   4       | posting                                                                                                 ⠼ |   5       | posting                                                                                                 ⠴ |   6       | posting                                                                                                 ⠦ |   7       | posting                                                                                                 ⠧ |   8       | posting                                                                                                 ⠇ |   9       | posting                                                                                                 ✓ |   9       | posting [5.3 s]
 #> 
 #> ══ Results ═════════════════════════════════════════════════════════════════════════════════════════════════════════════
-#> Duration: 5.7 s
+#> Duration: 5.5 s
 #> 
 #> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 13 ]
 ```

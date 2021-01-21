@@ -13,7 +13,7 @@
 #'       will post the message as your logged-in user account (this will override anything set in
 #'       `username`).
 #' @references <https://github.com/mrkaye97/slackr/pull/12/files>
-#' @rdname dev_slackr
+#' @rdname slackr_dev
 #' @examples
 #' \dontrun{
 #' slackr_setup()
@@ -29,7 +29,7 @@
 #' }
 #' @importFrom httr POST add_headers
 #' @export
-dev_slackr <- function(channels=Sys.getenv("SLACK_CHANNEL"),
+slackr_dev <- function(channels=Sys.getenv("SLACK_CHANNEL"),
                        bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                        file="plot") {
 
