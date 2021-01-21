@@ -29,10 +29,10 @@ Version 2.0.0+ is updated to work with the new Slack API structure!
 # Installation
 
 ```{r setup, eval=FALSE}
-# original / no longer maintained
+# CRAN version
 install.packages("slackr")
 
-# 2.0.0+
+# Development version
 devtools::install_github("mrkaye97/slackr")
 ```
 

@@ -27,10 +27,10 @@ Version 2.0.0+ is updated to work with the new Slack API structure\!
 # Installation
 
 ``` r
-# original / no longer maintained
+# CRAN version
 install.packages("slackr")
 
-# 2.0.0+
+# Development version
 devtools::install_github("mrkaye97/slackr")
 ```
 
@@ -234,7 +234,7 @@ slackr_setup(config_file = ".slackr")
 #> [1] "Successfully connected to Slack"
 
 date()
-#> [1] "Wed Jan 20 17:51:25 2021"
+#> [1] "Wed Jan 20 17:53:25 2021"
 
 devtools::test()
 #> Loading slackr
@@ -242,10 +242,10 @@ devtools::test()
 #> ✓ |  OK F W S | Context
 #> ⠏ |   0       | connection                                                                                              ⠋ |   1       | connection                                                                                              ✓ |   4       | connection [0.2 s]
 #> <e2><a0><8f> |   0       | posting                                                                                                 <e2><a0><8b> |   1       | posting                                                                                                 <e2><a0><99> |   2       | posting                                                                                                 <e2><a0><b9> |   3       | posting
-#> ⠸ |   4       | posting                                                                                                 ⠼ |   5       | posting                                                                                                 ⠴ |   6       | posting                                                                                                 ⠦ |   7       | posting                                                                                                 ⠧ |   8       | posting                                                                                                 ⠇ |   9       | posting                                                                                                 ✓ |   9       | posting [5.3 s]
+#> ⠸ |   4       | posting                                                                                                 ⠼ |   5       | posting                                                                                                 ⠴ |   6       | posting                                                                                                 ⠦ |   7       | posting                                                                                                 ⠧ |   8       | posting                                                                                                 ⠇ |   9       | posting                                                                                                 ✓ |   9       | posting [5.9 s]
 #> 
 #> ══ Results ═════════════════════════════════════════════════════════════════════════════════════════════════════════════
-#> Duration: 5.5 s
+#> Duration: 6.1 s
 #> 
 #> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 13 ]
 ```
