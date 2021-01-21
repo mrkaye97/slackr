@@ -33,8 +33,8 @@ test_that("slackr_msg posts", {
 })
 
 test_that("text_slackr posts", {
-  res <- text_slackr('Testing')
-  expect_true(res$ok)
+  expect_warning(text_slackr('Testing'))
+  expect_true(suppressWarnings(text_slackr('Testing'))$ok)
 })
 
 test_that("slackr_delete works", {

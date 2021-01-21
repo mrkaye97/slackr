@@ -55,7 +55,7 @@ messaging to a specific channel.
 Setting up the single-channel bot is simple.
 
 1.  Go to <https://api.slack.com/apps>
-2.  Click “Create New App”
+2.  Click “Create New App” and then follow the setup instructions
 3.  Click “Incoming Webhooks” under “Features”
 4.  Turn the “Activate Incoming Webhooks” switch on
 5.  Click “Add New Webhook to Workspace”
@@ -75,7 +75,7 @@ Setting up the multi-functional bot is slightly more complex than the
 single-channel one.
 
 1.  Go to <https://api.slack.com/apps>
-2.  Click “Create New App”
+2.  Click “Create New App” and then follow the setup instructions
 3.  Click “OAuth & Permissions” under “Features”
 4.  Enable the following scopes in order to get all of the
     functionality:
@@ -112,8 +112,8 @@ single-channel one.
 You can also follow the config file setup directions below instead of
 passing the channel, token, and webhook directly.
 
-And that’s it\! Once `slackr_setup()` has been run, you should be able
-to post a message with `slackr('test message')`
+And that’s it\! You should be able to post a message with `slackr('test
+message')`
 
 ### Config File Setup
 
@@ -138,14 +138,15 @@ integration creation time) with `icon_emoji`.
 
 Without all of the scopes enabled, only certain functions will work.
 Which ones depends on which scopes you have enabled. See the function
-documentation for which scopes are needed.
+documentation for which scopes are needed for that function.
 
 ### Known Issues
 
   - Depending on your scopes, `slackr` could quietly fail (i.e. not
     throw an error, but also not post anything to your channel). If this
     happens, try explicitly adding the `slackr` app to your channel in
-    your Slack workspace with `/invite @your_app_name`
+    your Slack workspace with `/invite @your_app_name` or make sure you
+    have `chat:write.public` enabled.
   - Sometimes, channels may not show up in your workspace. If this
     happens, try running `R.cache::clearCache()`.
 
@@ -236,26 +237,27 @@ slackr_setup(config_file = ".slackr")
 #> [1] "Successfully connected to Slack"
 
 date()
-#> [1] "Wed Jan 20 18:41:21 2021"
+#> [1] "Thu Jan 21 08:44:53 2021"
 
 devtools::test()
 #> Loading slackr
 #> Testing slackr
 #> ✓ |  OK F W S | Context
-#> ⠏ |   0       | connection                                                                                              ⠋ |   1       | connection                                                                                              ✓ |   4       | connection [0.2 s]
+#> ⠏ |   0       | connection                                                                                              ⠋ |   1       | connection
+#> Cache created
+#> ⠸ |   4       | connection                                                                                              ✓ |   5       | connection [1.0 s]
 #> <e2><a0><8f> |   0       | posting                                                                                                 <e2><a0><8b> |   1       | posting                                                                                                 <e2><a0><99> |   2       | posting                                                                                                 <e2><a0><b9> |   3       | posting
-#> ⠸ |   4       | posting                                                                                                 ⠼ |   5       | posting                                                                                                 ⠴ |   6       | posting                                                                                                 ⠦ |   7       | posting                                                                                                 ⠧ |   8       | posting                                                                                                 ⠇ |   9       | posting                                                                                                 ✓ |   9       | posting [4.8 s]
+#> ⠸ |   4       | posting                                                                                                 ⠼ |   5       | posting                                                                                                 ⠴ |   6       | posting                                                                                                 ⠦ |   7       | posting                                                                                                 ⠧ |   8       | posting                                                                                                 ⠇ |   9       | posting                                                                                                 ✓ |   9       | posting [6.8 s]
 #> 
 #> ══ Results ═════════════════════════════════════════════════════════════════════════════════════════════════════════════
-#> Duration: 5.0 s
+#> Duration: 7.7 s
 #> 
-#> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 13 ]
-#> 
-#> Nice code.
+#> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 14 ]
 ```
 
 Many thanks to:
 
+  - [Bob Rudis](https://github.com/hrbrmstr)
   - [Jay Jacobs](https://github.com/jayjacobs)
   - [David Severski](https://github.com/davidski)
   - [Quinn Weber](https://github.com/qsweber)

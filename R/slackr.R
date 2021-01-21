@@ -122,12 +122,10 @@ slackr <- function(...,
         bot_user_oauth_token = bot_user_oauth_token,
         channel=slackr_chtrans(channel),
         username=username,
-        icon_emoji=icon_emoji,
-        as_user=TRUE,
+        emoji=icon_emoji,
         txt=sprintf("```%s```", output),
         link_names=1
     )
-
   }
 
   invisible(resp)
@@ -169,8 +167,6 @@ slackr_msg <- function(txt="",
     stop("No token specified. Did you forget to call slackr_setup()?", call. = FALSE)
   }
 
-  if (icon_emoji != "") { icon_emoji <- sprintf(', "icon_emoji": "%s"', icon_emoji)  }
-
   output <- paste0(txt, collapse="\n\n")
 
   loc <- Sys.getlocale('LC_CTYPE')
@@ -183,6 +179,8 @@ slackr_msg <- function(txt="",
       emoji = icon_emoji,
       channel    = slackr_chtrans(channel),
       bot_user_oauth_token = bot_user_oauth_token,
+      username = username,
+      link_names = 1,
       ...
     )
 

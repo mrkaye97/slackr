@@ -1,6 +1,6 @@
 #' Post a ggplot to a Slack channel
 #'
-#' Unlike the [dev_slackr()] function, this one takes a `ggplot` object,
+#' Unlike the [slackr_dev()] function, this one takes a `ggplot` object,
 #' eliminating the need to have a graphics device (think use in scripts).
 #'
 #' @param plot ggplot object to save, defaults to last plot displayed
@@ -16,17 +16,12 @@
 #' @param bot_user_oauth_token the Slack bot user OAuth token (chr)
 #' @param file prefix for filenames (defaults to `ggplot`)
 #' @param ... other arguments passed to graphics device
-#' @note You need to setup a bot user OAuth token for this to work.
-#'       Also, you can pass in `as_user=TRUE` as part of the `...`
-#'       parameters and the Slack API will post the message as your logged-in user
-#'       account (this will override anything set in `username`)
 #' @return `httr` response object (invisibly)
 #' @examples
 #' \dontrun{
 #' slackr_setup()
 #' ggslackr(qplot(mpg, wt, data=mtcars))
 #' }
-#' @importFrom httr POST add_headers
 #' @export
 ggslackr <- function(
   plot = last_plot(),
