@@ -101,5 +101,13 @@ slackrUsers <- function(...) {
 #' @export
 textSlackr <- function(...) {
   .Deprecated(new = 'slackr_msg')
-  text_slackr(...)
+  slackr_msg(...)
+}
+
+#' @rdname text_slackr
+#' @inheritDotParams dev.slackr
+#' @export
+text_slackr <- function(...) {
+  .Deprecated(new = 'slackr_msg')
+  slackr_msg(...)
 }
