@@ -99,48 +99,6 @@ slackr_users <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_T
 }
 
 
-#' Internal function to warn if Slack API call is not ok.
-#'
-#' The function is called for the side effect of warning when the API response
-#' has errors, and is a thin wrapper around httr::stop_for_status
-#'
-#' @param r The response from a call to the Slack API
-#'
-#' @return NULL
-#' @importFrom httr status_code content
-#' @keywords Internal
-#' @noRd
-#'
-stop_for_status <- function(r) {
-  # note that httr::stop_for_status should be called explicitly
-
-  if (r$status_code == 429) {
-    # here extract httr::headers(r)[["retry-after"]]
-  }
-  httr::stop_for_status(r)
-  cr <- content(r)
-
-  # A response code of 200 doesn't mean everything is ok, so check if the
-  # response is not ok
-  if (status_code(r) == 200 && !is.null(cr$ok) && !cr$ok) {
-    error_msg <- cr$error
-    cr$ok <- NULL
-    cr$error <- NULL
-    additional_msg <- paste(
-      sapply(seq_along(cr), function(i)paste(names(cr)[i], ":=", unname(cr)[i])),
-      collapse = "\n"
-    )
-    warning(
-      "\n",
-      "The slack API returned an error: ", error_msg, "\n",
-      additional_msg,
-      call. = FALSE,
-      immediate. = TRUE
-    )
-  }
-  invisible(NULL)
-}
-
 
 #' Get a data frame of Slack channels
 #'

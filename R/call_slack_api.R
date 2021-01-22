@@ -1,6 +1,61 @@
 GET <- "GET"
 POST <- "POST"
 
+#' Internal function to warn if Slack API call is not ok.
+#'
+#' The function is called for the side effect of warning when the API response
+#' has errors, and is a thin wrapper around httr::stop_for_status
+#'
+#' @param r The response from a call to the Slack API
+#'
+#' @return NULL
+#' @importFrom httr status_code content
+#' @keywords Internal
+#' @noRd
+#'
+stop_for_status <- function(r) {
+  # note that httr::stop_for_status should be called explicitly
+
+  httr::stop_for_status(r)
+  cr <- content(r)
+
+  # A response code of 200 doesn't mean everything is ok, so check if the
+  # response is not ok
+  if (status_code(r) == 200 && !is.null(cr$ok) && !cr$ok) {
+    error_msg <- cr$error
+    cr$ok <- NULL
+    cr$error <- NULL
+    additional_msg <- paste(
+      sapply(seq_along(cr), function(i)paste(names(cr)[i], ":=", unname(cr)[i])),
+      collapse = "\n"
+    )
+    warning(
+      "\n",
+      "The slack API returned an error: ", error_msg, "\n",
+      additional_msg,
+      call. = FALSE,
+      immediate. = TRUE
+    )
+  }
+  invisible(NULL)
+}
+
+
+with_retry <- function(fun) {
+  ok <- FALSE
+  while (!ok) {
+    r <- fun()
+    if (r$status_code == 429) {
+      retry_after <- httr::headers(r)[["retry-after"]]
+      message("\nPausing for ", retry_after, " seconds due to Slack API rate limit")
+      Sys.sleep(retry_after)
+    } else {
+      ok <- TRUE
+    }
+  }
+  r
+}
+
 #' A wrapper function to call the Slack API with authentication and pagination.
 #'
 #' @inheritParams auth_test
@@ -70,7 +125,7 @@ call_slack_api <- function(
     }
   }
 
-  resp <- call_api()
+  resp <- with_retry(call_api)
   stop_for_status(resp)
   resp
 }
@@ -108,6 +163,7 @@ get_next_cursor <- function(x) {
 get_retry_after <- function(x) {
 
 }
+
 
 #' Calls the slack API with pagination using cursors.
 #'
