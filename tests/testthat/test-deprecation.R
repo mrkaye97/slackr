@@ -15,5 +15,6 @@ test_that("slackrMsg deprecated", {
 
 test_that("text_slackr deprecated", {
   expect_warning(text_slackr('deprecation test'), regexp = "'text_slackr' is deprecated")
-  expect_warning(textSlackr('deprecation test'), regexp = "'textSlackr' is deprecated")
+  expect_warning(textSlackr('deprecation test'), regexp = "'text_slackr' is deprecated") %>%
+    expect_warning(regexp = "'textSlackr' is deprecated")
 })

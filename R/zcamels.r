@@ -152,6 +152,6 @@ slackrUsers <- function(...) {
 #' @export
 #' @seealso \code{\link[slackr]{slackr_msg}}
 textSlackr <- function(...) {
-  .Deprecated(new = 'text_slackr')
+  .Deprecated(new = 'slackr_msg')
   text_slackr(...)
 }
