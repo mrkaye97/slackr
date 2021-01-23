@@ -21,11 +21,7 @@ multiple R objects and expressions to all teammates at the same time
 with little effort. You can also send images from the current graphics
 device, R objects (as R data files), and upload files.
 
-# Breaking Changes
-
-Version 2.0.0+ is updated to work with the new Slack API structure\!
-
-# Installation
+## Installation
 
 ``` r
 # CRAN version
@@ -35,17 +31,24 @@ install.packages("slackr")
 devtools::install_github("mrkaye97/slackr")
 ```
 
-# Setup
+## Breaking Changes
+
+Version 2.0.0+ is updated to work with the new Slack API structure\!
+
+## Setup
 
 There are two ways of interfacing with `slackr` currently, that provide
-significantly different functionality.
+significantly different functionality:
 
-1.  Using only a webook to send messages to a channel (i.e. creating a
-    single-channel bot)
-2.  Creating a bot user to send messages to multiple channels, including
+1.  Creating a single-channel bot
+    
+    Using only a webhook to send messages to a channel
+
+2.  Creating a fully-functional multi-channel bot
+    
+    Creating a bot user to send messages to multiple channels, including
     plots, tables, files, etc. as well as deleting messages, reading the
-    channels in a workspace, etc. (i.e. creating a fully-functional
-    multi-channel bot)
+    channels in a workspace, etc.
 
 In most cases, we recommend `Option 1` above. This requires the fewest
 permissions and is the simplest to set up, and will allow basic
@@ -58,11 +61,14 @@ See the vignettes for setup instructions.
 The `slackr_setup()` function will try to read setup values from a
 `~/.slackr` (you can change the default) configuration file, which may
 be easier and more secure than passing them in manually (plus, will
-allow you to have multiple slackr configs for multiple Slack.com teams).
+allow you to have multiple `slackr` configurations for multiple
+Slack.com teams).
+
 The file is in Debian Control File (DCF) format since it really doesn’t
 need to be JSON and R has a handy `read.dcf()` function since that’s
-what `DESCRIPTION` files are coded in. Here’s the basic format for the
-configuration file:
+what `DESCRIPTION` files are coded in.
+
+Here’s the basic format for the configuration file:
 
     bot_user_oauth_token: Your app's bot user OAuth token
     channel: #general
@@ -72,7 +78,7 @@ configuration file:
 You can also change the default emoji icon (from the one you setup at
 integration creation time) with `icon_emoji`.
 
-### Thank Yous
+## Contributors
 
 Many thanks to:
 
@@ -89,3 +95,14 @@ Many thanks to:
   - [Andrie de Vries](https://github.com/andrie)
 
 for their contributions to the package\!
+
+## Known Issues
+
+  - Depending on your scopes, `slackr` could quietly fail (i.e. not
+    throw an error, but also not post anything to your channel). If this
+    happens, try explicitly adding the `slackr` app to your channel in
+    your Slack workspace with `/invite @your_app_name` or make sure you
+    have `chat:write.public` enabled.
+
+  - Sometimes, channels may not show up in your workspace. If this
+    happens, try running `R.cache::clearCache()`.
