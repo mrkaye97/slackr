@@ -3,7 +3,7 @@
 \name{slackrChtrans}
 \alias{slackrChtrans}
 \alias{slackrChTrans}
-\title{slackrChtrans}
+\title{Superseded by slackr_chtrans}
 \usage{
 slackrChtrans(...)
 
@@ -21,4 +21,31 @@ deprecated
 \code{\link[slackr]{slackr_chtrans}}
 
 \code{\link[slackr]{slackr_chtrans}}
+
+Other Deprecated functions: 
+\code{\link{dev.slackr}()},
+\code{\link{dev_slackr}()},
+\code{\link{save.slackr}()},
+\code{\link{slackrBot}()},
+\code{\link{slackrChannels}()},
+\code{\link{slackrIms}()},
+\code{\link{slackrMsg}()},
+\code{\link{slackrSetup}()},
+\code{\link{slackrUpload}()},
+\code{\link{slackrUsers}()},
+\code{\link{textSlackr}()}
+
+Other Deprecated functions: 
+\code{\link{dev.slackr}()},
+\code{\link{dev_slackr}()},
+\code{\link{save.slackr}()},
+\code{\link{slackrBot}()},
+\code{\link{slackrChannels}()},
+\code{\link{slackrIms}()},
+\code{\link{slackrMsg}()},
+\code{\link{slackrSetup}()},
+\code{\link{slackrUpload}()},
+\code{\link{slackrUsers}()},
+\code{\link{textSlackr}()}
 }
+\concept{Deprecated functions}

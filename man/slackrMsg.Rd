@@ -2,7 +2,7 @@
 % Please edit documentation in R/zcamels.r
 \name{slackrMsg}
 \alias{slackrMsg}
-\title{slackrMsg}
+\title{Superseded by slackr_msg}
 \usage{
 slackrMsg(...)
 }
@@ -14,4 +14,18 @@ deprecated
 }
 \seealso{
 \code{\link[slackr]{slackr_msg}}
+
+Other Deprecated functions: 
+\code{\link{dev.slackr}()},
+\code{\link{dev_slackr}()},
+\code{\link{save.slackr}()},
+\code{\link{slackrBot}()},
+\code{\link{slackrChannels}()},
+\code{\link{slackrChtrans}()},
+\code{\link{slackrIms}()},
+\code{\link{slackrSetup}()},
+\code{\link{slackrUpload}()},
+\code{\link{slackrUsers}()},
+\code{\link{textSlackr}()}
 }
+\concept{Deprecated functions}

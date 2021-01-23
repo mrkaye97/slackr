@@ -1,156 +1,169 @@
 # CAMEL CASE ALL THE THINGS (for legacy support)
 
-#' dev.slackr
+#' Superseded by slackr_dev
 #'
 #' deprecated
 #'
 #' @param ... arguments to pass to slackr_dev
 #' @export
 #' @seealso \code{\link[slackr]{slackr_dev}}
+#' @family Deprecated functions
 dev.slackr <- function(...) {
   .Deprecated(new = 'slackr_dev')
   slackr_dev(...)
 }
 
-#' dev_slackr
+#' Superseded by slackr_dev
 #'
 #' deprecated
 #'
 #' @param ... arguments to pass to slackr_dev
 #' @export
 #' @seealso \code{\link[slackr]{slackr_dev}}
+#' @family Deprecated functions
 dev_slackr <- function(...) {
   .Deprecated(new = 'slackr_dev')
   slackr_dev(...)
 }
 
-#' save.slackr
+#' Superseded by save_slackr
 #'
 #' deprecated
 #'
 #' @param ... arguments to pass to save_slackr
 #' @export
+#' @family Deprecated functions
 #' @seealso \code{\link[slackr]{save_slackr}}
 save.slackr <- function(...) {
   .Deprecated(new = 'save_slackr')
   save_slackr(...)
 }
 
-#' slackrBot
+#' Superseded by slackr_bot
 #'
 #' deprecated
 #'
 #' @param ... arguments to pass to slackr_bot
 #' @export
+#' @family Deprecated functions
 #' @seealso \code{\link[slackr]{slackr_bot}}
 slackrBot <- function(...) {
   .Deprecated(new = 'slackr_bot')
   slackr_bot(...)
 }
 
-#' slackrChtrans
+#' Superseded by slackr_chtrans
 #'
 #' deprecated
 #' @rdname slackrChtrans
 #' @param ... arguments to pass to slackr_chtrans
 #' @export
 #' @seealso \code{\link[slackr]{slackr_chtrans}}
+#' @family Deprecated functions
 slackrChtrans <- function(...) {
   .Deprecated(new = 'slackr_chtrans')
   slackr_chtrans(...)
 }
 
-#' slackrChTrans
+#' Superseded by slackr_chtrans
 #'
 #' deprecated
 #' @rdname slackrChtrans
 #' @param ... arguments to pass to slackr_chtrans
 #' @export
 #' @seealso \code{\link[slackr]{slackr_chtrans}}
+#' @family Deprecated functions
 slackrChTrans <- function(...) {
   .Deprecated(new = 'slackr_chtrans')
   slackr_chtrans(...)
 }
 
-#' slackrChannels
+#' Superseded by slackr_channels
 #'
 #' deprecated
 #'
 #' @param ... arguments to pass to slackr_channels
 #' @export
+#' @family Deprecated functions
 #' @seealso \code{\link[slackr]{slackr_channels}}
 slackrChannels <- function(...) {
   .Deprecated(new = 'slackr_channels')
   slackr_channels(...)
 }
 
-#' slackrIms
+#' Superseded by slackr_ims
 #'
 #' deprecated
 #'
 #' @param ... arguments to pass to slackr_ims
 #' @export
+#' @family Deprecated functions
 #' @seealso \code{\link[slackr]{slackr_ims}}
 slackrIms <- function(...) {
   .Deprecated(new = 'slackr_ims')
   slackr_ims(...)
 }
 
-#' slackrMsg
+#' Superseded by slackr_msg
 #'
 #' deprecated
 #'
 #' @param ... arguments to pass to slackr_msg
 #' @export
 #' @seealso \code{\link[slackr]{slackr_msg}}
+#' @family Deprecated functions
 slackrMsg <- function(...) {
   .Deprecated(new = 'slackr_msg')
   slackr_msg(...)
 }
 
-#' slackrSetup
+#' Superseded by slackr_setup
 #'
 #' deprecated
 #'
 #' @param ... arguments to pass to slackr_setup
 #' @export
+#' @family Deprecated functions
 #' @seealso \code{\link[slackr]{slackr_setup}}
 slackrSetup <- function(...) {
   .Deprecated(new = 'slackr_setup')
   slackr_setup(...)
 }
 
-#' slackrUpload
+#' Superseded by slackr_upload
 #'
 #' deprecated
 #'
 #' @param ... arguments to pass to slackr_upload
 #' @export
 #' @seealso \code{\link[slackr]{slackr_upload}}
+#' @family Deprecated functions
 slackrUpload <- function(...) {
   .Deprecated(new = 'slackr_upload')
   slackr_upload(...)
 }
 
-#' slackrUsers
+#' Superseded by slackr_users
 #'
 #' deprecated
 #'
 #' @param ... arguments to pass to slackr_users
 #' @export
 #' @seealso \code{\link[slackr]{slackr_users}}
+#' @family Deprecated functions
 slackrUsers <- function(...) {
   .Deprecated(new = 'slackr_users')
   slackr_users(...)
 }
 
-#' textSlackr
+#' Superseded by text_slackr
 #'
 #' deprecated
 #'
 #' @param ... arguments to pass to text_slackr
 #' @export
 #' @seealso \code{\link[slackr]{slackr_msg}}
+#' @family Deprecated functions
 textSlackr <- function(...) {
   .Deprecated(new = 'slackr_msg')
   text_slackr(...)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/zcamels.r
 \name{slackrUpload}
 \alias{slackrUpload}
-\title{slackrUpload}
+\title{Superseded by slackr_upload}
 \usage{
 slackrUpload(...)
 }
@@ -14,4 +14,18 @@ deprecated
 }
 \seealso{
 \code{\link[slackr]{slackr_upload}}
+
+Other Deprecated functions: 
+\code{\link{dev.slackr}()},
+\code{\link{dev_slackr}()},
+\code{\link{save.slackr}()},
+\code{\link{slackrBot}()},
+\code{\link{slackrChannels}()},
+\code{\link{slackrChtrans}()},
+\code{\link{slackrIms}()},
+\code{\link{slackrMsg}()},
+\code{\link{slackrSetup}()},
+\code{\link{slackrUsers}()},
+\code{\link{textSlackr}()}
 }
+\concept{Deprecated functions}

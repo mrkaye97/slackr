@@ -2,7 +2,7 @@
 % Please edit documentation in R/zcamels.r
 \name{save.slackr}
 \alias{save.slackr}
-\title{save.slackr}
+\title{Superseded by save_slackr}
 \usage{
 save.slackr(...)
 }
@@ -14,4 +14,18 @@ deprecated
 }
 \seealso{
 \code{\link[slackr]{save_slackr}}
+
+Other Deprecated functions: 
+\code{\link{dev.slackr}()},
+\code{\link{dev_slackr}()},
+\code{\link{slackrBot}()},
+\code{\link{slackrChannels}()},
+\code{\link{slackrChtrans}()},
+\code{\link{slackrIms}()},
+\code{\link{slackrMsg}()},
+\code{\link{slackrSetup}()},
+\code{\link{slackrUpload}()},
+\code{\link{slackrUsers}()},
+\code{\link{textSlackr}()}
 }
+\concept{Deprecated functions}
