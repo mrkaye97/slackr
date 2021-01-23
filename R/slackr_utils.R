@@ -8,7 +8,6 @@
 #' @author Quinn Weber (ctb), Bob Rudis (aut)
 #' @return character vector - original channel list with `#` or
 #'          `@@` channels replaced with ID's.
-#' @import dplyr
 #' @importFrom R.cache loadCache
 #' @export
 slackr_chtrans <- function(channels) {
@@ -34,6 +33,8 @@ slackr_chtrans <- function(channels) {
 #'
 #' @param bot_user_oauth_token the Slack bot OAuth token (chr)
 #' @return A data.frame of channels and users
+#' @importFrom dplyr bind_rows distinct
+#' @importFrom tibble tibble
 #'
 slackr_census <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
@@ -59,13 +60,13 @@ slackr_census <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_
   )
 
   if (length(chan) > 0) {
-    chan_list <- dplyr::bind_rows(chan_list, chan[, c("id", "name")])
+    chan_list <- bind_rows(chan_list, chan[, c("id", "name")])
   }
   if (length(users) > 0) {
-    chan_list <- dplyr::bind_rows(chan_list, users[, c("id", "name", "real_name")])
+    chan_list <- bind_rows(chan_list, users[, c("id", "name", "real_name")])
   }
 
-  dplyr::distinct(chan_list)
+  distinct(chan_list)
 }
 
 #' Create a cache of the users and channels in the workspace in order to limit API requests
@@ -86,6 +87,7 @@ slackr_createcache <- function() {
 #'
 #' @param bot_user_oauth_token the Slack bot OAuth token (chr)
 #' @return `data.frame` of users
+#' @importFrom dplyr bind_cols setdiff
 #' @export
 slackr_users <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
@@ -104,6 +106,7 @@ slackr_users <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_T
 #'
 #' @param bot_user_oauth_token the Slack bot OAuth token (chr)
 #' @param verbose If TRUE, prints progress messages.
+#' @importFrom dplyr bind_rows
 #' @return data.table of channels
 #' @export
 slackr_channels <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"), verbose = interactive()) {
@@ -126,6 +129,7 @@ slackr_channels <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OA
 #'
 #' @param bot_user_oauth_token the Slack both OAuth token (chr)
 #' @param verbose If TRUE, prints progress messages
+#' @importFrom dplyr left_join
 #'
 #' @author Quinn Weber (aut), Bob Rudis (ctb)
 #' @references <https://github.com/mrkaye97/slackr/pull/13>
@@ -150,5 +154,5 @@ slackr_ims <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOK
   if ((nrow(ims) == 0) | (nrow(users) == 0)) {
     stop("slackr is not seeing any users in your workspace. Are you sure you have the right scopes enabled? See the readme for details.")
   }
-  dplyr::left_join(users, ims, by="id")
+  left_join(users, ims, by="id")
 }

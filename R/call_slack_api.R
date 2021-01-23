@@ -40,13 +40,21 @@ stop_for_status <- function(r) {
   invisible(NULL)
 }
 
-
+#' with_retry
+#'
+#' @param fun fun
+#'
+#' @return r
+#' @importFrom httr headers
+#' @keywords Internal
+#' @noRd
+#'
 with_retry <- function(fun) {
   ok <- FALSE
   while (!ok) {
     r <- fun()
     if (r$status_code == 429) {
-      retry_after <- httr::headers(r)[["retry-after"]]
+      retry_after <- headers(r)[["retry-after"]]
       message("\nPausing for ", retry_after, " seconds due to Slack API rate limit")
       Sys.sleep(retry_after)
     } else {
@@ -66,6 +74,7 @@ with_retry <- function(fun) {
 #' @param .method Either "GET" or "POST"
 #' @param .verbose If TRUE, prints `httr` verbose messages.  Useful for debugging.
 #' @param .next_cursor The value of the next cursor, when using pagination.
+#' @importFrom httr GET POST add_headers verbose set_config
 #'
 #' @return The API response (a named list)
 #' @export
@@ -95,7 +104,7 @@ call_slack_api <- function(
 
   # Make verbose call if env var is set
   if (.verbose == "TRUE") {
-    old_config <- set_config(httr::verbose())
+    old_config <- set_config(verbose())
     on.exit(set_config(old_config), add = TRUE)
   } #else {
   #   set_config(httr::verbose(data_out = FALSE, data_in = FALSE, info = FALSE, ssl = FALSE))
@@ -104,20 +113,20 @@ call_slack_api <- function(
   # Set up the API call
   call_api <- function() {
     if (.method == "GET") {
-      httr::GET(
+      GET(
         url = url,
         path = path,
-        httr::add_headers(
+        add_headers(
           .headers = c(Authorization = paste("Bearer", bot_user_oauth_token))
         ),
         query = add_cursor_get(..., .next_cursor = .next_cursor)
         # ...
       )
     } else if (.method == "POST") {
-      httr::POST(
+      POST(
         url = url,
         path = path,
-        httr::add_headers(
+        add_headers(
           .headers = c(Authorization = paste("Bearer", bot_user_oauth_token))
         ),
         body = add_cursor_post(body, .next_cursor = .next_cursor)
@@ -221,6 +230,8 @@ with_pagination <- function(fun, extract) {
 #'
 #' @references https://api.slack.com/methods/auth.test
 #' @export
+#' @importFrom magrittr %>%
+#' @importFrom jsonlite fromJSON
 #'
 #' @examples
 #' if (Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN") != "") {
@@ -240,12 +251,16 @@ auth_test <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TO
 #'
 #' @param x The Slack API response object, returned from [call_slack_api]
 #' @param element The name of the list element to extract
+#' @importFrom magrittr %>%
+#' @importFrom jsonlite fromJSON
+#' @importFrom tibble as_tibble
+#' @importFrom httr content
 #'
 #' @return A tibble
 #' @keywords Internal
 #' @export
 convert_response_to_tibble <- function(x, element) {
   as_tibble(
-    jsonlite::fromJSON(content(x, as = "text"))[[element]]
+    fromJSON(content(x, as = "text"))[[element]]
   )
 }

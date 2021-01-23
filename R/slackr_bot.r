@@ -17,6 +17,7 @@
 #' @param icon_emoji what emoji to use (chr) `""` will mean use the default
 #' @param incoming_webhook_url which `slack.com` API endpoint URL to use
 #'   (see section **Webhook URLs** for details)
+#' @importFrom utils URLencode
 #' @note You need a <https://www.slack.com> account and will also need to
 #'   setup an incoming webhook: <https://api.slack.com/>. Old style webhooks are
 #'   no longer supported.

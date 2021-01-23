@@ -13,6 +13,7 @@
 #' @references <https://github.com/mrkaye97/slackr/pull/15/files>
 #' @seealso [slackr_setup()], [dev_slackr()], [save_slackr()]
 #' @return `httr` response object from `POST` call (invisibly)
+#' @importFrom httr POST add_headers upload_file
 #' @export
 slackr_upload <- function(filename, title=basename(filename),
                           initial_comment=basename(filename),
@@ -31,9 +32,9 @@ slackr_upload <- function(filename, title=basename(filename),
 
     modchan <- slackr_chtrans(channels)
 
-    res <- httr::POST(url="https://slack.com/api/files.upload",
-                      httr::add_headers(`Content-Type`="multipart/form-data"),
-                      body=list( file=httr::upload_file(f_path), filename=f_name,
+    res <- POST(url="https://slack.com/api/files.upload",
+                      add_headers(`Content-Type`="multipart/form-data"),
+                      body=list( file=upload_file(f_path), filename=f_name,
                                  title=title, initial_comment=initial_comment,
                                  token=bot_user_oauth_token, channels=paste(modchan, collapse=",")))
 

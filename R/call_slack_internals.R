@@ -101,7 +101,7 @@ post_message <- function(
 #' @inheritParams post_message
 #'
 #' @param file Name of file to upload
-#'
+#' @importFrom httr upload_file
 #' @keywords internal
 #' @noRd
 #'
@@ -120,7 +120,7 @@ files_upload <- function(
     .method = POST,
     bot_user_oauth_token = bot_user_oauth_token,
     body = list(
-      file            = httr::upload_file(file),
+      file            = upload_file(file),
       initial_comment = txt,
       channels        = slackr_chtrans(channel),
       username        = username,

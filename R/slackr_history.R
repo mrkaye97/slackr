@@ -8,25 +8,17 @@
 #'   channels:history * groups:history * im:history * mpim:history
 #'
 #' @param bot_user_oauth_token the Slack bot user OAuth token
-#'
 #' @param channel The channel to get history from
-#'
 #' @param posted_from_time Timestamp of the first post time to consider
-#'
 #' @param duration Number of hours of history to retrieve.  By default retrieves
 #'   24 hours of history.
-#'
 #' @param posted_to_time Timestamp of the last post to consider (default:
 #'   current time)
-#'
 #' @param paginate If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to teh API and retrieves a maximum of `message_count` messages
-#'
 #' @param message_count The number of messages to retrieve (only when `paginate = FALSE`)
-#'
 #' @export
 #'
 #' @return A `tibble` with message metadata
-#'
 #' @references <https://api.slack.com/methods/conversations.history>
 #'
 slackr_history <- function(
