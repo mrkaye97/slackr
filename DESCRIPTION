@@ -22,7 +22,9 @@ License: MIT + file LICENSE
 Suggests:
     testthat (>= 3.0.0),
     texPreview,
-    covr
+    covr,
+    knitr,
+    rmarkdown
 Encoding: UTF-8
 Depends:
     R (>= 3.3.0)
@@ -40,3 +42,4 @@ Imports:
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
+VignetteBuilder: knitr
