@@ -16,7 +16,7 @@
 #' @param bot_user_oauth_token the Slack bot user OAuth token (chr)
 #' @param file prefix for filenames (defaults to `ggplot`)
 #' @param ... other arguments passed to graphics device
-#' @importFrom ggplot2 ggsave last_plot
+#' @importFrom ggplot2 ggsave last_plot ggplot aes geom_point
 #' @return `httr` response object (invisibly)
 #' @examples
 #' \dontrun{
