@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Post a tex output to a Slack channel — tex_slackr" />
-<meta property="og:description" content="Unlike the dev_slackr function, this one takes a tex object,
+<meta property="og:description" content="Unlike the dev_slackr() function, this one takes a tex object,
 eliminating the need write to pdf and convert to png to pass to slack." />
 
 
@@ -73,7 +73,7 @@ eliminating the need write to pdf and convert to png to pass to slack." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
       </span>
     </div>
 
@@ -88,13 +88,28 @@ eliminating the need write to pdf and convert to png to pass to slack." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/scoped-bot-setup.html">Multi-Functional Bot Setup</a>
+    </li>
+    <li>
+      <a href="../articles/webhook-setup.html">Webhook Bot Setup</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/hrbrmstr/slackr/">
+  <a href="https://github.com/mrkaye97/slackr/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -113,12 +128,12 @@ eliminating the need write to pdf and convert to png to pass to slack." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Post a tex output to a Slack channel</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hrbrmstr/slackr/blob/master/R/tex_slackr.R'><code>R/tex_slackr.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/mrkaye97/slackr/blob/master/R/tex_slackr.R'><code>R/tex_slackr.R</code></a></small>
     <div class="hidden name"><code>tex_slackr.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Unlike the <code><a href='dev_slackr.html'>dev_slackr</a></code> function, this one takes a <code>tex</code> object,
+    <p>Unlike the <code><a href='dev_slackr.html'>dev_slackr()</a></code> function, this one takes a <code>tex</code> object,
 eliminating the need write to pdf and convert to png to pass to slack.</p>
     </div>
 
@@ -156,7 +171,7 @@ eliminating the need write to pdf and convert to png to pass to slack.</p>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>other arguments passed to <code><a href='https://rdrr.io/pkg/texPreview/man/tex_preview.html'>tex_preview</a></code>, see Details</p></td>
+      <td><p>other arguments passed to <code><a href='https://rdrr.io/pkg/texPreview/man/tex_preview.html'>texPreview::tex_preview()</a></code>, see Details</p></td>
     </tr>
     </table>
 
@@ -166,20 +181,20 @@ eliminating the need write to pdf and convert to png to pass to slack.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Please make sure <code>texPreview</code> package is installed before running this function.
-         For TeX setup refer to the
-         <a href='https://github.com/hrbrmstr/slackr#latex-for-tex_slackr'>Setup notes on <code>LaTeX</code></a>.</p>
+For TeX setup refer to the
+<a href='https://github.com/mrkaye97/slackr#latex-for-tex_slackr'>Setup notes on <code>LaTeX</code></a>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>You need to setup a full API token (i.e. not a webhook &amp; not OAuth) for this to work
-      Also, you can pass in <code>add_user=TRUE</code> as part of the <code>...</code>
-      parameters and the Slack API will post the message as your logged-in user
-      account (this will override anything set in <code>username</code>)</p>
+Also, you can pass in <code>add_user=TRUE</code> as part of the <code>...</code>
+parameters and the Slack API will post the message as your logged-in user
+account (this will override anything set in <code>username</code>)</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/texPreview/man/tex_preview.html'>tex_preview</a></code> <code><a href='https://rdrr.io/pkg/xtable/man/print.xtable.html'>print.xtable</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/texPreview/man/tex_preview.html'>texPreview::tex_preview()</a></code> <code><a href='https://rdrr.io/pkg/xtable/man/print.xtable.html'>xtable::print.xtable()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Jonathan Sidi [aut]</p>
+    <p>Jonathan Sidi (aut)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>

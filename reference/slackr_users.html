@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
       </span>
     </div>
 
@@ -87,13 +87,28 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/scoped-bot-setup.html">Multi-Functional Bot Setup</a>
+    </li>
+    <li>
+      <a href="../articles/webhook-setup.html">Webhook Bot Setup</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/hrbrmstr/slackr/">
+  <a href="https://github.com/mrkaye97/slackr/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -112,7 +127,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get a data frame of Slack users</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hrbrmstr/slackr/blob/master/R/slackr_utils.R'><code>R/slackr_utils.R</code></a>, <a href='https://github.com/hrbrmstr/slackr/blob/master/R/zcamels.r'><code>R/zcamels.r</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/mrkaye97/slackr/blob/master/R/slackr_utils.R'><code>R/slackr_utils.R</code></a></small>
     <div class="hidden name"><code>slackr_users.Rd</code></div>
     </div>
 
@@ -120,9 +135,7 @@
     <p>Get a data frame of Slack users</p>
     </div>
 
-    <pre class="usage"><span class='fu'>slackr_users</span><span class='op'>(</span>bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='fu'>slackrUsers</span><span class='op'>(</span>bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>slackr_users</span><span class='op'>(</span>bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

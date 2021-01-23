@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a cache of the users and channels in the workspace in order to limit API requests — slackr_createcache • slackr</title>
+<title>slackr_delete — slackr_delete • slackr</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Create a cache of the users and channels in the workspace in order to limit API requests — slackr_createcache" />
-<meta property="og:description" content="Create a cache of the users and channels in the workspace in order to limit API requests" />
+<meta property="og:title" content="slackr_delete — slackr_delete" />
+<meta property="og:description" content="Deletes the specified number of messages from the channel" />
 
 
 
@@ -126,21 +126,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a cache of the users and channels in the workspace in order to limit API requests</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mrkaye97/slackr/blob/master/R/slackr_utils.R'><code>R/slackr_utils.R</code></a></small>
-    <div class="hidden name"><code>slackr_createcache.Rd</code></div>
+    <h1>slackr_delete</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mrkaye97/slackr/blob/master/R/slackr_delete.R'><code>R/slackr_delete.R</code></a></small>
+    <div class="hidden name"><code>slackr_delete.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create a cache of the users and channels in the workspace in order to limit API requests</p>
+    <p>Deletes the specified number of messages from the channel</p>
     </div>
 
-    <pre class="usage"><span class='fu'>slackr_createcache</span><span class='op'>(</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>slackr_delete</span><span class='op'>(</span>
+  <span class='va'>count</span>,
+  channel <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_CHANNEL"</span><span class='op'>)</span>,
+  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>count</th>
+      <td><p>the number of messages to delete</p></td>
+    </tr>
+    <tr>
+      <th>channel</th>
+      <td><p>the channel to delete from</p></td>
+    </tr>
+    <tr>
+      <th>bot_user_oauth_token</th>
+      <td><p>the Slack bot user OAuth token</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>the memoized census function</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

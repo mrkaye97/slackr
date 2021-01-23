@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
       </span>
     </div>
 
@@ -88,13 +88,28 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/scoped-bot-setup.html">Multi-Functional Bot Setup</a>
+    </li>
+    <li>
+      <a href="../articles/webhook-setup.html">Webhook Bot Setup</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/hrbrmstr/slackr/">
+  <a href="https://github.com/mrkaye97/slackr/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -113,7 +128,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Send a file to Slack</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hrbrmstr/slackr/blob/master/R/slackr_upload.R'><code>R/slackr_upload.R</code></a>, <a href='https://github.com/hrbrmstr/slackr/blob/master/R/zcamels.r'><code>R/zcamels.r</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/mrkaye97/slackr/blob/master/R/slackr_upload.R'><code>R/slackr_upload.R</code></a></small>
     <div class="hidden name"><code>slackr_upload.Rd</code></div>
     </div>
 
@@ -123,14 +138,6 @@
     </div>
 
     <pre class="usage"><span class='fu'>slackr_upload</span><span class='op'>(</span>
-  <span class='va'>filename</span>,
-  title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span><span class='op'>(</span><span class='va'>filename</span><span class='op'>)</span>,
-  initial_comment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span><span class='op'>(</span><span class='va'>filename</span><span class='op'>)</span>,
-  channels <span class='op'>=</span> <span class='st'>""</span>,
-  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>
-<span class='op'>)</span>
-
-<span class='fu'>slackrUpload</span><span class='op'>(</span>
   <span class='va'>filename</span>,
   title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span><span class='op'>(</span><span class='va'>filename</span><span class='op'>)</span>,
   initial_comment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span><span class='op'>(</span><span class='va'>filename</span><span class='op'>)</span>,
@@ -166,15 +173,16 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>httr</code> response object from <code>POST</code> call (invisibly)</p>
+<p><code>httr</code> response object from <code>POST</code> call (invisibly)</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p><a href='https://github.com/hrbrmstr/slackr/pull/15/files'>https://github.com/hrbrmstr/slackr/pull/15/files</a></p>
+    <p><a href='https://github.com/mrkaye97/slackr/pull/15/files'>https://github.com/mrkaye97/slackr/pull/15/files</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='slackr_setup.html'>slackr_setup</a></code>, <code><a href='dev_slackr.html'>dev_slackr</a></code>, <code><a href='save_slackr.html'>save_slackr</a></code></p></div>
+    <div class='dont-index'><p><code><a href='slackr_setup.html'>slackr_setup()</a></code>, <code><a href='dev_slackr.html'>dev_slackr()</a></code>, <code><a href='save_slackr.html'>save_slackr()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Quinn Weber [ctb], Bob Rudis [aut]</p>
+    <p>Quinn Weber (ctb), Bob Rudis (aut)</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

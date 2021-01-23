@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a cache of the users and channels in the workspace in order to limit API requests — slackr_createcache • slackr</title>
+<title>Reads history of a channel. — slackr_history • slackr</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Create a cache of the users and channels in the workspace in order to limit API requests — slackr_createcache" />
-<meta property="og:description" content="Create a cache of the users and channels in the workspace in order to limit API requests" />
+<meta property="og:title" content="Reads history of a channel. — slackr_history" />
+<meta property="og:description" content="Returns a dataframe of post history in a channel." />
 
 
 
@@ -126,21 +126,73 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a cache of the users and channels in the workspace in order to limit API requests</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mrkaye97/slackr/blob/master/R/slackr_utils.R'><code>R/slackr_utils.R</code></a></small>
-    <div class="hidden name"><code>slackr_createcache.Rd</code></div>
+    <h1>Reads history of a channel.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mrkaye97/slackr/blob/master/R/slackr_history.R'><code>R/slackr_history.R</code></a></small>
+    <div class="hidden name"><code>slackr_history.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create a cache of the users and channels in the workspace in order to limit API requests</p>
+    <p>Returns a dataframe of post history in a channel.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>slackr_createcache</span><span class='op'>(</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>slackr_history</span><span class='op'>(</span>
+  channel <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_CHANNEL"</span><span class='op'>)</span>,
+  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>,
+  posted_to_time <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>,
+  <span class='va'>message_count</span>,
+  <span class='va'>duration</span>,
+  <span class='va'>posted_from_time</span>,
+  paginate <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>channel</th>
+      <td><p>The channel to get history from</p></td>
+    </tr>
+    <tr>
+      <th>bot_user_oauth_token</th>
+      <td><p>the Slack bot user OAuth token</p></td>
+    </tr>
+    <tr>
+      <th>posted_to_time</th>
+      <td><p>Timestamp of the last post to consider (default:
+current time)</p></td>
+    </tr>
+    <tr>
+      <th>message_count</th>
+      <td><p>The number of messages to retrieve (only when <code>paginate = FALSE</code>)</p></td>
+    </tr>
+    <tr>
+      <th>duration</th>
+      <td><p>Number of hours of history to retrieve.  By default retrieves
+24 hours of history.</p></td>
+    </tr>
+    <tr>
+      <th>posted_from_time</th>
+      <td><p>Timestamp of the first post time to consider</p></td>
+    </tr>
+    <tr>
+      <th>paginate</th>
+      <td><p>If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to teh API and retrieves a maximum of <code>message_count</code> messages</p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>the memoized census function</p>
+    <p>A <code>tibble</code> with message metadata</p>
+    <h2 class="hasAnchor" id="scopes"><a class="anchor" href="#scopes"></a>Scopes</h2>
+
+    
+
+
+<p>You need one or more of these scopes enabled in your slack app: *
+channels:history * groups:history * im:history * mpim:history</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p><a href='https://api.slack.com/methods/conversations.history'>https://api.slack.com/methods/conversations.history</a></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

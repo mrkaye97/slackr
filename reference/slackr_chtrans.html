@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Translate vector of channel names to channel ID's for API — slackr_chtrans • slackr</title>
+<title>Translate vector of channel names to channel IDs for API — slackr_chtrans • slackr</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Translate vector of channel names to channel ID's for API — slackr_chtrans" />
-<meta property="og:description" content="Given a vector of one or more channel names, it will retrieve list of
+<meta property="og:title" content="Translate vector of channel names to channel IDs for API — slackr_chtrans" />
+<meta property="og:description" content="Given a vector of one or more channel names, retrieve list of
 active channels and try to replace channels that begin with &quot;#&quot; or &quot;@&quot;
 with the channel ID for that channel." />
 
@@ -74,7 +74,7 @@ with the channel ID for that channel." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
       </span>
     </div>
 
@@ -89,13 +89,28 @@ with the channel ID for that channel." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/scoped-bot-setup.html">Multi-Functional Bot Setup</a>
+    </li>
+    <li>
+      <a href="../articles/webhook-setup.html">Webhook Bot Setup</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/hrbrmstr/slackr/">
+  <a href="https://github.com/mrkaye97/slackr/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -113,31 +128,18 @@ with the channel ID for that channel." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Translate vector of channel names to channel ID's for API</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hrbrmstr/slackr/blob/master/R/slackr_utils.R'><code>R/slackr_utils.R</code></a>, <a href='https://github.com/hrbrmstr/slackr/blob/master/R/zcamels.r'><code>R/zcamels.r</code></a></small>
+    <h1>Translate vector of channel names to channel IDs for API</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mrkaye97/slackr/blob/master/R/slackr_utils.R'><code>R/slackr_utils.R</code></a></small>
     <div class="hidden name"><code>slackr_chtrans.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Given a vector of one or more channel names, it will retrieve list of
+    <p>Given a vector of one or more channel names, retrieve list of
 active channels and try to replace channels that begin with "<code>#</code>" or "<code><a href='https://rdrr.io/r/base/slotOp.html'>@</a></code>"
 with the channel ID for that channel.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>slackr_chtrans</span><span class='op'>(</span>
-  <span class='va'>channels</span>,
-  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>
-<span class='op'>)</span>
-
-<span class='fu'>slackrChtrans</span><span class='op'>(</span>
-  <span class='va'>channels</span>,
-  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>
-<span class='op'>)</span>
-
-<span class='fu'>slackrChTrans</span><span class='op'>(</span>
-  <span class='va'>channels</span>,
-  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>slackr_chtrans</span><span class='op'>(</span><span class='va'>channels</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -146,19 +148,15 @@ with the channel ID for that channel.</p>
       <th>channels</th>
       <td><p>vector of channel names to parse</p></td>
     </tr>
-    <tr>
-      <th>bot_user_oauth_token</th>
-      <td><p>the Slack bot user OAuth token (chr)</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>character vector - original channel list with <code>#</code> or
-         <code><a href='https://rdrr.io/r/base/slotOp.html'>@</a></code> channels replaced with ID's.</p>
+<code><a href='https://rdrr.io/r/base/slotOp.html'>@</a></code> channels replaced with ID's.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Quinn Weber [ctb], Bob Rudis [aut]</p>
+    <p>Quinn Weber (ctb), Bob Rudis (aut)</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

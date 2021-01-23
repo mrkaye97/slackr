@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
       </span>
     </div>
 
@@ -86,13 +86,28 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/scoped-bot-setup.html">Multi-Functional Bot Setup</a>
+    </li>
+    <li>
+      <a href="../articles/webhook-setup.html">Webhook Bot Setup</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/hrbrmstr/slackr/">
+  <a href="https://github.com/mrkaye97/slackr/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -136,9 +151,33 @@
       <tr>
         
         <td>
-          <p><code><a href="dev_slackr.html">dev_slackr()</a></code> <code><a href="dev_slackr.html">dev.slackr()</a></code> </p>
+          <p><code><a href="auth_test.html">auth_test()</a></code> </p>
         </td>
-        <td><p>Send the graphics contents of the current device to a Slack channel</p></td>
+        <td><p>Checks authentication &amp; identity against the Slack API.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="call_slack_api.html">call_slack_api()</a></code> </p>
+        </td>
+        <td><p>A wrapper function to call the Slack API with authentication and pagination.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="convert_response_to_tibble.html">convert_response_to_tibble()</a></code> </p>
+        </td>
+        <td><p>Convert Slack API json response to tibble.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="dev.slackr.html">dev.slackr()</a></code> </p>
+        </td>
+        <td><p>dev.slackr</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="dev_slackr.html">dev_slackr()</a></code> </p>
+        </td>
+        <td><p>dev_slackr</p></td>
       </tr><tr>
         
         <td>
@@ -154,7 +193,13 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="save_slackr.html">save_slackr()</a></code> <code><a href="save_slackr.html">save.slackr()</a></code> </p>
+          <p><code><a href="save.slackr.html">save.slackr()</a></code> </p>
+        </td>
+        <td><p>save.slackr</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="save_slackr.html">save_slackr()</a></code> </p>
         </td>
         <td><p>Save R objects to an RData file on Slack</p></td>
       </tr><tr>
@@ -172,7 +217,55 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="slackr_bot.html">slackr_bot()</a></code> <code><a href="slackr_bot.html">slackrBot()</a></code> </p>
+          <p><code><a href="slackrBot.html">slackrBot()</a></code> </p>
+        </td>
+        <td><p>slackrBot</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackrChannels.html">slackrChannels()</a></code> </p>
+        </td>
+        <td><p>slackrChannels</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackrChtrans.html">slackrChtrans()</a></code> <code><a href="slackrChtrans.html">slackrChTrans()</a></code> </p>
+        </td>
+        <td><p>slackrChtrans</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackrIms.html">slackrIms()</a></code> </p>
+        </td>
+        <td><p>slackrIms</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackrMsg.html">slackrMsg()</a></code> </p>
+        </td>
+        <td><p>slackrMsg</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackrSetup.html">slackrSetup()</a></code> </p>
+        </td>
+        <td><p>slackrSetup</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackrUpload.html">slackrUpload()</a></code> </p>
+        </td>
+        <td><p>slackrUpload</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackrUsers.html">slackrUsers()</a></code> </p>
+        </td>
+        <td><p>slackrUsers</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackr_bot.html">slackr_bot()</a></code> </p>
         </td>
         <td><p>Send result of R expressions to a Slack channel via webhook API</p></td>
       </tr><tr>
@@ -184,15 +277,15 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="slackr_channels.html">slackr_channels()</a></code> <code><a href="slackr_channels.html">slackrChannels()</a></code> </p>
+          <p><code><a href="slackr_channels.html">slackr_channels()</a></code> </p>
         </td>
         <td><p>Get a data frame of Slack channels</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="slackr_chtrans.html">slackr_chtrans()</a></code> <code><a href="slackr_chtrans.html">slackrChtrans()</a></code> <code><a href="slackr_chtrans.html">slackrChTrans()</a></code> </p>
+          <p><code><a href="slackr_chtrans.html">slackr_chtrans()</a></code> </p>
         </td>
-        <td><p>Translate vector of channel names to channel ID's for API</p></td>
+        <td><p>Translate vector of channel names to channel IDs for API</p></td>
       </tr><tr>
         
         <td>
@@ -202,31 +295,49 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="slackr_ims.html">slackr_ims()</a></code> <code><a href="slackr_ims.html">slackrIms()</a></code> </p>
+          <p><code><a href="slackr_delete.html">slackr_delete()</a></code> </p>
+        </td>
+        <td><p>slackr_delete</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackr_dev.html">slackr_dev()</a></code> </p>
+        </td>
+        <td><p>Send the graphics contents of the current device to a Slack channel</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackr_history.html">slackr_history()</a></code> </p>
+        </td>
+        <td><p>Reads history of a channel.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackr_ims.html">slackr_ims()</a></code> </p>
         </td>
         <td><p>Get a data frame of Slack IM ids</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="slackr_msg.html">slackr_msg()</a></code> <code><a href="slackr_msg.html">slackrMsg()</a></code> </p>
+          <p><code><a href="slackr_msg.html">slackr_msg()</a></code> </p>
         </td>
-        <td><p>Output R expressions to a Slack channel/user</p></td>
+        <td><p>Sends a message to a slack channel.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="slackr_setup.html">slackr_setup()</a></code> <code><a href="slackr_setup.html">slackrSetup()</a></code> </p>
+          <p><code><a href="slackr_setup.html">slackr_setup()</a></code> </p>
         </td>
         <td><p>Setup environment variables for Slack API access</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="slackr_upload.html">slackr_upload()</a></code> <code><a href="slackr_upload.html">slackrUpload()</a></code> </p>
+          <p><code><a href="slackr_upload.html">slackr_upload()</a></code> </p>
         </td>
         <td><p>Send a file to Slack</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="slackr_users.html">slackr_users()</a></code> <code><a href="slackr_users.html">slackrUsers()</a></code> </p>
+          <p><code><a href="slackr_users.html">slackr_users()</a></code> </p>
         </td>
         <td><p>Get a data frame of Slack users</p></td>
       </tr><tr>
@@ -238,10 +349,21 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="text_slackr.html">text_slackr()</a></code> <code><a href="text_slackr.html">textSlackr()</a></code> </p>
+          <p><code><a href="textSlackr.html">textSlackr()</a></code> </p>
         </td>
-        <td><p>Sends basic text to a slack channel. Calls the chat.postMessage method on the Slack Web API.
-Information on this method can be found here: <a href='https://api.slack.com/methods/chat.postMessage'>https://api.slack.com/methods/chat.postMessage</a></p></td>
+        <td><p>textSlackr</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="text_slackr.html">text_slackr()</a></code> </p>
+        </td>
+        <td><p>text_slackr</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="with_pagination.html">with_pagination()</a></code> </p>
+        </td>
+        <td><p>Calls the slack API with pagination using cursors.</p></td>
       </tr>
     </tbody>
     </table>

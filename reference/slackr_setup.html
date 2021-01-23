@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Setup environment variables for Slack API access — slackr_setup" />
-<meta property="og:description" content="Initialize all the environment variables slackr will need to use to
+<meta property="og:description" content="Initialize all the environment variables slackr() will need to use to
 work properly." />
 
 
@@ -73,7 +73,7 @@ work properly." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
       </span>
     </div>
 
@@ -88,13 +88,28 @@ work properly." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/scoped-bot-setup.html">Multi-Functional Bot Setup</a>
+    </li>
+    <li>
+      <a href="../articles/webhook-setup.html">Webhook Bot Setup</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/hrbrmstr/slackr/">
+  <a href="https://github.com/mrkaye97/slackr/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -113,27 +128,16 @@ work properly." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Setup environment variables for Slack API access</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hrbrmstr/slackr/blob/master/R/slackr_setup.r'><code>R/slackr_setup.r</code></a>, <a href='https://github.com/hrbrmstr/slackr/blob/master/R/zcamels.r'><code>R/zcamels.r</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/mrkaye97/slackr/blob/master/R/slackr_setup.r'><code>R/slackr_setup.r</code></a></small>
     <div class="hidden name"><code>slackr_setup.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Initialize all the environment variables <code><a href='slackr.html'>slackr</a></code> will need to use to
+    <p>Initialize all the environment variables <code><a href='slackr.html'>slackr()</a></code> will need to use to
 work properly.</p>
     </div>
 
     <pre class="usage"><span class='fu'>slackr_setup</span><span class='op'>(</span>
-  channel <span class='op'>=</span> <span class='st'>"#general"</span>,
-  username <span class='op'>=</span> <span class='st'>"slackr"</span>,
-  icon_emoji <span class='op'>=</span> <span class='st'>""</span>,
-  incoming_webhook_url <span class='op'>=</span> <span class='st'>""</span>,
-  bot_user_oauth_token <span class='op'>=</span> <span class='st'>""</span>,
-  config_file <span class='op'>=</span> <span class='st'>"~/.slackr"</span>,
-  echo <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  cacheChannels <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-
-<span class='fu'>slackrSetup</span><span class='op'>(</span>
   channel <span class='op'>=</span> <span class='st'>"#general"</span>,
   username <span class='op'>=</span> <span class='st'>"slackr"</span>,
   icon_emoji <span class='op'>=</span> <span class='st'>""</span>,
@@ -183,9 +187,12 @@ with the config values.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>"Successfully connected to Slack"</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>By default, <code><a href='slackr.html'>slackr</a></code> (and other functions) will use the <code>#general</code>
+    <p>By default, <code><a href='slackr.html'>slackr()</a></code> (and other functions) will use the <code>#general</code>
 room and a username of <code><a href='slackr.html'>slackr()</a></code> with no emoji.</p>
 <p>If a valid file is found at the locaiton pointed to by <code>config_file</code>, the
 values there will be used. The fields should be specified as such in the file:</p>
@@ -199,11 +206,11 @@ values there will be used. The fields should be specified as such in the file:</
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>You need a <a href='https://slack.com'>Slack</a> account and all your API URLs &amp; tokens setup
-      to use this package.</p>
+to use this package.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='slackr.html'>slackr</a></code>, <code><a href='dev_slackr.html'>dev_slackr</a></code>, <code><a href='save_slackr.html'>save_slackr</a></code>,
-         <code><a href='slackr_upload.html'>slackr_upload</a></code></p></div>
+    <div class='dont-index'><p><code><a href='slackr.html'>slackr()</a></code>, <code><a href='dev_slackr.html'>dev_slackr()</a></code>, <code><a href='save_slackr.html'>save_slackr()</a></code>,
+<code><a href='slackr_upload.html'>slackr_upload()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"></pre>
