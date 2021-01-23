@@ -9,7 +9,6 @@
 #' @param path character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL
 #' @param bot_user_oauth_token the Slack full bot user OAuth token (chr)
 #' @param ... other arguments passed to [texPreview::tex_preview()], see Details
-#' @importFrom texPreview tex_preview
 #' @note You need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
 #'       Also, you can pass in `add_user=TRUE` as part of the `...`
 #'       parameters and the Slack API will post the message as your logged-in user
@@ -56,7 +55,7 @@ tex_slackr <- function(obj,
 
   if(!dir.exists(td)) dir.create(td)
 
-  tex_preview(
+  texPreview::tex_preview(
     obj = obj,
     stem = 'slack',
     fileDir = td,

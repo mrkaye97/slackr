@@ -23,7 +23,8 @@ Suggests:
     testthat (>= 3.0.0),
     covr,
     knitr,
-    rmarkdown
+    rmarkdown,
+    texPreview
 Encoding: UTF-8
 Depends:
     R (>= 3.3.0)
@@ -38,7 +39,6 @@ Imports:
     grDevices,
     xtable (>= 1.8.4),
     R.cache (>= 0.14.0),
-    texPreview (>= 1.4.6),
     tibble,
     magrittr
 RoxygenNote: 7.1.1

@@ -19,13 +19,13 @@ test_that("slackr posts", {
   expect_true(res$ok)
 })
 
-# test_that("ggslackr posts", {
-#   res <- ggslackr(
-#     ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
-#       geom_point()
-#   )
-#   expect_true(res$ok)
-# })
+test_that("ggslackr posts", {
+  res <- ggslackr(
+    ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
+      geom_point()
+  )
+  expect_true(res$ok)
+})
 
 test_that("slackr_msg posts", {
   res <- slackr_msg('Testing')
