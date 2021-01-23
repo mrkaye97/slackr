@@ -21,7 +21,6 @@ BugReports: https://github.com/mrkaye97/slackr/issues
 License: MIT + file LICENSE
 Suggests:
     testthat (>= 3.0.0),
-    texPreview,
     covr,
     knitr,
     rmarkdown
@@ -34,11 +33,14 @@ Imports:
     ggplot2,
     utils,
     methods,
-    dplyr (>= 1.0.0),
+    dplyr,
     graphics,
     grDevices,
     xtable (>= 1.8.4),
-    R.cache (>= 0.14.0)
+    R.cache (>= 0.14.0),
+    texPreview (>= 1.4.6),
+    tibble,
+    magrittr
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
