@@ -41,6 +41,7 @@ install.packages("slackr")
 devtools::install_github("mrkaye97/slackr")
 ```
 
+
 # Setup
 
 There are two ways of interfacing with `slackr` currently, that provide significantly different functionality. 
@@ -64,7 +65,8 @@ The `slackr_setup()` function will try to read setup values from a `~/.slackr` (
 You can also change the default emoji icon (from the one you setup at integration creation time) with `icon_emoji`.
 
 
-### Thank Yous
+
+## Contributors
 
 Many thanks to:
 
@@ -81,3 +83,11 @@ Many thanks to:
 - [Andrie de Vries](https://github.com/andrie)
 
 for their contributions to the package!
+
+## Known Issues
+
+* Depending on your scopes, `slackr` could quietly fail (i.e. not throw an error, but also not post anything to your channel). If this happens, try explicitly adding the `slackr` app to your channel in your Slack workspace with `/invite @your_app_name` or make sure you have `chat:write.public` enabled.
+
+* Sometimes, channels may not show up in your workspace. If this happens, try running `R.cache::clearCache()`.
+
+
