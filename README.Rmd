@@ -58,23 +58,8 @@ The `slackr_setup()` function will try to read setup values from a `~/.slackr` (
 
 You can also change the default emoji icon (from the one you setup at integration creation time) with `icon_emoji`.
 
-```{r opts, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
-options(width=120)
-```
 
-# Test Results
-
-```{r test}
-library(slackr)
-library(testthat)
-
-slackr_setup(config_file = ".slackr")
-
-date()
-
-devtools::test()
-```
-
+### Thank Yous
 
 Many thanks to:
 
