@@ -120,183 +120,20 @@
 <li>Creating a bot user to send messages to multiple channels, including plots, tables, files, etc. as well as deleting messages, reading the channels in a workspace, etc. (i.e. creating a fully-functional multi-channel bot)</li>
 </ol>
 <p>In most cases, we recommend <code>Option 1</code> above. This requires the fewest permissions and is the simplest to set up, and will allow basic messaging to a specific channel.</p>
-<div id="webhook-bot-setup" class="section level3">
-<h3 class="hasAnchor">
-<a href="#webhook-bot-setup" class="anchor"></a>Webhook Bot Setup</h3>
-<p>Setting up the single-channel bot is simple.</p>
-<ol>
-<li>Go to <a href="https://api.slack.com/apps" class="uri">https://api.slack.com/apps</a>
-</li>
-<li>Click “Create New App” and then follow the setup instructions</li>
-<li>Click “Incoming Webhooks” under “Features”</li>
-<li>Turn the “Activate Incoming Webhooks” switch on</li>
-<li>Click “Add New Webhook to Workspace”</li>
-<li>Select the channel you’d like the bot to post to</li>
-<li>Copy the Webhook URL</li>
-<li>Call <code><a href="reference/slackr_setup.html">slackr_setup(channel = '#channel_with_webhook', incoming_webhook_url = 'your_webhook')</a></code>. You can also follow the config file setup directions below instead of passing the channel and webhook directly.</li>
-</ol>
-<p>And that’s it! You should be able to post a message with <code><a href="reference/slackr_bot.html">slackr_bot('test message')</a></code></p>
-</div>
-<div id="multi-functional-bot-setup" class="section level3">
-<h3 class="hasAnchor">
-<a href="#multi-functional-bot-setup" class="anchor"></a>Multi-Functional Bot Setup</h3>
-<p>Setting up the multi-functional bot is slightly more complex than the single-channel one.</p>
-<ol>
-<li>Go to <a href="https://api.slack.com/apps" class="uri">https://api.slack.com/apps</a>
-</li>
-<li>Click “Create New App” and then follow the setup instructions</li>
-<li>Click “OAuth &amp; Permissions” under “Features”</li>
-<li>Enable the following scopes in order to get all of the functionality:</li>
-</ol>
-<!-- end list --><ul>
-<li><code>channels:read</code></li>
-<li><code>users:read</code></li>
-<li><code>files:read</code></li>
-<li><code>groups:read</code></li>
-<li><code>groups:write</code></li>
-<li><code>chat:write</code></li>
-<li><code>chat:write.customize</code></li>
-<li><code>chat:write.public</code></li>
-<li><code>im:write</code></li>
-<li><code>incoming-webhook</code></li>
-<li><code>channels:history</code></li>
-</ul>
-<!-- end list --><ol>
-<li>Click “Install to Workspace”</li>
-<li>Select a channel (for webhook messages)</li>
-<li>Copy the Bot User OAuth Access Token</li>
-<li>Click “Incoming Webhooks” under “Features”</li>
-<li>Copy the Webhook URL</li>
-<li>Call</li>
-</ol>
-<!-- end list --><div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">slackr_setup</span>(<span class="dt">channel =</span> <span class="st">'#channel_with_webhook'</span>, </span>
-<span id="cb2-2"><a href="#cb2-2"></a>             <span class="dt">bot_user_oauth_token =</span> <span class="st">'your_token'</span>, </span>
-<span id="cb2-3"><a href="#cb2-3"></a>             <span class="dt">incoming_webhook_url =</span> <span class="st">'your_webhook'</span>)</span></code></pre></div>
-<p>You can also follow the config file setup directions below instead of passing the channel, token, and webhook directly.</p>
-<p>And that’s it! You should be able to post a message with <code><a href="reference/slackr.html">slackr('test message')</a></code></p>
-</div>
+<p>See the vignettes for setup instructions.</p>
 <div id="config-file-setup" class="section level3">
 <h3 class="hasAnchor">
 <a href="#config-file-setup" class="anchor"></a>Config File Setup</h3>
 <p>The <code><a href="reference/slackr_setup.html">slackr_setup()</a></code> function will try to read setup values from a <code>~/.slackr</code> (you can change the default) configuration file, which may be easier and more secure than passing them in manually (plus, will allow you to have multiple slackr configs for multiple Slack.com teams). The file is in Debian Control File (DCF) format since it really doesn’t need to be JSON and R has a handy <code><a href="https://rdrr.io/r/base/dcf.html">read.dcf()</a></code> function since that’s what <code>DESCRIPTION</code> files are coded in. Here’s the basic format for the configuration file:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>bot_user_oauth_token<span class="op">:</span><span class="st"> </span>Your app<span class="st">'s bot user OAuth token</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="st">channel: #general</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="st">username: slackr</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="st">incoming_webhook_url: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>bot_user_oauth_token<span class="op">:</span><span class="st"> </span>Your app<span class="st">'s bot user OAuth token</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="st">channel: #general</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="st">username: slackr</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="st">incoming_webhook_url: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX</span></span></code></pre></div>
 <p>You can also change the default emoji icon (from the one you setup at integration creation time) with <code>icon_emoji</code>.</p>
 </div>
-<div id="scopes" class="section level3">
+<div id="thank-yous" class="section level3">
 <h3 class="hasAnchor">
-<a href="#scopes" class="anchor"></a>Scopes</h3>
-<p>Without all of the scopes enabled, only certain functions will work. Which ones depends on which scopes you have enabled. See the function documentation for which scopes are needed for that function.</p>
-</div>
-<div id="known-issues" class="section level3">
-<h3 class="hasAnchor">
-<a href="#known-issues" class="anchor"></a>Known Issues</h3>
-<ul>
-<li>Depending on your scopes, <code>slackr</code> could quietly fail (i.e. not throw an error, but also not post anything to your channel). If this happens, try explicitly adding the <code>slackr</code> app to your channel in your Slack workspace with <code>/invite @your_app_name</code> or make sure you have <code>chat:write.public</code> enabled.</li>
-<li>Sometimes, channels may not show up in your workspace. If this happens, try running <code><a href="https://rdrr.io/pkg/R.cache/man/clearCache.html">R.cache::clearCache()</a></code>.</li>
-</ul>
-</div>
-<div id="latex-for-tex_slackr" class="section level3">
-<h3 class="hasAnchor">
-<a href="#latex-for-tex_slackr" class="anchor"></a>LaTeX for <code>tex_slackr</code>
-</h3>
-<p>The new function <code>tex_slackr</code> in versions <code>2.0.0+</code> requires package <a href="https://github.com/yonicd/texPreview"><code>texPreview</code></a> which is lazy-loaded when the former is called.</p>
-<p>For setting up LaTeX see <a href="https://github.com/yonicd/texPreview#functionality"><code>texPreview</code>’s System Requirements</a>, and for specific OS setup check out its Github Actions like <a href="https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-mac.yml#L46">this MacOS example</a>.</p>
-</div>
-</div>
-<div id="usage" class="section level1">
-<h1 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h1>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrkaye97/slackr">slackr</a></span><span class="op">)</span>
-
-<span class="co"># current verison</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span><span class="op">(</span><span class="st">"slackr"</span><span class="op">)</span>
-<span class="co">#&gt; [1] '2.1.0'</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/slackr_setup.html">slackr_setup</a></span><span class="op">(</span>channel<span class="op">=</span><span class="st">"#channel"</span>, 
-             incoming_webhook_url<span class="op">=</span><span class="st">"https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX"</span>,
-             bot_user_oauth_token<span class="op">=</span><span class="st">'token'</span><span class="op">)</span>
-
-<span class="fu"><a href="reference/slackr.html">slackr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># send images</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html">qplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">wt</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span>
-<span class="fu"><a href="reference/slackr_dev.html">slackr_dev</a></span><span class="op">(</span><span class="st">"#results"</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html">barplot</a></span><span class="op">(</span><span class="va">VADeaths</span><span class="op">)</span>
-<span class="fu"><a href="reference/slackr_dev.html">slackr_dev</a></span><span class="op">(</span><span class="st">"@jayjacobs"</span><span class="op">)</span>
-
-<span class="fu"><a href="reference/ggslackr.html">ggslackr</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html">qplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">wt</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-</div>
-<div id="onexit-usage" class="section level1">
-<h1 class="hasAnchor">
-<a href="#onexit-usage" class="anchor"></a>Onexit Usage</h1>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"> <span class="va">ctl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4.17</span>,<span class="fl">5.58</span>,<span class="fl">5.18</span>,<span class="fl">6.11</span>,<span class="fl">4.50</span>,<span class="fl">4.61</span>,<span class="fl">5.17</span>,<span class="fl">4.53</span>,<span class="fl">5.33</span>,<span class="fl">5.14</span><span class="op">)</span>
- <span class="va">trt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4.81</span>,<span class="fl">4.17</span>,<span class="fl">4.41</span>,<span class="fl">3.59</span>,<span class="fl">5.87</span>,<span class="fl">3.83</span>,<span class="fl">6.03</span>,<span class="fl">4.89</span>,<span class="fl">4.32</span>,<span class="fl">4.69</span><span class="op">)</span>
- <span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/gl.html">gl</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">10</span>, <span class="fl">20</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ctl"</span>,<span class="st">"Trt"</span><span class="op">)</span><span class="op">)</span>
- <span class="va">weight</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">ctl</span>, <span class="va">trt</span><span class="op">)</span>
-
- <span class="co">#pass a message to Slack channel 'general'</span>
- <span class="fu"><a href="reference/register_onexit.html">register_onexit</a></span><span class="op">(</span><span class="va">lm</span>,<span class="st">'bazinga!'</span>,channel<span class="op">=</span><span class="st">"#general"</span><span class="op">)</span>
-
- <span class="va">lm.D9</span> <span class="op">&lt;-</span> <span class="fu">slack_lm</span><span class="op">(</span><span class="va">weight</span> <span class="op">~</span> <span class="va">group</span><span class="op">)</span>
-
- <span class="co">#test that output keeps inheritance</span>
- <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm.D9</span><span class="op">)</span>
-
- <span class="co">#pass a message to Slack channel 'general' with a header message to begin output</span>
- <span class="fu"><a href="reference/register_onexit.html">register_onexit</a></span><span class="op">(</span><span class="va">lm</span>,<span class="st">'bazinga!'</span>,
- channel<span class="op">=</span><span class="st">"#general"</span>,
- header_msg<span class="op">=</span><span class="st">'This is a message to begin'</span><span class="op">)</span>
-
- <span class="va">lm.D9</span> <span class="op">&lt;-</span> <span class="fu">slack_lm</span><span class="op">(</span><span class="va">weight</span> <span class="op">~</span> <span class="va">group</span><span class="op">)</span>
-
- <span class="co">#onexit with an expression that calls lm.plot</span>
- <span class="fu"><a href="reference/register_onexit.html">register_onexit</a></span><span class="op">(</span><span class="va">lm</span>,<span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>, oma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span> <span class="co">#z is the internal output of stats::lm()</span>
- <span class="op">}</span>,
- channel<span class="op">=</span><span class="st">"#general"</span>,
- header_msg <span class="op">=</span> <span class="st">'This is a plot just for this output'</span>,
- use_device <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
- <span class="va">lm.D9</span> <span class="op">&lt;-</span> <span class="fu">slack_lm</span><span class="op">(</span><span class="va">weight</span> <span class="op">~</span> <span class="va">group</span><span class="op">)</span>
-
-<span class="co">#clean up slack channel from examples</span>
-<span class="fu">delete_slackr</span><span class="op">(</span>count <span class="op">=</span> <span class="fl">6</span>,channel <span class="op">=</span> <span class="st">'#general'</span><span class="op">)</span></code></pre></div>
-</div>
-<div id="test-results" class="section level1">
-<h1 class="hasAnchor">
-<a href="#test-results" class="anchor"></a>Test Results</h1>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrkaye97/slackr">slackr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://testthat.r-lib.org">testthat</a></span><span class="op">)</span>
-
-<span class="fu"><a href="reference/slackr_setup.html">slackr_setup</a></span><span class="op">(</span>config_file <span class="op">=</span> <span class="st">".slackr"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "Successfully connected to Slack"</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/date.html">date</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] "Thu Jan 21 08:44:53 2021"</span>
-
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">test</span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Loading slackr</span>
-<span class="co">#&gt; Testing slackr</span>
-<span class="co">#&gt; ✓ |  OK F W S | Context</span>
-<span class="co">#&gt; ⠏ |   0       | connection                                                                                              ⠋ |   1       | connection</span>
-<span class="co">#&gt; Cache created</span>
-<span class="co">#&gt; ⠸ |   4       | connection                                                                                              ✓ |   5       | connection [1.0 s]</span>
-<span class="co">#&gt; &lt;e2&gt;&lt;a0&gt;&lt;8f&gt; |   0       | posting                                                                                                 &lt;e2&gt;&lt;a0&gt;&lt;8b&gt; |   1       | posting                                                                                                 &lt;e2&gt;&lt;a0&gt;&lt;99&gt; |   2       | posting                                                                                                 &lt;e2&gt;&lt;a0&gt;&lt;b9&gt; |   3       | posting</span>
-<span class="co">#&gt; ⠸ |   4       | posting                                                                                                 ⠼ |   5       | posting                                                                                                 ⠴ |   6       | posting                                                                                                 ⠦ |   7       | posting                                                                                                 ⠧ |   8       | posting                                                                                                 ⠇ |   9       | posting                                                                                                 ✓ |   9       | posting [6.8 s]</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; ══ Results ═════════════════════════════════════════════════════════════════════════════════════════════════════════════</span>
-<span class="co">#&gt; Duration: 7.7 s</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [ FAIL 0 | WARN 0 | SKIP 0 | PASS 14 ]</span></code></pre></div>
+<a href="#thank-yous" class="anchor"></a>Thank Yous</h3>
 <p>Many thanks to:</p>
 <ul>
 <li><a href="https://github.com/hrbrmstr">Bob Rudis</a></li>
@@ -312,6 +149,7 @@
 <li><a href="https://github.com/andrie">Andrie de Vries</a></li>
 </ul>
 <p>for their contributions to the package!</p>
+</div>
 </div>
 
   </div>

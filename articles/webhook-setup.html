@@ -95,11 +95,6 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrkaye97/slackr">slackr</a></span><span class="op">)</span></code></pre></div>
-<div id="webhook-bot-setup" class="section level3">
-<h3 class="hasAnchor">
-<a href="#webhook-bot-setup" class="anchor"></a>Webhook Bot Setup</h3>
 <p>Setting up the single-channel bot is simple.</p>
 <ol style="list-style-type: decimal">
 <li>Go to <a href="https://api.slack.com/apps">https://api.slack.com/apps</a>
@@ -113,12 +108,12 @@
 <li>Call <code><a href="../reference/slackr_setup.html">slackr_setup(channel = '#channel_with_webhook', incoming_webhook_url = 'your_webhook')</a></code>. You can also follow the config file setup directions below instead of passing the channel and webhook directly.</li>
 </ol>
 <p>And that’s it! You should be able to post a message with <code><a href="../reference/slackr_bot.html">slackr_bot('test message')</a></code></p>
-</div>
-<div id="example-usage" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-usage" class="anchor"></a>Example Usage</h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># slackr_setup()</span>
+<div id="example-usage" class="section level1">
+<h1 class="hasAnchor">
+<a href="#example-usage" class="anchor"></a>Example Usage</h1>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrkaye97/slackr">slackr</a></span><span class="op">)</span>
+<span class="co"># slackr_setup()</span>
 
 <span class="fu"><a href="../reference/slackr_bot.html">slackr_bot</a></span><span class="op">(</span><span class="st">'Test message'</span>, 
            channel <span class="op">=</span> <span class="st">'#test'</span>,
@@ -130,7 +125,9 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 
