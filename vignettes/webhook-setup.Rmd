@@ -14,6 +14,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Setup
+
 Setting up the single-channel bot is simple. 
 
 1. Go to [https://api.slack.com/apps](https://api.slack.com/apps)
@@ -27,7 +29,7 @@ Setting up the single-channel bot is simple.
 
 And that's it! You should be able to post a message with `slackr_bot('test message')`
 
-# Example Usage
+## Example Usage
 
 ```{r}
 library(slackr)
