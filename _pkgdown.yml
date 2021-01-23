@@ -1,0 +1,29 @@
+reference:
+
+- title: "Package documentation"
+- contents:
+  - slackr-package
+
+- title: "Main functions"
+- contents:
+  - starts_with("slackr_")
+  - ends_with("_slackr")
+  - register_onexit
+  - slackr
+  - ggslackr
+
+
+- title: "Internal functions"
+- contents:
+  - -matches("^[Ss].*")
+  - -matches("[Ss]lackr")
+  - -register_onexit
+
+- title: "Deprecated functions"
+  desc: >
+    These functions have all been superceded by their `snake_case` equivalents
+- contents:
+  - matches(".*?\\..*")
+  - matches("slackr[A-Z].*")
+  - -starts_with("slackr_")
+  - textSlackr
