@@ -16,7 +16,7 @@ Description: 'Slack' <https://slack.com/> provides a service for teams to
     can use this package to send well-formatted output from multiple R objects and
     expressions to all teammates at the same time with little effort. You can also
     send images from the current graphics device, R objects, and upload files.
-URL: https://github.com/mrkaye97/slackr
+URL: https://github.com/mrkaye97/slackr, https://mrkaye97.github.io/slackr
 BugReports: https://github.com/mrkaye97/slackr/issues
 License: MIT + file LICENSE
 Suggests:
