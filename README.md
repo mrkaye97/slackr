@@ -15,11 +15,12 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 
 The `slackr` package contains functions to interact with the Slack
 messaging platform. When you need to share information/data from R,
-rather than resort to copy/paste in e-mails or other services like
-Skype, you can use this package to send well-formatted output from
-multiple R objects and expressions to all teammates at the same time
-with little effort. You can also send images from the current graphics
-device, R objects (as R data files), and upload files.
+rather than resorting to copy/paste, emails, other services like Skype,
+you can use this package to send well-formatted output from R to all
+teammates at the same time with little effort. You can send text, R
+function output, images from the current graphics device and `ggplots`,
+R objects (as R data files), rendered LaTeX expressions, and uploaded
+files.
 
 ## Installation
 
@@ -37,7 +38,7 @@ Version 2.0.0+ is updated to work with the new Slack API structure\!
 
 ## Setup
 
-There are two ways of interfacing with `slackr` currently, that provide
+There are two ways of interfacing with `slackr` that provide
 significantly different functionality:
 
 1.  Creating a single-channel bot
