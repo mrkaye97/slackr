@@ -7,6 +7,8 @@
 # })
 
 test_that("slackr posts", {
+  skip_on_cran()
+
   res <- slackr('Testing')
   expect_true(res$ok)
 
@@ -20,6 +22,8 @@ test_that("slackr posts", {
 })
 
 test_that("ggslackr posts", {
+  skip_on_cran()
+
   res <- ggslackr(
     ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
       geom_point()
@@ -28,22 +32,30 @@ test_that("ggslackr posts", {
 })
 
 test_that("slackr_msg posts", {
+  skip_on_cran()
+
   res <- slackr_msg('Testing')
   expect_true(res$ok)
 })
 
 test_that("text_slackr posts", {
+  skip_on_cran()
+
   expect_warning(text_slackr('Testing'))
   expect_true(suppressWarnings(text_slackr('Testing'))$ok)
 })
 
 test_that("slackr_delete works", {
+  skip_on_cran()
+
   slackr_msg('Testing deletion')
   res <- slackr_delete(1)
   expect_true(res[[1]]$ok)
 })
 
 test_that("slackr_upload posts", {
+  skip_on_cran()
+
   x <- 1:10
   tf <- tempfile(fileext = ".Rdata")
   save(x, file = tf)
@@ -54,6 +66,8 @@ test_that("slackr_upload posts", {
 })
 
 test_that("slackr can post to other channels", {
+  skip_on_cran()
+
   res <- slackr('testing foreign channel post', channel = '#test2')
   expect_true(res$ok)
 })

@@ -1,4 +1,6 @@
 test_that("slackr_setup() connects", {
+  skip_on_cran()
+
   expect_equal(
     slackr_setup(
       channel = "#test",
