@@ -101,9 +101,7 @@ for their contributions to the package\!
 
   - Depending on your scopes, `slackr` could quietly fail (i.e. not
     throw an error, but also not post anything to your channel). If this
-    happens, try explicitly adding the `slackr` app to your channel in
-    your Slack workspace with `/invite @your_app_name` or make sure you
-    have `chat:write.public` enabled.
-
-  - Sometimes, channels may not show up in your workspace. If this
-    happens, try running `R.cache::clearCache()`.
+    happens, try explicitly adding the app you’re trying to have
+    `slackr` post as to the channel you want in your Slack workspace
+    with `/invite @your_app_name` or make sure you have
+    `chat:write.public` enabled.
