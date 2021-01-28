@@ -1,5 +1,5 @@
 ---
-title: "Using slackr"
+title: "Onexit Usage in slackr"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Using slackr}
