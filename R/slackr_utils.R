@@ -11,7 +11,7 @@
 #' @export
 slackr_chtrans <- function(channels) {
 
-  channel_cache <- slackr_census_memo()
+  channel_cache <- slackr_census()
 
   chan_xref <-
     channel_cache[(channel_cache$name        %in% channels) |
@@ -31,8 +31,10 @@ slackr_chtrans <- function(channels) {
 #' @return A data.frame of channels and users
 #' @importFrom dplyr bind_rows distinct
 #' @importFrom tibble tibble
+#' @importFrom memoise memoise
+#' @importFrom cachem cache_mem cache_disk
 #'
-slackr_census <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+slackr_census_fun <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
   msg <- "Are you sure you have the right scopes enabled? See the readme for details."
 
@@ -66,12 +68,12 @@ slackr_census <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_
   distinct(chan_list)
 }
 
-#' Memoized slackr_census
-#'
-#' @importFrom memoise memoise
-#' @noRd
-#'
-slackr_census_memo <- memoise::memoise(slackr_census)
+if (Sys.getenv("SLACK_CACHE_DIR") == '') {
+    slackr_census <- memoise::memoise(slackr_census_fun, cache = cachem::cache_mem())
+} else {
+    slackr_census <- memoise::memoise(slackr_census_fun, cache = cachem::cache_disk(dir = cache_dir))
+}
+
 
 #' Get a data frame of Slack users
 #'

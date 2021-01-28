@@ -26,6 +26,7 @@
 #'        with the config values.
 #' @param echo display the configuration variables (bool) initially `FALSE`
 #' @param cacheChannels a boolean for whether or not you want to cache channels to limit API requests (deprecated)
+#' @param cache_dir the location for an on-disk cache. defaults to an in-memory cache if no location is specified
 #' @return "Successfully connected to Slack"
 #' @note You need a [Slack](https://slack.com) account and all your API URLs & tokens setup
 #'       to use this package.
@@ -51,11 +52,14 @@ slackr_setup <- function(channel="#general",
                          bot_user_oauth_token="",
                          config_file="~/.slackr",
                          echo=FALSE,
-                         cacheChannels = TRUE) {
+                         cacheChannels = TRUE,
+                         cache_dir = '') {
 
   if (!missing(cacheChannels)) {
     warning('cacheChannels parameter is deprecated as of slackr 2.1.0. channels are now auto-cached with memoization')
   }
+
+  Sys.setenv(SLACK_CACHE_DIR = cache_dir)
 
   if (file.exists(config_file)) {
 

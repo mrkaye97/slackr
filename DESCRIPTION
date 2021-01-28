@@ -40,7 +40,8 @@ Imports:
     xtable (>= 1.8.4),
     tibble,
     magrittr,
-    memoise
+    memoise,
+    cachem
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3

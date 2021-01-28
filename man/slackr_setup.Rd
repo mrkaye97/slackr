@@ -12,7 +12,8 @@ slackr_setup(
   bot_user_oauth_token = "",
   config_file = "~/.slackr",
   echo = FALSE,
-  cacheChannels = TRUE
+  cacheChannels = TRUE,
+  cache_dir = ""
 )
 }
 \arguments{
@@ -33,6 +34,8 @@ with the config values.}
 \item{echo}{display the configuration variables (bool) initially \code{FALSE}}
 
 \item{cacheChannels}{a boolean for whether or not you want to cache channels to limit API requests (deprecated)}
+
+\item{cache_dir}{the location for an on-disk cache. defaults to an in-memory cache if no location is specified}
 }
 \value{
 "Successfully connected to Slack"
