@@ -86,6 +86,7 @@ bot_user_oauth_token: Your app's bot user OAuth token
 channel: #general
 username: slackr
 incoming_webhook_url: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX
+icon_emoji = 'boom'
 ```
 
 You can also change the default emoji icon (from the one you setup at

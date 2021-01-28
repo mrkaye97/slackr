@@ -75,6 +75,7 @@ Here’s the basic format for the configuration file:
     channel: #general
     username: slackr
     incoming_webhook_url: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX
+    icon_emoji = 'boom'
 
 You can also change the default emoji icon (from the one you setup at
 integration creation time) with `icon_emoji`.
