@@ -11,7 +11,7 @@
 #' @export
 slackr_chtrans <- function(channels) {
 
-  channel_cache <- slackr_census()
+  channel_cache <- slackr_census_memo()
 
   chan_xref <-
     channel_cache[(channel_cache$name        %in% channels) |
@@ -66,6 +66,13 @@ slackr_census <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_
   distinct(chan_list)
 }
 
+#' Memoized slackr_census
+#'
+#' @importFrom memoise memoise
+#' @noRd
+#'
+slackr_census_memo <- memoise::memoise(slackr_census)
+
 #' Get a data frame of Slack users
 #'
 #' @param bot_user_oauth_token the Slack bot OAuth token (chr)
@@ -82,8 +89,6 @@ slackr_users <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_T
   )
 
 }
-
-
 
 #' Get a data frame of Slack channels
 #'

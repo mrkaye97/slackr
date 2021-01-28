@@ -38,9 +38,9 @@ Imports:
     graphics,
     grDevices,
     xtable (>= 1.8.4),
-    httpcache,
     tibble,
-    magrittr
+    magrittr,
+    memoise
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3

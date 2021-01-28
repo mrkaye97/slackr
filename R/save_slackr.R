@@ -12,7 +12,6 @@
 #' @return `httr` response object from `POST` call
 #' @seealso [slackr_setup()], [slackr_dev()], [slackr_upload()]
 #' @importFrom httr add_headers upload_file
-#' @importFrom httpcache POST
 #' @export
 #' @examples \dontrun{
 #' slackr_setup()

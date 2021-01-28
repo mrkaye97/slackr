@@ -32,7 +32,7 @@ with the config values.}
 
 \item{echo}{display the configuration variables (bool) initially \code{FALSE}}
 
-\item{cacheChannels}{a boolean for whether or not you want to cache channels to limit API requests}
+\item{cacheChannels}{a boolean for whether or not you want to cache channels to limit API requests (deprecated)}
 }
 \value{
 "Successfully connected to Slack"

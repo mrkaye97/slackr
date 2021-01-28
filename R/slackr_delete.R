@@ -4,7 +4,6 @@
 #' @param count the number of messages to delete
 #' @param channel the channel to delete from
 #' @param bot_user_oauth_token the Slack bot user OAuth token
-#' @importFrom httpcache POST
 #' @export
 slackr_delete <- function(
   count,

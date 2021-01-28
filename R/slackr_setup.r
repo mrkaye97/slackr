@@ -25,7 +25,7 @@
 #' @param config_file a configuration file (DCF) - see [read.dcf] - format
 #'        with the config values.
 #' @param echo display the configuration variables (bool) initially `FALSE`
-#' @param cacheChannels a boolean for whether or not you want to cache channels to limit API requests
+#' @param cacheChannels a boolean for whether or not you want to cache channels to limit API requests (deprecated)
 #' @return "Successfully connected to Slack"
 #' @note You need a [Slack](https://slack.com) account and all your API URLs & tokens setup
 #'       to use this package.
