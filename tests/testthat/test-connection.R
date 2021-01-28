@@ -15,14 +15,4 @@ test_that("slackr_setup() connects", {
     Sys.getenv("SLACK_CHANNEL"),
     '#test'
   )
-
-  slackr_createcache()
-
-  expect_true(
-    grepl(
-      "\\.Rcache$",
-      R.cache::findCache(key = list('channel_cache')))
-  )
-  channel_cache <- loadCache(key = list('channel_cache'))
-  expect_true(nrow(channel_cache) > 0)
 })

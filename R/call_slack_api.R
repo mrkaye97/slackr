@@ -74,7 +74,8 @@ with_retry <- function(fun) {
 #' @param .method Either "GET" or "POST"
 #' @param .verbose If TRUE, prints `httr` verbose messages.  Useful for debugging.
 #' @param .next_cursor The value of the next cursor, when using pagination.
-#' @importFrom httr GET POST add_headers verbose set_config
+#' @importFrom httr add_headers verbose set_config
+#' @importFrom httpcache GET POST
 #'
 #' @return The API response (a named list)
 #' @export

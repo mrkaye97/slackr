@@ -13,7 +13,8 @@
 #' @references <https://github.com/mrkaye97/slackr/pull/15/files>
 #' @seealso [slackr_setup()], [dev_slackr()], [save_slackr()]
 #' @return `httr` response object from `POST` call (invisibly)
-#' @importFrom httr POST add_headers upload_file
+#' @importFrom httr add_headers upload_file
+#' @importFrom httpcache POST
 #' @export
 slackr_upload <- function(filename, title=basename(filename),
                           initial_comment=basename(filename),

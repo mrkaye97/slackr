@@ -29,7 +29,6 @@ list_channels <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUT
 
 
 #' Lists all users in a Slack team.
-#'
 #' @inheritParams auth_test
 #' @keywords internal
 #' @noRd

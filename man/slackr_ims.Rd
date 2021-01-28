@@ -4,15 +4,10 @@
 \alias{slackr_ims}
 \title{Get a data frame of Slack IM ids}
 \usage{
-slackr_ims(
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
-  verbose = interactive()
-)
+slackr_ims(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"))
 }
 \arguments{
 \item{bot_user_oauth_token}{the Slack both OAuth token (chr)}
-
-\item{verbose}{If TRUE, prints progress messages}
 }
 \value{
 \code{data.frame} of im ids and user names

@@ -38,7 +38,7 @@ Imports:
     graphics,
     grDevices,
     xtable (>= 1.8.4),
-    R.cache (>= 0.14.0),
+    httpcache,
     tibble,
     magrittr
 RoxygenNote: 7.1.1

@@ -11,7 +11,8 @@
 #' @param plot_text the plot text to send with the plot (defaults to "")
 #' @return `httr` response object from `POST` call
 #' @seealso [slackr_setup()], [slackr_dev()], [slackr_upload()]
-#' @importFrom httr POST add_headers upload_file
+#' @importFrom httr add_headers upload_file
+#' @importFrom httpcache POST
 #' @export
 #' @examples \dontrun{
 #' slackr_setup()
