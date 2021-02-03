@@ -1,0 +1,87 @@
+---
+title: "Multi-Functional Bot Setup"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Multi-Functional Bot Setup}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Setup
+
+Setting up the multi-functional bot is slightly more complex than the single-channel one. 
+
+1. Go to [https://api.slack.com/apps](https://api.slack.com/apps)
+2. Click "Create New App" and then follow the setup instructions
+3. Click "OAuth & Permissions" under "Features"
+4. Enable the following scopes in order to get all of the functionality:
+  * `channels:read`
+  * `users:read`
+  * `files:read`
+  * `groups:read`
+  * `groups:write`
+  * `chat:write`
+  * `chat:write.customize`
+  * `chat:write.public`
+  * `im:write`
+  * `incoming-webhook`
+  * `channels:history`
+5. Click "Install to Workspace"
+6. Select a channel (for webhook messages)
+7. Copy the Bot User OAuth Access Token
+8. Click "Incoming Webhooks" under "Features"
+9. Copy the Webhook URL
+8. Call 
+```r
+slackr_setup(channel = '#channel_with_webhook', 
+             bot_user_oauth_token = 'your_token', 
+             incoming_webhook_url = 'your_webhook')
+``` 
+
+You can also follow the config file setup directions below instead of passing the channel, token, and webhook directly.
+
+And that's it! You should be able to post a message with `slackr('test message')`
+
+
+## Scopes
+
+Without all of the scopes enabled, only certain functions will work. Which ones depends on which scopes you have enabled. See the function documentation for which scopes are needed for that function.
+
+## Usage 
+
+```{r demo2, eval=FALSE}
+library(slackr)
+slackr_setup(
+  channel="#channel", 
+  incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX",
+  bot_user_oauth_token='token'
+)
+
+slackr(str(iris))
+
+# send images
+library(ggplot2)
+qplot(mpg, wt, data=mtcars)
+slackr_dev("#results")
+
+barplot(VADeaths)
+slackr_dev("@jayjacobs")
+
+ggslackr(qplot(mpg, wt, data=mtcars))
+
+```
+
+
+### LaTeX for `tex_slackr`
+
+The new function `tex_slackr` in versions `2.0.0+` requires package [`texPreview`](https://github.com/yonicd/texPreview) which is lazy-loaded when the former is called.
+
+For setting up LaTeX see [`texPreview`'s System Requirements](https://github.com/yonicd/texPreview#functionality), and for specific OS setup check out its Github Actions like [this MacOS example](https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-mac.yml#L46).
+

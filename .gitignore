@@ -7,5 +7,9 @@
 src/*.o
 src/*.so
 src/*.dll
+.channel_cache
+tests/testthat/.config
 docs
+.config
 .slackr
+inst/doc

@@ -47,14 +47,8 @@ than 50x50 inches, to prevent the common error of specifying dimensions in pixel
 \code{httr} response object (invisibly)
 }
 \description{
-Unlike the \code{\link{dev_slackr}} function, this one takes a \code{ggplot} object,
+Unlike the \code{\link[=slackr_dev]{slackr_dev()}} function, this one takes a \code{ggplot} object,
 eliminating the need to have a graphics device (think use in scripts).
-}
-\note{
-You need to setup a bot user OAuth token for this to work.
-      Also, you can pass in \code{as_user=TRUE} as part of the \code{...}
-      parameters and the Slack API will post the message as your logged-in user
-      account (this will override anything set in \code{username})
 }
 \examples{
 \dontrun{

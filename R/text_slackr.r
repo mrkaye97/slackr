@@ -1,36 +1,37 @@
+#' text_slackr
+#'
 #' Sends basic text to a slack channel. Calls the chat.postMessage method on the Slack Web API.
-#' Information on this method can be found here: \url{https://api.slack.com/methods/chat.postMessage}
+#' Information on this method can be found here: <https://api.slack.com/methods/chat.postMessage>
 #'
 #' @param text The character vector to be posted
-#' @param ... Optional arguments such as: as_user, parse, unfurl_links, etc.
+#' @param ... Optional arguments such as: parse, unfurl_links, etc.
 #' @param preformatted Should the text be sent as preformatted text. Defaults to TRUE
 #' @param channel The name of the channels to which the DataTable should be sent.
 #'  Prepend channel names with a hashtag. Prepend private-groups with nothing.
 #'  Prepend direct messages with an @@
 #' @param username what user should the bot be named as (chr)
-#' @param icon_emoji what emoji to use (chr) \code{""} will mean use the default
+#' @param icon_emoji what emoji to use (chr) `""` will mean use the default
 #' @param bot_user_oauth_token your full Slack bot user OAuth token
-#' @return \code{httr} response object (invislbly)
-#' @author Quinn Weber [aut], Bob Rudis [ctb]
-#' @note You can pass in \code{as_user=TRUE} as part of the \code{...} parameters and the Slack API
+#' @return `httr` response object (invislbly)
+#' @author Quinn Weber (aut), Bob Rudis (ctb)
+#' @note You can pass in `as_user=TRUE` as part of the `...` parameters and the Slack API
 #'       will post the message as your logged-in user account (this will override anything set in
-#'       \code{username})
-#' @references \url{https://github.com/hrbrmstr/slackr/pull/11}
-#' @seealso \url{https://api.slack.com/methods/chat.postMessage}
-#' @rdname text_slackr
+#'       `username`)
+#' @references <https://github.com/mrkaye97/slackr/pull/11>
+#' @seealso <https://api.slack.com/methods/chat.postMessage>
 #' @examples
 #' \dontrun{
 #' slackr_setup()
 #' text_slackr('hello world', as_user=TRUE)
 #' }
 #' @export
-text_slackr <- function(text,
-                        ...,
-                        preformatted=TRUE,
+text_slackr <- function(text, ..., preformatted=TRUE,
                         channel=Sys.getenv("SLACK_CHANNEL"),
                         username=Sys.getenv("SLACK_USERNAME"),
                         icon_emoji=Sys.getenv("SLACK_ICON_EMOJI"),
                         bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+
+  .Deprecated(new = 'slackr_msg')
 
   if ( length(text) > 1 ) { stop("text must be a vector of length one") }
   if ( !is.character(channel) | length(channel) > 1 ) { stop("channel must be a character vector of length one") }
@@ -49,6 +50,7 @@ text_slackr <- function(text,
   Sys.setlocale('LC_CTYPE','C')
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
+
   resp <- POST(url="https://slack.com/api/chat.postMessage",
                body=list(token=bot_user_oauth_token,
                          channel=channel,
@@ -58,8 +60,8 @@ text_slackr <- function(text,
                          link_names=1,
                          ...))
 
-  warn_for_status(resp)
+  stop_for_status(resp)
 
-  return(invisible(resp))
+  invisible(content(resp))
 
 }

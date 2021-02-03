@@ -1,19 +1,17 @@
 #' Save R objects to an RData file on Slack
 #'
-#' \code{save_slackr} enables you upload R objects (as an R data file)
+#' `save_slackr` enables you upload R objects (as an R data file)
 #' to Slack and (optionally) post them to one or more channels
-#' (if \code{channels} is not empty).
+#' (if `channels` is not empty).
 #'
 #' @param ... objects to store in the R data file
 #' @param channels Slack channels to save to (optional)
 #' @param file filename (without extension) to use
 #' @param bot_user_oauth_token Slack bot user OAuth token
-#' @rdname save_slackr
-#' @note You can pass in \code{add_user=TRUE} as part of the \code{...} parameters and the Slack API
-#'       will post the message as your logged-in user account (this will override anything set in
-#'       \code{username})
-#' @return \code{httr} response object from \code{POST} call
-#' @seealso \code{\link{slackr_setup}}, \code{\link{dev_slackr}}, \code{\link{slackr_upload}}
+#' @param plot_text the plot text to send with the plot (defaults to "")
+#' @return `httr` response object from `POST` call
+#' @seealso [slackr_setup()], [slackr_dev()], [slackr_upload()]
+#' @importFrom httr add_headers upload_file
 #' @export
 #' @examples \dontrun{
 #' slackr_setup()
@@ -21,8 +19,10 @@
 #' }
 save_slackr <- function(..., channels="",
                         file="slackr",
-                        bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+                        bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                        plot_text = '') {
 
+  if (channels == '') stop("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
 
   loc <- Sys.getlocale('LC_CTYPE')
   Sys.setlocale('LC_CTYPE','C')
@@ -33,18 +33,15 @@ save_slackr <- function(..., channels="",
 
   on.exit(unlink(ftmp), add=TRUE)
 
-  modchan <- slackr_chtrans(channels)
-  if (length(modchan) == 0) modchan <- ""
-
-  res <-httr::POST(url="https://slack.com/api/files.upload",
-                   httr::add_headers(`Content-Type`="multipart/form-data"),
-                   body=list(file=httr::upload_file(ftmp),
-                             filename=sprintf("%s.Rdata", file),
-                             token=bot_user_oauth_token,
-                             channels=modchan))
+  res <- files_upload(
+    file = ftmp,
+    channel = slackr_chtrans(channels),
+    txt = plot_text,
+    bot_user_oauth_token = bot_user_oauth_token,
+    filename = sprintf("%s.Rdata", file)
+  )
 
   stop_for_status(res)
 
-  invisible(res)
-
+  return(invisible(res))
 }

@@ -1,12 +1,12 @@
 Package: slackr
 Type: Package
 Title: Send Messages, Images, R Objects and Files to 'Slack' Channels/Users
-Version: 2.0.2
-Date: 2020-11-21
+Version: 2.1.0
+Date: 2020-01-18
 Author: Bob Rudis [aut, cre], Jay Jacobs [ctb], David Severski [ctb],
     Quinn Weber [ctb], Konrad Karczewski [ctb], Shinya Uryu [ctb],
     Gregory Jefferis [ctb], Ed Niles [ctb], Rick Saporta [ctb],
-    Jonathan Sidi [aut, ctb], Matt Kaye [ctb], Xinye Li [ctb]
+    Jonathan Sidi [aut, ctb], Matt Kaye [aut, ctb], Xinye Li [ctb], Andrie de Vries [aut, ctb]
 Maintainer: Matt Kaye <mrkaye97@gmail.com>
 Description: 'Slack' <https://slack.com/> provides a service for teams to
     collaborate by sharing messages, images, links, files and more. Functions are provided
@@ -16,13 +16,15 @@ Description: 'Slack' <https://slack.com/> provides a service for teams to
     can use this package to send well-formatted output from multiple R objects and
     expressions to all teammates at the same time with little effort. You can also
     send images from the current graphics device, R objects, and upload files.
-URL: https://github.com/hrbrmstr/slackr
-BugReports: https://github.com/hrbrmstr/slackr/issues
+URL: https://github.com/mrkaye97/slackr, https://mrkaye97.github.io/slackr
+BugReports: https://github.com/mrkaye97/slackr/issues
 License: MIT + file LICENSE
 Suggests:
-    testthat,
-    texPreview,
-    covr
+    testthat (>= 3.0.0),
+    covr,
+    knitr,
+    rmarkdown,
+    texPreview
 Encoding: UTF-8
 Depends:
     R (>= 3.3.0)
@@ -32,8 +34,15 @@ Imports:
     ggplot2,
     utils,
     methods,
-    dplyr (>= 1.0.0),
+    dplyr,
     graphics,
     grDevices,
-    xtable (>= 1.8.4)
+    xtable (>= 1.8.4),
+    tibble,
+    magrittr,
+    memoise,
+    cachem
 RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3
+VignetteBuilder: knitr

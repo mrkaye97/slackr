@@ -5,6 +5,7 @@
 ^\.travis\.yml$
 ^slackr\.png$
 ^cran-comments\.md$
+.channel_cache
 ^codecov\.yml$
 ^\.github$
 ^_pkgdown\.yml$

@@ -1,3 +1,21 @@
+# slackr 2.10
+
+* HTTP Caching speeds up requests and limits the number of requests we need to make
+* `slackr_history()` and `slackr_delete()` are now implemented
+* `username` and `icon_emoji` parameters to `slackr_***` functions now work again
+* [https://mrkaye97.github.io/slackr/articles/webhook-setup.html](https://mrkaye97.github.io/slackr/articles/webhook-setup.html) have been added with setup instructions and usage
+* Improved error messaging
+* Updates to the README and the [pkgdown site](https://mrkaye97.github.io/slackr/)
+* A number of significant back-end changes, thanks to [Andrie de Vries](https://github.com/andrie), including significant code cleanup, simplification of the API calls, pagination, and more!
+
+# slackr 2.0.2
+
+* A few more bug fixes and sets up CI with GH Actions
+
+# slackr 2.0.1
+
+* Documentation and suggested fixes to common bugs
+
 # slackr 2.0.0
 
 * Fixes to work with new Slack API
@@ -22,3 +40,4 @@
 * Versions 1.4+ BREAK THINGS.
 * Support has been removed for the "old style" incoming web hooks (see "Setup" in the README for the required incoming web hook URL format).
 * the incoming webhook "token" is no longer required or used.
+

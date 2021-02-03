@@ -1,0 +1,43 @@
+---
+title: "Webhook Bot Setup"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Webhook Bot Setup}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Setup
+
+Setting up the single-channel bot is simple. 
+
+1. Go to [https://api.slack.com/apps](https://api.slack.com/apps)
+2. Click "Create New App" and then follow the setup instructions
+3. Click "Incoming Webhooks" under "Features"
+4. Turn the "Activate Incoming Webhooks" switch on
+5. Click "Add New Webhook to Workspace"
+6. Select the channel you'd like the bot to post to
+7. Copy the Webhook URL
+8. Call `slackr_setup(channel = '#channel_with_webhook', incoming_webhook_url = 'your_webhook')`. You can also follow the config file setup directions below instead of passing the channel and webhook directly.
+
+And that's it! You should be able to post a message with `slackr_bot('test message')`
+
+## Example Usage
+
+```{r}
+library(slackr)
+# slackr_setup()
+
+slackr_bot('Test message', 
+           channel = '#test',
+           username = 'mrkaye97',
+           icon_emoji = 'tada')
+```
+

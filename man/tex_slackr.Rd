@@ -24,25 +24,25 @@ tex_slackr(
 
 \item{path}{character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL}
 
-\item{...}{other arguments passed to \code{\link[texPreview]{tex_preview}}, see Details}
+\item{...}{other arguments passed to \code{\link[texPreview:tex_preview]{texPreview::tex_preview()}}, see Details}
 }
 \value{
 \code{httr} response object (invisibly)
 }
 \description{
-Unlike the \code{\link{dev_slackr}} function, this one takes a \code{tex} object,
+Unlike the \code{\link[=dev_slackr]{dev_slackr()}} function, this one takes a \code{tex} object,
 eliminating the need write to pdf and convert to png to pass to slack.
 }
 \details{
 Please make sure \code{texPreview} package is installed before running this function.
-         For TeX setup refer to the
-         \href{https://github.com/hrbrmstr/slackr#latex-for-tex_slackr}{Setup notes on \code{LaTeX}}.
+For TeX setup refer to the
+\href{https://github.com/mrkaye97/slackr#latex-for-tex_slackr}{Setup notes on \code{LaTeX}}.
 }
 \note{
 You need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
-      Also, you can pass in \code{add_user=TRUE} as part of the \code{...}
-      parameters and the Slack API will post the message as your logged-in user
-      account (this will override anything set in \code{username})
+Also, you can pass in \code{add_user=TRUE} as part of the \code{...}
+parameters and the Slack API will post the message as your logged-in user
+account (this will override anything set in \code{username})
 }
 \examples{
 \dontrun{
@@ -58,8 +58,8 @@ tex_slackr(obj,path='testdir',print.xtable.opts=list(scalebox=getOption("xtable.
 }
 }
 \seealso{
-\code{\link[texPreview]{tex_preview}} \code{\link[xtable]{print.xtable}}
+\code{\link[texPreview:tex_preview]{texPreview::tex_preview()}} \code{\link[xtable:print.xtable]{xtable::print.xtable()}}
 }
 \author{
-Jonathan Sidi [aut]
+Jonathan Sidi (aut)
 }

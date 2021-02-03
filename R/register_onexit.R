@@ -47,10 +47,9 @@
 #'delete_slackr(count = 6,channel = '#general')
 #'}
 #'
-#' @rdname register_onexit
 #' @seealso
-#' \code{\link{text_slackr}}
-#' @author Jonathan Sidi [aut]
+#' [text_slackr()]
+#' @author Jonathan Sidi (aut)
 #' @export
 register_onexit <- function(f,
                             ...,
