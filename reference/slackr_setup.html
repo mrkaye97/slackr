@@ -8,6 +8,13 @@
 
 <title>Setup environment variables for Slack API access — slackr_setup • slackr</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -42,6 +49,7 @@
 <meta property="og:title" content="Setup environment variables for Slack API access — slackr_setup" />
 <meta property="og:description" content="Initialize all the environment variables slackr() will need to use to
 work properly." />
+<meta property="og:image" content="/logo.svg" />
 
 
 
@@ -99,6 +107,9 @@ work properly." />
       <a href="../articles/scoped-bot-setup.html">Multi-Functional Bot Setup</a>
     </li>
     <li>
+      <a href="../articles/using-slackr.html">Onexit Usage in slackr</a>
+    </li>
+    <li>
       <a href="../articles/webhook-setup.html">Webhook Bot Setup</a>
     </li>
   </ul>
@@ -145,7 +156,8 @@ work properly.</p>
   bot_user_oauth_token <span class='op'>=</span> <span class='st'>""</span>,
   config_file <span class='op'>=</span> <span class='st'>"~/.slackr"</span>,
   echo <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  cacheChannels <span class='op'>=</span> <span class='cn'>TRUE</span>
+  cacheChannels <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  cache_dir <span class='op'>=</span> <span class='st'>""</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -183,7 +195,11 @@ with the config values.</p></td>
     </tr>
     <tr>
       <th>cacheChannels</th>
-      <td><p>a boolean for whether or not you want to cache channels to limit API requests</p></td>
+      <td><p>a boolean for whether or not you want to cache channels to limit API requests (deprecated)</p></td>
+    </tr>
+    <tr>
+      <th>cache_dir</th>
+      <td><p>the location for an on-disk cache. defaults to an in-memory cache if no location is specified</p></td>
     </tr>
     </table>
 

@@ -8,6 +8,13 @@
 
 <title>Function reference • slackr</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -40,6 +47,7 @@
 
 
 <meta property="og:title" content="Function reference" />
+<meta property="og:image" content="/logo.svg" />
 
 
 
@@ -97,6 +105,9 @@
       <a href="../articles/scoped-bot-setup.html">Multi-Functional Bot Setup</a>
     </li>
     <li>
+      <a href="../articles/using-slackr.html">Onexit Usage in slackr</a>
+    </li>
+    <li>
       <a href="../articles/webhook-setup.html">Webhook Bot Setup</a>
     </li>
   </ul>
@@ -139,7 +150,7 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
+          <h2 id="section-package-documentation" class="hasAnchor"><a href="#section-package-documentation" class="anchor"></a>Package documentation</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -151,118 +162,23 @@
       <tr>
         
         <td>
-          <p><code><a href="auth_test.html">auth_test()</a></code> </p>
-        </td>
-        <td><p>Checks authentication &amp; identity against the Slack API.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="call_slack_api.html">call_slack_api()</a></code> </p>
-        </td>
-        <td><p>A wrapper function to call the Slack API with authentication and pagination.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="convert_response_to_tibble.html">convert_response_to_tibble()</a></code> </p>
-        </td>
-        <td><p>Convert Slack API json response to tibble.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dev.slackr.html">dev.slackr()</a></code> </p>
-        </td>
-        <td><p>dev.slackr</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dev_slackr.html">dev_slackr()</a></code> </p>
-        </td>
-        <td><p>dev_slackr</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ggslackr.html">ggslackr()</a></code> </p>
-        </td>
-        <td><p>Post a ggplot to a Slack channel</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="register_onexit.html">register_onexit()</a></code> </p>
-        </td>
-        <td><p>Append text_slackr as on.exit to functions.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="save.slackr.html">save.slackr()</a></code> </p>
-        </td>
-        <td><p>save.slackr</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="save_slackr.html">save_slackr()</a></code> </p>
-        </td>
-        <td><p>Save R objects to an RData file on Slack</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="slackr-package.html">slackr-package</a></code> </p>
         </td>
         <td><p>slackr-package</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="slackr.html">slackr()</a></code> </p>
-        </td>
-        <td><p>Output R expressions to a Slack channel/user</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="slackrBot.html">slackrBot()</a></code> </p>
-        </td>
-        <td><p>slackrBot</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="slackrChannels.html">slackrChannels()</a></code> </p>
-        </td>
-        <td><p>slackrChannels</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="slackrChtrans.html">slackrChtrans()</a></code> <code><a href="slackrChtrans.html">slackrChTrans()</a></code> </p>
-        </td>
-        <td><p>slackrChtrans</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="slackrIms.html">slackrIms()</a></code> </p>
-        </td>
-        <td><p>slackrIms</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="slackrMsg.html">slackrMsg()</a></code> </p>
-        </td>
-        <td><p>slackrMsg</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="slackrSetup.html">slackrSetup()</a></code> </p>
-        </td>
-        <td><p>slackrSetup</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="slackrUpload.html">slackrUpload()</a></code> </p>
-        </td>
-        <td><p>slackrUpload</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="slackrUsers.html">slackrUsers()</a></code> </p>
-        </td>
-        <td><p>slackrUsers</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-main-functions" class="hasAnchor"><a href="#section-main-functions" class="anchor"></a>Main functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="slackr_bot.html">slackr_bot()</a></code> </p>
@@ -271,7 +187,7 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="slackr_census.html">slackr_census()</a></code> </p>
+          <p><code><a href="slackr_census_fun.html">slackr_census_fun()</a></code> </p>
         </td>
         <td><p>Create a cache of the users and channels in the workspace in order to limit API requests</p></td>
       </tr><tr>
@@ -286,12 +202,6 @@
           <p><code><a href="slackr_chtrans.html">slackr_chtrans()</a></code> </p>
         </td>
         <td><p>Translate vector of channel names to channel IDs for API</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="slackr_createcache.html">slackr_createcache()</a></code> </p>
-        </td>
-        <td><p>Create a cache of the users and channels in the workspace in order to limit API requests</p></td>
       </tr><tr>
         
         <td>
@@ -343,15 +253,21 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="tex_slackr.html">tex_slackr()</a></code> </p>
+          <p><code><a href="dev_slackr.html">dev_slackr()</a></code> </p>
         </td>
-        <td><p>Post a tex output to a Slack channel</p></td>
+        <td><p>Superseded by slackr_dev</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="textSlackr.html">textSlackr()</a></code> </p>
+          <p><code><a href="save_slackr.html">save_slackr()</a></code> </p>
         </td>
-        <td><p>textSlackr</p></td>
+        <td><p>Save R objects to an RData file on Slack</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tex_slackr.html">tex_slackr()</a></code> </p>
+        </td>
+        <td><p>Post a tex output to a Slack channel</p></td>
       </tr><tr>
         
         <td>
@@ -361,9 +277,137 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="register_onexit.html">register_onexit()</a></code> </p>
+        </td>
+        <td><p>Append text_slackr as on.exit to functions.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackr.html">slackr()</a></code> </p>
+        </td>
+        <td><p>Output R expressions to a Slack channel/user</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="ggslackr.html">ggslackr()</a></code> </p>
+        </td>
+        <td><p>Post a ggplot to a Slack channel</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-internal-functions" class="hasAnchor"><a href="#section-internal-functions" class="anchor"></a>Internal functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="auth_test.html">auth_test()</a></code> </p>
+        </td>
+        <td><p>Checks authentication &amp; identity against the Slack API.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="call_slack_api.html">call_slack_api()</a></code> </p>
+        </td>
+        <td><p>A wrapper function to call the Slack API with authentication and pagination.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="convert_response_to_tibble.html">convert_response_to_tibble()</a></code> </p>
+        </td>
+        <td><p>Convert Slack API json response to tibble.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="with_pagination.html">with_pagination()</a></code> </p>
         </td>
         <td><p>Calls the slack API with pagination using cursors.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-deprecated-functions" class="hasAnchor"><a href="#section-deprecated-functions" class="anchor"></a>Deprecated functions</h2>
+          <p class="section-desc"><p>These functions have all been superceded by their <code>snake_case</code> equivalents</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="dev.slackr.html">dev.slackr()</a></code> </p>
+        </td>
+        <td><p>Superseded by slackr_dev</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="save.slackr.html">save.slackr()</a></code> </p>
+        </td>
+        <td><p>Superseded by save_slackr</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackrBot.html">slackrBot()</a></code> </p>
+        </td>
+        <td><p>Superseded by slackr_bot</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackrChannels.html">slackrChannels()</a></code> </p>
+        </td>
+        <td><p>Superseded by slackr_channels</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackrChtrans.html">slackrChtrans()</a></code> <code><a href="slackrChtrans.html">slackrChTrans()</a></code> </p>
+        </td>
+        <td><p>Superseded by slackr_chtrans</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackrIms.html">slackrIms()</a></code> </p>
+        </td>
+        <td><p>Superseded by slackr_ims</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackrMsg.html">slackrMsg()</a></code> </p>
+        </td>
+        <td><p>Superseded by slackr_msg</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackrSetup.html">slackrSetup()</a></code> </p>
+        </td>
+        <td><p>Superseded by slackr_setup</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackrUpload.html">slackrUpload()</a></code> </p>
+        </td>
+        <td><p>Superseded by slackr_upload</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackrUsers.html">slackrUsers()</a></code> </p>
+        </td>
+        <td><p>Superseded by slackr_users</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="textSlackr.html">textSlackr()</a></code> </p>
+        </td>
+        <td><p>Superseded by text_slackr</p></td>
       </tr>
     </tbody>
     </table>

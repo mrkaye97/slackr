@@ -6,6 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Send Messages, Images, R Objects and Files to Slack Channels/Users • slackr</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -20,6 +26,7 @@
     can use this package to send well-formatted output from multiple R objects and
     expressions to all teammates at the same time with little effort. You can also
     send images from the current graphics device, R objects, and upload files.">
+<meta property="og:image" content="/logo.svg">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -64,6 +71,9 @@
       <a href="articles/scoped-bot-setup.html">Multi-Functional Bot Setup</a>
     </li>
     <li>
+      <a href="articles/using-slackr.html">Onexit Usage in slackr</a>
+    </li>
+    <li>
       <a href="articles/webhook-setup.html">Webhook Bot Setup</a>
     </li>
   </ul>
@@ -91,19 +101,16 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-
-
-<p><img src="https://raw.githubusercontent.com/mrkaye97/slackr/master/slackr.png" alt="Logo"></p>
-<p><code>slackr</code> - a package to send messages to Slack channels and users</p>
-<p>The <code>slackr</code> package contains functions that make it possible to interact with the Slack messaging platform. When you need to share information/data from R, rather than resort to copy/paste in e-mails or other services like Skype, you can use this package to send well-formatted output from multiple R objects and expressions to all teammates at the same time with little effort. You can also send images from the current graphics device, R objects (as R data files), and upload files.</p>
-<div id="breaking-changes" class="section level1">
+<div id="slackr---send-messages-to-slack-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#breaking-changes" class="anchor"></a>BREAKING CHANGES</h1></div>
-<p>Version 2.0.0+ is updated to work with the new Slack API structure!</p>
-</div>
-<div id="installation" class="section level1">
-<h1 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h1>
+<a href="#slackr---send-messages-to-slack-" class="anchor"></a>slackr - send messages to Slack <img src="reference/figures/logo.svg" align="right" height="139">
+</h1></div>
+<!-- badges: start -->
+
+<p>The <code>slackr</code> package contains functions to interact with the Slack messaging platform. When you need to share information/data from R, rather than resorting to copy/paste, emails, other services like Skype, you can use this package to send well-formatted output from R to all teammates at the same time with little effort. You can send text, R function output, images from the current graphics device and <code>ggplots</code>, R objects (as R data files), rendered LaTeX expressions, and uploaded files.</p>
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># CRAN version</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"slackr"</span><span class="op">)</span>
@@ -111,29 +118,44 @@
 <span class="co"># Development version</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mrkaye97/slackr"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="setup" class="section level1">
-<h1 class="hasAnchor">
-<a href="#setup" class="anchor"></a>Setup</h1>
-<p>There are two ways of interfacing with <code>slackr</code> currently, that provide significantly different functionality.</p>
+<div id="breaking-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#breaking-changes" class="anchor"></a>Breaking Changes</h2>
+<p>Version 2.0.0+ is updated to work with the new Slack API structure!</p>
+</div>
+<div id="setup" class="section level2">
+<h2 class="hasAnchor">
+<a href="#setup" class="anchor"></a>Setup</h2>
+<p>There are two ways of interfacing with <code>slackr</code> that provide significantly different functionality:</p>
 <ol>
-<li>Using only a webook to send messages to a channel (i.e. creating a single-channel bot)</li>
-<li>Creating a bot user to send messages to multiple channels, including plots, tables, files, etc. as well as deleting messages, reading the channels in a workspace, etc. (i.e. creating a fully-functional multi-channel bot)</li>
+<li>
+<p>Creating a single-channel bot</p>
+<p>Using only a webhook to send messages to a channel</p>
+</li>
+<li>
+<p>Creating a fully-functional multi-channel bot</p>
+<p>Creating a bot user to send messages to multiple channels, including plots, tables, files, etc. as well as deleting messages, reading the channels in a workspace, etc.</p>
+</li>
 </ol>
 <p>In most cases, we recommend <code>Option 1</code> above. This requires the fewest permissions and is the simplest to set up, and will allow basic messaging to a specific channel.</p>
 <p>See the vignettes for setup instructions.</p>
 <div id="config-file-setup" class="section level3">
 <h3 class="hasAnchor">
 <a href="#config-file-setup" class="anchor"></a>Config File Setup</h3>
-<p>The <code><a href="reference/slackr_setup.html">slackr_setup()</a></code> function will try to read setup values from a <code>~/.slackr</code> (you can change the default) configuration file, which may be easier and more secure than passing them in manually (plus, will allow you to have multiple slackr configs for multiple Slack.com teams). The file is in Debian Control File (DCF) format since it really doesn’t need to be JSON and R has a handy <code><a href="https://rdrr.io/r/base/dcf.html">read.dcf()</a></code> function since that’s what <code>DESCRIPTION</code> files are coded in. Here’s the basic format for the configuration file:</p>
+<p>The <code><a href="reference/slackr_setup.html">slackr_setup()</a></code> function will try to read setup values from a <code>~/.slackr</code> (you can change the default) configuration file, which may be easier and more secure than passing them in manually (plus, will allow you to have multiple <code>slackr</code> configurations for multiple Slack.com teams).</p>
+<p>The file is in Debian Control File (DCF) format since it really doesn’t need to be JSON and R has a handy <code><a href="https://rdrr.io/r/base/dcf.html">read.dcf()</a></code> function since that’s what <code>DESCRIPTION</code> files are coded in.</p>
+<p>Here’s the basic format for the configuration file:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>bot_user_oauth_token<span class="op">:</span><span class="st"> </span>Your app<span class="st">'s bot user OAuth token</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="st">channel: #general</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="st">username: slackr</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="st">incoming_webhook_url: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX</span></span></code></pre></div>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="st">incoming_webhook_url: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="st">icon_emoji = '</span>boom<span class="st">'</span></span></code></pre></div>
 <p>You can also change the default emoji icon (from the one you setup at integration creation time) with <code>icon_emoji</code>.</p>
 </div>
-<div id="thank-yous" class="section level3">
-<h3 class="hasAnchor">
-<a href="#thank-yous" class="anchor"></a>Thank Yous</h3>
+</div>
+<div id="contributors" class="section level2">
+<h2 class="hasAnchor">
+<a href="#contributors" class="anchor"></a>Contributors</h2>
 <p>Many thanks to:</p>
 <ul>
 <li><a href="https://github.com/hrbrmstr">Bob Rudis</a></li>
@@ -150,8 +172,14 @@
 </ul>
 <p>for their contributions to the package!</p>
 </div>
+<div id="known-issues" class="section level2">
+<h2 class="hasAnchor">
+<a href="#known-issues" class="anchor"></a>Known Issues</h2>
+<ul>
+<li>Depending on your scopes, <code>slackr</code> could quietly fail (i.e. not throw an error, but also not post anything to your channel). If this happens, try explicitly adding the app you’re trying to have <code>slackr</code> post as to the channel you want in your Slack workspace with <code>/invite @your_app_name</code> or make sure you have <code>chat:write.public</code> enabled.</li>
+</ul>
 </div>
-
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -184,8 +212,10 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="http://www.repostatus.org/#active"><img src="http://www.repostatus.org/badges/0.1.0/active.svg" alt="Project Status: Active - The project has reached a stable, usable state and is being actively developed."></a></li>
-<li><a href="http://cran.r-project.org/package=slackr"><img src="http://www.r-pkg.org/badges/version/slackr" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://CRAN.R-project.org/package=slackr"><img src="https://www.r-pkg.org/badges/version/slackr" alt="CRAN status"></a></li>
+<li><a href="https://github.com/mrkaye97/slackr/actions"><img src="https://github.com/mrkaye97/slackr/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://codecov.io/gh/mrkaye97/slackr"><img src="https://codecov.io/gh/mrkaye97/slackr/branch/master/graph/badge.svg?token=5HjUtFfIJR" alt="codecov"></a></li>
 </ul>
 </div>
 </div>

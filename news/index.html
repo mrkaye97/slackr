@@ -8,6 +8,13 @@
 
 <title>Changelog • slackr</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -40,6 +47,7 @@
 
 
 <meta property="og:title" content="Changelog" />
+<meta property="og:image" content="/logo.svg" />
 
 
 
@@ -97,6 +105,9 @@
       <a href="../articles/scoped-bot-setup.html">Multi-Functional Bot Setup</a>
     </li>
     <li>
+      <a href="../articles/using-slackr.html">Onexit Usage in slackr</a>
+    </li>
+    <li>
       <a href="../articles/webhook-setup.html">Webhook Bot Setup</a>
     </li>
   </ul>
@@ -129,6 +140,24 @@
       <small>Source: <a href='https://github.com/mrkaye97/slackr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="slackr-210" class="section level1">
+<h1 class="page-header" data-toc-text="2.10">
+<a href="#slackr-210" class="anchor"></a>slackr 2.10<small> Unreleased </small>
+</h1>
+<ul>
+<li>HTTP Caching speeds up requests and limits the number of requests we need to make</li>
+<li>
+<code><a href="../reference/slackr_history.html">slackr_history()</a></code> and <code><a href="../reference/slackr_delete.html">slackr_delete()</a></code> are now implemented</li>
+<li>
+<code>username</code> and <code>icon_emoji</code> parameters to <code>slackr_***</code> functions now work again</li>
+<li>
+<a href="https://mrkaye97.github.io/slackr/articles/webhook-setup.html">https://mrkaye97.github.io/slackr/articles/webhook-setup.html</a> have been added with setup instructions and usage</li>
+<li>Improved error messaging</li>
+<li>Updates to the README and the <a href="https://mrkaye97.github.io/slackr/">pkgdown site</a>
+</li>
+<li>A number of significant back-end changes, thanks to <a href="https://github.com/andrie">Andrie de Vries</a>, including significant code cleanup, simplification of the API calls, pagination, and more!</li>
+</ul>
+</div>
     <div id="slackr-202" class="section level1">
 <h1 class="page-header" data-toc-text="2.0.2">
 <a href="#slackr-202" class="anchor"></a>slackr 2.0.2<small> Unreleased </small>

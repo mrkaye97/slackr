@@ -8,6 +8,13 @@
 
 <title>Calls the slack API with pagination using cursors. — with_pagination • slackr</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -42,6 +49,7 @@
 <meta property="og:title" content="Calls the slack API with pagination using cursors. — with_pagination" />
 <meta property="og:description" content="This loops over fun, extracts the next_cursor from the API response, and
 injects this into the next loop.  At the completion of each loop, the function convert_response_to_tibble() is run with extract as and argument. The results are combined with dplyr::bind_rows()" />
+<meta property="og:image" content="/logo.svg" />
 
 
 
@@ -97,6 +105,9 @@ injects this into the next loop.  At the completion of each loop, the function c
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/scoped-bot-setup.html">Multi-Functional Bot Setup</a>
+    </li>
+    <li>
+      <a href="../articles/using-slackr.html">Onexit Usage in slackr</a>
     </li>
     <li>
       <a href="../articles/webhook-setup.html">Webhook Bot Setup</a>

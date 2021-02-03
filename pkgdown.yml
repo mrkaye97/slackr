@@ -3,6 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   scoped-bot-setup: scoped-bot-setup.html
+  using-slackr: using-slackr.html
   webhook-setup: webhook-setup.html
-last_built: 2021-01-23T03:13Z
+last_built: 2021-02-03T15:07Z
 
