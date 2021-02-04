@@ -82,7 +82,7 @@ compute tasks or general information sharing." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.1</span>
       </span>
     </div>
 
@@ -152,9 +152,9 @@ compute tasks or general information sharing.</p>
 
     <pre class="usage"><span class='fu'>slackr_bot</span><span class='op'>(</span>
   <span class='va'>...</span>,
-  channel <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_CHANNEL"</span><span class='op'>)</span>,
-  username <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_USERNAME"</span><span class='op'>)</span>,
-  icon_emoji <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_ICON_EMOJI"</span><span class='op'>)</span>,
+  channel <span class='op'>=</span> <span class='st'>""</span>,
+  username <span class='op'>=</span> <span class='st'>""</span>,
+  icon_emoji <span class='op'>=</span> <span class='st'>""</span>,
   incoming_webhook_url <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_INCOMING_URL_PREFIX"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
@@ -167,15 +167,15 @@ compute tasks or general information sharing.</p>
     </tr>
     <tr>
       <th>channel</th>
-      <td><p>which channel to post the message to (chr)</p></td>
+      <td><p>Deprecated. will have no effect</p></td>
     </tr>
     <tr>
       <th>username</th>
-      <td><p>what user should the bot be named as (chr)</p></td>
+      <td><p>Deprecated. will have no effect</p></td>
     </tr>
     <tr>
       <th>icon_emoji</th>
-      <td><p>what emoji to use (chr) <code>""</code> will mean use the default</p></td>
+      <td><p>Deprecated. will have no effect</p></td>
     </tr>
     <tr>
       <th>incoming_webhook_url</th>
@@ -189,8 +189,6 @@ compute tasks or general information sharing.</p>
     <p>By default, everyting but <code>expr</code> will be looked for in a "<code>SLACK_</code>"
 environment variable. You can override or just specify these values directly
 instead, but it's probably better to call <code><a href='slackr_setup.html'>slackr_setup()</a></code> first.</p>
-<p>This function uses the incoming webhook API. The webhook will have a default
-channel, username, icon etc, but these can be overridden.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>You need a <a href='https://www.slack.com'>https://www.slack.com</a> account and will also need to
