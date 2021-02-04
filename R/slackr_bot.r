@@ -38,11 +38,18 @@
 #' }
 #' @export
 slackr_bot <- function(...,
+                       channel = '',
+                       username = '',
+                       icon_emoji = '',
                        incoming_webhook_url=Sys.getenv("SLACK_INCOMING_URL_PREFIX")) {
 
   if (incoming_webhook_url == "") {
     stop("No incoming webhook URL specified. Did you forget to call slackr_setup()?", call. = FALSE)
   }
+
+  if (channel != '') warning('The channel argument is deprecated as of slackr 2.1.1, as it no longer has any effect when used with a webhook')
+  if (username != '') warning('The username argument is deprecated as of slackr 2.1.1, as it no longer has any effect when used with a webhook')
+  if (icon_emoji != '') warning('The icon_emoji argument is deprecated as of slackr 2.1.1, as it no longer has any effect when used with a webhook')
 
   resp_ret <- ""
 
