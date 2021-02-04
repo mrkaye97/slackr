@@ -8,13 +8,8 @@
 #' environment variable. You can override or just specify these values directly
 #' instead, but it's probably better to call [slackr_setup()] first.
 #'
-#' This function uses the incoming webhook API. The webhook will have a default
-#' channel, username, icon etc, but these can be overridden.
 #'
 #' @param ... expressions to be sent to Slack
-#' @param channel which channel to post the message to (chr)
-#' @param username what user should the bot be named as (chr)
-#' @param icon_emoji what emoji to use (chr) `""` will mean use the default
 #' @param incoming_webhook_url which `slack.com` API endpoint URL to use
 #'   (see section **Webhook URLs** for details)
 #' @importFrom utils URLencode
@@ -43,16 +38,11 @@
 #' }
 #' @export
 slackr_bot <- function(...,
-                       channel=Sys.getenv("SLACK_CHANNEL"),
-                       username=Sys.getenv("SLACK_USERNAME"),
-                       icon_emoji=Sys.getenv("SLACK_ICON_EMOJI"),
                        incoming_webhook_url=Sys.getenv("SLACK_INCOMING_URL_PREFIX")) {
 
   if (incoming_webhook_url == "") {
     stop("No incoming webhook URL specified. Did you forget to call slackr_setup()?", call. = FALSE)
   }
-
-  if (icon_emoji != "") { icon_emoji <- sprintf(', "icon_emoji": "%s"', icon_emoji)  }
 
   resp_ret <- ""
 
@@ -133,8 +123,8 @@ slackr_bot <- function(...,
         ),
       body = URLencode(
         sprintf(
-          "payload={\"channel\": \"%s\", \"username\": \"%s\", \"text\": \"```%s```\"%s}",
-          channel, username, output, icon_emoji)
+          "payload={\"text\": \"```%s```\"}",
+          output)
         )
       )
     stop_for_status(resp)

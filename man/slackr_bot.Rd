@@ -4,22 +4,10 @@
 \alias{slackr_bot}
 \title{Send result of R expressions to a Slack channel via webhook API}
 \usage{
-slackr_bot(
-  ...,
-  channel = Sys.getenv("SLACK_CHANNEL"),
-  username = Sys.getenv("SLACK_USERNAME"),
-  icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-  incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX")
-)
+slackr_bot(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"))
 }
 \arguments{
 \item{...}{expressions to be sent to Slack}
-
-\item{channel}{which channel to post the message to (chr)}
-
-\item{username}{what user should the bot be named as (chr)}
-
-\item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
 
 \item{incoming_webhook_url}{which \code{slack.com} API endpoint URL to use
 (see section \strong{Webhook URLs} for details)}
@@ -33,9 +21,6 @@ compute tasks or general information sharing.
 By default, everyting but \code{expr} will be looked for in a "\code{SLACK_}"
 environment variable. You can override or just specify these values directly
 instead, but it's probably better to call \code{\link[=slackr_setup]{slackr_setup()}} first.
-
-This function uses the incoming webhook API. The webhook will have a default
-channel, username, icon etc, but these can be overridden.
 }
 \note{
 You need a \url{https://www.slack.com} account and will also need to

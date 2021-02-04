@@ -6,7 +6,7 @@
 \usage{
 save_slackr(
   ...,
-  channels = "",
+  channels = Sys.getenv("SLACK_CHANNEL"),
   file = "slackr",
   bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
   plot_text = ""
