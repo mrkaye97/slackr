@@ -8,7 +8,7 @@ slackr_upload(
   filename,
   title = basename(filename),
   initial_comment = basename(filename),
-  channels = "",
+  channels = Sys.getenv("SLACK_CHANNEL"),
   bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
 )
 }

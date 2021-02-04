@@ -17,7 +17,8 @@
 #' slackr_setup()
 #' save_slackr(mtcars, channels="#slackr", file="mtcars")
 #' }
-save_slackr <- function(..., channels="",
+save_slackr <- function(...,
+                        channels=Sys.getenv("SLACK_CHANNEL"),
                         file="slackr",
                         bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                         plot_text = '') {
