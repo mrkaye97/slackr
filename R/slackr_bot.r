@@ -12,6 +12,9 @@
 #' @param ... expressions to be sent to Slack
 #' @param incoming_webhook_url which `slack.com` API endpoint URL to use
 #'   (see section **Webhook URLs** for details)
+#' @param channel Deprecated. will have no effect
+#' @param username Deprecated. will have no effect
+#' @param icon_emoji Deprecated. will have no effect
 #' @importFrom utils URLencode
 #' @note You need a <https://www.slack.com> account and will also need to
 #'   setup an incoming webhook: <https://api.slack.com/>. Old style webhooks are

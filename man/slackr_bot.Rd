@@ -4,10 +4,22 @@
 \alias{slackr_bot}
 \title{Send result of R expressions to a Slack channel via webhook API}
 \usage{
-slackr_bot(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"))
+slackr_bot(
+  ...,
+  channel = "",
+  username = "",
+  icon_emoji = "",
+  incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX")
+)
 }
 \arguments{
 \item{...}{expressions to be sent to Slack}
+
+\item{channel}{Deprecated. will have no effect}
+
+\item{username}{Deprecated. will have no effect}
+
+\item{icon_emoji}{Deprecated. will have no effect}
 
 \item{incoming_webhook_url}{which \code{slack.com} API endpoint URL to use
 (see section \strong{Webhook URLs} for details)}
