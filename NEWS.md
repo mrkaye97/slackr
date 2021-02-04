@@ -1,4 +1,10 @@
-# slackr 2.10
+# slackr 2.1.1
+
+* Changes a few badly-set function default channels to be `Sys.getenv('SLACK_CHANNEL')` instead of `''`
+* Adds a more informative error message on `slackr_upload()` when the request returns `not authed` as per #137 
+* Deprecates some arguments in `slackr_bot()` that no longer work (username, channel, icon emoji) that used to work with the old API structure
+
+# slackr 2.1.0
 
 * HTTP Caching speeds up requests and limits the number of requests we need to make
 * `slackr_history()` and `slackr_delete()` are now implemented
