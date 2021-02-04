@@ -140,9 +140,20 @@
       <small>Source: <a href='https://github.com/mrkaye97/slackr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="slackr-211" class="section level1">
+<h1 class="page-header" data-toc-text="2.1.1">
+<a href="#slackr-211" class="anchor"></a>slackr 2.1.1<small> Unreleased </small>
+</h1>
+<ul>
+<li>Changes a few badly-set function default channels to be <code><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv('SLACK_CHANNEL')</a></code> instead of <code>''</code>
+</li>
+<li>Adds a more informative error message on <code><a href="../reference/slackr_upload.html">slackr_upload()</a></code> when the request returns <code>not authed</code> as per <a href='https://github.com/mrkaye97/slackr/issues/137'>#137</a></li>
+<li>Deprecates some arguments in <code><a href="../reference/slackr_bot.html">slackr_bot()</a></code> that no longer work (username, channel, icon emoji) that used to work with the old API structure</li>
+</ul>
+</div>
     <div id="slackr-210" class="section level1">
-<h1 class="page-header" data-toc-text="2.10">
-<a href="#slackr-210" class="anchor"></a>slackr 2.10<small> Unreleased </small>
+<h1 class="page-header" data-toc-text="2.1.0">
+<a href="#slackr-210" class="anchor"></a>slackr 2.1.0<small> Unreleased </small>
 </h1>
 <ul>
 <li>HTTP Caching speeds up requests and limits the number of requests we need to make</li>
