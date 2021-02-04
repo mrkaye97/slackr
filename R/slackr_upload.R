@@ -38,6 +38,8 @@ slackr_upload <- function(filename, title=basename(filename),
                                  title=title, initial_comment=initial_comment,
                                  token=bot_user_oauth_token, channels=paste(modchan, collapse=",")))
 
+    if (!content(res)$ok) stop(content(res)$error, ' -- Are you sure you used the right token and channel name?')
+
     return(invisible(res))
 
   } else {
