@@ -31,9 +31,9 @@ And that's it! You should be able to post a message with `slackr_bot('test messa
 
 ## Example Usage
 
-```{r}
+```r
 library(slackr)
-# slackr_setup()
+slackr_setup()
 
 slackr_bot('Test message', 
            channel = '#test',
