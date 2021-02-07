@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.2</span>
       </span>
     </div>
 
@@ -127,22 +127,12 @@
 <a href="#example-usage" class="anchor"></a>Example Usage</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrkaye97/slackr">slackr</a></span><span class="op">)</span>
-<span class="co"># slackr_setup()</span>
+<span class="fu"><a href="../reference/slackr_setup.html">slackr_setup</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/slackr_bot.html">slackr_bot</a></span><span class="op">(</span><span class="st">'Test message'</span>, 
            channel <span class="op">=</span> <span class="st">'#test'</span>,
            username <span class="op">=</span> <span class="st">'mrkaye97'</span>,
-           icon_emoji <span class="op">=</span> <span class="st">'tada'</span><span class="op">)</span>
-<span class="co">#&gt; Warning in slackr_bot("Test message", channel = "#test", username =</span>
-<span class="co">#&gt; "mrkaye97", : The channel argument is deprecated as of slackr 2.1.1, as it no</span>
-<span class="co">#&gt; longer has any effect when used with a webhook</span>
-<span class="co">#&gt; Warning in slackr_bot("Test message", channel = "#test", username =</span>
-<span class="co">#&gt; "mrkaye97", : The username argument is deprecated as of slackr 2.1.1, as it no</span>
-<span class="co">#&gt; longer has any effect when used with a webhook</span>
-<span class="co">#&gt; Warning in slackr_bot("Test message", channel = "#test", username =</span>
-<span class="co">#&gt; "mrkaye97", : The icon_emoji argument is deprecated as of slackr 2.1.1, as it no</span>
-<span class="co">#&gt; longer has any effect when used with a webhook</span>
-<span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></code></pre></div>
+           icon_emoji <span class="op">=</span> <span class="st">'tada'</span><span class="op">)</span></code></pre></div>
 </div>
   </div>
 
