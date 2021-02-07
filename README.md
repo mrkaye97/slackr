@@ -11,7 +11,6 @@ status](https://www.r-pkg.org/badges/version/slackr)](https://CRAN.R-project.org
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/slackr)
-![downloads/month](https://cranlogs.r-pkg.org/badges/slackr)
 [![codecov](https://codecov.io/gh/mrkaye97/slackr/branch/master/graph/badge.svg?token=5HjUtFfIJR)](https://codecov.io/gh/mrkaye97/slackr)
 <!-- badges: end -->
 
