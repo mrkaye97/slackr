@@ -58,6 +58,14 @@ messaging to a specific channel.
 
 See the vignettes for setup instructions.
 
+## Vignettes
+
+The vignettes contain setup instructions and example usage:
+
+  - Option 1 setup: `vignette('scoped-bot-setup', package = 'slackr')`
+  - Option 2 setup: `vignette('webhook-setup', package = 'slackr')`
+  - Usage: `vignette('using-slackr', package = 'slackr')`
+
 ### Config File Setup
 
 The `slackr_setup()` function will try to read setup values from a
