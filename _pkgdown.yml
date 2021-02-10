@@ -1,3 +1,7 @@
+template:
+  params:
+    ganalytics: UA-129880587-1
+
 reference:
 
 - title: "Package documentation"
