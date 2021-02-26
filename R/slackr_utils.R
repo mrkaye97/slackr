@@ -77,7 +77,18 @@ slackr_channels <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUT
   tmp <- POST("https://slack.com/api/conversations.list?limit=500&types=public_channel,private_channel",
               body=list(token=bot_user_oauth_token))
   stop_for_status(tmp)
-  jsonlite::fromJSON(content(tmp, as="text"))$channels
+  res <- jsonlite::fromJSON(content(tmp, as="text"))
+  channels <- res$channels
+  while (!is.null(res$response_metadata) &&
+         !is.null(res$response_metadata$next_cursor) &&
+         res$response_metadata$next_cursor != '') {
+    tmp <- POST("https://slack.com/api/conversations.list?limit=500&types=public_channel,private_channel",
+                body=list(token=bot_user_oauth_token, cursor=res$response_metadata$next_cursor))
+    stop_for_status(tmp)
+    res <- jsonlite::fromJSON(content(tmp, as="text"))
+    channels <- dplyr::bind_rows(channels, res$channels)
+  }
+  channels
 
 }
 
