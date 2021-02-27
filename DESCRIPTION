@@ -1,8 +1,8 @@
 Package: slackr
 Type: Package
 Title: Send Messages, Images, R Objects and Files to 'Slack' Channels/Users
-Version: 2.1.2
-Date: 2020-01-18
+Version: 2.1.3
+Date: 2020-02-26
 Author: Bob Rudis [aut, cre], Jay Jacobs [ctb], David Severski [ctb],
     Quinn Weber [ctb], Konrad Karczewski [ctb], Shinya Uryu [ctb],
     Gregory Jefferis [ctb], Ed Niles [ctb], Rick Saporta [ctb],
@@ -40,8 +40,8 @@ Imports:
     xtable (>= 1.8.4),
     tibble,
     magrittr,
-    memoise,
-    cachem
+    memoise (>= 2.0.0),
+    cachem (>= 1.0.4)
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
