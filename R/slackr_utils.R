@@ -68,7 +68,8 @@ slackr_census_fun <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OA
   distinct(chan_list)
 }
 
-if (Sys.getenv("SLACK_CACHE_DIR") == '') {
+cache_dir <- Sys.getenv("SLACK_CACHE_DIR")
+if (cache_dir == '') {
     slackr_census <- memoise::memoise(slackr_census_fun, cache = cachem::cache_mem())
 } else {
     slackr_census <- memoise::memoise(slackr_census_fun, cache = cachem::cache_disk(dir = cache_dir))
