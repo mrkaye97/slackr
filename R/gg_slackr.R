@@ -17,6 +17,7 @@
 #' @param file prefix for filenames (defaults to `ggplot`)
 #' @param ... other arguments passed to graphics device
 #' @importFrom ggplot2 ggsave last_plot ggplot aes geom_point
+#' @importFrom graphics par
 #' @return `httr` response object (invisibly)
 #' @examples
 #' \dontrun{

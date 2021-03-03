@@ -27,6 +27,7 @@
 #' @param echo display the configuration variables (bool) initially `FALSE`
 #' @param cacheChannels a boolean for whether or not you want to cache channels to limit API requests (deprecated)
 #' @param cache_dir the location for an on-disk cache. defaults to an in-memory cache if no location is specified
+#' @importFrom jsonlite toJSON
 #' @return "Successfully connected to Slack"
 #' @note You need a [Slack](https://slack.com) account and all your API URLs & tokens setup
 #'       to use this package.
