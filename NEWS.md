@@ -1,6 +1,6 @@
 # slackr 2.2.0
 
-* Gets rid of the usage of `slackr_chtrans()` in the vast majority of functions, significantly speeding up `slackr_***()`
+* Gets rid of the usage of `slackr_chtrans()` in the vast majority of functions, significantly speeding up `slackr_***()` by limiting API requests
 
 # slackr 2.1.3
 
