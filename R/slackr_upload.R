@@ -31,13 +31,11 @@ slackr_upload <- function(filename, title=basename(filename),
     Sys.setlocale('LC_CTYPE','C')
     on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-    modchan <- slackr_chtrans(channels)
-
     res <- POST(url="https://slack.com/api/files.upload",
                       add_headers(`Content-Type`="multipart/form-data"),
                       body=list( file=upload_file(f_path), filename=f_name,
                                  title=title, initial_comment=initial_comment,
-                                 token=bot_user_oauth_token, channels=paste(modchan, collapse=",")))
+                                 token=bot_user_oauth_token, channels=paste(channels, collapse=",")))
 
     if (!content(res)$ok) stop(content(res)$error, ' -- Are you sure you used the right token and channel name?')
 

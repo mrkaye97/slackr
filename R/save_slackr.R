@@ -36,7 +36,7 @@ save_slackr <- function(...,
 
   res <- files_upload(
     file = ftmp,
-    channel = slackr_chtrans(channels),
+    channel = channels,
     txt = plot_text,
     bot_user_oauth_token = bot_user_oauth_token,
     filename = sprintf("%s.Rdata", file)

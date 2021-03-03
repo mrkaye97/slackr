@@ -55,12 +55,10 @@ ggslackr <- function(
     ...       = ...
   )
 
-  modchan <- slackr_chtrans(channels)
-
   res <-
     files_upload(
       file = ftmp,
-      channel = modchan,
+      channel = channels,
       bot_user_oauth_token = bot_user_oauth_token
       )
 

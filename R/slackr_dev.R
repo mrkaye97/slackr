@@ -40,7 +40,7 @@ slackr_dev <- function(channels=Sys.getenv("SLACK_CHANNEL"),
 
   res <- files_upload(
     file = ftmp,
-    channel = slackr_chtrans(channels),
+    channel = channels,
     txt = plot_text,
     bot_user_oauth_token = bot_user_oauth_token
     )
