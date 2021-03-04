@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0</span>
       </span>
     </div>
 
@@ -150,6 +150,32 @@
       <small>Source: <a href='https://github.com/mrkaye97/slackr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="slackr-220" class="section level1">
+<h1 class="page-header" data-toc-text="2.2.0">
+<a href="#slackr-220" class="anchor"></a>slackr 2.2.0<small> Unreleased </small>
+</h1>
+<ul>
+<li>Gets rid of the usage of <code><a href="../reference/slackr_chtrans.html">slackr_chtrans()</a></code> in the vast majority of functions, significantly speeding up <code>slackr_***()</code> by limiting API requests</li>
+</ul>
+</div>
+    <div id="slackr-213" class="section level1">
+<h1 class="page-header" data-toc-text="2.1.3">
+<a href="#slackr-213" class="anchor"></a>slackr 2.1.3<small> Unreleased </small>
+</h1>
+<ul>
+<li>Fixes a <code>memoise</code> bug that was causing <code><a href="../reference/slackr_chtrans.html">slackr_chtrans()</a></code> to fail with <code>memoise &lt; 2.0.0</code>
+</li>
+<li>Fixes a bug in the implementation of <code>slackr_census()</code> that would cause <code>slackr_census()</code> to fail if the user was specifying a cache dir on the disk</li>
+</ul>
+</div>
+    <div id="slackr-212" class="section level1">
+<h1 class="page-header" data-toc-text="2.1.2">
+<a href="#slackr-212" class="anchor"></a>slackr 2.1.2<small> Unreleased </small>
+</h1>
+<ul>
+<li>Fixes the vignettes, so they knit again and are displayed on the <code>pkgdown</code> site</li>
+</ul>
+</div>
     <div id="slackr-211" class="section level1">
 <h1 class="page-header" data-toc-text="2.1.1">
 <a href="#slackr-211" class="anchor"></a>slackr 2.1.1<small> Unreleased </small>
