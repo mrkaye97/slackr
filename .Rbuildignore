@@ -5,8 +5,11 @@
 ^slackr\.png$
 ^cran-comments\.md$
 .channel_cache
+logo.svg
+inst/secrets
 ^codecov\.yml$
 ^\.github$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^CRAN-RELEASE$

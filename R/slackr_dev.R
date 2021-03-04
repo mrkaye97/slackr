@@ -7,6 +7,7 @@
 #' @param bot_user_oauth_token the Slack full bot user OAuth token (chr)
 #' @param file prefix for filenames (defaults to `plot`)
 #' @param plot_text the plot text to send with the plot (defaults to "")
+#' @importFrom grDevices dev.copy dev.off png
 #' @return `httr` response object from `POST` call
 #' @seealso [slackr_setup()], [save_slackr()], [slackr_upload()]
 #' @author Konrad Karczewski (ctb), Bob Rudis (aut)
@@ -40,7 +41,7 @@ slackr_dev <- function(channels=Sys.getenv("SLACK_CHANNEL"),
 
   res <- files_upload(
     file = ftmp,
-    channel = slackr_chtrans(channels),
+    channel = channels,
     txt = plot_text,
     bot_user_oauth_token = bot_user_oauth_token
     )

@@ -37,8 +37,6 @@ slackr_history <- function(
     posted_from_time <-  ""
   }
 
-  channel <- slackr_chtrans(channel)
-
   resp <-
     if (!paginate) {
       resp <- call_slack_api(

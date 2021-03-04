@@ -77,7 +77,7 @@ post_message <- function(
     bot_user_oauth_token = bot_user_oauth_token,
     body = list(
       text       = txt,
-      channel    = slackr_chtrans(channel),
+      channel    = channel,
       username   = username,
       link_names = 1,
       icon_emoji = emoji,
@@ -121,7 +121,7 @@ files_upload <- function(
     body = list(
       file            = upload_file(file),
       initial_comment = txt,
-      channels        = slackr_chtrans(channel),
+      channels        = channel,
       username        = username,
       ...
     )

@@ -62,13 +62,11 @@ tex_slackr <- function(obj,
     imgFormat = ifelse(ext=='tex','png',ext),
     ...)
 
-  modchan <- slackr_chtrans(channels)
-
   res <- POST(url="https://slack.com/api/files.upload",
               add_headers(`Content-Type`="multipart/form-data"),
               body=list(file=upload_file(file.path(td,paste0('slack.',ext))),
                         token=bot_user_oauth_token,
-                        channels=modchan))
+                        channels=channels))
 
   #cleanup
   file.remove(list.files(td,pattern = 'Doc',full.names = TRUE))

@@ -1,3 +1,16 @@
+# slackr 2.2.0
+
+* Gets rid of the usage of `slackr_chtrans()` in the vast majority of functions, significantly speeding up `slackr_***()` by limiting API requests
+
+# slackr 2.1.3
+
+* Fixes a `memoise` bug that was causing `slackr_chtrans()` to fail with `memoise < 2.0.0`
+* Fixes a bug in the implementation of `slackr_census()` that would cause `slackr_census()` to fail if the user was specifying a cache dir on the disk
+
+# slackr 2.1.2
+
+* Fixes the vignettes, so they knit again and are displayed on the `pkgdown` site
+
 # slackr 2.1.1
 
 * Changes a few badly-set function default channels to be `Sys.getenv('SLACK_CHANNEL')` instead of `''`

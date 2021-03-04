@@ -17,6 +17,7 @@
 #' @param file prefix for filenames (defaults to `ggplot`)
 #' @param ... other arguments passed to graphics device
 #' @importFrom ggplot2 ggsave last_plot ggplot aes geom_point
+#' @importFrom graphics par
 #' @return `httr` response object (invisibly)
 #' @examples
 #' \dontrun{
@@ -55,12 +56,10 @@ ggslackr <- function(
     ...       = ...
   )
 
-  modchan <- slackr_chtrans(channels)
-
   res <-
     files_upload(
       file = ftmp,
-      channel = modchan,
+      channel = channels,
       bot_user_oauth_token = bot_user_oauth_token
       )
 

@@ -18,8 +18,8 @@ slackr_delete <- function(
     stop("bot_user_oauth_token must be a character vector of length one")
   }
 
+  channel <- slackr_chtrans(channel)
 
-  channel  = slackr_chtrans(channel)
   timestamps <- slackr_history(channel = channel, message_count = count, paginate = FALSE)[["ts"]]
 
   resp <- lapply(timestamps, function(ts) {

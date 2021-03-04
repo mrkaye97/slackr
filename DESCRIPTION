@@ -1,8 +1,8 @@
 Package: slackr
 Type: Package
 Title: Send Messages, Images, R Objects and Files to 'Slack' Channels/Users
-Version: 2.1.3
-Date: 2020-02-26
+Version: 2.2.0
+Date: 2021-03-03
 Author: Bob Rudis [aut, cre], Jay Jacobs [ctb], David Severski [ctb],
     Quinn Weber [ctb], Konrad Karczewski [ctb], Shinya Uryu [ctb],
     Gregory Jefferis [ctb], Ed Niles [ctb], Rick Saporta [ctb],
@@ -12,11 +12,11 @@ Description: 'Slack' <https://slack.com/> provides a service for teams to
     collaborate by sharing messages, images, links, files and more. Functions are provided
     that make it possible to interact with the 'Slack' platform 'API'. When
     you need to share information or data from R, rather than resort to copy/
-    paste in e-mails or other services like 'Skype' <https://www.skype.com/>, you
+    paste in e-mails or other services like 'Skype' <https://www.skype.com/en/>, you
     can use this package to send well-formatted output from multiple R objects and
     expressions to all teammates at the same time with little effort. You can also
     send images from the current graphics device, R objects, and upload files.
-URL: https://github.com/mrkaye97/slackr, https://mrkaye97.github.io/slackr
+URL: https://github.com/mrkaye97/slackr, https://mrkaye97.github.io/slackr/
 BugReports: https://github.com/mrkaye97/slackr/issues
 License: MIT + file LICENSE
 Suggests:
