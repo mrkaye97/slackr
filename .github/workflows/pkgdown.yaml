@@ -39,7 +39,7 @@ jobs:
           restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
 
       - name: Install Magick
-        run: apt-get install libmagick++-dev
+        run: brew install imagemagick@6
         
       - name: Install dependencies
         run: |
