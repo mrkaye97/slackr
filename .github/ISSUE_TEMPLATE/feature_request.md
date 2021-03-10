@@ -2,8 +2,8 @@
 name: Feature request
 about: Suggest an idea for slackr
 title: ''
-labels: ''
-assignees: ''
+labels: enhancement
+assignees: mrkaye97
 
 ---
 
