@@ -10,7 +10,9 @@ if (Sys.getenv('ENVIRONMENT') == 'production') {
     bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
   )
 } else {
-  slackr_setup()
+  slackr_setup(
+    config_file = '~/.slackr_config'
+  )
 }
 
 test_check("slackr")

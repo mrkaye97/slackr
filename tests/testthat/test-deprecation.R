@@ -26,3 +26,23 @@ test_that("text_slackr deprecated", {
   expect_warning(textSlackr('deprecation test'), regexp = "'text_slackr' is deprecated") %>%
     expect_warning(regexp = "'textSlackr' is deprecated")
 })
+
+test_that("save_slackr deprecated", {
+  skip_on_cran()
+
+  tmp <- tempfile()
+  expect_warning(save_slackr(tmp), regexp = "'save_slackr' is deprecated")
+})
+
+test_that("slackr_setup deprecated args", {
+  skip_on_cran()
+
+  expect_warning(
+    slackr_setup(
+      channel = '#test',
+      bot_user_oauth_token = Sys.getenv('SLACK_BOT_USER_OAUTH_TOKEN'),
+      cacheChannels = TRUE
+    ),
+    regexp = "cacheChannels parameter is deprecated")
+})
+
