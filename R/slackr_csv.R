@@ -3,6 +3,7 @@
 #' `slackr_csv` simplifies the process of sending a data frame to Slack as a CSV file.
 #' It is highly recommended to leave the `filename` argument as the default (tempfile), as changing it will persist a csv file in your working directory.
 #'
+#' @importFrom utils write.csv
 #' @param data the data frame to upload
 #' @param filename the file to save to (Defaults to a tempfile. Using the default is _highly_ advised, as using a non-tempfile will write to your wd)
 #' @param channels Slack channels to save to (optional)
