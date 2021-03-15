@@ -24,3 +24,23 @@ test_that("slackr_setup() connects", {
     '#test'
   )
 })
+
+test_that("config file setup works", {
+  skip_on_cran()
+
+  tmp <- tempfile()
+  write.dcf(
+    list(
+      bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+      channel = Sys.getenv("SLACK_CHANNEL"),
+      username = Sys.getenv("SLACK_USERNAME"),
+      incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
+      icon_emoji = Sys.getenv("SLACK_ICON_EMOJI")
+    ), file = tmp
+  )
+
+  expect_equal(
+    slackr_setup(config_file = tmp),
+    "Successfully connected to Slack"
+    )
+})
