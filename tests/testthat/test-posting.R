@@ -1,10 +1,12 @@
-# test_that("slackr_bot posts", {
-#   res <- slackr_bot(
-#     'testing slackr_bot',
-#     incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX")
-#     )
-#   expect_equal(rawToChar(res$content), 'ok')
-# })
+test_that("slackr_bot posts", {
+  skip_on_cran()
+
+  res <- slackr_bot(
+    'testing slackr_bot',
+    incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX")
+    )
+  expect_equal(res$status_code, 200)
+})
 
 test_that("slackr posts", {
   skip_on_cran()
@@ -71,5 +73,14 @@ test_that("slackr can post to other channels", {
   res <- slackr('testing foreign channel post', channel = '#test2')
   expect_true(res$ok)
 })
+
+
+test_that("slackr_csv posts", {
+  skip_on_cran()
+
+  res <- slackr_csv(iris)
+  expect_true(content(res)$ok)
+})
+
 
 
