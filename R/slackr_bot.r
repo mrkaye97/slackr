@@ -36,9 +36,7 @@
 #' slackr_bot("iris info", head(iris), str(iris))
 #'
 #' # or directly
-#' slackr_bot("Test message", username="slackr", channel="#random",
-#'   incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX")
-#' }
+#' slackr_bot("Test message", incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX")}
 #' @export
 slackr_bot <- function(...,
                        channel = '',
@@ -46,15 +44,13 @@ slackr_bot <- function(...,
                        icon_emoji = '',
                        incoming_webhook_url=Sys.getenv("SLACK_INCOMING_URL_PREFIX")) {
 
-  if (incoming_webhook_url == "") {
+  if (incoming_webhook_url == "" | is.na(incoming_webhook_url)) {
     stop("No incoming webhook URL specified. Did you forget to call slackr_setup()?", call. = FALSE)
   }
 
   if (channel != '') warning('The channel argument is deprecated as of slackr 2.1.1, as it no longer has any effect when used with a webhook')
   if (username != '') warning('The username argument is deprecated as of slackr 2.1.1, as it no longer has any effect when used with a webhook')
   if (icon_emoji != '') warning('The icon_emoji argument is deprecated as of slackr 2.1.1, as it no longer has any effect when used with a webhook')
-
-  resp_ret <- ""
 
   if (!missing(...)) {
 
