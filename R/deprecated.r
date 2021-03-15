@@ -39,6 +39,19 @@ save.slackr <- function(...) {
   save_slackr(...)
 }
 
+#' Superseded by slackr_save
+#'
+#' deprecated
+#'
+#' @param ... arguments to pass to slackr_save
+#' @export
+#' @seealso \code{\link[slackr]{slackr_save}}
+#' @family Deprecated functions
+save_slackr <- function(...) {
+  .Deprecated(new = 'slackr_save')
+  slackr_save(...)
+}
+
 #' Superseded by slackr_bot
 #'
 #' deprecated

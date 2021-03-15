@@ -19,6 +19,7 @@ Other Deprecated functions:
 \code{\link{dev.slackr}()},
 \code{\link{dev_slackr}()},
 \code{\link{save.slackr}()},
+\code{\link{save_slackr}()},
 \code{\link{slackrChannels}()},
 \code{\link{slackrChtrans}()},
 \code{\link{slackrIms}()},

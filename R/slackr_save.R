@@ -1,6 +1,6 @@
 #' Save R objects to an RData file on Slack
 #'
-#' `save_slackr` enables you upload R objects (as an R data file)
+#' `slackr_save` enables you upload R objects (as an R data file)
 #' to Slack and (optionally) post them to one or more channels
 #' (if `channels` is not empty).
 #'
@@ -15,9 +15,9 @@
 #' @export
 #' @examples \dontrun{
 #' slackr_setup()
-#' save_slackr(mtcars, channels="#slackr", file="mtcars")
+#' slackr_save(mtcars, channels="#slackr", file="mtcars")
 #' }
-save_slackr <- function(...,
+slackr_save <- function(...,
                         channels=Sys.getenv("SLACK_CHANNEL"),
                         file="slackr",
                         bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
