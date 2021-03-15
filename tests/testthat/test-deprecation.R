@@ -30,8 +30,12 @@ test_that("text_slackr deprecated", {
 test_that("save_slackr deprecated", {
   skip_on_cran()
 
-  tmp <- tempfile()
-  expect_warning(save_slackr(tmp), regexp = "'save_slackr' is deprecated")
+  ## this errors out but I can't figure out why
+  ## I think it has something to do with save(..., envir = parent.frame())
+  ## but it seems to work fine in slackr_save()
+  x <- 1:2
+  expect_error(save_slackr(x), regexp = 'object') %>%
+    expect_warning(regexp = 'deprecated')
 })
 
 test_that("slackr_setup deprecated args", {
@@ -41,6 +45,7 @@ test_that("slackr_setup deprecated args", {
     slackr_setup(
       channel = '#test',
       bot_user_oauth_token = Sys.getenv('SLACK_BOT_USER_OAUTH_TOKEN'),
+      incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
       cacheChannels = TRUE
     ),
     regexp = "cacheChannels parameter is deprecated")

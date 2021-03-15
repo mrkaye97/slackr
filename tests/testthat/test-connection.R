@@ -4,7 +4,10 @@ test_that("slackr_setup() connects", {
   expect_equal(
     slackr_setup(
       channel = "#test",
-      bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")),
+      bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+      incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
+      username = 'slackr',
+      icon_emoji = 'robot_face'),
     "Successfully connected to Slack"
   )
 

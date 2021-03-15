@@ -80,5 +80,36 @@ test_that("slackr_csv posts", {
   expect_true(content(res)$ok)
 })
 
+test_that("slackr_save works", {
+  skip_on_cran()
+
+  res <- slackr_save(iris)
+  expect_equal(res$ok, TRUE)
+
+  ## making sure saving works from inside of a function
+  f <- function() {
+    x <- 1:2
+    slackr_save(x)
+  }
+
+  res <- f()
+  expect_equal(res$ok, TRUE)
+})
+
+test_that("ggsave works from in a function", {
+  skip_on_cran()
+
+  f <- function() {
+    plt <- ggplot2::ggplot(iris, ggplot2::aes(Sepal.Length, Sepal.Width)) +
+      ggplot2::geom_point()
+
+    ggslackr(plt)
+  }
+
+
+  res <- f()
+  expect_equal(res$ok, TRUE)
+})
+
 
 
