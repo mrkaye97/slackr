@@ -1,5 +1,6 @@
 test_that("slackr_bot posts", {
   skip_on_cran()
+  skip_on_ci()
 
   res <- slackr_bot('testing slackr_bot')
   expect_equal(res$status_code, 200)
