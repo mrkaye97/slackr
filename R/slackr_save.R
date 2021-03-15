@@ -30,7 +30,7 @@ slackr_save <- function(...,
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   ftmp <- tempfile(file, fileext=".Rdata")
-  save(..., file=ftmp)
+  save(..., file=ftmp, envir = parent.frame())
 
   on.exit(unlink(ftmp), add=TRUE)
 
@@ -41,8 +41,6 @@ slackr_save <- function(...,
     bot_user_oauth_token = bot_user_oauth_token,
     filename = sprintf("%s.Rdata", file)
   )
-
-  stop_for_status(res)
 
   return(invisible(res))
 }
