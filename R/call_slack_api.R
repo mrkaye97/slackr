@@ -17,7 +17,7 @@ stop_for_status <- function(r) {
   # note that httr::stop_for_status should be called explicitly
 
   httr::stop_for_status(r)
-  cr <- content(r)
+  cr <- content(r, encoding = 'UTF-8')
 
   # A response code of 200 doesn't mean everything is ok, so check if the
   # response is not ok
