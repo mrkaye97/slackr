@@ -35,7 +35,8 @@ slackr_csv(
 \code{httr} response object from \code{POST} call (invisibly)
 }
 \description{
-\code{slackr_csv} simplifies the process of sending a data frame to Slack as a CSV file
+\code{slackr_csv} simplifies the process of sending a data frame to Slack as a CSV file.
+It is highly recommended to leave the \code{filename} argument as the default (tempfile), as changing it will persist a csv file in your working directory.
 }
 \seealso{
 \code{\link[=slackr_upload]{slackr_upload()}}
