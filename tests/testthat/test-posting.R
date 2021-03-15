@@ -1,10 +1,7 @@
 test_that("slackr_bot posts", {
   skip_on_cran()
 
-  res <- slackr_bot(
-    'testing slackr_bot',
-    incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX")
-    )
+  res <- slackr_bot('testing slackr_bot')
   expect_equal(res$status_code, 200)
 })
 
