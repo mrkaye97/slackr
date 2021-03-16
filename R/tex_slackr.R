@@ -21,13 +21,20 @@
 #' \dontrun{
 #' slackr_setup()
 #' obj <- xtable::xtable(mtcars)
-#' tex_slackr(obj, print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
+#' tex_slackr(obj,
+#'   print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
 #'
-#' tex_slackr(obj, ext = "pdf", print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
+#' tex_slackr(obj,
+#'   ext = "pdf",
+#'   print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
 #'
-#' tex_slackr(obj, ext = "tex", print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
+#' tex_slackr(obj,
+#'   ext = "tex",
+#'   print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
 #'
-#' tex_slackr(obj, path = "testdir", print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
+#' tex_slackr(obj,
+#'   path = "testdir",
+#'   print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
 #' }
 #' @seealso
 #'  [texPreview::tex_preview()] [xtable::print.xtable()]

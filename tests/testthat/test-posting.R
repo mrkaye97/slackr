@@ -110,35 +110,3 @@ test_that("ggslackr works from in a function", {
   expect_equal(res$ok, TRUE)
 })
 
-test_that("slackr_dev posts", {
-  skip_on_cran()
-  skip_on_ci()
-
-  plot(iris)
-
-  res <- slackr_dev()
-  expect_equal(res$ok, TRUE)
-
-  expect_warning(slackr_dev(channels = "#test2"), "not_in_channel")
-})
-
-test_that("tex_slackr posts", {
-  skip_on_cran()
-  skip_on_ci()
-
-  ## pre-created
-  obj <- xtable::xtable(mtcars)
-
-  res <- tex_slackr(
-    obj
-  )
-
-  expect_equal(res$status_code, 200)
-
-  ## rendered at tex_slackr time
-  res <- tex_slackr(
-    obj = "$y = m \\cdot x + b$"
-  )
-
-  expect_equal(res$status_code, 200)
-})
