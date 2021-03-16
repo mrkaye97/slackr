@@ -22,46 +22,62 @@
 #' @examples
 #' \dontrun{
 #' slackr_setup()
-#' text_slackr('hello world', as_user=TRUE)
+#' text_slackr("hello world", as_user = TRUE)
 #' }
 #' @export
-text_slackr <- function(text, ..., preformatted=TRUE,
-                        channel=Sys.getenv("SLACK_CHANNEL"),
-                        username=Sys.getenv("SLACK_USERNAME"),
-                        icon_emoji=Sys.getenv("SLACK_ICON_EMOJI"),
-                        bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+text_slackr <- function(text, ..., preformatted = TRUE,
+                        channel = Sys.getenv("SLACK_CHANNEL"),
+                        username = Sys.getenv("SLACK_USERNAME"),
+                        icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
+                        bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+  .Deprecated(new = "slackr_msg")
 
-  .Deprecated(new = 'slackr_msg')
-
-  if ( length(text) > 1 ) { stop("text must be a vector of length one") }
-  if ( !is.character(channel) | length(channel) > 1 ) { stop("channel must be a character vector of length one") }
-  if ( !is.logical(preformatted) | length(preformatted) > 1 ) { stop("preformatted must be a logical vector of length one") }
-  if ( !is.character(username) | length(username) > 1 ) { stop("username must be a character vector of length one") }
-  if ( !is.character(bot_user_oauth_token) | length(bot_user_oauth_token) > 1 ) { stop("api_token must be a character vector of length one") }
+  if (length(text) > 1) {
+    stop("text must be a vector of length one")
+  }
+  if (!is.character(channel) | length(channel) > 1) {
+    stop("channel must be a character vector of length one")
+  }
+  if (!is.logical(preformatted) | length(preformatted) > 1) {
+    stop("preformatted must be a logical vector of length one")
+  }
+  if (!is.character(username) | length(username) > 1) {
+    stop("username must be a character vector of length one")
+  }
+  if (!is.character(bot_user_oauth_token) | length(bot_user_oauth_token) > 1) {
+    stop("api_token must be a character vector of length one")
+  }
 
   text <- as.character(text)
 
-  if ( preformatted ) {
-    if ( substr(text, 1, 3) != '```' ) { text <- paste0('```', text) }
-    if ( substr(text, nchar(text)-2, nchar(text)) != '```' ) { text <- paste0(text, '```') }
+  if (preformatted) {
+    if (substr(text, 1, 3) != "```") {
+      text <- paste0("```", text)
+    }
+    if (substr(text, nchar(text) - 2, nchar(text)) != "```") {
+      text <- paste0(text, "```")
+    }
   }
 
-  loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+  loc <- Sys.getlocale("LC_CTYPE")
+  Sys.setlocale("LC_CTYPE", "C")
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
 
-  resp <- POST(url="https://slack.com/api/chat.postMessage",
-               body=list(token=bot_user_oauth_token,
-                         channel=channel,
-                         username=username,
-                         icon_emoji=icon_emoji,
-                         text=text,
-                         link_names=1,
-                         ...))
+  resp <- POST(
+    url = "https://slack.com/api/chat.postMessage",
+    body = list(
+      token = bot_user_oauth_token,
+      channel = channel,
+      username = username,
+      icon_emoji = icon_emoji,
+      text = text,
+      link_names = 1,
+      ...
+    )
+  )
 
   stop_for_status(resp)
 
   invisible(content(resp))
-
 }

@@ -1,14 +1,14 @@
 test_that("slackr_bot posts", {
   skip_on_cran()
 
-  res <- slackr_bot('testing slackr_bot')
+  res <- slackr_bot("testing slackr_bot")
   expect_equal(res$status_code, 200)
 })
 
 test_that("slackr posts", {
   skip_on_cran()
 
-  res <- slackr('Testing')
+  res <- slackr("Testing")
   expect_true(res$ok)
 
   res <- slackr(head(iris))
@@ -33,21 +33,21 @@ test_that("ggslackr posts", {
 test_that("slackr_msg posts", {
   skip_on_cran()
 
-  res <- slackr_msg('Testing')
+  res <- slackr_msg("Testing")
   expect_true(res$ok)
 })
 
 test_that("text_slackr posts", {
   skip_on_cran()
 
-  expect_warning(text_slackr('Testing'))
-  expect_true(suppressWarnings(text_slackr('Testing'))$ok)
+  expect_warning(text_slackr("Testing"))
+  expect_true(suppressWarnings(text_slackr("Testing"))$ok)
 })
 
 test_that("slackr_delete works", {
   skip_on_cran()
 
-  slackr_msg('Testing deletion')
+  slackr_msg("Testing deletion")
   res <- slackr_delete(1)
   expect_true(res[[1]]$ok)
 })
@@ -58,7 +58,7 @@ test_that("slackr_upload posts", {
   x <- 1:10
   tf <- tempfile(fileext = ".Rdata")
   save(x, file = tf)
-  res <- slackr_upload(tf, channels = '#test')
+  res <- slackr_upload(tf, channels = "#test")
   unlink(tf)
 
   expect_equal(content(res)$ok, TRUE)
@@ -67,7 +67,7 @@ test_that("slackr_upload posts", {
 test_that("slackr can post to other channels", {
   skip_on_cran()
 
-  res <- slackr('testing foreign channel post', channel = '#test2')
+  res <- slackr("testing foreign channel post", channel = "#test2")
   expect_true(res$ok)
 })
 
@@ -119,7 +119,7 @@ test_that("slackr_dev posts", {
   res <- slackr_dev()
   expect_equal(res$ok, TRUE)
 
-  expect_warning(slackr_dev(channels = '#test2'), 'not_in_channel')
+  expect_warning(slackr_dev(channels = "#test2"), "not_in_channel")
 })
 
 test_that("tex_slackr posts", {
@@ -127,7 +127,7 @@ test_that("tex_slackr posts", {
   skip_on_ci()
 
   ## pre-created
-  obj=xtable::xtable(mtcars)
+  obj <- xtable::xtable(mtcars)
 
   res <- tex_slackr(
     obj
@@ -142,6 +142,3 @@ test_that("tex_slackr posts", {
 
   expect_equal(res$status_code, 200)
 })
-
-
-

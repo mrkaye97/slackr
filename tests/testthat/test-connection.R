@@ -6,8 +6,9 @@ test_that("slackr_setup() connects", {
       channel = "#test",
       bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
       incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
-      username = 'slackr',
-      icon_emoji = 'robot_face'),
+      username = "slackr",
+      icon_emoji = "robot_face"
+    ),
     "Successfully connected to Slack"
   )
 
@@ -21,7 +22,7 @@ test_that("slackr_setup() connects", {
 
   expect_equal(
     Sys.getenv("SLACK_CHANNEL"),
-    '#test'
+    "#test"
   )
 })
 
@@ -36,11 +37,12 @@ test_that("config file setup works", {
       username = Sys.getenv("SLACK_USERNAME"),
       incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
       icon_emoji = Sys.getenv("SLACK_ICON_EMOJI")
-    ), file = tmp
+    ),
+    file = tmp
   )
 
   expect_equal(
     slackr_setup(config_file = tmp),
     "Successfully connected to Slack"
-    )
+  )
 })

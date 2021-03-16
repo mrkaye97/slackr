@@ -1,7 +1,7 @@
 library(testthat)
 library(slackr)
 
-if (Sys.getenv('ENVIRONMENT') == 'production') {
+if (Sys.getenv("ENVIRONMENT") == "production") {
   slackr_setup(
     channel = Sys.getenv("SLACK_CHANNEL"),
     username = Sys.getenv("SLACK_USERNAME"),
@@ -11,7 +11,7 @@ if (Sys.getenv('ENVIRONMENT') == 'production') {
   )
 } else {
   slackr_setup(
-    config_file = '~/.slackr_config'
+    config_file = "~/.slackr_config"
   )
 }
 
