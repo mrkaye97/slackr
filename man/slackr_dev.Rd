@@ -34,7 +34,7 @@ slackr_setup()
 # base
 library(maps)
 map("usa")
-dev_slackr("#results", file='map')
+dev_slackr("#results", file = "map")
 
 # base
 barplot(VADeaths)

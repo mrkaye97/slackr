@@ -34,7 +34,7 @@ to Slack and (optionally) post them to one or more channels
 \examples{
 \dontrun{
 slackr_setup()
-slackr_save(mtcars, channels="#slackr", file="mtcars")
+slackr_save(mtcars, channels = "#slackr", file = "mtcars")
 }
 }
 \seealso{
