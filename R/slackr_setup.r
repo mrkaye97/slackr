@@ -111,3 +111,65 @@ slackr_setup <- function(channel="#general",
   msg <- 'Successfully connected to Slack'
   return(msg)
 }
+
+#' Create the config file used in `slackr_setup()`
+#' @seealso [slackr_setup()]
+#' @examples
+#' \dontrun{
+#' # using `create_config_file()` after `slackr_setup()`
+#' create_config_file()
+#'
+#' # using `create_config_file()` before `slackr_setup()`
+#' create_config_file(bot_user_oauth_token = 'xox-', incoming_webhook_url = 'https://hooks-', channel = '#general', username = 'slackr', icon_emoji = 'tada')
+#' slackr_setup()
+#' }
+#' @export
+#' @export
+create_config_file <- function(filename = '~/.slackr',
+                               bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                               incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
+                               icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
+                               username = Sys.getenv("SLACK_USERNAME"),
+                               channel = Sys.getenv("SLACK_CHANNEL")) {
+  write.dcf(
+    list(
+      bot_user_oauth_token = bot_user_oauth_token,
+      incoming_webhook_url = incoming_webhook_url,
+      icon_emoji = icon_emoji,
+      username = username,
+      channel = channel
+    ),
+    file = filename,
+    append = FALSE
+  )
+
+  return(
+    paste('Successfully wrote config file to', filename)
+  )
+}
+
+#' Unset env vars created by `slackr_setup()`
+#' @seealso [slackr_setup()]
+#' @examples
+#' \dontrun{
+#'   slackr_teardown()
+#' }
+#' @export
+#' @export
+slackr_teardown <- function() {
+  env_vars <- c(
+    'SLACK_BOT_USER_OAUTH_TOKEN',
+    'SLACK_CACHE_DIR',
+    'SLACK_CHANNEL',
+    'SLACK_ICON_EMOJI',
+    'SLACK_INCOMING_URL_PREFIX',
+    'SLACK_USERNAME')
+
+  invisible(lapply(
+    env_vars,
+    Sys.unsetenv))
+
+  return('Successfully tore down environment variables created by slackr_setup()')
+}
+
+
