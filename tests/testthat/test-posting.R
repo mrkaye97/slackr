@@ -117,6 +117,29 @@ test_that("slackr_dev posts", {
 
   res <- slackr_dev()
   expect_equal(res$ok, TRUE)
+
+  expect_warning(slackr_dev(channels = '#test2'), 'not_in_channel')
+})
+
+test_that("tex_slackr posts", {
+  skip_on_cran()
+
+  ## pre-created
+  obj=xtable::xtable(mtcars)
+
+  res <- tex_slackr(
+    obj
+  )
+
+  expect_equal(res$status_code, 200)
+
+  ## rendered at tex_slackr time
+  res <- tex_slackr(
+    obj = "$y = m \\cdot x + b$"
+  )
+
+  expect_equal(res$status_code, 200)
+
 })
 
 
