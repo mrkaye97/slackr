@@ -112,6 +112,7 @@ test_that("ggslackr works from in a function", {
 
 test_that("slackr_dev posts", {
   skip_on_cran()
+  skip_on_ci()
 
   plot(iris)
 
@@ -123,6 +124,7 @@ test_that("slackr_dev posts", {
 
 test_that("tex_slackr posts", {
   skip_on_cran()
+  skip_on_ci()
 
   ## pre-created
   obj=xtable::xtable(mtcars)
@@ -139,7 +141,6 @@ test_that("tex_slackr posts", {
   )
 
   expect_equal(res$status_code, 200)
-
 })
 
 
