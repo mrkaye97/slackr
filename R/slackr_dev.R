@@ -19,24 +19,23 @@
 #' # base
 #' library(maps)
 #' map("usa")
-#' dev_slackr("#results", file='map')
+#' dev_slackr("#results", file = "map")
 #'
 #' # base
 #' barplot(VADeaths)
 #' dev_slackr("@@jayjacobs")
 #' }
 #' @export
-slackr_dev <- function(channels=Sys.getenv("SLACK_CHANNEL"),
-                       bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
-                       plot_text = '',
-                       file="plot") {
-
-  loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+slackr_dev <- function(channels = Sys.getenv("SLACK_CHANNEL"),
+                       bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                       plot_text = "",
+                       file = "plot") {
+  loc <- Sys.getlocale("LC_CTYPE")
+  Sys.setlocale("LC_CTYPE", "C")
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-  ftmp <- tempfile(file, fileext=".png")
-  dev.copy(png, file=ftmp)
+  ftmp <- tempfile(file, fileext = ".png")
+  dev.copy(png, file = ftmp)
   dev.off()
 
   res <- files_upload(
@@ -44,8 +43,7 @@ slackr_dev <- function(channels=Sys.getenv("SLACK_CHANNEL"),
     channel = channels,
     txt = plot_text,
     bot_user_oauth_token = bot_user_oauth_token
-    )
+  )
 
   return(invisible(res))
-
 }

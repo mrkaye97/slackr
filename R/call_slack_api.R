@@ -17,7 +17,7 @@ stop_for_status <- function(r) {
   # note that httr::stop_for_status should be called explicitly
 
   httr::stop_for_status(r)
-  cr <- content(r, encoding = 'UTF-8')
+  cr <- content(r, encoding = "UTF-8")
 
   # A response code of 200 doesn't mean everything is ok, so check if the
   # response is not ok
@@ -26,7 +26,7 @@ stop_for_status <- function(r) {
     cr$ok <- NULL
     cr$error <- NULL
     additional_msg <- paste(
-      sapply(seq_along(cr), function(i)paste(names(cr)[i], ":=", unname(cr)[i])),
+      sapply(seq_along(cr), function(i) paste(names(cr)[i], ":=", unname(cr)[i])),
       collapse = "\n"
     )
     warning(
@@ -80,33 +80,32 @@ with_retry <- function(fun) {
 #' @export
 #'
 call_slack_api <- function(
-  path, ..., body = NULL, .method = c("GET", "POST"),
-  bot_user_oauth_token,
-  .verbose = Sys.getenv("SLACKR_VERBOSE", "FALSE"),
-  .next_cursor = ""
-
-) {
+                           path, ..., body = NULL, .method = c("GET", "POST"),
+                           bot_user_oauth_token,
+                           .verbose = Sys.getenv("SLACKR_VERBOSE", "FALSE"),
+                           .next_cursor = "") {
   if (missing(bot_user_oauth_token) || is.null(bot_user_oauth_token)) {
     bot_user_oauth_token <- Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN", "")
   }
   if (is.null(bot_user_oauth_token) || bot_user_oauth_token == "") {
     warning("Provide a value for bot_user_oauth_token",
-            immediate. = TRUE,
-            call. = FALSE)
+      immediate. = TRUE,
+      call. = FALSE
+    )
   }
   url <- "https://slack.com"
   .method <- match.arg(.method)
 
   # Set locale to C (POSIX)
-  loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+  loc <- Sys.getlocale("LC_CTYPE")
+  Sys.setlocale("LC_CTYPE", "C")
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   # Make verbose call if env var is set
   if (.verbose == "TRUE") {
     old_config <- set_config(verbose())
     on.exit(set_config(old_config), add = TRUE)
-  } #else {
+  } # else {
   #   set_config(httr::verbose(data_out = FALSE, data_in = FALSE, info = FALSE, ssl = FALSE))
   # }
 
@@ -140,7 +139,7 @@ call_slack_api <- function(
 }
 
 
-add_cursor_get = function(..., .next_cursor = "") {
+add_cursor_get <- function(..., .next_cursor = "") {
   z <- list(...)
   if (!is.null(.next_cursor) && .next_cursor != "") {
     # message("Appending cursor to query")
@@ -149,7 +148,7 @@ add_cursor_get = function(..., .next_cursor = "") {
   z
 }
 
-add_cursor_post = function(..., .next_cursor = "") {
+add_cursor_post <- function(..., .next_cursor = "") {
   z <- list(...)[[1]]
   if (!is.null(.next_cursor) && .next_cursor != "") {
     message("Appending cursor to query")
@@ -191,7 +190,7 @@ with_pagination <- function(fun, extract) {
   done <- FALSE
   old_cursor <- ""
   next_cursor <- ""
-  result = NA
+  result <- NA
   had_to_cursor <- FALSE
   while (!done) {
     # make the api call
@@ -219,7 +218,7 @@ with_pagination <- function(fun, extract) {
       )
     }
   }
-  if(had_to_cursor) message("")
+  if (had_to_cursor) message("")
   result
 }
 

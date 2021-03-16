@@ -17,13 +17,12 @@
 #' @return `httr` response object from `POST` call (invisibly)
 #' @export
 slackr_csv <- function(data,
-                       filename = tempfile(fileext = '.csv'),
+                       filename = tempfile(fileext = ".csv"),
                        title = basename(filename),
                        initial_comment = basename(filename),
                        channels = Sys.getenv("SLACK_CHANNEL"),
                        bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                        ...) {
-
   write.csv(data, filename, ...)
 
   res <- slackr_upload(
@@ -32,7 +31,7 @@ slackr_csv <- function(data,
     initial_comment = initial_comment,
     channels = channels,
     bot_user_oauth_token = bot_user_oauth_token
-    )
+  )
 
   return(invisible(res))
 }

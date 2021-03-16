@@ -10,13 +10,12 @@
 #'          `@@` channels replaced with ID's.
 #' @export
 slackr_chtrans <- function(channels) {
-
   channel_cache <- slackr_census()
 
   chan_xref <-
-    channel_cache[(channel_cache$name        %in% channels) |
-                    (channel_cache$real_name %in% channels) |
-                    (channel_cache$id        %in% channels), ]
+    channel_cache[(channel_cache$name %in% channels) |
+      (channel_cache$real_name %in% channels) |
+      (channel_cache$id %in% channels), ]
 
   ifelse(
     is.na(chan_xref$id),
@@ -34,13 +33,12 @@ slackr_chtrans <- function(channels) {
 #' @importFrom memoise memoise
 #' @importFrom cachem cache_mem cache_disk
 #'
-slackr_census_fun <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-
+slackr_census_fun <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
   msg <- "Are you sure you have the right scopes enabled? See the readme for details."
 
   chan <- slackr_channels(bot_user_oauth_token)
 
-    if (is.null(chan) || nrow(chan) == 0) {
+  if (is.null(chan) || nrow(chan) == 0) {
     stop("slackr is not seeing any channels in your workspace. ", msg)
   }
 
@@ -69,10 +67,10 @@ slackr_census_fun <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OA
 }
 
 cache_dir <- Sys.getenv("SLACK_CACHE_DIR")
-if (cache_dir == '') {
-    slackr_census <- memoise::memoise(slackr_census_fun, cache = cachem::cache_mem())
+if (cache_dir == "") {
+  slackr_census <- memoise::memoise(slackr_census_fun, cache = cachem::cache_mem())
 } else {
-    slackr_census <- memoise::memoise(slackr_census_fun, cache = cachem::cache_disk(dir = cache_dir))
+  slackr_census <- memoise::memoise(slackr_census_fun, cache = cachem::cache_disk(dir = cache_dir))
 }
 
 
@@ -82,15 +80,13 @@ if (cache_dir == '') {
 #' @return `data.frame` of users
 #' @importFrom dplyr bind_cols setdiff
 #' @export
-slackr_users <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-
+slackr_users <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
   members <- list_users()
   cols <- setdiff(colnames(members), c("profile", "real_name"))
   bind_cols(
     members[, cols],
     members$profile
   )
-
 }
 
 #' Get a data frame of Slack channels
@@ -100,12 +96,10 @@ slackr_users <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_T
 #' @return data.table of channels
 #' @export
 slackr_channels <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-
   c1 <- list_channels(bot_user_oauth_token = bot_user_oauth_token, types = "public_channel")
   c2 <- list_channels(bot_user_oauth_token = bot_user_oauth_token, types = "private_channel")
 
   bind_rows(c1, c2)
-
 }
 
 #' Get a data frame of Slack IM ids
@@ -117,10 +111,9 @@ slackr_channels <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OA
 #' @references <https://github.com/mrkaye97/slackr/pull/13>
 #' @return `data.frame` of im ids and user names
 #' @export
-slackr_ims <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-
-  loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+slackr_ims <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+  loc <- Sys.getlocale("LC_CTYPE")
+  Sys.setlocale("LC_CTYPE", "C")
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   ims <- list_channels(bot_user_oauth_token = bot_user_oauth_token, types = "im")
@@ -130,5 +123,5 @@ slackr_ims <- function(bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOK
     stop("slackr is not seeing any users in your workspace. Are you sure you have the right scopes enabled? See the readme for details.")
   }
 
-  left_join(users, ims, by="id")
+  left_join(users, ims, by = "id")
 }

@@ -13,26 +13,26 @@
 #' @seealso [slackr_setup()], [slackr_dev()], [slackr_upload()]
 #' @importFrom httr add_headers upload_file
 #' @export
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' slackr_setup()
-#' slackr_save(mtcars, channels="#slackr", file="mtcars")
+#' slackr_save(mtcars, channels = "#slackr", file = "mtcars")
 #' }
 slackr_save <- function(...,
-                        channels=Sys.getenv("SLACK_CHANNEL"),
-                        file="slackr",
-                        bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
-                        plot_text = '') {
+                        channels = Sys.getenv("SLACK_CHANNEL"),
+                        file = "slackr",
+                        bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                        plot_text = "") {
+  if (channels == "") stop("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
 
-  if (channels == '') stop("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
-
-  loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+  loc <- Sys.getlocale("LC_CTYPE")
+  Sys.setlocale("LC_CTYPE", "C")
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-  ftmp <- tempfile(file, fileext=".Rdata")
-  save(..., file=ftmp, envir = parent.frame())
+  ftmp <- tempfile(file, fileext = ".Rdata")
+  save(..., file = ftmp, envir = parent.frame())
 
-  on.exit(unlink(ftmp), add=TRUE)
+  on.exit(unlink(ftmp), add = TRUE)
 
   res <- files_upload(
     file = ftmp,

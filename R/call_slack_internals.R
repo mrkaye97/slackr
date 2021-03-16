@@ -63,27 +63,26 @@ list_users <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_T
 #'
 #' @references https://api.slack.com/methods/chat.postMessage
 post_message <- function(
-  txt,
-  channel,
-  emoji = "",
-  username = Sys.getenv("SLACK_USERNAME"),
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
-  ...)
-{
+                         txt,
+                         channel,
+                         emoji = "",
+                         username = Sys.getenv("SLACK_USERNAME"),
+                         bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                         ...) {
   z <-
     call_slack_api(
-    "/api/chat.postMessage",
-    .method = POST,
-    bot_user_oauth_token = bot_user_oauth_token,
-    body = list(
-      text       = txt,
-      channel    = channel,
-      username   = username,
-      link_names = 1,
-      icon_emoji = emoji,
-      ...
+      "/api/chat.postMessage",
+      .method = POST,
+      bot_user_oauth_token = bot_user_oauth_token,
+      body = list(
+        text       = txt,
+        channel    = channel,
+        username   = username,
+        link_names = 1,
+        icon_emoji = emoji,
+        ...
+      )
     )
-  )
 
   invisible(content(z))
 }
@@ -107,13 +106,12 @@ post_message <- function(
 #'
 #' @references https://api.slack.com/methods/files.upload
 files_upload <- function(
-  file,
-  channel,
-  txt = "",
-  username = Sys.getenv("SLACK_USERNAME"),
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
-  ...)
-{
+                         file,
+                         channel,
+                         txt = "",
+                         username = Sys.getenv("SLACK_USERNAME"),
+                         bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                         ...) {
   z <- call_slack_api(
     "/api/files.upload",
     .method = POST,
@@ -138,4 +136,3 @@ list_scopes <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_
   )
   invisible(content(z))
 }
-

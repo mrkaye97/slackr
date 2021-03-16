@@ -6,15 +6,13 @@
 #' @param bot_user_oauth_token the Slack bot user OAuth token
 #' @export
 slackr_delete <- function(
-  count,
-  channel=Sys.getenv("SLACK_CHANNEL"),
-  bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
-) {
-
-  if ( !is.character(channel) | length(channel) > 1 ) {
+                          count,
+                          channel = Sys.getenv("SLACK_CHANNEL"),
+                          bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+  if (!is.character(channel) | length(channel) > 1) {
     stop("channel must be a character vector of length one")
-    }
-  if ( !is.character(bot_user_oauth_token) | length(bot_user_oauth_token) > 1 ) {
+  }
+  if (!is.character(bot_user_oauth_token) | length(bot_user_oauth_token) > 1) {
     stop("bot_user_oauth_token must be a character vector of length one")
   }
 
@@ -29,7 +27,7 @@ slackr_delete <- function(
       .method = POST,
       body = list(
         channel = channel,
-        ts      = ts
+        ts = ts
       )
     )
     content(r)

@@ -9,7 +9,7 @@
 #' @seealso \code{\link[slackr]{slackr_dev}}
 #' @family Deprecated functions
 dev.slackr <- function(...) {
-  .Deprecated(new = 'slackr_dev')
+  .Deprecated(new = "slackr_dev")
   slackr_dev(...)
 }
 
@@ -22,7 +22,7 @@ dev.slackr <- function(...) {
 #' @seealso \code{\link[slackr]{slackr_dev}}
 #' @family Deprecated functions
 dev_slackr <- function(...) {
-  .Deprecated(new = 'slackr_dev')
+  .Deprecated(new = "slackr_dev")
   slackr_dev(...)
 }
 
@@ -35,7 +35,7 @@ dev_slackr <- function(...) {
 #' @family Deprecated functions
 #' @seealso \code{\link[slackr]{save_slackr}}
 save.slackr <- function(...) {
-  .Deprecated(new = 'save_slackr')
+  .Deprecated(new = "save_slackr")
   save_slackr(...)
 }
 
@@ -48,7 +48,7 @@ save.slackr <- function(...) {
 #' @seealso \code{\link[slackr]{slackr_save}}
 #' @family Deprecated functions
 save_slackr <- function(...) {
-  .Deprecated(new = 'slackr_save')
+  .Deprecated(new = "slackr_save")
   slackr_save(...)
 }
 
@@ -61,7 +61,7 @@ save_slackr <- function(...) {
 #' @family Deprecated functions
 #' @seealso \code{\link[slackr]{slackr_bot}}
 slackrBot <- function(...) {
-  .Deprecated(new = 'slackr_bot')
+  .Deprecated(new = "slackr_bot")
   slackr_bot(...)
 }
 
@@ -74,7 +74,7 @@ slackrBot <- function(...) {
 #' @seealso \code{\link[slackr]{slackr_chtrans}}
 #' @family Deprecated functions
 slackrChtrans <- function(...) {
-  .Deprecated(new = 'slackr_chtrans')
+  .Deprecated(new = "slackr_chtrans")
   slackr_chtrans(...)
 }
 
@@ -87,7 +87,7 @@ slackrChtrans <- function(...) {
 #' @seealso \code{\link[slackr]{slackr_chtrans}}
 #' @family Deprecated functions
 slackrChTrans <- function(...) {
-  .Deprecated(new = 'slackr_chtrans')
+  .Deprecated(new = "slackr_chtrans")
   slackr_chtrans(...)
 }
 
@@ -100,7 +100,7 @@ slackrChTrans <- function(...) {
 #' @family Deprecated functions
 #' @seealso \code{\link[slackr]{slackr_channels}}
 slackrChannels <- function(...) {
-  .Deprecated(new = 'slackr_channels')
+  .Deprecated(new = "slackr_channels")
   slackr_channels(...)
 }
 
@@ -113,7 +113,7 @@ slackrChannels <- function(...) {
 #' @family Deprecated functions
 #' @seealso \code{\link[slackr]{slackr_ims}}
 slackrIms <- function(...) {
-  .Deprecated(new = 'slackr_ims')
+  .Deprecated(new = "slackr_ims")
   slackr_ims(...)
 }
 
@@ -126,7 +126,7 @@ slackrIms <- function(...) {
 #' @seealso \code{\link[slackr]{slackr_msg}}
 #' @family Deprecated functions
 slackrMsg <- function(...) {
-  .Deprecated(new = 'slackr_msg')
+  .Deprecated(new = "slackr_msg")
   slackr_msg(...)
 }
 
@@ -139,7 +139,7 @@ slackrMsg <- function(...) {
 #' @family Deprecated functions
 #' @seealso \code{\link[slackr]{slackr_setup}}
 slackrSetup <- function(...) {
-  .Deprecated(new = 'slackr_setup')
+  .Deprecated(new = "slackr_setup")
   slackr_setup(...)
 }
 
@@ -152,7 +152,7 @@ slackrSetup <- function(...) {
 #' @seealso \code{\link[slackr]{slackr_upload}}
 #' @family Deprecated functions
 slackrUpload <- function(...) {
-  .Deprecated(new = 'slackr_upload')
+  .Deprecated(new = "slackr_upload")
   slackr_upload(...)
 }
 
@@ -165,7 +165,7 @@ slackrUpload <- function(...) {
 #' @seealso \code{\link[slackr]{slackr_users}}
 #' @family Deprecated functions
 slackrUsers <- function(...) {
-  .Deprecated(new = 'slackr_users')
+  .Deprecated(new = "slackr_users")
   slackr_users(...)
 }
 
@@ -178,6 +178,6 @@ slackrUsers <- function(...) {
 #' @seealso \code{\link[slackr]{slackr_msg}}
 #' @family Deprecated functions
 textSlackr <- function(...) {
-  .Deprecated(new = 'slackr_msg')
+  .Deprecated(new = "slackr_msg")
   text_slackr(...)
 }
