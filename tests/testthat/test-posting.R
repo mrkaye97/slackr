@@ -95,7 +95,7 @@ test_that("slackr_save works", {
   expect_equal(res$ok, TRUE)
 })
 
-test_that("ggsave works from in a function", {
+test_that("ggslackr works from in a function", {
   skip_on_cran()
 
   f <- function() {
@@ -107,6 +107,15 @@ test_that("ggsave works from in a function", {
 
 
   res <- f()
+  expect_equal(res$ok, TRUE)
+})
+
+test_that("slackr_dev posts", {
+  skip_on_cran()
+
+  plot(iris)
+
+  res <- slackr_dev()
   expect_equal(res$ok, TRUE)
 })
 
