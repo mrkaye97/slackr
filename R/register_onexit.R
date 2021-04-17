@@ -1,4 +1,4 @@
-#' @title Append slackr_text as on.exit to functions.
+#' @title Append slackr_msg as on.exit to functions.
 #' @description Appends to the body of a function an on.exit call to run at the end of the call.
 #' @param f function or character
 #' @param ... expressions to be sent to Slack
@@ -51,7 +51,7 @@
 #' }
 #'
 #' @seealso
-#' [slackr_text()]
+#' [slackr_msg()]
 #' @author Jonathan Sidi (aut)
 #' @export
 register_onexit <- function(f,
