@@ -46,7 +46,7 @@ will post the message as your logged-in user account (this will override anythin
 \examples{
 \dontrun{
 slackr_setup()
-text_slackr('hello world', as_user=TRUE)
+text_slackr("hello world", as_user = TRUE)
 }
 }
 \references{

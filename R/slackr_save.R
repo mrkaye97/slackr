@@ -1,6 +1,6 @@
 #' Save R objects to an RData file on Slack
 #'
-#' `save_slackr` enables you upload R objects (as an R data file)
+#' `slackr_save` enables you upload R objects (as an R data file)
 #' to Slack and (optionally) post them to one or more channels
 #' (if `channels` is not empty).
 #'
@@ -13,26 +13,26 @@
 #' @seealso [slackr_setup()], [slackr_dev()], [slackr_upload()]
 #' @importFrom httr add_headers upload_file
 #' @export
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' slackr_setup()
-#' save_slackr(mtcars, channels="#slackr", file="mtcars")
+#' slackr_save(mtcars, channels = "#slackr", file = "mtcars")
 #' }
-save_slackr <- function(...,
-                        channels=Sys.getenv("SLACK_CHANNEL"),
-                        file="slackr",
-                        bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
-                        plot_text = '') {
+slackr_save <- function(...,
+                        channels = Sys.getenv("SLACK_CHANNEL"),
+                        file = "slackr",
+                        bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                        plot_text = "") {
+  if (channels == "") stop("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
 
-  if (channels == '') stop("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
-
-  loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+  loc <- Sys.getlocale("LC_CTYPE")
+  Sys.setlocale("LC_CTYPE", "C")
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-  ftmp <- tempfile(file, fileext=".Rdata")
-  save(..., file=ftmp)
+  ftmp <- tempfile(file, fileext = ".Rdata")
+  save(..., file = ftmp, envir = parent.frame())
 
-  on.exit(unlink(ftmp), add=TRUE)
+  on.exit(unlink(ftmp), add = TRUE)
 
   res <- files_upload(
     file = ftmp,
@@ -41,8 +41,6 @@ save_slackr <- function(...,
     bot_user_oauth_token = bot_user_oauth_token,
     filename = sprintf("%s.Rdata", file)
   )
-
-  stop_for_status(res)
 
   return(invisible(res))
 }

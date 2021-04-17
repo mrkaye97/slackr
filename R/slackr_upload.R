@@ -11,38 +11,38 @@
 #' @return `httr` response object from `POST` call (invisibly)
 #' @author Quinn Weber (ctb), Bob Rudis (aut)
 #' @references <https://github.com/mrkaye97/slackr/pull/15/files>
-#' @seealso [slackr_setup()], [dev_slackr()], [save_slackr()]
+#' @seealso [slackr_setup()], [slackr_dev()], [slackr_save()]
 #' @return `httr` response object from `POST` call (invisibly)
 #' @importFrom httr add_headers upload_file
 #' @export
-slackr_upload <- function(filename, title=basename(filename),
-                          initial_comment=basename(filename),
-                          channels=Sys.getenv("SLACK_CHANNEL"),
-                          bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-
-  if (channels == '') stop("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
+slackr_upload <- function(filename, title = basename(filename),
+                          initial_comment = basename(filename),
+                          channels = Sys.getenv("SLACK_CHANNEL"),
+                          bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+  if (channels == "") stop("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
   f_path <- path.expand(filename)
 
   if (file.exists(f_path)) {
-
     f_name <- basename(f_path)
 
-    loc <- Sys.getlocale('LC_CTYPE')
-    Sys.setlocale('LC_CTYPE','C')
+    loc <- Sys.getlocale("LC_CTYPE")
+    Sys.setlocale("LC_CTYPE", "C")
     on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-    res <- POST(url="https://slack.com/api/files.upload",
-                      add_headers(`Content-Type`="multipart/form-data"),
-                      body=list( file=upload_file(f_path), filename=f_name,
-                                 title=title, initial_comment=initial_comment,
-                                 token=bot_user_oauth_token, channels=paste(channels, collapse=",")))
+    res <- POST(
+      url = "https://slack.com/api/files.upload",
+      add_headers(`Content-Type` = "multipart/form-data"),
+      body = list(
+        file = upload_file(f_path), filename = f_name,
+        title = title, initial_comment = initial_comment,
+        token = bot_user_oauth_token, channels = paste(channels, collapse = ",")
+      )
+    )
 
-    if (!content(res)$ok) stop(content(res)$error, ' -- Are you sure you used the right token and channel name?')
+    if (!content(res)$ok) stop(content(res)$error, " -- Are you sure you used the right token and channel name?")
 
     return(invisible(res))
-
   } else {
-    stop(sprintf("File [%s] not found", f_path), call.=FALSE)
+    stop(sprintf("File [%s] not found", f_path), call. = FALSE)
   }
-
 }

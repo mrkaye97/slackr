@@ -31,7 +31,7 @@
 #' @return "Successfully connected to Slack"
 #' @note You need a [Slack](https://slack.com) account and all your API URLs & tokens setup
 #'       to use this package.
-#' @seealso [slackr()], [dev_slackr()], [save_slackr()],
+#' @seealso [slackr()], [slackr_dev()], [slackr_save()],
 #'          [slackr_upload()]
 #' @examples
 #' \dontrun{
@@ -43,7 +43,7 @@
 #'
 #' # the hard way
 #' slackr_setup(channel="#code",
-#'             incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX")
+#'   incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX")
 #' }
 #' @export
 slackr_setup <- function(channel="#general",
@@ -112,3 +112,92 @@ slackr_setup <- function(channel="#general",
   msg <- 'Successfully connected to Slack'
   return(msg)
 }
+
+#' Create the config file used in `slackr_setup()`
+#' @param filename the name of the config file to save. We recommend using a hidden file (starting with '.')
+#' @param bot_user_oauth_token the Slack bot user OAuth token (Default: whatever is set as an env var)
+#' @param incoming_webhook_url the incoming webhook URL (Default: whatever is set as an env var)
+#' @param icon_emoji the icon emoji to use as the default
+#' @param username the username to send messages from (will default to "slackr" if no username is set)
+#' @param channel the channel to send messages to (will default to "#general" if no channel is set)
+#' @seealso [slackr_setup()]
+#' @examples
+#' \dontrun{
+#' # using `create_config_file()` after `slackr_setup()`
+#' create_config_file()
+#'
+#' # using `create_config_file()` before `slackr_setup()`
+#' create_config_file(bot_user_oauth_token = 'xox-',
+#'   incoming_webhook_url = 'https://hooks-',
+#'   channel = '#general',
+#'   username = 'slackr',
+#'   icon_emoji = 'tada')
+#'
+#' slackr_setup()
+#' }
+#' @return TRUE if successful (invisibly)
+#' @export
+create_config_file <- function(filename = '~/.slackr',
+                               bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                               incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
+                               icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
+                               username = Sys.getenv("SLACK_USERNAME"),
+                               channel = Sys.getenv("SLACK_CHANNEL")) {
+
+  username <- if (username == '') 'slackr' else username
+  channel <- if (channel == '') '#general' else channel
+
+  write.dcf(
+    list(
+      bot_user_oauth_token = bot_user_oauth_token,
+      incoming_webhook_url = incoming_webhook_url,
+      icon_emoji = icon_emoji,
+      username = username,
+      channel = channel
+    ),
+    file = filename,
+    append = FALSE
+  )
+
+  message(
+    paste('Successfully wrote config file to', filename)
+  )
+
+  return(
+    invisible(TRUE)
+  )
+}
+
+#' Unset env vars created by `slackr_setup()`
+#' @seealso [slackr_setup()]
+#' @examples
+#' \dontrun{
+#'   slackr_teardown()
+#' }
+#' @return TRUE if successful (invisibly)
+#' @export
+slackr_teardown <- function() {
+  env_vars <- c(
+    'SLACK_BOT_USER_OAUTH_TOKEN',
+    'SLACK_CACHE_DIR',
+    'SLACK_CHANNEL',
+    'SLACK_ICON_EMOJI',
+    'SLACK_INCOMING_URL_PREFIX',
+    'SLACK_USERNAME'
+  )
+
+  invisible(
+    lapply(
+      env_vars,
+      Sys.unsetenv
+      )
+    )
+
+  message('Successfully tore down environment variables created by slackr_setup()')
+
+  return(
+    invisible(TRUE)
+  )
+}
+
+

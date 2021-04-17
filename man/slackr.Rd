@@ -52,6 +52,6 @@ slackr("iris info", head(iris), str(iris))
 }
 }
 \seealso{
-\code{\link[=slackr_setup]{slackr_setup()}}, \code{\link[=slackr_bot]{slackr_bot()}}, \code{\link[=dev_slackr]{dev_slackr()}},
-\code{\link[=save_slackr]{save_slackr()}}, \code{\link[=slackr_upload]{slackr_upload()}}
+\code{\link[=slackr_setup]{slackr_setup()}}, \code{\link[=slackr_bot]{slackr_bot()}}, \code{\link[=slackr_dev]{slackr_dev()}},
+\code{\link[=slackr_save]{slackr_save()}}, \code{\link[=slackr_upload]{slackr_upload()}}
 }

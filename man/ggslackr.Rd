@@ -53,6 +53,6 @@ eliminating the need to have a graphics device (think use in scripts).
 \examples{
 \dontrun{
 slackr_setup()
-ggslackr(qplot(mpg, wt, data=mtcars))
+ggslackr(qplot(mpg, wt, data = mtcars))
 }
 }

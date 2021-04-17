@@ -21,8 +21,8 @@
 #'       user account (this will override anything set in `username`).
 #'       Passing `as_user=FALSE`, results in the Slack API posting the
 #'       message as set in `username`
-#' @seealso [slackr_setup()], [slackr_bot()], [dev_slackr()],
-#'          [save_slackr()], [slackr_upload()]
+#' @seealso [slackr_setup()], [slackr_bot()], [slackr_dev()],
+#'          [slackr_save()], [slackr_upload()]
 #' @examples
 #' \dontrun{
 #' slackr_setup()
@@ -30,11 +30,10 @@
 #' }
 #' @export
 slackr <- function(...,
-                   channel=Sys.getenv("SLACK_CHANNEL"),
-                   username=Sys.getenv("SLACK_USERNAME"),
-                   icon_emoji=Sys.getenv("SLACK_ICON_EMOJI"),
-                   bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-
+                   channel = Sys.getenv("SLACK_CHANNEL"),
+                   username = Sys.getenv("SLACK_USERNAME"),
+                   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
+                   bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
   if ((bot_user_oauth_token == "") | is.na(bot_user_oauth_token)) {
     stop("No token specified. Did you forget to call slackr_setup()?", call. = FALSE)
   }
@@ -66,33 +65,38 @@ slackr <- function(...,
 
     # for each expression
     for (i in seq_along(args)) {
-
       expr <- args[[i]]
 
       # do something, note all the newlines...Slack ``` needs them
       tmp <- switch(mode(expr),
-                    # if it's actually an expresison, iterate over it
-                    expression = {
-                      cat(sprintf("> %s\n", deparse(expr)))
-                      lapply(expr, evalVis)
-                    },
-                    # if it's a call or a name, eval, printing run output as if in console
-                    call = ,
-                    name = {
-                      cat(sprintf("> %s\n", deparse(expr)))
-                      list(evalVis(expr))
-                    },
-                    # if pretty much anything else (i.e. a bare value) just output it
-                    integer = ,
-                    double = ,
-                    complex = ,
-                    raw = ,
-                    logical = ,
-                    numeric = cat(sprintf("%s\n\n", as.character(expr))),
-                    character = cat(sprintf("%s\n\n", expr)),
-                    stop("mode of argument not handled at present by slackr"))
+        # if it's actually an expresison, iterate over it
+        expression = {
+          cat(sprintf("> %s\n", deparse(expr)))
+          lapply(expr, evalVis)
+        },
+        # if it's a call or a name, eval, printing run output as if in console
+        call = ,
+        name = {
+          cat(sprintf("> %s\n", deparse(expr)))
+          list(evalVis(expr))
+        },
+        # if pretty much anything else (i.e. a bare value) just output it
+        integer = ,
+        double = ,
+        complex = ,
+        raw = ,
+        logical = ,
+        numeric = cat(sprintf("%s\n\n", as.character(expr))),
+        character = cat(sprintf("%s\n\n", expr)),
+        stop("mode of argument not handled at present by slackr")
+      )
 
-      for (item in tmp) if (item$visible) { print(item$value); cat("\n") }
+      for (item in tmp) {
+        if (item$visible) {
+          print(item$value)
+          cat("\n")
+        }
+      }
     }
 
     on.exit()
@@ -101,25 +105,24 @@ slackr <- function(...,
     close(fil)
 
     # combined all of them (rval is a character vector)
-    output <- paste0(rval, collapse="\n")
+    output <- paste0(rval, collapse = "\n")
 
-    loc <- Sys.getlocale('LC_CTYPE')
-    Sys.setlocale('LC_CTYPE','C')
+    loc <- Sys.getlocale("LC_CTYPE")
+    Sys.setlocale("LC_CTYPE", "C")
     on.exit(Sys.setlocale("LC_CTYPE", loc))
 
     resp <-
       post_message(
         bot_user_oauth_token = bot_user_oauth_token,
-        channel=channel,
-        username=username,
-        emoji=icon_emoji,
-        txt=sprintf("```%s```", output),
-        link_names=1
-    )
+        channel = channel,
+        username = username,
+        emoji = icon_emoji,
+        txt = sprintf("```%s```", output),
+        link_names = 1
+      )
   }
 
   invisible(resp)
-
 }
 
 #' Sends a message to a slack channel.
@@ -137,29 +140,28 @@ slackr <- function(...,
 #'       Also, you can pass in `add_user=TRUE` as part of the `...`
 #'       parameters and the Slack API will post the message as your logged-in
 #'       user account (this will override anything set in `username`)
-#' @seealso [slackr_setup()], [slackr_bot()], [dev_slackr()],
-#'          [save_slackr()], [slackr_upload()]
+#' @seealso [slackr_setup()], [slackr_bot()], [slackr_dev()],
+#'          [slackr_save()], [slackr_upload()]
 #' @examples
 #' \dontrun{
 #' slackr_setup()
 #' slackr_msg("Hi")
 #' }
 #' @export
-slackr_msg <- function(txt="",
-                       channel=Sys.getenv("SLACK_CHANNEL"),
-                       username=Sys.getenv("SLACK_USERNAME"),
-                       icon_emoji=Sys.getenv("SLACK_ICON_EMOJI"),
-                       bot_user_oauth_token=Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+slackr_msg <- function(txt = "",
+                       channel = Sys.getenv("SLACK_CHANNEL"),
+                       username = Sys.getenv("SLACK_USERNAME"),
+                       icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
+                       bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                        ...) {
-
   if (bot_user_oauth_token == "") {
     stop("No token specified. Did you forget to call slackr_setup()?", call. = FALSE)
   }
 
-  output <- paste0(txt, collapse="\n\n")
+  output <- paste0(txt, collapse = "\n\n")
 
-  loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+  loc <- Sys.getlocale("LC_CTYPE")
+  Sys.setlocale("LC_CTYPE", "C")
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   z <-

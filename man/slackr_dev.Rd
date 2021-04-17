@@ -34,18 +34,18 @@ slackr_setup()
 # base
 library(maps)
 map("usa")
-dev_slackr("#results", file='map')
+slackr_dev("#results", file = "map")
 
 # base
 barplot(VADeaths)
-dev_slackr("@jayjacobs")
+slackr_dev("@jayjacobs")
 }
 }
 \references{
 \url{https://github.com/mrkaye97/slackr/pull/12/files}
 }
 \seealso{
-\code{\link[=slackr_setup]{slackr_setup()}}, \code{\link[=save_slackr]{save_slackr()}}, \code{\link[=slackr_upload]{slackr_upload()}}
+\code{\link[=slackr_setup]{slackr_setup()}}, \code{\link[=slackr_save]{slackr_save()}}, \code{\link[=slackr_upload]{slackr_upload()}}
 }
 \author{
 Konrad Karczewski (ctb), Bob Rudis (aut)

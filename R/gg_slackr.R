@@ -22,38 +22,36 @@
 #' @examples
 #' \dontrun{
 #' slackr_setup()
-#' ggslackr(qplot(mpg, wt, data=mtcars))
+#' ggslackr(qplot(mpg, wt, data = mtcars))
 #' }
 #' @export
 ggslackr <- function(
-  plot = last_plot(),
-  channels = Sys.getenv("SLACK_CHANNEL"),
-  scale = 1,
-  width = par("din")[1],
-  height = par("din")[2],
-  units = c("in", "cm", "mm"),
-  dpi = 300,
-  limitsize = TRUE,
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
-  file = "ggplot",
-  ...
-) {
-
-  loc <- Sys.getlocale('LC_CTYPE')
-  Sys.setlocale('LC_CTYPE','C')
+                     plot = last_plot(),
+                     channels = Sys.getenv("SLACK_CHANNEL"),
+                     scale = 1,
+                     width = par("din")[1],
+                     height = par("din")[2],
+                     units = c("in", "cm", "mm"),
+                     dpi = 300,
+                     limitsize = TRUE,
+                     bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                     file = "ggplot",
+                     ...) {
+  loc <- Sys.getlocale("LC_CTYPE")
+  Sys.setlocale("LC_CTYPE", "C")
   on.exit(Sys.setlocale("LC_CTYPE", loc))
 
-  ftmp <- tempfile(file, fileext=".png")
+  ftmp <- tempfile(file, fileext = ".png")
   ggsave(
-    filename  = ftmp,
-    plot      = plot,
-    scale     = scale,
-    width     = width,
-    height    = height,
-    units     = units,
-    dpi       = dpi,
+    filename = ftmp,
+    plot = plot,
+    scale = scale,
+    width = width,
+    height = height,
+    units = units,
+    dpi = dpi,
     limitsize = limitsize,
-    ...       = ...
+    ... = ...
   )
 
   res <-
@@ -61,7 +59,7 @@ ggslackr <- function(
       file = ftmp,
       channel = channels,
       bot_user_oauth_token = bot_user_oauth_token
-      )
+    )
 
   invisible(res)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/register_onexit.R
 \name{register_onexit}
 \alias{register_onexit}
-\title{Append text_slackr as on.exit to functions.}
+\title{Append slackr_msg as on.exit to functions.}
 \usage{
 register_onexit(
   f,
@@ -48,44 +48,47 @@ If a character is passed to f then it will evaluate internally to a function.
 }
 \examples{
 \dontrun{
-ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
-trt <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
-group <- gl(2, 10, 20, labels = c("Ctl","Trt"))
+ctl <- c(4.17, 5.58, 5.18, 6.11, 4.50, 4.61, 5.17, 4.53, 5.33, 5.14)
+trt <- c(4.81, 4.17, 4.41, 3.59, 5.87, 3.83, 6.03, 4.89, 4.32, 4.69)
+group <- gl(2, 10, 20, labels = c("Ctl", "Trt"))
 weight <- c(ctl, trt)
 
-#pass a message to Slack channel 'general'
-register_onexit(lm,'bazinga!',channel="#general")
+# pass a message to Slack channel 'general'
+register_onexit(lm, "bazinga!", channel = "#general")
 
 lm.D9 <- slack_lm(weight ~ group)
 
-#test that output keeps inheritance
+# test that output keeps inheritance
 summary(lm.D9)
 
-#pass a message to Slack channel 'general' with a header message to begin output
-register_onexit(lm,'bazinga!',
-channel="#general",
-header_msg='This is a message to begin')
+# pass a message to Slack channel 'general' with a header message to begin output
+register_onexit(lm, "bazinga!",
+  channel = "#general",
+  header_msg = "This is a message to begin"
+)
 
 lm.D9 <- slack_lm(weight ~ group)
 
-#onexit with an expression that calls lm.plot
-register_onexit(lm,{
- par(mfrow = c(2, 2), oma = c(0, 0, 2, 0))
- plot(z)
-},
-channel="#general",
-header_msg = 'This is a plot just for this output',
-use_device = TRUE)
+# onexit with an expression that calls lm.plot
+register_onexit(lm,
+  {
+    par(mfrow = c(2, 2), oma = c(0, 0, 2, 0))
+    plot(z)
+  },
+  channel = "#general",
+  header_msg = "This is a plot just for this output",
+  use_device = TRUE
+)
 
 lm.D9 <- slack_lm(weight ~ group)
 
-#clean up slack channel from examples
-delete_slackr(count = 6,channel = '#general')
+# clean up slack channel from examples
+slackr_delete(count = 6, channel = "#general")
 }
 
 }
 \seealso{
-\code{\link[=text_slackr]{text_slackr()}}
+\code{\link[=slackr_msg]{slackr_msg()}}
 }
 \author{
 Jonathan Sidi (aut)
