@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Post a tex output to a Slack channel — tex_slackr • slackr</title>
+<title>Superseded by slackr_tex — tex_slackr • slackr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,9 +46,8 @@
 
 
 
-<meta property="og:title" content="Post a tex output to a Slack channel — tex_slackr" />
-<meta property="og:description" content="Unlike the dev_slackr() function, this one takes a tex object,
-eliminating the need write to pdf and convert to png to pass to slack." />
+<meta property="og:title" content="Superseded by slackr_tex — tex_slackr" />
+<meta property="og:description" content="deprecated" />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -91,7 +90,7 @@ eliminating the need write to pdf and convert to png to pass to slack." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.0</span>
       </span>
     </div>
 
@@ -148,88 +147,44 @@ eliminating the need write to pdf and convert to png to pass to slack." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Post a tex output to a Slack channel</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mrkaye97/slackr/blob/master/R/tex_slackr.R'><code>R/tex_slackr.R</code></a></small>
+    <h1>Superseded by slackr_tex</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mrkaye97/slackr/blob/master/R/deprecated.r'><code>R/deprecated.r</code></a></small>
     <div class="hidden name"><code>tex_slackr.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Unlike the <code><a href='dev_slackr.html'>dev_slackr()</a></code> function, this one takes a <code>tex</code> object,
-eliminating the need write to pdf and convert to png to pass to slack.</p>
+    <p>deprecated</p>
     </div>
 
-    <pre class="usage"><span class='fu'>tex_slackr</span><span class='op'>(</span>
-  <span class='va'>obj</span>,
-  channels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_CHANNEL"</span><span class='op'>)</span>,
-  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>,
-  ext <span class='op'>=</span> <span class='st'>"png"</span>,
-  path <span class='op'>=</span> <span class='cn'>NULL</span>,
-  <span class='va'>...</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>tex_slackr</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>obj</th>
-      <td><p>character object containing tex to compile</p></td>
-    </tr>
-    <tr>
-      <th>channels</th>
-      <td><p>list of channels to post image to</p></td>
-    </tr>
-    <tr>
-      <th>bot_user_oauth_token</th>
-      <td><p>the Slack full bot user OAuth token (chr)</p></td>
-    </tr>
-    <tr>
-      <th>ext</th>
-      <td><p>character, type of format to return, can be tex, pdf, or any image device, Default: 'png'</p></td>
-    </tr>
-    <tr>
-      <th>path</th>
-      <td><p>character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL</p></td>
-    </tr>
-    <tr>
       <th>...</th>
-      <td><p>other arguments passed to <code><a href='https://rdrr.io/pkg/texPreview/man/tex_preview.html'>texPreview::tex_preview()</a></code>, see Details</p></td>
+      <td><p>arguments to pass to slackr_tex</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code>httr</code> response object (invisibly)</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Please make sure <code>texPreview</code> package is installed before running this function.
-For TeX setup refer to the
-<a href='https://github.com/mrkaye97/slackr#latex-for-tex_slackr'>Setup notes on <code>LaTeX</code></a>.</p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>You need to setup a full API token (i.e. not a webhook &amp; not OAuth) for this to work
-Also, you can pass in <code>add_user=TRUE</code> as part of the <code>...</code>
-parameters and the Slack API will post the message as your logged-in user
-account (this will override anything set in <code>username</code>)</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/texPreview/man/tex_preview.html'>texPreview::tex_preview()</a></code> <code><a href='https://rdrr.io/pkg/xtable/man/print.xtable.html'>xtable::print.xtable()</a></code></p></div>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+    <div class='dont-index'><p><code><a href='slackr_tex.html'>slackr_tex</a></code></p>
+<p>Other Deprecated functions: 
+<code><a href='dev.slackr.html'>dev.slackr</a>()</code>,
+<code><a href='dev_slackr.html'>dev_slackr</a>()</code>,
+<code><a href='save.slackr.html'>save.slackr</a>()</code>,
+<code><a href='save_slackr.html'>save_slackr</a>()</code>,
+<code><a href='slackrBot.html'>slackrBot</a>()</code>,
+<code><a href='slackrChannels.html'>slackrChannels</a>()</code>,
+<code><a href='slackrChtrans.html'>slackrChtrans</a>()</code>,
+<code><a href='slackrIms.html'>slackrIms</a>()</code>,
+<code><a href='slackrMsg.html'>slackrMsg</a>()</code>,
+<code><a href='slackrSetup.html'>slackrSetup</a>()</code>,
+<code><a href='slackrUpload.html'>slackrUpload</a>()</code>,
+<code><a href='slackrUsers.html'>slackrUsers</a>()</code>,
+<code><a href='textSlackr.html'>textSlackr</a>()</code></p></div>
 
-    <p>Jonathan Sidi (aut)</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'><a href='slackr_setup.html'>slackr_setup</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='va'>obj</span><span class='op'>=</span><span class='fu'>xtable</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/xtable/man/xtable.html'>xtable</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>)</span>
-<span class='fu'>tex_slackr</span><span class='op'>(</span><span class='va'>obj</span>,print.xtable.opts<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>scalebox<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"xtable.scalebox"</span>, <span class='fl'>0.8</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='fu'>tex_slackr</span><span class='op'>(</span><span class='va'>obj</span>,ext <span class='op'>=</span> <span class='st'>'pdf'</span>,print.xtable.opts<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>scalebox<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"xtable.scalebox"</span>, <span class='fl'>0.8</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='fu'>tex_slackr</span><span class='op'>(</span><span class='va'>obj</span>,ext <span class='op'>=</span> <span class='st'>'tex'</span>,print.xtable.opts<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>scalebox<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"xtable.scalebox"</span>, <span class='fl'>0.8</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='fu'>tex_slackr</span><span class='op'>(</span><span class='va'>obj</span>,path<span class='op'>=</span><span class='st'>'testdir'</span>,print.xtable.opts<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>scalebox<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"xtable.scalebox"</span>, <span class='fl'>0.8</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

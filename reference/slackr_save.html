@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Send the graphics contents of the current device to a Slack channel — slackr_dev • slackr</title>
+<title>Save R objects to an RData file on Slack — slackr_save • slackr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,9 +46,10 @@
 
 
 
-<meta property="og:title" content="Send the graphics contents of the current device to a Slack channel — slackr_dev" />
-<meta property="og:description" content="slackr_dev sends the graphics contents of the current device to the
-specified Slack channel." />
+<meta property="og:title" content="Save R objects to an RData file on Slack — slackr_save" />
+<meta property="og:description" content="slackr_save enables you upload R objects (as an R data file)
+to Slack and (optionally) post them to one or more channels
+(if channels is not empty)." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -148,69 +149,61 @@ specified Slack channel." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Send the graphics contents of the current device to a Slack channel</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mrkaye97/slackr/blob/master/R/slackr_dev.R'><code>R/slackr_dev.R</code></a></small>
-    <div class="hidden name"><code>slackr_dev.Rd</code></div>
+    <h1>Save R objects to an RData file on Slack</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mrkaye97/slackr/blob/master/R/slackr_save.R'><code>R/slackr_save.R</code></a></small>
+    <div class="hidden name"><code>slackr_save.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>slackr_dev</code> sends the graphics contents of the current device to the
-specified Slack channel.</p>
+    <p><code>slackr_save</code> enables you upload R objects (as an R data file)
+to Slack and (optionally) post them to one or more channels
+(if <code>channels</code> is not empty).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>slackr_dev</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>slackr_save</span><span class='op'>(</span>
+  <span class='va'>...</span>,
   channels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_CHANNEL"</span><span class='op'>)</span>,
+  file <span class='op'>=</span> <span class='st'>"slackr"</span>,
   bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>,
-  plot_text <span class='op'>=</span> <span class='st'>""</span>,
-  file <span class='op'>=</span> <span class='st'>"plot"</span>
+  plot_text <span class='op'>=</span> <span class='st'>""</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>...</th>
+      <td><p>objects to store in the R data file</p></td>
+    </tr>
+    <tr>
       <th>channels</th>
-      <td><p>list of channels to post image to</p></td>
+      <td><p>Slack channels to save to (optional)</p></td>
+    </tr>
+    <tr>
+      <th>file</th>
+      <td><p>filename (without extension) to use</p></td>
     </tr>
     <tr>
       <th>bot_user_oauth_token</th>
-      <td><p>the Slack full bot user OAuth token (chr)</p></td>
+      <td><p>Slack bot user OAuth token</p></td>
     </tr>
     <tr>
       <th>plot_text</th>
       <td><p>the plot text to send with the plot (defaults to "")</p></td>
-    </tr>
-    <tr>
-      <th>file</th>
-      <td><p>prefix for filenames (defaults to <code>plot</code>)</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>httr</code> response object from <code>POST</code> call</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p><a href='https://github.com/mrkaye97/slackr/pull/12/files'>https://github.com/mrkaye97/slackr/pull/12/files</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='slackr_setup.html'>slackr_setup()</a></code>, <code><a href='slackr_save.html'>slackr_save()</a></code>, <code><a href='slackr_upload.html'>slackr_upload()</a></code></p></div>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p>Konrad Karczewski (ctb), Bob Rudis (aut)</p>
+    <div class='dont-index'><p><code><a href='slackr_setup.html'>slackr_setup()</a></code>, <code><a href='slackr_dev.html'>slackr_dev()</a></code>, <code><a href='slackr_upload.html'>slackr_upload()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='fu'><a href='slackr_setup.html'>slackr_setup</a></span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='co'># base</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>maps</span><span class='op'>)</span>
-<span class='fu'>map</span><span class='op'>(</span><span class='st'>"usa"</span><span class='op'>)</span>
-<span class='fu'>slackr_dev</span><span class='op'>(</span><span class='st'>"#results"</span>, file <span class='op'>=</span> <span class='st'>"map"</span><span class='op'>)</span>
-
-<span class='co'># base</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/barplot.html'>barplot</a></span><span class='op'>(</span><span class='va'>VADeaths</span><span class='op'>)</span>
-<span class='fu'>slackr_dev</span><span class='op'>(</span><span class='st'>"@jayjacobs"</span><span class='op'>)</span>
+<span class='fu'>slackr_save</span><span class='op'>(</span><span class='va'>mtcars</span>, channels <span class='op'>=</span> <span class='st'>"#slackr"</span>, file <span class='op'>=</span> <span class='st'>"mtcars"</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>

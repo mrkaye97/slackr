@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.0</span>
       </span>
     </div>
 
@@ -209,6 +209,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="slackr_csv.html">slackr_csv()</a></code> </p>
+        </td>
+        <td><p>Send a data frame to Slack as a CSV</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="slackr_delete.html">slackr_delete()</a></code> </p>
         </td>
         <td><p>slackr_delete</p></td>
@@ -239,9 +245,27 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="slackr_save.html">slackr_save()</a></code> </p>
+        </td>
+        <td><p>Save R objects to an RData file on Slack</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="slackr_setup.html">slackr_setup()</a></code> </p>
         </td>
         <td><p>Setup environment variables for Slack API access</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackr_teardown.html">slackr_teardown()</a></code> </p>
+        </td>
+        <td><p>Unset env vars created by <code>slackr_setup()</code></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slackr_tex.html">slackr_tex()</a></code> </p>
+        </td>
+        <td><p>Post a tex output to a Slack channel</p></td>
       </tr><tr>
         
         <td>
@@ -265,13 +289,13 @@
         <td>
           <p><code><a href="save_slackr.html">save_slackr()</a></code> </p>
         </td>
-        <td><p>Save R objects to an RData file on Slack</p></td>
+        <td><p>Superseded by slackr_save</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="tex_slackr.html">tex_slackr()</a></code> </p>
         </td>
-        <td><p>Post a tex output to a Slack channel</p></td>
+        <td><p>Superseded by slackr_tex</p></td>
       </tr><tr>
         
         <td>
@@ -283,7 +307,7 @@
         <td>
           <p><code><a href="register_onexit.html">register_onexit()</a></code> </p>
         </td>
-        <td><p>Append text_slackr as on.exit to functions.</p></td>
+        <td><p>Append slackr_msg as on.exit to functions.</p></td>
       </tr><tr>
         
         <td>
@@ -327,6 +351,12 @@
           <p><code><a href="convert_response_to_tibble.html">convert_response_to_tibble()</a></code> </p>
         </td>
         <td><p>Convert Slack API json response to tibble.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create_config_file.html">create_config_file()</a></code> </p>
+        </td>
+        <td><p>Create the config file used in <code>slackr_setup()</code></p></td>
       </tr><tr>
         
         <td>
