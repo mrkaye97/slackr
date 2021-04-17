@@ -1,4 +1,4 @@
-#' @title Append text_slackr as on.exit to functions.
+#' @title Append slackr_text as on.exit to functions.
 #' @description Appends to the body of a function an on.exit call to run at the end of the call.
 #' @param f function or character
 #' @param ... expressions to be sent to Slack
@@ -47,11 +47,11 @@
 #' lm.D9 <- slack_lm(weight ~ group)
 #'
 #' # clean up slack channel from examples
-#' delete_slackr(count = 6, channel = "#general")
+#' slackr_delete(count = 6, channel = "#general")
 #' }
 #'
 #' @seealso
-#' [text_slackr()]
+#' [slackr_text()]
 #' @author Jonathan Sidi (aut)
 #' @export
 register_onexit <- function(f,
@@ -84,7 +84,7 @@ register_onexit <- function(f,
       slackr(..., channel = channel, username = username, icon_emoji = icon_emoji, bot_user_oauth_token = bot_user_oauth_token)
 
       if (use_device & !is.null(dev.list())) {
-        dev_slackr(channels = channel, bot_user_oauth_token = bot_user_oauth_token)
+        slackr_dev(channels = channel, bot_user_oauth_token = bot_user_oauth_token)
       }
     },
     add = TRUE

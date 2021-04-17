@@ -31,7 +31,7 @@
 #' @return "Successfully connected to Slack"
 #' @note You need a [Slack](https://slack.com) account and all your API URLs & tokens setup
 #'       to use this package.
-#' @seealso [slackr()], [dev_slackr()], [save_slackr()],
+#' @seealso [slackr()], [slackr_dev()], [slackr_save()],
 #'          [slackr_upload()]
 #' @examples
 #' \dontrun{
@@ -135,7 +135,7 @@ slackr_setup <- function(channel="#general",
 #'
 #' slackr_setup()
 #' }
-#' @export
+#' @return TRUE if successful (invisibly)
 #' @export
 create_config_file <- function(filename = '~/.slackr',
                                bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
@@ -159,8 +159,12 @@ create_config_file <- function(filename = '~/.slackr',
     append = FALSE
   )
 
-  return(
+  message(
     paste('Successfully wrote config file to', filename)
+  )
+
+  return(
+    invisible(TRUE)
   )
 }
 
@@ -170,7 +174,7 @@ create_config_file <- function(filename = '~/.slackr',
 #' \dontrun{
 #'   slackr_teardown()
 #' }
-#' @export
+#' @return TRUE if successful (invisibly)
 #' @export
 slackr_teardown <- function() {
   env_vars <- c(
@@ -179,13 +183,21 @@ slackr_teardown <- function() {
     'SLACK_CHANNEL',
     'SLACK_ICON_EMOJI',
     'SLACK_INCOMING_URL_PREFIX',
-    'SLACK_USERNAME')
+    'SLACK_USERNAME'
+  )
 
-  invisible(lapply(
-    env_vars,
-    Sys.unsetenv))
+  invisible(
+    lapply(
+      env_vars,
+      Sys.unsetenv
+      )
+    )
 
-  return('Successfully tore down environment variables created by slackr_setup()')
+  message('Successfully tore down environment variables created by slackr_setup()')
+
+  return(
+    invisible(TRUE)
+  )
 }
 
 

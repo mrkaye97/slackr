@@ -2,7 +2,7 @@
 % Please edit documentation in R/register_onexit.R
 \name{register_onexit}
 \alias{register_onexit}
-\title{Append text_slackr as on.exit to functions.}
+\title{Append slackr_text as on.exit to functions.}
 \usage{
 register_onexit(
   f,
@@ -83,12 +83,12 @@ register_onexit(lm,
 lm.D9 <- slack_lm(weight ~ group)
 
 # clean up slack channel from examples
-delete_slackr(count = 6, channel = "#general")
+slackr_delete(count = 6, channel = "#general")
 }
 
 }
 \seealso{
-\code{\link[=text_slackr]{text_slackr()}}
+\code{\link[=slackr_text]{slackr_text()}}
 }
 \author{
 Jonathan Sidi (aut)

@@ -1,6 +1,6 @@
 #' Post a tex output to a Slack channel
 #'
-#' Unlike the [dev_slackr()] function, this one takes a `tex` object,
+#' Unlike the [slackr_dev()] function, this one takes a `tex` object,
 #' eliminating the need write to pdf and convert to png to pass to slack.
 #'
 #' @param obj character object containing tex to compile
@@ -16,23 +16,23 @@
 #' @return `httr` response object (invisibly)
 #' @details Please make sure `texPreview` package is installed before running this function.
 #'          For TeX setup refer to the
-#'          [Setup notes on `LaTeX`](https://github.com/mrkaye97/slackr#latex-for-tex_slackr).
+#'          [Setup notes on `LaTeX`](https://github.com/mrkaye97/slackr#latex-for-slackr_tex).
 #' @examples
 #' \dontrun{
 #' slackr_setup()
 #' obj <- xtable::xtable(mtcars)
-#' tex_slackr(obj,
+#' slackr_tex(obj,
 #'   print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
 #'
-#' tex_slackr(obj,
+#' slackr_tex(obj,
 #'   ext = "pdf",
 #'   print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
 #'
-#' tex_slackr(obj,
+#' slackr_tex(obj,
 #'   ext = "tex",
 #'   print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
 #'
-#' tex_slackr(obj,
+#' slackr_tex(obj,
 #'   path = "testdir",
 #'   print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
 #' }
@@ -40,7 +40,7 @@
 #'  [texPreview::tex_preview()] [xtable::print.xtable()]
 #' @author Jonathan Sidi (aut)
 #' @export
-tex_slackr <- function(obj,
+slackr_tex <- function(obj,
                        channels = Sys.getenv("SLACK_CHANNEL"),
                        bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                        ext = "png",
@@ -106,6 +106,6 @@ check_tex_pkg <- function() {
   )
 
   if (!is_installed) {
-    stop("texPreview package is not installed, run ?tex_slackr and see Details.", call. = FALSE)
+    stop("texPreview package is not installed, run ?slackr_tex and see Details.", call. = FALSE)
   }
 }

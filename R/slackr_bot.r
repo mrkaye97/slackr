@@ -19,8 +19,8 @@
 #' @note You need a <https://www.slack.com> account and will also need to
 #'   setup an incoming webhook: <https://api.slack.com/>. Old style webhooks are
 #'   no longer supported.
-#' @seealso [slackrSetup()], [slackr()],
-#'   [dev_slackr()], [save_slackr()],
+#' @seealso [slackr_setup()], [slackr()],
+#'   [slackr_dev()], [slackr_save()],
 #'   [slackr_upload()]
 #' @section Webhook URLs: Webhook URLs look like: \itemize{
 #'

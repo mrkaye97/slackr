@@ -34,6 +34,7 @@ Other Deprecated functions:
 \code{\link{slackrSetup}()},
 \code{\link{slackrUpload}()},
 \code{\link{slackrUsers}()},
+\code{\link{tex_slackr}()},
 \code{\link{textSlackr}()}
 
 Other Deprecated functions: 
@@ -48,6 +49,7 @@ Other Deprecated functions:
 \code{\link{slackrSetup}()},
 \code{\link{slackrUpload}()},
 \code{\link{slackrUsers}()},
+\code{\link{tex_slackr}()},
 \code{\link{textSlackr}()}
 }
 \concept{Deprecated functions}

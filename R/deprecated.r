@@ -181,3 +181,15 @@ textSlackr <- function(...) {
   .Deprecated(new = "slackr_msg")
   text_slackr(...)
 }
+
+#' Superseded by slackr_tex
+#'
+#' deprecated
+#'
+#' @param ... arguments to pass to slackr_tex
+#' @seealso \code{\link[slackr]{slackr_tex}}
+#' @family Deprecated functions
+tex_slackr <- function(...) {
+  .Deprecated(new = 'slackr_tex')
+  slackr_tex(...)
+}

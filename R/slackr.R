@@ -21,8 +21,8 @@
 #'       user account (this will override anything set in `username`).
 #'       Passing `as_user=FALSE`, results in the Slack API posting the
 #'       message as set in `username`
-#' @seealso [slackr_setup()], [slackr_bot()], [dev_slackr()],
-#'          [save_slackr()], [slackr_upload()]
+#' @seealso [slackr_setup()], [slackr_bot()], [slackr_sev()],
+#'          [slackr_save()], [slackr_upload()]
 #' @examples
 #' \dontrun{
 #' slackr_setup()
@@ -140,8 +140,8 @@ slackr <- function(...,
 #'       Also, you can pass in `add_user=TRUE` as part of the `...`
 #'       parameters and the Slack API will post the message as your logged-in
 #'       user account (this will override anything set in `username`)
-#' @seealso [slackr_setup()], [slackr_bot()], [dev_slackr()],
-#'          [save_slackr()], [slackr_upload()]
+#' @seealso [slackr_setup()], [slackr_bot()], [slackr_dev()],
+#'          [slackr_save()], [slackr_upload()]
 #' @examples
 #' \dontrun{
 #' slackr_setup()

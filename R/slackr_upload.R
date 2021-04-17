@@ -11,7 +11,7 @@
 #' @return `httr` response object from `POST` call (invisibly)
 #' @author Quinn Weber (ctb), Bob Rudis (aut)
 #' @references <https://github.com/mrkaye97/slackr/pull/15/files>
-#' @seealso [slackr_setup()], [dev_slackr()], [save_slackr()]
+#' @seealso [slackr_setup()], [slackr_sev()], [slackr_save()]
 #' @return `httr` response object from `POST` call (invisibly)
 #' @importFrom httr add_headers upload_file
 #' @export

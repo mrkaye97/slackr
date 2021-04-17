@@ -1,3 +1,10 @@
+# slackr 2.3.0
+
+* Adds `slackr_csv()`, which simplifies the process of writing data frames to Slack as csv files
+* Adds `slackr_teardown()`, which reverts the changes made by `slackr_setup()` by unsetting the environment variables
+* Adds `create_config_file()` to simplify the process of setting up a config file
+* `save_slackr()` is now deprecated in favor of `slackr_save()` and `tex_slackr()` has been deprecated in favor of `slackr_tex()`
+
 # slackr 2.2.0
 
 * Gets rid of the usage of `slackr_chtrans()` in the vast majority of functions, significantly speeding up `slackr_***()` by limiting API requests

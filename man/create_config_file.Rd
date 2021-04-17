@@ -26,6 +26,9 @@ create_config_file(
 
 \item{channel}{the channel to send messages to (will default to "#general" if no channel is set)}
 }
+\value{
+TRUE if successful (invisibly)
+}
 \description{
 Create the config file used in \code{slackr_setup()}
 }

@@ -17,7 +17,7 @@ slackr_csv(
 \arguments{
 \item{data}{the data frame to upload}
 
-\item{filename}{the file to save to (Defaults to a tempfile. Using the default is \emph{highly} advised, as using a non-tempfile will write to your wd)}
+\item{filename}{the file to save to. Defaults to a tempfile. Using the default is \emph{highly} advised, as using a non-tempfile will write a file that persists on the disk (either in the working directory, or at the location specified)}
 
 \item{title}{title on Slack (optional - defaults to filename)}
 

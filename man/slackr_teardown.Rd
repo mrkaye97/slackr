@@ -6,6 +6,9 @@
 \usage{
 slackr_teardown()
 }
+\value{
+TRUE if successful (invisibly)
+}
 \description{
 Unset env vars created by \code{slackr_setup()}
 }

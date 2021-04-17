@@ -27,6 +27,7 @@ Other Deprecated functions:
 \code{\link{slackrMsg}()},
 \code{\link{slackrSetup}()},
 \code{\link{slackrUpload}()},
+\code{\link{tex_slackr}()},
 \code{\link{textSlackr}()}
 }
 \concept{Deprecated functions}

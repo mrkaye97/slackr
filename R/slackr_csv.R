@@ -5,7 +5,7 @@
 #'
 #' @importFrom utils write.csv
 #' @param data the data frame to upload
-#' @param filename the file to save to (Defaults to a tempfile. Using the default is _highly_ advised, as using a non-tempfile will write to your wd)
+#' @param filename the file to save to. Defaults to a tempfile. Using the default is _highly_ advised, as using a non-tempfile will write a file that persists on the disk (either in the working directory, or at the location specified)
 #' @param channels Slack channels to save to (optional)
 #' @param title title on Slack (optional - defaults to filename)
 #' @param initial_comment comment for file on slack (optional - defaults to filename)
