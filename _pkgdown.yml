@@ -15,6 +15,9 @@ reference:
   - register_onexit
   - slackr
   - ggslackr
+  - -tex_slackr
+  - -save_slackr
+  - -dev_slackr
 
 
 - title: "Internal functions"
@@ -31,3 +34,6 @@ reference:
   - matches("slackr[A-Z].*")
   - -starts_with("slackr_")
   - textSlackr
+  - tex_slackr
+  - save_slackr
+  - dev_slackr
