@@ -25,17 +25,15 @@ files.
 
 ## Installation
 
-``` r
-# CRAN version
-install.packages("slackr")
+    # CRAN version
+    install.packages("slackr")
 
-# Development version
-devtools::install_github("mrkaye97/slackr")
-```
+    # Development version
+    devtools::install_github("mrkaye97/slackr")
 
 ## Breaking Changes
 
-Version 2.0.0+ is updated to work with the new Slack API structure\!
+Version 2.0.0+ is updated to work with the new Slack API structure!
 
 ## Setup
 
@@ -43,11 +41,11 @@ There are two ways of interfacing with `slackr` that provide
 significantly different functionality:
 
 1.  Creating a single-channel bot
-    
+
     Using only a webhook to send messages to a channel
 
 2.  Creating a fully-functional multi-channel bot
-    
+
     Creating a bot user to send messages to multiple channels, including
     plots, tables, files, etc. as well as deleting messages, reading the
     channels in a workspace, etc.
@@ -62,9 +60,9 @@ See the vignettes for setup instructions.
 
 The vignettes contain setup instructions and example usage:
 
-  - Option 1 setup: `vignette('scoped-bot-setup', package = 'slackr')`
-  - Option 2 setup: `vignette('webhook-setup', package = 'slackr')`
-  - Usage: `vignette('using-slackr', package = 'slackr')`
+-   Option 1 setup: `vignette('scoped-bot-setup', package = 'slackr')`
+-   Option 2 setup: `vignette('webhook-setup', package = 'slackr')`
+-   Usage: `vignette('using-slackr', package = 'slackr')`
 
 ### Config File Setup
 
@@ -86,6 +84,10 @@ Here’s the basic format for the configuration file:
     incoming_webhook_url: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX
     icon_emoji: 'boom'
 
+**As of `slackr 2.3.0`, you can create a config file with
+`create_config_file()` instead of setting it up manually.** See the docs
+for details.
+
 You can also change the default emoji icon (from the one you setup at
 integration creation time) with `icon_emoji`.
 
@@ -93,23 +95,23 @@ integration creation time) with `icon_emoji`.
 
 Many thanks to:
 
-  - [Bob Rudis](https://github.com/hrbrmstr)
-  - [Jay Jacobs](https://github.com/jayjacobs)
-  - [David Severski](https://github.com/davidski)
-  - [Quinn Weber](https://github.com/qsweber)
-  - [Konrad Karczewski](https://github.com/konradjk)
-  - [Ed Niles](https://github.com/eniles)
-  - [Rick Saporta](https://github.com/rsaporta)
-  - [Jonathan Sidi](https://github.com/yonicd)
-  - [Matt Kaye](https://github.com/mrkaye97)
-  - [Xinye Li](https://github.com/xinye1)
-  - [Andrie de Vries](https://github.com/andrie)
+-   [Bob Rudis](https://github.com/hrbrmstr)
+-   [Jay Jacobs](https://github.com/jayjacobs)
+-   [David Severski](https://github.com/davidski)
+-   [Quinn Weber](https://github.com/qsweber)
+-   [Konrad Karczewski](https://github.com/konradjk)
+-   [Ed Niles](https://github.com/eniles)
+-   [Rick Saporta](https://github.com/rsaporta)
+-   [Jonathan Sidi](https://github.com/yonicd)
+-   [Matt Kaye](https://github.com/mrkaye97)
+-   [Xinye Li](https://github.com/xinye1)
+-   [Andrie de Vries](https://github.com/andrie)
 
-for their contributions to the package\!
+for their contributions to the package!
 
 ## Known Issues
 
-  - Depending on your scopes, `slackr` could quietly fail (i.e. not
+-   Depending on your scopes, `slackr` could quietly fail (i.e. not
     throw an error, but also not post anything to your channel). If this
     happens, try explicitly adding the app you’re trying to have
     `slackr` post as to the channel you want in your Slack workspace

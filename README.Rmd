@@ -99,7 +99,7 @@ incoming_webhook_url: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX
 icon_emoji: 'boom'
 ```
 
-*As of `slackr 2.3.0`, you can create a config file with `create_config_file()` instead of setting it up manually.* See the docs for details.
+**As of `slackr 2.3.0`, you can create a config file with `create_config_file()` instead of setting it up manually.** See the docs for details.
 
 You can also change the default emoji icon (from the one you setup at
 integration creation time) with `icon_emoji`.
