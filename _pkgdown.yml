@@ -10,10 +10,10 @@ reference:
 
 - title: "Main functions"
 - contents:
+  - slackr
   - starts_with("slackr_")
   - ends_with("_slackr")
   - register_onexit
-  - slackr
   - ggslackr
   - -tex_slackr
   - -save_slackr
@@ -28,7 +28,7 @@ reference:
 
 - title: "Deprecated functions"
   desc: >
-    These functions have all been superceded by their `snake_case` equivalents
+    These functions have all been superceded by their `snake_case` and `slackr_{fn}` equivalents
 - contents:
   - matches(".*?\\..*")
   - matches("slackr[A-Z].*")

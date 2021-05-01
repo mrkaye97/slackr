@@ -32,6 +32,7 @@ slackr_chtrans <- function(channels) {
 #' @importFrom tibble tibble
 #' @importFrom memoise memoise
 #' @importFrom cachem cache_mem cache_disk
+#' @noRd
 #'
 slackr_census_fun <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
   msg <- "Are you sure you have the right scopes enabled? See the readme for details."
