@@ -180,7 +180,7 @@ get_retry_after <- function(x) {
 #' injects this into the next loop.  At the completion of each loop, the function [convert_response_to_tibble()] is run with `extract` as and argument. The results are combined with [dplyr::bind_rows()]
 #'
 #' @param fun A function that calls the slack API
-#' @param extract The name of the element to extract from the API reponse
+#' @param extract The name of the element to extract from the API response
 #'
 #' @return A `tibble`
 #' @seealso call_slack_api

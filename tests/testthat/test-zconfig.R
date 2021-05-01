@@ -1,4 +1,5 @@
 test_that("teardown works", {
+  skip_on_cran()
   slackr_teardown()
 
   env_vars <- c(

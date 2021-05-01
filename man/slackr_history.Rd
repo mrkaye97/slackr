@@ -29,7 +29,7 @@ current time)}
 
 \item{posted_from_time}{Timestamp of the first post time to consider}
 
-\item{paginate}{If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to teh API and retrieves a maximum of \code{message_count} messages}
+\item{paginate}{If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to the API and retrieves a maximum of \code{message_count} messages}
 }
 \value{
 A \code{tibble} with message metadata

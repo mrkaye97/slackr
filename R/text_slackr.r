@@ -12,7 +12,7 @@
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) `""` will mean use the default
 #' @param bot_user_oauth_token your full Slack bot user OAuth token
-#' @return `httr` response object (invislbly)
+#' @return `httr` response object (invisibly)
 #' @author Quinn Weber (aut), Bob Rudis (ctb)
 #' @note You can pass in `as_user=TRUE` as part of the `...` parameters and the Slack API
 #'       will post the message as your logged-in user account (this will override anything set in

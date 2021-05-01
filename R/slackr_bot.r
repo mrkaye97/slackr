@@ -4,7 +4,7 @@
 #' chat destination via the webhook API. Useful for logging, messaging on long
 #' compute tasks or general information sharing.
 #'
-#' By default, everyting but `expr` will be looked for in a "`SLACK_`"
+#' By default, everything but `expr` will be looked for in a "`SLACK_`"
 #' environment variable. You can override or just specify these values directly
 #' instead, but it's probably better to call [slackr_setup()] first.
 #'

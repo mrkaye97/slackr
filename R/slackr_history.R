@@ -14,7 +14,7 @@
 #'   24 hours of history.
 #' @param posted_to_time Timestamp of the last post to consider (default:
 #'   current time)
-#' @param paginate If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to teh API and retrieves a maximum of `message_count` messages
+#' @param paginate If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to the API and retrieves a maximum of `message_count` messages
 #' @param message_count The number of messages to retrieve (only when `paginate = FALSE`)
 #' @export
 #'

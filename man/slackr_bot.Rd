@@ -30,7 +30,7 @@ chat destination via the webhook API. Useful for logging, messaging on long
 compute tasks or general information sharing.
 }
 \details{
-By default, everyting but \code{expr} will be looked for in a "\code{SLACK_}"
+By default, everything but \code{expr} will be looked for in a "\code{SLACK_}"
 environment variable. You can override or just specify these values directly
 instead, but it's probably better to call \code{\link[=slackr_setup]{slackr_setup()}} first.
 }
