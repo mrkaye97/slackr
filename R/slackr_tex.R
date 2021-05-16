@@ -17,27 +17,8 @@
 #' @details Please make sure `texPreview` package is installed before running this function.
 #'          For TeX setup refer to the
 #'          [Setup notes on `LaTeX`](https://github.com/mrkaye97/slackr#latex-for-slackr_tex).
-#' @examples
-#' \dontrun{
-#' slackr_setup()
-#' obj <- xtable::xtable(mtcars)
-#' slackr_tex(obj,
-#'   print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
-#'
-#' slackr_tex(obj,
-#'   ext = "pdf",
-#'   print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
-#'
-#' slackr_tex(obj,
-#'   ext = "tex",
-#'   print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
-#'
-#' slackr_tex(obj,
-#'   path = "testdir",
-#'   print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
-#' }
 #' @seealso
-#'  [texPreview::tex_preview()] [xtable::print.xtable()]
+#'  [texPreview::tex_preview()]
 #' @author Jonathan Sidi (aut)
 #' @export
 slackr_tex <- function(obj,
