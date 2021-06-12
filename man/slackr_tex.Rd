@@ -44,28 +44,8 @@ Also, you can pass in \code{add_user=TRUE} as part of the \code{...}
 parameters and the Slack API will post the message as your logged-in user
 account (this will override anything set in \code{username})
 }
-\examples{
-\dontrun{
-slackr_setup()
-obj <- xtable::xtable(mtcars)
-slackr_tex(obj,
-  print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
-
-slackr_tex(obj,
-  ext = "pdf",
-  print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
-
-slackr_tex(obj,
-  ext = "tex",
-  print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
-
-slackr_tex(obj,
-  path = "testdir",
-  print.xtable.opts = list(scalebox = getOption("xtable.scalebox", 0.8)))
-}
-}
 \seealso{
-\code{\link[texPreview:tex_preview]{texPreview::tex_preview()}} \code{\link[xtable:print.xtable]{xtable::print.xtable()}}
+\code{\link[texPreview:tex_preview]{texPreview::tex_preview()}}
 }
 \author{
 Jonathan Sidi (aut)

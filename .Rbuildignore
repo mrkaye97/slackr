@@ -13,3 +13,4 @@ inst/secrets
 ^docs$
 ^pkgdown$
 ^CRAN-RELEASE$
+^LICENSE\.md$
