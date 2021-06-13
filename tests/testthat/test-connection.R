@@ -1,3 +1,16 @@
+test_that("User token throws warnings", {
+  skip_on_cran()
+
+  expect_warning(
+    slackr_setup(
+      token = "xoxp-foo-bar",
+      icon_emoji = "boom",
+      username = "Not Matt"
+    ),
+    "You're using a user token but also specified"
+  )
+})
+
 test_that("Initial setup completes", {
   skip_on_cran()
 
