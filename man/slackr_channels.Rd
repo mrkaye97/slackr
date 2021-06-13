@@ -10,7 +10,9 @@ slackr_channels(
 )
 }
 \arguments{
-\item{token}{the Slack bot OAuth token (chr)}
+\item{token}{A Slack token (either a user token or a bot user token)}
+
+\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 }
 \value{
 data.table of channels

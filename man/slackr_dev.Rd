@@ -15,11 +15,13 @@ slackr_dev(
 \arguments{
 \item{channels}{list of channels to post image to}
 
-\item{token}{the Slack full bot user OAuth token (chr)}
+\item{token}{A Slack token (either a user token or a bot user token)}
 
 \item{plot_text}{the plot text to send with the plot (defaults to "")}
 
 \item{file}{prefix for filenames (defaults to \code{plot})}
+
+\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 }
 \value{
 \code{httr} response object from \code{POST} call

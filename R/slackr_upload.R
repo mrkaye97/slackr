@@ -7,7 +7,8 @@
 #' @param title title on Slack (optional - defaults to filename)
 #' @param initial_comment comment for file on slack (optional - defaults to filename)
 #' @param channels Slack channels to save to (optional)
-#' @param token Slack bot user OAuth token
+#' @param token A Slack token (either a user token or a bot user token)
+#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @return `httr` response object from `POST` call (invisibly)
 #' @author Quinn Weber (ctb), Bob Rudis (aut)
 #' @references <https://github.com/mrkaye97/slackr/pull/15/files>

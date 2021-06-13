@@ -17,7 +17,7 @@ create_config_file(
 \arguments{
 \item{filename}{the name of the config file to save. We recommend using a hidden file (starting with '.')}
 
-\item{token}{the Slack bot user OAuth token (Default: whatever is set as an env var)}
+\item{token}{A Slack token (either a user token or a bot user token)}
 
 \item{incoming_webhook_url}{the incoming webhook URL (Default: whatever is set as an env var)}
 
@@ -26,6 +26,8 @@ create_config_file(
 \item{username}{the username to send messages from (will default to "slackr" if no username is set)}
 
 \item{channel}{the channel to send messages to (will default to "#general" if no channel is set)}
+
+\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 }
 \value{
 TRUE if successful (invisibly)

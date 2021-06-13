@@ -16,7 +16,9 @@ slackr_delete(
 
 \item{channel}{the channel to delete from}
 
-\item{token}{the Slack bot user OAuth token}
+\item{token}{A Slack token (either a user token or a bot user token)}
+
+\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 }
 \description{
 Deletes the specified number of messages from the channel

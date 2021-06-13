@@ -22,7 +22,9 @@ slackr_upload(
 
 \item{channels}{Slack channels to save to (optional)}
 
-\item{token}{Slack bot user OAuth token}
+\item{token}{A Slack token (either a user token or a bot user token)}
+
+\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 }
 \value{
 \code{httr} response object from \code{POST} call (invisibly)

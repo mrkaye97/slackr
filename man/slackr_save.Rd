@@ -20,9 +20,11 @@ slackr_save(
 
 \item{file}{filename (without extension) to use}
 
-\item{token}{Slack bot user OAuth token}
+\item{token}{A Slack token (either a user token or a bot user token)}
 
 \item{plot_text}{the plot text to send with the plot (defaults to "")}
+
+\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 }
 \value{
 \code{httr} response object from \code{POST} call

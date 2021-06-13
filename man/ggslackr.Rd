@@ -38,9 +38,11 @@ ggslackr(
 \item{limitsize}{when TRUE (the default), ggsave will not save images larger
 than 50x50 inches, to prevent the common error of specifying dimensions in pixels.}
 
-\item{token}{the Slack bot user OAuth token (chr)}
+\item{token}{A Slack token (either a user token or a bot user token)}
 
 \item{file}{prefix for filenames (defaults to \code{ggplot})}
+
+\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 
 \item{...}{other arguments passed to graphics device}
 }

@@ -18,7 +18,7 @@ slackr_history(
 \arguments{
 \item{channel}{The channel to get history from}
 
-\item{token}{the Slack bot user OAuth token}
+\item{token}{A Slack token (either a user token or a bot user token)}
 
 \item{posted_to_time}{Timestamp of the last post to consider (default:
 current time)}
@@ -31,6 +31,8 @@ current time)}
 \item{posted_from_time}{Timestamp of the first post time to consider}
 
 \item{paginate}{If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to the API and retrieves a maximum of \code{message_count} messages}
+
+\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 }
 \value{
 A \code{tibble} with message metadata

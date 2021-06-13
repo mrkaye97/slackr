@@ -26,7 +26,7 @@ left blank in config file as well)}
 
 \item{incoming_webhook_url}{the Slack URL prefix to use (chr) defaults to none}
 
-\item{token}{the Slack full bot user OAuth token (chr)}
+\item{token}{A Slack token (either a user token or a bot user token)}
 
 \item{config_file}{a configuration file (DCF) - see \link{read.dcf} - format
 with the config values.}
@@ -34,6 +34,8 @@ with the config values.}
 \item{echo}{display the configuration variables (bool) initially \code{FALSE}}
 
 \item{cache_dir}{the location for an on-disk cache. defaults to an in-memory cache if no location is specified}
+
+\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 }
 \value{
 "Successfully connected to Slack"

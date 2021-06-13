@@ -33,6 +33,8 @@ slackr_history <- function(channel = Sys.getenv("SLACK_CHANNEL"),
 
   token <- check_tokens(token, bot_user_oauth_token)
 
+  channel = slackr_chtrans(channel, token)
+
   if (!missing(duration) && !is.null(duration) && !missing(posted_from_time) && !is.null(posted_from_time)) {
     posted_from_time <- posted_to_time - duration * 3600
   } else {

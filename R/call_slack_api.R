@@ -93,6 +93,7 @@ call_slack_api <- function(path, ..., body = NULL, .method = c("GET", "POST"),
       call. = FALSE
     )
   }
+
   url <- "https://slack.com"
   .method <- match.arg(.method)
 

@@ -37,13 +37,6 @@ test_that("slackr_msg posts", {
   expect_true(res$ok)
 })
 
-test_that("text_slackr posts", {
-  skip_on_cran()
-
-  expect_warning(text_slackr("Testing"))
-  expect_true(suppressWarnings(text_slackr("Testing"))$ok)
-})
-
 test_that("slackr_delete works", {
   skip_on_cran()
 
