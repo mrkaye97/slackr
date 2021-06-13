@@ -1,5 +1,6 @@
 test_that("config file write works", {
   skip_on_cran()
+  skip_on_ci()
 
   tmp <- tempfile()
   create_config_file(tmp)

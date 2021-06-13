@@ -38,7 +38,7 @@ jobs:
       RSPM: ${{ matrix.config.rspm }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
-      SLACK_BOT_USER_OAUTH_TOKEN: ${{ secrets.SLACK_BOT_USER_OAUTH_TOKEN }}
+      SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
       SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
       SLACK_ICON_EMOJI: ${{ secrets.SLACK_ICON_EMOJI }}
       SLACK_INCOMING_URL_PREFIX: ${{ secrets.SLACK_INCOMING_URL_PREFIX }}
