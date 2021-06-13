@@ -25,7 +25,6 @@
 #' @param config_file a configuration file (DCF) - see [read.dcf] - format
 #'        with the config values.
 #' @param echo display the configuration variables (bool) initially `FALSE`
-#' @param cacheChannels a boolean for whether or not you want to cache channels to limit API requests (deprecated)
 #' @param cache_dir the location for an on-disk cache. defaults to an in-memory cache if no location is specified
 #' @importFrom jsonlite toJSON
 #' @return "Successfully connected to Slack"
@@ -53,13 +52,10 @@ slackr_setup <- function(channel="#general",
                          token="",
                          config_file="~/.slackr",
                          echo=FALSE,
-                         cacheChannels = TRUE,
                          cache_dir = '',
                          bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
-  if (!missing(cacheChannels)) {
-    warn('cacheChannels parameter is deprecated as of slackr 2.1.0. channels are now auto-cached with memoization')
-  }
+  if (bot_user_oauth_token != "") warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
 
   Sys.setenv(SLACK_CACHE_DIR = cache_dir)
 
@@ -144,7 +140,11 @@ create_config_file <- function(filename = '~/.slackr',
                                incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL"),
                                icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
                                username = Sys.getenv("SLACK_USERNAME"),
-                               channel = Sys.getenv("SLACK_CHANNEL")) {
+                               channel = Sys.getenv("SLACK_CHANNEL"),
+                               bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+
+  if (bot_user_oauth_token != "") warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
+
 
   username <- if (username == '') 'slackr' else username
   channel <- if (channel == '') '#general' else channel

@@ -10,7 +10,8 @@ create_config_file(
   incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
   username = Sys.getenv("SLACK_USERNAME"),
-  channel = Sys.getenv("SLACK_CHANNEL")
+  channel = Sys.getenv("SLACK_CHANNEL"),
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
 )
 }
 \arguments{

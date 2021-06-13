@@ -29,6 +29,9 @@ slackr_history <- function(channel = Sys.getenv("SLACK_CHANNEL"),
                            posted_from_time,
                            paginate = FALSE,
                            bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+
+  if (bot_user_oauth_token != "") warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
+
   if (!missing(duration) && !is.null(duration) && !missing(posted_from_time) && !is.null(posted_from_time)) {
     posted_from_time <- posted_to_time - duration * 3600
   } else {

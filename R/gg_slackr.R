@@ -37,6 +37,9 @@ ggslackr <- function(plot = last_plot(),
                      file = "ggplot",
                      bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                      ...) {
+
+  if (bot_user_oauth_token != "") warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
+
   loc <- Sys.getlocale("LC_CTYPE")
   Sys.setlocale("LC_CTYPE", "C")
   on.exit(Sys.setlocale("LC_CTYPE", loc))

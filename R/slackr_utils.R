@@ -5,6 +5,9 @@
 #' @importFrom dplyr bind_cols setdiff
 #' @export
 slackr_users <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+
+  if (bot_user_oauth_token != "") warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
+
   members <- list_users()
   cols <- setdiff(colnames(members), c("profile", "real_name"))
   bind_cols(
@@ -20,6 +23,9 @@ slackr_users <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token
 #' @return data.table of channels
 #' @export
 slackr_channels <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+
+  if (bot_user_oauth_token != "") warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
+
   c1 <- list_channels(token = token, types = "public_channel")
   c2 <- list_channels(token = token, types = "private_channel")
 
@@ -36,6 +42,9 @@ slackr_channels <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_to
 #' @return `data.frame` of im ids and user names
 #' @export
 slackr_ims <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+
+  if (bot_user_oauth_token != "") warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
+
   loc <- Sys.getlocale("LC_CTYPE")
   Sys.setlocale("LC_CTYPE", "C")
   on.exit(Sys.setlocale("LC_CTYPE", loc))

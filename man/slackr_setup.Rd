@@ -12,7 +12,6 @@ slackr_setup(
   token = "",
   config_file = "~/.slackr",
   echo = FALSE,
-  cacheChannels = TRUE,
   cache_dir = "",
   bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
 )
@@ -33,8 +32,6 @@ left blank in config file as well)}
 with the config values.}
 
 \item{echo}{display the configuration variables (bool) initially \code{FALSE}}
-
-\item{cacheChannels}{a boolean for whether or not you want to cache channels to limit API requests (deprecated)}
 
 \item{cache_dir}{the location for an on-disk cache. defaults to an in-memory cache if no location is specified}
 }

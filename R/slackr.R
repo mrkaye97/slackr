@@ -33,7 +33,11 @@ slackr <- function(...,
                    channel = Sys.getenv("SLACK_CHANNEL"),
                    username = Sys.getenv("SLACK_USERNAME"),
                    icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-                   token = Sys.getenv("SLACK_TOKEN")) {
+                   token = Sys.getenv("SLACK_TOKEN"),
+                   bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+
+  if (bot_user_oauth_token != "") warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
+
   if ((token == "") | is.na(token)) {
     abort("No token specified. Did you forget to call slackr_setup()?", call. = FALSE)
   }
@@ -153,7 +157,11 @@ slackr_msg <- function(txt = "",
                        username = Sys.getenv("SLACK_USERNAME"),
                        icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
                        token = Sys.getenv("SLACK_TOKEN"),
+                       bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                        ...) {
+
+  if (bot_user_oauth_token != "") warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
+
   if (token == "") {
     abort("No token specified. Did you forget to call slackr_setup()?", call. = FALSE)
   }

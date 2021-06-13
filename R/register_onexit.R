@@ -64,6 +64,9 @@ register_onexit <- function(f,
                             icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
                             token = Sys.getenv("SLACK_TOKEN"),
                             bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+
+  if (bot_user_oauth_token != "") warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
+
   f.val <- deparse(match.call()[[2]])
 
   if (inherits(f, "character")) f <- eval(parse(text = f))
