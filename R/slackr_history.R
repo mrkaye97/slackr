@@ -27,7 +27,8 @@ slackr_history <- function(channel = Sys.getenv("SLACK_CHANNEL"),
                            message_count,
                            duration,
                            posted_from_time,
-                           paginate = FALSE) {
+                           paginate = FALSE,
+                           bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
   if (!missing(duration) && !is.null(duration) && !missing(posted_from_time) && !is.null(posted_from_time)) {
     posted_from_time <- posted_to_time - duration * 3600
   } else {

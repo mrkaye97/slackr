@@ -54,7 +54,8 @@ slackr_setup <- function(channel="#general",
                          config_file="~/.slackr",
                          echo=FALSE,
                          cacheChannels = TRUE,
-                         cache_dir = '') {
+                         cache_dir = '',
+                         bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
   if (!missing(cacheChannels)) {
     warn('cacheChannels parameter is deprecated as of slackr 2.1.0. channels are now auto-cached with memoization')

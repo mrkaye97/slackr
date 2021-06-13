@@ -14,12 +14,6 @@ slackr_bot(
 
 \item{incoming_webhook_url}{which \code{slack.com} API endpoint URL to use
 (see section \strong{Webhook URLs} for details)}
-
-\item{channel}{Deprecated. will have no effect}
-
-\item{username}{Deprecated. will have no effect}
-
-\item{icon_emoji}{Deprecated. will have no effect}
 }
 \description{
 Takes an \code{expr}, evaluates it and sends the output to a Slack

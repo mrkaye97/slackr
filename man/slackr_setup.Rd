@@ -13,7 +13,8 @@ slackr_setup(
   config_file = "~/.slackr",
   echo = FALSE,
   cacheChannels = TRUE,
-  cache_dir = ""
+  cache_dir = "",
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
 )
 }
 \arguments{

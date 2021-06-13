@@ -9,7 +9,8 @@ slackr_upload(
   title = basename(filename),
   initial_comment = basename(filename),
   channels = Sys.getenv("SLACK_CHANNEL"),
-  token = Sys.getenv("SLACK_TOKEN")
+  token = Sys.getenv("SLACK_TOKEN"),
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
 )
 }
 \arguments{

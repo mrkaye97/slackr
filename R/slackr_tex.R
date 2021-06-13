@@ -26,6 +26,7 @@ slackr_tex <- function(obj,
                        token = Sys.getenv("SLACK_TOKEN"),
                        ext = "png",
                        path = NULL,
+                       bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                        ...) {
 
   # check if texPreview is installed, if not provide feedback

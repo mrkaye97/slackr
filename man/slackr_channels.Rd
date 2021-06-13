@@ -4,7 +4,10 @@
 \alias{slackr_channels}
 \title{Get a data frame of Slack channels}
 \usage{
-slackr_channels(token = Sys.getenv("SLACK_TOKEN"))
+slackr_channels(
+  token = Sys.getenv("SLACK_TOKEN"),
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+)
 }
 \arguments{
 \item{token}{the Slack bot OAuth token (chr)}

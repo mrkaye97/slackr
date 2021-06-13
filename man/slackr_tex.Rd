@@ -10,6 +10,7 @@ slackr_tex(
   token = Sys.getenv("SLACK_TOKEN"),
   ext = "png",
   path = NULL,
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
   ...
 )
 }

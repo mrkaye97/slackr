@@ -29,7 +29,8 @@
 slackr_dev <- function(channels = Sys.getenv("SLACK_CHANNEL"),
                        token = Sys.getenv("SLACK_TOKEN"),
                        plot_text = "",
-                       file = "plot") {
+                       file = "plot",
+                       bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
   loc <- Sys.getlocale("LC_CTYPE")
   Sys.setlocale("LC_CTYPE", "C")
   on.exit(Sys.setlocale("LC_CTYPE", loc))

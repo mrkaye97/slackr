@@ -12,9 +12,6 @@
 #' @param ... expressions to be sent to Slack
 #' @param incoming_webhook_url which `slack.com` API endpoint URL to use
 #'   (see section **Webhook URLs** for details)
-#' @param channel Deprecated. will have no effect
-#' @param username Deprecated. will have no effect
-#' @param icon_emoji Deprecated. will have no effect
 #' @importFrom utils URLencode
 #' @importFrom rlang warn abort
 #' @note You need a <https://www.slack.com> account and will also need to
@@ -42,8 +39,7 @@
 #' )
 #' }
 #' @export
-slackr_bot <- function(...,
-                       incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL")) {
+slackr_bot <- function(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL")) {
 
   if (incoming_webhook_url == "" | is.na(incoming_webhook_url)) {
     abort("No incoming webhook URL specified. Did you forget to call slackr_setup()?", call. = FALSE)

@@ -11,7 +11,8 @@ slackr_history(
   message_count,
   duration,
   posted_from_time,
-  paginate = FALSE
+  paginate = FALSE,
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
 )
 }
 \arguments{

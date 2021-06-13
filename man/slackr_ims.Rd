@@ -4,7 +4,10 @@
 \alias{slackr_ims}
 \title{Get a data frame of Slack IM ids}
 \usage{
-slackr_ims(token = Sys.getenv("SLACK_TOKEN"))
+slackr_ims(
+  token = Sys.getenv("SLACK_TOKEN"),
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+)
 }
 \arguments{
 \item{token}{the Slack both OAuth token (chr)}

@@ -22,6 +22,7 @@ slackr_csv <- function(data,
                        initial_comment = basename(filename),
                        channels = Sys.getenv("SLACK_CHANNEL"),
                        token = Sys.getenv("SLACK_TOKEN"),
+                       bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                        ...) {
   write.csv(data, filename, ...)
 

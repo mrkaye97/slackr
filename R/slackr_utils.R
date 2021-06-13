@@ -1,87 +1,10 @@
-#' Translate vector of channel names to channel IDs for API
-#'
-#' Given a vector of one or more channel names, retrieve list of
-#' active channels and try to replace channels that begin with "`#`" or "`@@`"
-#' with the channel ID for that channel.
-#'
-#' @param channels vector of channel names to parse
-#' @author Quinn Weber (ctb), Bob Rudis (aut)
-#' @return character vector - original channel list with `#` or
-#'          `@@` channels replaced with ID's.
-#' @export
-slackr_chtrans <- function(channels) {
-  channel_cache <- slackr_census()
-
-  chan_xref <-
-    channel_cache[(channel_cache$name %in% channels) |
-      (channel_cache$real_name %in% channels) |
-      (channel_cache$id %in% channels), ]
-
-  ifelse(
-    is.na(chan_xref$id),
-    as.character(chan_xref$name),
-    as.character(chan_xref$id)
-  )
-}
-
-#' Create a cache of the users and channels in the workspace in order to limit API requests
-#'
-#' @param token the Slack bot OAuth token (chr)
-#' @return A data.frame of channels and users
-#' @importFrom dplyr bind_rows distinct
-#' @importFrom tibble tibble
-#' @importFrom memoise memoise
-#' @importFrom cachem cache_mem cache_disk
-#' @noRd
-#'
-slackr_census_fun <- function(token = Sys.getenv("SLACK_TOKEN")) {
-  msg <- "Are you sure you have the right scopes enabled? See the readme for details."
-
-  chan <- slackr_channels(token)
-
-  if (is.null(chan) || nrow(chan) == 0) {
-    abort("slackr is not seeing any channels in your workspace. ", msg)
-  }
-
-  users <- slackr_ims(token)
-  if (is.null(chan) || nrow(chan) == 0) {
-    abort("slackr is not seeing any users in your workspace. ", msg)
-  }
-
-  chan$name <- sprintf("#%s", chan$name)
-  users$name <- sprintf("@%s", users$name)
-
-  chan_list <- tibble(
-    id        = character(0),
-    name      = character(0),
-    real_name = character(0)
-  )
-
-  if (length(chan) > 0) {
-    chan_list <- bind_rows(chan_list, chan[, c("id", "name")])
-  }
-  if (length(users) > 0) {
-    chan_list <- bind_rows(chan_list, users[, c("id", "name", "real_name")])
-  }
-
-  distinct(chan_list)
-}
-
-cache_dir <- Sys.getenv("SLACK_CACHE_DIR")
-if (cache_dir == "") {
-  slackr_census <- memoise::memoise(slackr_census_fun, cache = cachem::cache_mem())
-} else {
-  slackr_census <- memoise::memoise(slackr_census_fun, cache = cachem::cache_disk(dir = cache_dir))
-}
-
-
 #' Get a data frame of Slack users
 #'
 #' @param token the Slack bot OAuth token (chr)
 #' @return `data.frame` of users
 #' @importFrom dplyr bind_cols setdiff
 #' @export
-slackr_users <- function(token = Sys.getenv("SLACK_TOKEN")) {
+slackr_users <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
   members <- list_users()
   cols <- setdiff(colnames(members), c("profile", "real_name"))
   bind_cols(
@@ -96,7 +19,7 @@ slackr_users <- function(token = Sys.getenv("SLACK_TOKEN")) {
 #' @importFrom dplyr bind_rows
 #' @return data.table of channels
 #' @export
-slackr_channels <- function(token = Sys.getenv("SLACK_TOKEN")) {
+slackr_channels <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
   c1 <- list_channels(token = token, types = "public_channel")
   c2 <- list_channels(token = token, types = "private_channel")
 
@@ -112,7 +35,7 @@ slackr_channels <- function(token = Sys.getenv("SLACK_TOKEN")) {
 #' @references <https://github.com/mrkaye97/slackr/pull/13>
 #' @return `data.frame` of im ids and user names
 #' @export
-slackr_ims <- function(token = Sys.getenv("SLACK_TOKEN")) {
+slackr_ims <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
   loc <- Sys.getlocale("LC_CTYPE")
   Sys.setlocale("LC_CTYPE", "C")
   on.exit(Sys.setlocale("LC_CTYPE", loc))

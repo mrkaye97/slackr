@@ -7,15 +7,14 @@
 #' @export
 slackr_delete <- function(count,
                           channel = Sys.getenv("SLACK_CHANNEL"),
-                          token = Sys.getenv("SLACK_TOKEN")) {
+                          token = Sys.getenv("SLACK_TOKEN"),
+                          bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
   if (!is.character(channel) | length(channel) > 1) {
     abort("channel must be a character vector of length one")
   }
   if (!is.character(token) | length(token) > 1) {
     abort("token must be a character vector of length one")
   }
-
-  channel <- slackr_chtrans(channel)
 
   timestamps <- slackr_history(channel = channel, message_count = count, paginate = FALSE)[["ts"]]
 
