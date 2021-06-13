@@ -4,10 +4,15 @@
 \alias{auth_test}
 \title{Checks authentication & identity against the Slack API.}
 \usage{
-auth_test(token = Sys.getenv("SLACK_TOKEN"))
+auth_test(
+  token = Sys.getenv("SLACK_TOKEN"),
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+)
 }
 \arguments{
 \item{token}{The Slack bot OAuth token {character vector}}
+
+\item{bot_user_oauth_token}{Deprecated}
 }
 \description{
 Checks authentication & identity against the Slack API.

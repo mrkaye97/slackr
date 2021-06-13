@@ -73,7 +73,7 @@ slackr_setup <- function(channel="#general",
     Sys.setenv(SLACK_CHANNEL=config[,"channel"])
     Sys.setenv(SLACK_USERNAME=config[,"username"])
     Sys.setenv(SLACK_ICON_EMOJI=config[,"icon_emoji"])
-    Sys.setenv(SLACK_INCOMING_URL_PREFIX=config[,"incoming_webhook_url"])
+    Sys.setenv(SLACK_INCOMING_WEBHOOK_URL=config[,"incoming_webhook_url"])
     Sys.setenv(SLACK_TOKEN=config[,"token"])
 
   } else {
@@ -83,13 +83,13 @@ slackr_setup <- function(channel="#general",
     Sys.setenv(SLACK_CHANNEL=channel)
     Sys.setenv(SLACK_USERNAME=username)
     Sys.setenv(SLACK_ICON_EMOJI=icon_emoji)
-    Sys.setenv(SLACK_INCOMING_URL_PREFIX=incoming_webhook_url)
+    Sys.setenv(SLACK_INCOMING_WEBHOOK_URL=incoming_webhook_url)
     Sys.setenv(SLACK_TOKEN=token)
 
   }
 
-  if (!grepl("?$", Sys.getenv("SLACK_INCOMING_URL_PREFIX"))) {
-    Sys.setenv(SLACK_INCOMING_URL_PREFIX=sprintf("%s?", config[,"incoming_webhook_url"]))
+  if (!grepl("?$", Sys.getenv("SLACK_INCOMING_WEBHOOK_URL"))) {
+    Sys.setenv(SLACK_INCOMING_WEBHOOK_URL=sprintf("%s?", config[,"incoming_webhook_url"]))
   }
 
   if (length(Sys.getenv("SLACK_CHANNEL"))==0) {
@@ -104,7 +104,7 @@ slackr_setup <- function(channel="#general",
     print(toJSON(as.list(
       Sys.getenv(c("SLACK_CHANNEL", "SLACK_USERNAME",
                    "SLACK_ICON_EMOJI",
-                   "SLACK_INCOMING_URL_PREFIX", "SLACK_TOKEN")
+                   "SLACK_INCOMING_WEBHOOK_URL", "SLACK_TOKEN")
       )),
       pretty=TRUE))
   }
@@ -140,7 +140,7 @@ slackr_setup <- function(channel="#general",
 #' @export
 create_config_file <- function(filename = '~/.slackr',
                                token = Sys.getenv("SLACK_TOKEN"),
-                               incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
+                               incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL"),
                                icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
                                username = Sys.getenv("SLACK_USERNAME"),
                                channel = Sys.getenv("SLACK_CHANNEL")) {
@@ -183,7 +183,7 @@ slackr_teardown <- function() {
     'SLACK_CACHE_DIR',
     'SLACK_CHANNEL',
     'SLACK_ICON_EMOJI',
-    'SLACK_INCOMING_URL_PREFIX',
+    'SLACK_INCOMING_WEBHOOK_URL',
     'SLACK_USERNAME'
   )
 

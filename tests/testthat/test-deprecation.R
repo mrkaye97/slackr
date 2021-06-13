@@ -45,7 +45,7 @@ test_that("slackr_setup deprecated args", {
     slackr_setup(
       channel = "#test",
       token = Sys.getenv("SLACK_TOKEN"),
-      incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
+      incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL"),
       cacheChannels = TRUE
     ),
     regexp = "cacheChannels parameter is deprecated"

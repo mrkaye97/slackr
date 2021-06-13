@@ -15,6 +15,7 @@ ggslackr(
   limitsize = TRUE,
   token = Sys.getenv("SLACK_TOKEN"),
   file = "ggplot",
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
   ...
 )
 }

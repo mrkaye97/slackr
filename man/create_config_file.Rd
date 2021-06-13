@@ -7,7 +7,7 @@
 create_config_file(
   filename = "~/.slackr",
   token = Sys.getenv("SLACK_TOKEN"),
-  incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
+  incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
   username = Sys.getenv("SLACK_USERNAME"),
   channel = Sys.getenv("SLACK_CHANNEL")

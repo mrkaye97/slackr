@@ -35,6 +35,7 @@ ggslackr <- function(plot = last_plot(),
                      limitsize = TRUE,
                      token = Sys.getenv("SLACK_TOKEN"),
                      file = "ggplot",
+                     bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                      ...) {
   loc <- Sys.getlocale("LC_CTYPE")
   Sys.setlocale("LC_CTYPE", "C")

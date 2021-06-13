@@ -7,7 +7,7 @@ test_that("teardown works", {
     "SLACK_CACHE_DIR",
     "SLACK_CHANNEL",
     "SLACK_ICON_EMOJI",
-    "SLACK_INCOMING_URL_PREFIX",
+    "SLACK_INCOMING_WEBHOOK_URL",
     "SLACK_USERNAME"
   )
 
@@ -30,7 +30,7 @@ test_that("config file write works", {
     "SLACK_CACHE_DIR",
     "SLACK_CHANNEL",
     "SLACK_ICON_EMOJI",
-    "SLACK_INCOMING_URL_PREFIX",
+    "SLACK_INCOMING_WEBHOOK_URL",
     "SLACK_USERNAME"
   )
 
