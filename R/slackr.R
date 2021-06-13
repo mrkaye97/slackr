@@ -133,7 +133,8 @@ slackr <- function(...,
 #' @param channel which channel to post the message to (chr)
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) `""` will mean use the default
-#' @param token Slack bot user OAuth token
+#' @param token A Slack token (either a user token or a bot user token)
+#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @return the response (invisibly)
 #' @param ... other arguments passed to the Slack API `chat.postMessage` call
 #' @note You need a <https://www.slack.com> account and will also need to
