@@ -38,7 +38,7 @@ ggslackr <- function(plot = last_plot(),
                      bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                      ...) {
 
-  if (bot_user_oauth_token != "") warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
+  check_tokens(token, bot_user_oauth_token)
 
   loc <- Sys.getlocale("LC_CTYPE")
   Sys.setlocale("LC_CTYPE", "C")

@@ -42,7 +42,7 @@
 slackr_bot <- function(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL")) {
 
   if (incoming_webhook_url == "" | is.na(incoming_webhook_url)) {
-    abort("No incoming webhook URL specified. Did you forget to call slackr_setup()?", call. = FALSE)
+    abort("No incoming webhook URL specified. Did you forget to call slackr_setup()?")
   }
 
   if (!missing(...)) {

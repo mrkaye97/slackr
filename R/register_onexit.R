@@ -65,7 +65,7 @@ register_onexit <- function(f,
                             token = Sys.getenv("SLACK_TOKEN"),
                             bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
-  if (bot_user_oauth_token != "") warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
+  check_tokens(token, bot_user_oauth_token)
 
   f.val <- deparse(match.call()[[2]])
 
