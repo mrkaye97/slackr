@@ -21,7 +21,8 @@
 #' @param icon_emoji which emoji picture to use (chr) defaults to none (can be
 #'        left blank in config file as well)
 #' @param incoming_webhook_url the Slack URL prefix to use (chr) defaults to none
-#' @param token the Slack full bot user OAuth token (chr)
+#' @param token A Slack token (either a user token or a bot user token)
+#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @param config_file a configuration file (DCF) - see [read.dcf] - format
 #'        with the config values.
 #' @param echo display the configuration variables (bool) initially `FALSE`
@@ -112,7 +113,8 @@ slackr_setup <- function(channel="#general",
 
 #' Create the config file used in `slackr_setup()`
 #' @param filename the name of the config file to save. We recommend using a hidden file (starting with '.')
-#' @param token the Slack bot user OAuth token (Default: whatever is set as an env var)
+#' @param token A Slack token (either a user token or a bot user token)
+#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @param incoming_webhook_url the incoming webhook URL (Default: whatever is set as an env var)
 #' @param icon_emoji the icon emoji to use as the default
 #' @param username the username to send messages from (will default to "slackr" if no username is set)
@@ -143,7 +145,7 @@ create_config_file <- function(filename = '~/.slackr',
                                channel = Sys.getenv("SLACK_CHANNEL"),
                                bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
-  check_tokens(token, bot_user_oauth_token)
+  token <- check_tokens(token, bot_user_oauth_token)
 
   username <- if (username == '') 'slackr' else username
   channel <- if (channel == '') '#general' else channel

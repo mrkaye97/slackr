@@ -21,7 +21,7 @@ slackr_upload <- function(filename, title = basename(filename),
                           token = Sys.getenv("SLACK_TOKEN"),
                           bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
-  check_tokens(token, bot_user_oauth_token)
+  token <- check_tokens(token, bot_user_oauth_token)
 
   if (channels == "") abort("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
   f_path <- path.expand(filename)

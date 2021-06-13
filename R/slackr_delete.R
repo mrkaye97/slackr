@@ -3,14 +3,15 @@
 #' Deletes the specified number of messages from the channel
 #' @param count the number of messages to delete
 #' @param channel the channel to delete from
-#' @param token the Slack bot user OAuth token
+#' @param token A Slack token (either a user token or a bot user token)
+#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @export
 slackr_delete <- function(count,
                           channel = Sys.getenv("SLACK_CHANNEL"),
                           token = Sys.getenv("SLACK_TOKEN"),
                           bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
-  check_tokens(token, bot_user_oauth_token)
+  token <- check_tokens(token, bot_user_oauth_token)
 
   if (!is.character(channel) | length(channel) > 1) {
     abort("channel must be a character vector of length one")

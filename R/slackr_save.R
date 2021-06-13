@@ -7,7 +7,8 @@
 #' @param ... objects to store in the R data file
 #' @param channels Slack channels to save to (optional)
 #' @param file filename (without extension) to use
-#' @param token Slack bot user OAuth token
+#' @param token A Slack token (either a user token or a bot user token)
+#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @param plot_text the plot text to send with the plot (defaults to "")
 #' @return `httr` response object from `POST` call
 #' @seealso [slackr_setup()], [slackr_dev()], [slackr_upload()]
@@ -25,7 +26,7 @@ slackr_save <- function(...,
                         plot_text = "",
                         bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
-  check_tokens(token, bot_user_oauth_token)
+  token <- check_tokens(token, bot_user_oauth_token)
 
   if (channels == "") abort("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
 

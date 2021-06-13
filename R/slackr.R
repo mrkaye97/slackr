@@ -36,7 +36,7 @@ slackr <- function(...,
                    token = Sys.getenv("SLACK_TOKEN"),
                    bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
-  check_tokens(token, bot_user_oauth_token)
+  token <- check_tokens(token, bot_user_oauth_token)
 
   resp_ret <- ""
 
@@ -156,7 +156,7 @@ slackr_msg <- function(txt = "",
                        bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                        ...) {
 
-  check_tokens(token, bot_user_oauth_token)
+  token <- check_tokens(token, bot_user_oauth_token)
 
   output <- paste0(txt, collapse = "\n\n")
 

@@ -6,7 +6,7 @@
 #' @export
 slackr_users <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
-  check_tokens(token, bot_user_oauth_token)
+  token <- check_tokens(token, bot_user_oauth_token)
 
   members <- list_users()
   cols <- setdiff(colnames(members), c("profile", "real_name"))
@@ -24,7 +24,7 @@ slackr_users <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token
 #' @export
 slackr_channels <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
-  check_tokens(token, bot_user_oauth_token)
+  token <- check_tokens(token, bot_user_oauth_token)
 
   c1 <- list_channels(token = token, types = "public_channel")
   c2 <- list_channels(token = token, types = "private_channel")
@@ -43,7 +43,7 @@ slackr_channels <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_to
 #' @export
 slackr_ims <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
-  check_tokens(token, bot_user_oauth_token)
+  token <- check_tokens(token, bot_user_oauth_token)
 
   loc <- Sys.getlocale("LC_CTYPE")
   Sys.setlocale("LC_CTYPE", "C")
@@ -70,15 +70,18 @@ check_tokens <- function(token, bot_user_oauth_token) {
     abort("No token found. Did you forget to call `slackr_setup()`?")
   }
 
-  if (bot_user_oauth_token != "") {
-    warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
-  }
-
   if (token != "" & bot_user_oauth_token != "" & token != bot_user_oauth_token) {
     abort(
       "You specified both a `token` and a `bot_user_oauth_token`, and the two were not the same. Please only specify a `token`."
     )
   }
 
-  invisible()
+  if (bot_user_oauth_token != "") {
+    warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
+
+    return(bot_user_oauth_token)
+  }
+
+  return(token)
+
 }
