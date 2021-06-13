@@ -62,32 +62,6 @@ slackr_ims <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token =
   left_join(users, ims, by = "id")
 }
 
-#' Check for token issues
-#'
-#' @param token a token
-#' @param bot_user_oauth_token another token
-#' @return No return value. Called for side effects
-check_tokens <- function(token, bot_user_oauth_token) {
-
-  if (token == "" & bot_user_oauth_token == "") {
-    abort("No token found. Did you forget to call `slackr_setup()`?")
-  }
-
-  if (token != "" & bot_user_oauth_token != "" & token != bot_user_oauth_token) {
-    abort(
-      "You specified both a `token` and a `bot_user_oauth_token`, and the two were not the same. Please only specify a `token`."
-    )
-  }
-
-  if (bot_user_oauth_token != "") {
-    warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
-
-    return(bot_user_oauth_token)
-  }
-
-  return(token)
-}
-
 #' Translate vector of channel names to channel IDs for API
 #'
 #' Given a vector of one or more channel names, retrieve list of

@@ -41,7 +41,7 @@ but it's probably better to call \code{\link[=slackr_setup]{slackr_setup()}} fir
 }
 \note{
 You need a \url{https://www.slack.com} account and will also need to
-setup an API token \url{https://api.slack.com/}
+set up an API token \url{https://api.slack.com/}
 Also, you can pass in \code{as_user=TRUE}, the default, as part of the \code{...}
 parameters and the Slack API will post the message as your logged-in
 user account (this will override anything set in \code{username}).

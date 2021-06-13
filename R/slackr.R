@@ -16,7 +16,7 @@
 #' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @return the response (invisibly)
 #' @note You need a <https://www.slack.com> account and will also need to
-#'       setup an API token <https://api.slack.com/>
+#'       set up an API token <https://api.slack.com/>
 #'       Also, you can pass in `as_user=TRUE`, the default, as part of the `...`
 #'       parameters and the Slack API will post the message as your logged-in
 #'       user account (this will override anything set in `username`).

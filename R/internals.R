@@ -1,0 +1,53 @@
+#' Check for token issues
+#'
+#' @param token a token
+#' @param bot_user_oauth_token another token
+#' @return A token
+check_tokens <- function(token, bot_user_oauth_token) {
+
+  if (token == "" & bot_user_oauth_token == "") {
+    abort("No token found. Did you forget to call `slackr_setup()`?")
+  }
+
+  if (token != "" & bot_user_oauth_token != "" & token != bot_user_oauth_token) {
+    abort(
+      "You specified both a `token` and a `bot_user_oauth_token`, and the two were not the same. Please only specify a `token`."
+    )
+  }
+
+  if (bot_user_oauth_token != "") {
+    warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
+
+    return(bot_user_oauth_token)
+  }
+
+  return(token)
+}
+
+#' Check for token-parameter mismatches
+#'
+#' @param token a token
+#' @param ... Additiional arguments passed to the function called
+#' @return No return value. Called for side effects
+warn_for_args <- function(token, ...) {
+  if (substr(token, 1L, 4L) == "xoxp") {
+
+    all_args <- list(...)
+    non_missing_args <- all_args[all_args != ""]
+
+    num_non_missing <- length(non_missing_args)
+    if (num_non_missing > 0) {
+      sing_plur <- if (num_non_missing > 1) "These arguments" else "This argument"
+
+      warn(
+        sprintf(
+          "You're using a user token but also specified the following parameter(s): %s. %s will have no effect.",
+          paste(names(non_missing_args), collapse = ", "),
+          sing_plur
+        )
+      )
+    }
+  }
+
+  invisible()
+}
