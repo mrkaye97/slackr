@@ -39,6 +39,12 @@ slackr <- function(...,
 
   token <- check_tokens(token, bot_user_oauth_token)
 
+  warn_for_args(
+    token,
+    username = username,
+    icon_emoji = icon_emoji
+  )
+
   resp_ret <- ""
 
   if (!missing(...)) {
@@ -159,6 +165,12 @@ slackr_msg <- function(txt = "",
                        ...) {
 
   token <- check_tokens(token, bot_user_oauth_token)
+
+  warn_for_args(
+    token,
+    username = username,
+    icon_emoji = icon_emoji
+  )
 
   output <- paste0(txt, collapse = "\n\n")
 

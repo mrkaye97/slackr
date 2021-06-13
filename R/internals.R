@@ -44,7 +44,9 @@ warn_for_args <- function(token, ...) {
           "You're using a user token but also specified the following parameter(s): %s. %s will have no effect.",
           paste(names(non_missing_args), collapse = ", "),
           sing_plur
-        )
+        ),
+        .frequency = "once",
+        .frequency_id = "df0f12c9-9718-4edf-99ac-7ec1f34687ec"
       )
     }
   }

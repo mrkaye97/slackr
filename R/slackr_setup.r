@@ -58,6 +58,7 @@ slackr_setup <- function(channel="#general",
 
   if (bot_user_oauth_token != "") warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
 
+
   Sys.setenv(SLACK_CACHE_DIR = cache_dir)
 
   if (file.exists(config_file)) {
@@ -67,6 +68,12 @@ slackr_setup <- function(channel="#general",
       fields=c("channel", "icon_emoji",
                "username", "incoming_webhook_url", "token")
       )
+
+    warn_for_args(
+      config[,"token"],
+      username = config[,"username"],
+      icon_emoji = config[,"icon_emoji"]
+    )
 
     Sys.setenv(SLACK_CHANNEL=config[,"channel"])
     Sys.setenv(SLACK_USERNAME=config[,"username"])
@@ -78,6 +85,13 @@ slackr_setup <- function(channel="#general",
     if (token == '') {
       abort("No config file found. Please specify your Slack bot OAuth token\n   with the token argument in slackr_setup().")
     }
+
+    warn_for_args(
+      token,
+      username = username,
+      icon_emoji = icon_emoji
+    )
+
     Sys.setenv(SLACK_CHANNEL=channel)
     Sys.setenv(SLACK_USERNAME=username)
     Sys.setenv(SLACK_ICON_EMOJI=icon_emoji)

@@ -6,7 +6,7 @@
 \usage{
 ggslackr(
   plot = last_plot(),
-  channels = Sys.getenv("SLACK_CHANNEL"),
+  channel = Sys.getenv("SLACK_CHANNEL"),
   scale = 1,
   width = par("din")[1],
   height = par("din")[2],
@@ -21,8 +21,6 @@ ggslackr(
 }
 \arguments{
 \item{plot}{ggplot object to save, defaults to last plot displayed}
-
-\item{channels}{list of channels to post image to}
 
 \item{scale}{scaling factor}
 
@@ -45,6 +43,8 @@ than 50x50 inches, to prevent the common error of specifying dimensions in pixel
 \item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 
 \item{...}{other arguments passed to graphics device}
+
+\item{channels}{list of channels to post image to}
 }
 \value{
 \code{httr} response object (invisibly)

@@ -69,6 +69,12 @@ register_onexit <- function(f,
 
   token <- check_tokens(token, bot_user_oauth_token)
 
+  warn_for_args(
+    token,
+    username = username,
+    icon_emoji = icon_emoji
+  )
+
   f.val <- deparse(match.call()[[2]])
 
   if (inherits(f, "character")) f <- eval(parse(text = f))
