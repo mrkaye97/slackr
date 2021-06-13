@@ -15,7 +15,7 @@ test_that("Initial setup completes", {
         config_file = "~/.slackr_config"
       )
     },
-    'Successfully connected to Slack'
+    "Successfully connected to Slack"
   )
 })
 

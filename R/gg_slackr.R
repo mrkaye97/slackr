@@ -25,8 +25,7 @@
 #' ggslackr(qplot(mpg, wt, data = mtcars))
 #' }
 #' @export
-ggslackr <- function(
-                     plot = last_plot(),
+ggslackr <- function(plot = last_plot(),
                      channels = Sys.getenv("SLACK_CHANNEL"),
                      scale = 1,
                      width = par("din")[1],

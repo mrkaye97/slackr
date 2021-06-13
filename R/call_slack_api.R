@@ -79,8 +79,7 @@ with_retry <- function(fun) {
 #' @return The API response (a named list)
 #' @export
 #'
-call_slack_api <- function(
-                           path, ..., body = NULL, .method = c("GET", "POST"),
+call_slack_api <- function(path, ..., body = NULL, .method = c("GET", "POST"),
                            token,
                            .verbose = Sys.getenv("SLACKR_VERBOSE", "FALSE"),
                            .next_cursor = "") {

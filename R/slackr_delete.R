@@ -5,8 +5,7 @@
 #' @param channel the channel to delete from
 #' @param token the Slack bot user OAuth token
 #' @export
-slackr_delete <- function(
-                          count,
+slackr_delete <- function(count,
                           channel = Sys.getenv("SLACK_CHANNEL"),
                           token = Sys.getenv("SLACK_TOKEN")) {
   if (!is.character(channel) | length(channel) > 1) {

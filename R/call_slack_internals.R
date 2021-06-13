@@ -62,8 +62,7 @@ list_users <- function(token = Sys.getenv("SLACK_TOKEN"), ...) {
 #' @param link_names Passed to `link_names` parameter of `chat.postMessage` API
 #'
 #' @references https://api.slack.com/methods/chat.postMessage
-post_message <- function(
-                         txt,
+post_message <- function(txt,
                          channel,
                          emoji = "",
                          username = Sys.getenv("SLACK_USERNAME"),
@@ -105,8 +104,7 @@ post_message <- function(
 #'
 #'
 #' @references https://api.slack.com/methods/files.upload
-files_upload <- function(
-                         file,
+files_upload <- function(file,
                          channel,
                          txt = "",
                          username = Sys.getenv("SLACK_USERNAME"),

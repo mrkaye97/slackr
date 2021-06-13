@@ -190,6 +190,6 @@ textSlackr <- function(...) {
 #' @seealso \code{\link[slackr]{slackr_tex}}
 #' @family Deprecated functions
 tex_slackr <- function(...) {
-  .Deprecated(new = 'slackr_tex')
+  .Deprecated(new = "slackr_tex")
   slackr_tex(...)
 }

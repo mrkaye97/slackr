@@ -38,7 +38,8 @@
 #'
 #' # or directly
 #' slackr_bot("Test message",
-#'            incoming_webhook_url = "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX")
+#'   incoming_webhook_url = "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX"
+#' )
 #' }
 #' @export
 slackr_bot <- function(...,
@@ -82,8 +83,7 @@ slackr_bot <- function(...,
       expr <- args[[i]]
 
       # do something, note all the newlines...Slack ``` needs them
-      tmp <- switch(
-        mode(expr),
+      tmp <- switch(mode(expr),
         # if it's actually an expression, iterate over it
         expression = {
           cat(sprintf("> %s\n", deparse(expr)))

@@ -21,8 +21,7 @@
 #' @return A `tibble` with message metadata
 #' @references <https://api.slack.com/methods/conversations.history>
 #'
-slackr_history <- function(
-                           channel = Sys.getenv("SLACK_CHANNEL"),
+slackr_history <- function(channel = Sys.getenv("SLACK_CHANNEL"),
                            token = Sys.getenv("SLACK_TOKEN"),
                            posted_to_time = as.numeric(Sys.time()),
                            message_count,

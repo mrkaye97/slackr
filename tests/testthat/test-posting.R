@@ -109,4 +109,3 @@ test_that("ggslackr works from in a function", {
   res <- f()
   expect_equal(res$ok, TRUE)
 })
-
