@@ -27,7 +27,7 @@
 #' }
 #' @export
 ggslackr <- function(plot = last_plot(),
-                     channel = Sys.getenv("SLACK_CHANNEL"),
+                     channels = Sys.getenv("SLACK_CHANNEL"),
                      scale = 1,
                      width = par("din")[1],
                      height = par("din")[2],
