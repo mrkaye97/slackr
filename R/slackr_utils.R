@@ -40,12 +40,12 @@ slackr_census_fun <- function(token = Sys.getenv("SLACK_TOKEN")) {
   chan <- slackr_channels(token)
 
   if (is.null(chan) || nrow(chan) == 0) {
-    stop("slackr is not seeing any channels in your workspace. ", msg)
+    abort("slackr is not seeing any channels in your workspace. ", msg)
   }
 
   users <- slackr_ims(token)
   if (is.null(chan) || nrow(chan) == 0) {
-    stop("slackr is not seeing any users in your workspace. ", msg)
+    abort("slackr is not seeing any users in your workspace. ", msg)
   }
 
   chan$name <- sprintf("#%s", chan$name)
@@ -121,7 +121,7 @@ slackr_ims <- function(token = Sys.getenv("SLACK_TOKEN")) {
   users <- slackr_users(token = token)
 
   if ((nrow(ims) == 0) | (nrow(users) == 0)) {
-    stop("slackr is not seeing any users in your workspace. Are you sure you have the right scopes enabled? See the readme for details.")
+    abort("slackr is not seeing any users in your workspace. Are you sure you have the right scopes enabled? See the readme for details.")
   }
 
   left_join(users, ims, by = "id")

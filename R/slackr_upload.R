@@ -19,7 +19,7 @@ slackr_upload <- function(filename, title = basename(filename),
                           initial_comment = basename(filename),
                           channels = Sys.getenv("SLACK_CHANNEL"),
                           token = Sys.getenv("SLACK_TOKEN")) {
-  if (channels == "") stop("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
+  if (channels == "") abort("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
   f_path <- path.expand(filename)
 
   if (file.exists(f_path)) {
@@ -39,10 +39,10 @@ slackr_upload <- function(filename, title = basename(filename),
       )
     )
 
-    if (!content(res)$ok) stop(content(res)$error, " -- Are you sure you used the right token and channel name?")
+    if (!content(res)$ok) abort(content(res)$error, " -- Are you sure you used the right token and channel name?")
 
     return(invisible(res))
   } else {
-    stop(sprintf("File [%s] not found", f_path), call. = FALSE)
+    abort(sprintf("File [%s] not found", f_path), call. = FALSE)
   }
 }

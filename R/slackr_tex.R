@@ -87,6 +87,6 @@ check_tex_pkg <- function() {
   )
 
   if (!is_installed) {
-    stop("texPreview package is not installed, run ?slackr_tex and see Details.", call. = FALSE)
+    abort("texPreview package is not installed, run ?slackr_tex and see Details.", call. = FALSE)
   }
 }

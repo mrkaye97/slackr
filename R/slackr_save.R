@@ -23,7 +23,7 @@ slackr_save <- function(...,
                         file = "slackr",
                         token = Sys.getenv("SLACK_TOKEN"),
                         plot_text = "") {
-  if (channels == "") stop("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
+  if (channels == "") abort("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
 
   loc <- Sys.getlocale("LC_CTYPE")
   Sys.setlocale("LC_CTYPE", "C")

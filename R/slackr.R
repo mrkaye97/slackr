@@ -35,7 +35,7 @@ slackr <- function(...,
                    icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
                    token = Sys.getenv("SLACK_TOKEN")) {
   if ((token == "") | is.na(token)) {
-    stop("No token specified. Did you forget to call slackr_setup()?", call. = FALSE)
+    abort("No token specified. Did you forget to call slackr_setup()?", call. = FALSE)
   }
 
   resp_ret <- ""
@@ -88,7 +88,7 @@ slackr <- function(...,
         logical = ,
         numeric = cat(sprintf("%s\n\n", as.character(expr))),
         character = cat(sprintf("%s\n\n", expr)),
-        stop("mode of argument not handled at present by slackr")
+        abort("mode of argument not handled at present by slackr")
       )
 
       for (item in tmp) {
@@ -155,7 +155,7 @@ slackr_msg <- function(txt = "",
                        token = Sys.getenv("SLACK_TOKEN"),
                        ...) {
   if (token == "") {
-    stop("No token specified. Did you forget to call slackr_setup()?", call. = FALSE)
+    abort("No token specified. Did you forget to call slackr_setup()?", call. = FALSE)
   }
 
   output <- paste0(txt, collapse = "\n\n")

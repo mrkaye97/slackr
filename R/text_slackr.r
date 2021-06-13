@@ -33,19 +33,19 @@ text_slackr <- function(text, ..., preformatted = TRUE,
   .Deprecated(new = "slackr_msg")
 
   if (length(text) > 1) {
-    stop("text must be a vector of length one")
+    abort("text must be a vector of length one")
   }
   if (!is.character(channel) | length(channel) > 1) {
-    stop("channel must be a character vector of length one")
+    abort("channel must be a character vector of length one")
   }
   if (!is.logical(preformatted) | length(preformatted) > 1) {
-    stop("preformatted must be a logical vector of length one")
+    abort("preformatted must be a logical vector of length one")
   }
   if (!is.character(username) | length(username) > 1) {
-    stop("username must be a character vector of length one")
+    abort("username must be a character vector of length one")
   }
   if (!is.character(token) | length(token) > 1) {
-    stop("api_token must be a character vector of length one")
+    abort("api_token must be a character vector of length one")
   }
 
   text <- as.character(text)

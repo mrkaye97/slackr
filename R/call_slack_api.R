@@ -29,7 +29,7 @@ stop_for_status <- function(r) {
       sapply(seq_along(cr), function(i) paste(names(cr)[i], ":=", unname(cr)[i])),
       collapse = "\n"
     )
-    warning(
+    warn(
       "\n",
       "The slack API returned an error: ", error_msg, "\n",
       additional_msg,
@@ -55,7 +55,7 @@ with_retry <- function(fun) {
     r <- fun()
     if (r$status_code == 429) {
       retry_after <- headers(r)[["retry-after"]]
-      message("\nPausing for ", retry_after, " seconds due to Slack API rate limit")
+      inform("\nPausing for ", retry_after, " seconds due to Slack API rate limit")
       Sys.sleep(retry_after)
     } else {
       ok <- TRUE
@@ -88,7 +88,7 @@ call_slack_api <- function(
     token <- Sys.getenv("SLACK_TOKEN", "")
   }
   if (is.null(token) || token == "") {
-    warning("Provide a value for token",
+    warn("Provide a value for token",
       immediate. = TRUE,
       call. = FALSE
     )
@@ -142,7 +142,7 @@ call_slack_api <- function(
 add_cursor_get <- function(..., .next_cursor = "") {
   z <- list(...)
   if (!is.null(.next_cursor) && .next_cursor != "") {
-    # message("Appending cursor to query")
+    # inform("Appending cursor to query")
     z <- append(z, list(cursor = .next_cursor))
   }
   z
@@ -151,7 +151,7 @@ add_cursor_get <- function(..., .next_cursor = "") {
 add_cursor_post <- function(..., .next_cursor = "") {
   z <- list(...)[[1]]
   if (!is.null(.next_cursor) && .next_cursor != "") {
-    message("Appending cursor to query")
+    inform("Appending cursor to query")
     z <- append(z, list(cursor = .next_cursor))
   }
   z
@@ -203,8 +203,8 @@ with_pagination <- function(fun, extract) {
       done <- TRUE
       next_cursor <- ""
     } else {
-      if (gn == old_cursor) stop("Repeating cursor: ", gn)
-      message(".", appendLF = FALSE)
+      if (gn == old_cursor) abort("Repeating cursor: ", gn)
+      inform(".", appendLF = FALSE)
       had_to_cursor <- TRUE
       old_cursor <- next_cursor
       next_cursor <- gn
@@ -218,7 +218,7 @@ with_pagination <- function(fun, extract) {
       )
     }
   }
-  if (had_to_cursor) message("")
+  if (had_to_cursor) inform("")
   result
 }
 

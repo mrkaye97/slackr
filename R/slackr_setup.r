@@ -57,7 +57,7 @@ slackr_setup <- function(channel="#general",
                          cache_dir = '') {
 
   if (!missing(cacheChannels)) {
-    warning('cacheChannels parameter is deprecated as of slackr 2.1.0. channels are now auto-cached with memoization')
+    warn('cacheChannels parameter is deprecated as of slackr 2.1.0. channels are now auto-cached with memoization')
   }
 
   Sys.setenv(SLACK_CACHE_DIR = cache_dir)
@@ -78,7 +78,7 @@ slackr_setup <- function(channel="#general",
 
   } else {
     if (token == '') {
-      stop("No config file found. Please specify your Slack bot OAuth token\n   with the token argument in slackr_setup().")
+      abort("No config file found. Please specify your Slack bot OAuth token\n   with the token argument in slackr_setup().")
     }
     Sys.setenv(SLACK_CHANNEL=channel)
     Sys.setenv(SLACK_USERNAME=username)
@@ -120,6 +120,7 @@ slackr_setup <- function(channel="#general",
 #' @param icon_emoji the icon emoji to use as the default
 #' @param username the username to send messages from (will default to "slackr" if no username is set)
 #' @param channel the channel to send messages to (will default to "#general" if no channel is set)
+#' @importFrom rlang inform
 #' @seealso [slackr_setup()]
 #' @examples
 #' \dontrun{
@@ -159,7 +160,7 @@ create_config_file <- function(filename = '~/.slackr',
     append = FALSE
   )
 
-  message(
+  inform(
     paste('Successfully wrote config file to', filename)
   )
 
@@ -193,7 +194,7 @@ slackr_teardown <- function() {
       )
     )
 
-  message('Successfully tore down environment variables created by slackr_setup()')
+  inform('Successfully tore down environment variables created by slackr_setup()')
 
   return(
     invisible(TRUE)

@@ -16,6 +16,7 @@
 #' @param username Deprecated. will have no effect
 #' @param icon_emoji Deprecated. will have no effect
 #' @importFrom utils URLencode
+#' @importFrom rlang warn abort
 #' @note You need a <https://www.slack.com> account and will also need to
 #'   setup an incoming webhook: <https://api.slack.com/>. Old style webhooks are
 #'   no longer supported.
@@ -46,12 +47,12 @@ slackr_bot <- function(...,
                        icon_emoji = "",
                        incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX")) {
   if (incoming_webhook_url == "" | is.na(incoming_webhook_url)) {
-    stop("No incoming webhook URL specified. Did you forget to call slackr_setup()?", call. = FALSE)
+    abort("No incoming webhook URL specified. Did you forget to call slackr_setup()?", call. = FALSE)
   }
 
-  if (channel != "") warning("The channel argument is deprecated as of slackr 2.1.1, as it no longer has any effect when used with a webhook")
-  if (username != "") warning("The username argument is deprecated as of slackr 2.1.1, as it no longer has any effect when used with a webhook")
-  if (icon_emoji != "") warning("The icon_emoji argument is deprecated as of slackr 2.1.1, as it no longer has any effect when used with a webhook")
+  if (channel != "") warn("The channel argument is deprecated as of slackr 2.1.1, as it no longer has any effect when used with a webhook")
+  if (username != "") warn("The username argument is deprecated as of slackr 2.1.1, as it no longer has any effect when used with a webhook")
+  if (icon_emoji != "") warn("The icon_emoji argument is deprecated as of slackr 2.1.1, as it no longer has any effect when used with a webhook")
 
   if (!missing(...)) {
 
@@ -102,7 +103,7 @@ slackr_bot <- function(...,
         logical = ,
         numeric = cat(sprintf("%s\n\n", as.character(expr))),
         character = cat(sprintf("%s\n\n", expr)),
-        stop("mode of argument not handled at present by slackr")
+        abort("mode of argument not handled at present by slackr")
       )
 
       for (item in tmp) {
