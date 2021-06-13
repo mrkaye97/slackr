@@ -9,13 +9,13 @@
 #' @keywords internal
 #' @noRd
 #' @references https://api.slack.com/methods/conversations.list
-list_channels <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"), types = "public_channel", exclude_archived = TRUE, ...) {
+list_channels <- function(token = Sys.getenv("SLACK_TOKEN"), types = "public_channel", exclude_archived = TRUE, ...) {
   with_pagination(
     function(cursor) {
       call_slack_api(
         "/api/conversations.list",
         .method = GET,
-        bot_user_oauth_token = bot_user_oauth_token,
+        token = token,
         types = types,
         exclude_archived = exclude_archived,
         limit = 1000,
@@ -33,13 +33,13 @@ list_channels <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUT
 #' @keywords internal
 #' @noRd
 #' @references https://api.slack.com/methods/users.list
-list_users <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"), ...) {
+list_users <- function(token = Sys.getenv("SLACK_TOKEN"), ...) {
   with_pagination(
     function(cursor) {
       call_slack_api(
         "/api/users.list",
         .method = GET,
-        bot_user_oauth_token = bot_user_oauth_token,
+        token = token,
         ...,
         .next_cursor = cursor
       )
@@ -67,13 +67,13 @@ post_message <- function(
                          channel,
                          emoji = "",
                          username = Sys.getenv("SLACK_USERNAME"),
-                         bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                         token = Sys.getenv("SLACK_TOKEN"),
                          ...) {
   z <-
     call_slack_api(
       "/api/chat.postMessage",
       .method = POST,
-      bot_user_oauth_token = bot_user_oauth_token,
+      token = token,
       body = list(
         text       = txt,
         channel    = channel,
@@ -110,12 +110,12 @@ files_upload <- function(
                          channel,
                          txt = "",
                          username = Sys.getenv("SLACK_USERNAME"),
-                         bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                         token = Sys.getenv("SLACK_TOKEN"),
                          ...) {
   z <- call_slack_api(
     "/api/files.upload",
     .method = POST,
-    bot_user_oauth_token = bot_user_oauth_token,
+    token = token,
     body = list(
       file            = upload_file(file),
       initial_comment = txt,
@@ -128,11 +128,11 @@ files_upload <- function(
 }
 
 
-list_scopes <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+list_scopes <- function(token = Sys.getenv("SLACK_TOKEN")) {
   z <- call_slack_api(
     "/api/apps.permissions.scopes.list",
     .method = GET,
-    bot_user_oauth_token = bot_user_oauth_token
+    token = token
   )
   invisible(content(z))
 }

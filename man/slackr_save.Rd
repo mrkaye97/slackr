@@ -8,7 +8,7 @@ slackr_save(
   ...,
   channels = Sys.getenv("SLACK_CHANNEL"),
   file = "slackr",
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+  token = Sys.getenv("SLACK_TOKEN"),
   plot_text = ""
 )
 }
@@ -19,7 +19,7 @@ slackr_save(
 
 \item{file}{filename (without extension) to use}
 
-\item{bot_user_oauth_token}{Slack bot user OAuth token}
+\item{token}{Slack bot user OAuth token}
 
 \item{plot_text}{the plot text to send with the plot (defaults to "")}
 }

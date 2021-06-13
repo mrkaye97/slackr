@@ -6,7 +6,7 @@
 \usage{
 slackr_history(
   channel = Sys.getenv("SLACK_CHANNEL"),
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+  token = Sys.getenv("SLACK_TOKEN"),
   posted_to_time = as.numeric(Sys.time()),
   message_count,
   duration,
@@ -17,7 +17,7 @@ slackr_history(
 \arguments{
 \item{channel}{The channel to get history from}
 
-\item{bot_user_oauth_token}{the Slack bot user OAuth token}
+\item{token}{the Slack bot user OAuth token}
 
 \item{posted_to_time}{Timestamp of the last post to consider (default:
 current time)}

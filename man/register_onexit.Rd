@@ -13,7 +13,7 @@ register_onexit(
   channel = Sys.getenv("SLACK_CHANNEL"),
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+  token = Sys.getenv("SLACK_TOKEN")
 )
 }
 \arguments{
@@ -35,7 +35,7 @@ Default: parent.frame(2) (global environment)}
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
 
-\item{bot_user_oauth_token}{Slack bot user OAuth token}
+\item{token}{Slack bot user OAuth token}
 }
 \value{
 function

@@ -4,7 +4,7 @@
 #' specified Slack channel.
 #'
 #' @param channels list of channels to post image to
-#' @param bot_user_oauth_token the Slack full bot user OAuth token (chr)
+#' @param token the Slack full bot user OAuth token (chr)
 #' @param file prefix for filenames (defaults to `plot`)
 #' @param plot_text the plot text to send with the plot (defaults to "")
 #' @importFrom grDevices dev.copy dev.off png
@@ -27,7 +27,7 @@
 #' }
 #' @export
 slackr_dev <- function(channels = Sys.getenv("SLACK_CHANNEL"),
-                       bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                       token = Sys.getenv("SLACK_TOKEN"),
                        plot_text = "",
                        file = "plot") {
   loc <- Sys.getlocale("LC_CTYPE")
@@ -42,7 +42,7 @@ slackr_dev <- function(channels = Sys.getenv("SLACK_CHANNEL"),
     file = ftmp,
     channel = channels,
     txt = plot_text,
-    bot_user_oauth_token = bot_user_oauth_token
+    token = token
   )
 
   return(invisible(res))

@@ -4,16 +4,16 @@
 \alias{auth_test}
 \title{Checks authentication & identity against the Slack API.}
 \usage{
-auth_test(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"))
+auth_test(token = Sys.getenv("SLACK_TOKEN"))
 }
 \arguments{
-\item{bot_user_oauth_token}{The Slack bot OAuth token {character vector}}
+\item{token}{The Slack bot OAuth token {character vector}}
 }
 \description{
 Checks authentication & identity against the Slack API.
 }
 \examples{
-if (Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN") != "") {
+if (Sys.getenv("SLACK_TOKEN") != "") {
   auth_test()
 }
 }

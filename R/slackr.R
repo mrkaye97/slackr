@@ -12,7 +12,7 @@
 #' @param channel which channel to post the message to (chr)
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) `""` will mean use the default
-#' @param bot_user_oauth_token Slack bot user OAuth token
+#' @param token Slack bot user OAuth token
 #' @return the response (invisibly)
 #' @note You need a <https://www.slack.com> account and will also need to
 #'       setup an API token <https://api.slack.com/>
@@ -33,8 +33,8 @@ slackr <- function(...,
                    channel = Sys.getenv("SLACK_CHANNEL"),
                    username = Sys.getenv("SLACK_USERNAME"),
                    icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-                   bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-  if ((bot_user_oauth_token == "") | is.na(bot_user_oauth_token)) {
+                   token = Sys.getenv("SLACK_TOKEN")) {
+  if ((token == "") | is.na(token)) {
     stop("No token specified. Did you forget to call slackr_setup()?", call. = FALSE)
   }
 
@@ -113,7 +113,7 @@ slackr <- function(...,
 
     resp <-
       post_message(
-        bot_user_oauth_token = bot_user_oauth_token,
+        token = token,
         channel = channel,
         username = username,
         emoji = icon_emoji,
@@ -132,7 +132,7 @@ slackr <- function(...,
 #' @param channel which channel to post the message to (chr)
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) `""` will mean use the default
-#' @param bot_user_oauth_token Slack bot user OAuth token
+#' @param token Slack bot user OAuth token
 #' @return the response (invisibly)
 #' @param ... other arguments passed to the Slack API `chat.postMessage` call
 #' @note You need a <https://www.slack.com> account and will also need to
@@ -152,9 +152,9 @@ slackr_msg <- function(txt = "",
                        channel = Sys.getenv("SLACK_CHANNEL"),
                        username = Sys.getenv("SLACK_USERNAME"),
                        icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-                       bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                       token = Sys.getenv("SLACK_TOKEN"),
                        ...) {
-  if (bot_user_oauth_token == "") {
+  if (token == "") {
     stop("No token specified. Did you forget to call slackr_setup()?", call. = FALSE)
   }
 
@@ -169,7 +169,7 @@ slackr_msg <- function(txt = "",
       txt        = output,
       emoji = icon_emoji,
       channel    = channel,
-      bot_user_oauth_token = bot_user_oauth_token,
+      token = token,
       username = username,
       link_names = 1,
       ...

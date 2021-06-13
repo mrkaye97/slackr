@@ -7,7 +7,7 @@
 #' @param ... objects to store in the R data file
 #' @param channels Slack channels to save to (optional)
 #' @param file filename (without extension) to use
-#' @param bot_user_oauth_token Slack bot user OAuth token
+#' @param token Slack bot user OAuth token
 #' @param plot_text the plot text to send with the plot (defaults to "")
 #' @return `httr` response object from `POST` call
 #' @seealso [slackr_setup()], [slackr_dev()], [slackr_upload()]
@@ -21,7 +21,7 @@
 slackr_save <- function(...,
                         channels = Sys.getenv("SLACK_CHANNEL"),
                         file = "slackr",
-                        bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                        token = Sys.getenv("SLACK_TOKEN"),
                         plot_text = "") {
   if (channels == "") stop("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
 
@@ -38,7 +38,7 @@ slackr_save <- function(...,
     file = ftmp,
     channel = channels,
     txt = plot_text,
-    bot_user_oauth_token = bot_user_oauth_token,
+    token = token,
     filename = sprintf("%s.Rdata", file)
   )
 

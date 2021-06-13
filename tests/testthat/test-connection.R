@@ -8,7 +8,7 @@ test_that("Initial setup completes", {
         username = Sys.getenv("SLACK_USERNAME"),
         icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
         incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
-        bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+        token = Sys.getenv("SLACK_TOKEN")
       )
     } else {
       slackr_setup(
@@ -25,7 +25,7 @@ test_that("slackr_setup() connects", {
   expect_equal(
     slackr_setup(
       channel = "#test",
-      bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+      token = Sys.getenv("SLACK_TOKEN"),
       incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
       username = "slackr",
       icon_emoji = "robot_face"
@@ -34,7 +34,7 @@ test_that("slackr_setup() connects", {
   )
 
   expect_true(
-    grepl("^xox.-", Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"))
+    grepl("^xox.-", Sys.getenv("SLACK_TOKEN"))
   )
 
   expect_true(
@@ -53,7 +53,7 @@ test_that("config file setup works", {
   tmp <- tempfile()
   write.dcf(
     list(
-      bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+      token = Sys.getenv("SLACK_TOKEN"),
       channel = Sys.getenv("SLACK_CHANNEL"),
       username = Sys.getenv("SLACK_USERNAME"),
       incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"),

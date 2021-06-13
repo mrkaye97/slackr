@@ -6,7 +6,7 @@
 \usage{
 create_config_file(
   filename = "~/.slackr",
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+  token = Sys.getenv("SLACK_TOKEN"),
   incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
   username = Sys.getenv("SLACK_USERNAME"),
@@ -16,7 +16,7 @@ create_config_file(
 \arguments{
 \item{filename}{the name of the config file to save. We recommend using a hidden file (starting with '.')}
 
-\item{bot_user_oauth_token}{the Slack bot user OAuth token (Default: whatever is set as an env var)}
+\item{token}{the Slack bot user OAuth token (Default: whatever is set as an env var)}
 
 \item{incoming_webhook_url}{the incoming webhook URL (Default: whatever is set as an env var)}
 
@@ -38,7 +38,7 @@ Create the config file used in \code{slackr_setup()}
 create_config_file()
 
 # using `create_config_file()` before `slackr_setup()`
-create_config_file(bot_user_oauth_token = 'xox-',
+create_config_file(token = 'xox-',
   incoming_webhook_url = 'https://hooks-',
   channel = '#general',
   username = 'slackr',

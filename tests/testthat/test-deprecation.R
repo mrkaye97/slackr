@@ -44,7 +44,7 @@ test_that("slackr_setup deprecated args", {
   expect_warning(
     slackr_setup(
       channel = "#test",
-      bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+      token = Sys.getenv("SLACK_TOKEN"),
       incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
       cacheChannels = TRUE
     ),

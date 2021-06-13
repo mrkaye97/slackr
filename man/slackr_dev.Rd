@@ -6,7 +6,7 @@
 \usage{
 slackr_dev(
   channels = Sys.getenv("SLACK_CHANNEL"),
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+  token = Sys.getenv("SLACK_TOKEN"),
   plot_text = "",
   file = "plot"
 )
@@ -14,7 +14,7 @@ slackr_dev(
 \arguments{
 \item{channels}{list of channels to post image to}
 
-\item{bot_user_oauth_token}{the Slack full bot user OAuth token (chr)}
+\item{token}{the Slack full bot user OAuth token (chr)}
 
 \item{plot_text}{the plot text to send with the plot (defaults to "")}
 

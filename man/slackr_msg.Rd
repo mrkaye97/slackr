@@ -9,7 +9,7 @@ slackr_msg(
   channel = Sys.getenv("SLACK_CHANNEL"),
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+  token = Sys.getenv("SLACK_TOKEN"),
   ...
 )
 }
@@ -23,7 +23,7 @@ is passed in, they will be combined and separated by newlines.}
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
 
-\item{bot_user_oauth_token}{Slack bot user OAuth token}
+\item{token}{Slack bot user OAuth token}
 
 \item{...}{other arguments passed to the Slack API \code{chat.postMessage} call}
 }

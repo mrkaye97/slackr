@@ -7,7 +7,7 @@
 #'   You need one or more of these scopes enabled in your slack app: *
 #'   channels:history * groups:history * im:history * mpim:history
 #'
-#' @param bot_user_oauth_token the Slack bot user OAuth token
+#' @param token the Slack bot user OAuth token
 #' @param channel The channel to get history from
 #' @param posted_from_time Timestamp of the first post time to consider
 #' @param duration Number of hours of history to retrieve.  By default retrieves
@@ -23,7 +23,7 @@
 #'
 slackr_history <- function(
                            channel = Sys.getenv("SLACK_CHANNEL"),
-                           bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                           token = Sys.getenv("SLACK_TOKEN"),
                            posted_to_time = as.numeric(Sys.time()),
                            message_count,
                            duration,
@@ -40,7 +40,7 @@ slackr_history <- function(
       resp <- call_slack_api(
         "/api/conversations.history",
         .method   = GET,
-        bot_user_oauth_token = bot_user_oauth_token,
+        token = token,
         channel   = channel,
         latest    = posted_to_time,
         oldest    = posted_from_time,
@@ -54,7 +54,7 @@ slackr_history <- function(
           call_slack_api(
             "/api/conversations.history",
             .method   = GET,
-            bot_user_oauth_token = bot_user_oauth_token,
+            token = token,
             channel   = channel,
             latest    = posted_to_time,
             oldest    = posted_from_time,

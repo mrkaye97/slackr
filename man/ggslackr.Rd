@@ -13,7 +13,7 @@ ggslackr(
   units = c("in", "cm", "mm"),
   dpi = 300,
   limitsize = TRUE,
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+  token = Sys.getenv("SLACK_TOKEN"),
   file = "ggplot",
   ...
 )
@@ -37,7 +37,7 @@ ggslackr(
 \item{limitsize}{when TRUE (the default), ggsave will not save images larger
 than 50x50 inches, to prevent the common error of specifying dimensions in pixels.}
 
-\item{bot_user_oauth_token}{the Slack bot user OAuth token (chr)}
+\item{token}{the Slack bot user OAuth token (chr)}
 
 \item{file}{prefix for filenames (defaults to \code{ggplot})}
 

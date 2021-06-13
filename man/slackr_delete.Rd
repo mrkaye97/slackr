@@ -7,7 +7,7 @@
 slackr_delete(
   count,
   channel = Sys.getenv("SLACK_CHANNEL"),
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+  token = Sys.getenv("SLACK_TOKEN")
 )
 }
 \arguments{
@@ -15,7 +15,7 @@ slackr_delete(
 
 \item{channel}{the channel to delete from}
 
-\item{bot_user_oauth_token}{the Slack bot user OAuth token}
+\item{token}{the Slack bot user OAuth token}
 }
 \description{
 Deletes the specified number of messages from the channel

@@ -81,14 +81,14 @@ with_retry <- function(fun) {
 #'
 call_slack_api <- function(
                            path, ..., body = NULL, .method = c("GET", "POST"),
-                           bot_user_oauth_token,
+                           token,
                            .verbose = Sys.getenv("SLACKR_VERBOSE", "FALSE"),
                            .next_cursor = "") {
-  if (missing(bot_user_oauth_token) || is.null(bot_user_oauth_token)) {
-    bot_user_oauth_token <- Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN", "")
+  if (missing(token) || is.null(token)) {
+    token <- Sys.getenv("SLACK_TOKEN", "")
   }
-  if (is.null(bot_user_oauth_token) || bot_user_oauth_token == "") {
-    warning("Provide a value for bot_user_oauth_token",
+  if (is.null(token) || token == "") {
+    warning("Provide a value for token",
       immediate. = TRUE,
       call. = FALSE
     )
@@ -116,7 +116,7 @@ call_slack_api <- function(
         url = url,
         path = path,
         add_headers(
-          .headers = c(Authorization = paste("Bearer", bot_user_oauth_token))
+          .headers = c(Authorization = paste("Bearer", token))
         ),
         query = add_cursor_get(..., .next_cursor = .next_cursor)
         # ...
@@ -126,7 +126,7 @@ call_slack_api <- function(
         url = url,
         path = path,
         add_headers(
-          .headers = c(Authorization = paste("Bearer", bot_user_oauth_token))
+          .headers = c(Authorization = paste("Bearer", token))
         ),
         body = add_cursor_post(body, .next_cursor = .next_cursor)
       )
@@ -161,7 +161,7 @@ add_cursor_post <- function(..., .next_cursor = "") {
 
 
 # POST("https://slack.com/api/conversations.list?limit=500&types=public_channel,private_channel",
-# httr::add_headers(Authorization = bot_user_oauth_token))
+# httr::add_headers(Authorization = token))
 
 get_next_cursor <- function(x) {
   content(x)[["response_metadata"]][["next_cursor"]]
@@ -225,7 +225,7 @@ with_pagination <- function(fun, extract) {
 
 #' Checks authentication & identity against the Slack API.
 #'
-#' @param bot_user_oauth_token The Slack bot OAuth token {character vector}
+#' @param token The Slack bot OAuth token {character vector}
 #'
 #' @references https://api.slack.com/methods/auth.test
 #' @export
@@ -233,14 +233,14 @@ with_pagination <- function(fun, extract) {
 #' @importFrom jsonlite fromJSON
 #'
 #' @examples
-#' if (Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN") != "") {
+#' if (Sys.getenv("SLACK_TOKEN") != "") {
 #'   auth_test()
 #' }
-auth_test <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+auth_test <- function(token = Sys.getenv("SLACK_TOKEN")) {
   call_slack_api(
     "/api/auth.test",
     .method = GET,
-    bot_user_oauth_token = bot_user_oauth_token,
+    token = token,
     types = "public_channel,private_channel"
   ) %>%
     content()

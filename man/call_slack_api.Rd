@@ -9,7 +9,7 @@ call_slack_api(
   ...,
   body = NULL,
   .method = c("GET", "POST"),
-  bot_user_oauth_token,
+  token,
   .verbose = Sys.getenv("SLACKR_VERBOSE", "FALSE"),
   .next_cursor = ""
 )
@@ -23,7 +23,7 @@ call_slack_api(
 
 \item{.method}{Either "GET" or "POST"}
 
-\item{bot_user_oauth_token}{The Slack bot OAuth token {character vector}}
+\item{token}{The Slack bot OAuth token {character vector}}
 
 \item{.verbose}{If TRUE, prints \code{httr} verbose messages.  Useful for debugging.}
 

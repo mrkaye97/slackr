@@ -11,7 +11,7 @@
 #'  Prepend direct messages with an @@
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) `""` will mean use the default
-#' @param bot_user_oauth_token your full Slack bot user OAuth token
+#' @param token your full Slack bot user OAuth token
 #' @return `httr` response object (invisibly)
 #' @author Quinn Weber (aut), Bob Rudis (ctb)
 #' @note You can pass in `as_user=TRUE` as part of the `...` parameters and the Slack API
@@ -29,7 +29,7 @@ text_slackr <- function(text, ..., preformatted = TRUE,
                         channel = Sys.getenv("SLACK_CHANNEL"),
                         username = Sys.getenv("SLACK_USERNAME"),
                         icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-                        bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+                        token = Sys.getenv("SLACK_TOKEN")) {
   .Deprecated(new = "slackr_msg")
 
   if (length(text) > 1) {
@@ -44,7 +44,7 @@ text_slackr <- function(text, ..., preformatted = TRUE,
   if (!is.character(username) | length(username) > 1) {
     stop("username must be a character vector of length one")
   }
-  if (!is.character(bot_user_oauth_token) | length(bot_user_oauth_token) > 1) {
+  if (!is.character(token) | length(token) > 1) {
     stop("api_token must be a character vector of length one")
   }
 
@@ -67,7 +67,7 @@ text_slackr <- function(text, ..., preformatted = TRUE,
   resp <- POST(
     url = "https://slack.com/api/chat.postMessage",
     body = list(
-      token = bot_user_oauth_token,
+      token = token,
       channel = channel,
       username = username,
       icon_emoji = icon_emoji,
