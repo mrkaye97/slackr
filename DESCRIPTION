@@ -37,7 +37,8 @@ Imports:
     methods,
     rlang,
     tibble,
-    utils
+    utils,
+    withr
 Suggests:
     covr,
     knitr,

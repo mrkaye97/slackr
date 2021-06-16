@@ -7,7 +7,7 @@
 #' By default, everything but `expr` will be looked for in a "`SLACK_`"
 #' environment variable. You can override or just specify these values directly instead,
 #' but it's probably better to call [slackr_setup()] first.
-#'
+#' @importFrom withr local_options
 #' @param ... expressions to be sent to Slack
 #' @param channel which channel to post the message to (chr)
 #' @param username what user should the bot be named as (chr)
@@ -37,6 +37,7 @@ slackr <- function(...,
                    token = Sys.getenv("SLACK_TOKEN"),
                    bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
+  local_options(list(cli.num_colors = 1))
   token <- check_tokens(token, bot_user_oauth_token)
 
   warn_for_args(
