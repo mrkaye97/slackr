@@ -45,8 +45,6 @@ slackr <- function(...,
     icon_emoji = icon_emoji
   )
 
-  resp_ret <- ""
-
   if (!missing(...)) {
 
     # mimics capture.output
