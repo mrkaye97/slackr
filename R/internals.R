@@ -4,7 +4,6 @@
 #' @param bot_user_oauth_token another token
 #' @return A token
 check_tokens <- function(token, bot_user_oauth_token) {
-
   if (token == "" & bot_user_oauth_token == "") {
     abort("No token found. Did you forget to call `slackr_setup()`?")
   }
@@ -31,7 +30,6 @@ check_tokens <- function(token, bot_user_oauth_token) {
 #' @return No return value. Called for side effects
 warn_for_args <- function(token, ...) {
   if (substr(token, 1L, 4L) == "xoxp") {
-
     all_args <- list(...)
     non_missing_args <- all_args[all_args != ""]
 

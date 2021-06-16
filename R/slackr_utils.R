@@ -6,7 +6,6 @@
 #' @importFrom dplyr bind_cols setdiff
 #' @export
 slackr_users <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-
   token <- check_tokens(token, bot_user_oauth_token)
 
   members <- list_users()
@@ -25,7 +24,6 @@ slackr_users <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token
 #' @return data.table of channels
 #' @export
 slackr_channels <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-
   token <- check_tokens(token, bot_user_oauth_token)
 
   c1 <- list_channels(token = token, types = "public_channel")
@@ -45,7 +43,6 @@ slackr_channels <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_to
 #' @return `data.frame` of im ids and user names
 #' @export
 slackr_ims <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-
   token <- check_tokens(token, bot_user_oauth_token)
 
   loc <- Sys.getlocale("LC_CTYPE")
@@ -76,14 +73,13 @@ slackr_ims <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token =
 #'          `@@` channels replaced with ID's.
 #' @export
 slackr_chtrans <- function(channels, token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-
   token <- check_tokens(token, bot_user_oauth_token)
   channel_cache <- slackr_census(token, bot_user_oauth_token)
 
   chan_xref <-
     channel_cache[(channel_cache$name %in% channels) |
-                    (channel_cache$real_name %in% channels) |
-                    (channel_cache$id %in% channels), ]
+      (channel_cache$real_name %in% channels) |
+      (channel_cache$id %in% channels), ]
 
   ifelse(
     is.na(chan_xref$id),
@@ -143,4 +139,3 @@ if (cache_dir == "") {
 } else {
   slackr_census <- memoise::memoise(slackr_census_fun, cache = cachem::cache_disk(dir = cache_dir))
 }
-

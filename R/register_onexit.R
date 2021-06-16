@@ -66,7 +66,6 @@ register_onexit <- function(f,
                             icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
                             token = Sys.getenv("SLACK_TOKEN"),
                             bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-
   token <- check_tokens(token, bot_user_oauth_token)
 
   warn_for_args(

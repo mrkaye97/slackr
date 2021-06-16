@@ -25,7 +25,6 @@ slackr_save <- function(...,
                         token = Sys.getenv("SLACK_TOKEN"),
                         plot_text = "",
                         bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-
   token <- check_tokens(token, bot_user_oauth_token)
 
   if (channels == "") abort("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")

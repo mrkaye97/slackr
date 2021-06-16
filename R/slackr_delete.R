@@ -10,7 +10,6 @@ slackr_delete <- function(count,
                           channel = Sys.getenv("SLACK_CHANNEL"),
                           token = Sys.getenv("SLACK_TOKEN"),
                           bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-
   token <- check_tokens(token, bot_user_oauth_token)
 
   if (!is.character(channel) | length(channel) > 1) {

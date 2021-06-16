@@ -40,7 +40,6 @@
 #' }
 #' @export
 slackr_bot <- function(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL")) {
-
   local_options(list(cli.num_colors = 1))
 
   if (incoming_webhook_url == "" | is.na(incoming_webhook_url)) {
