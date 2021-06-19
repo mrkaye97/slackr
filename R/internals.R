@@ -6,8 +6,12 @@
 #' @importFrom rlang as_string
 #' @return A token
 check_tokens <- function(token, bot_user_oauth_token) {
-
-  calling_fun <- tryCatch({as_string(as.list(sys.call(-1))[[1]])}, error = function(e) "an unknown function")
+  calling_fun <- tryCatch(
+    {
+      as_string(as.list(sys.call(-1))[[1]])
+    },
+    error = function(e) "an unknown function"
+  )
   dep_arg1 <- sprintf("%s(bot_user_oauth_token)", calling_fun)
   dep_arg2 <- sprintf("%s(token)", calling_fun)
 
