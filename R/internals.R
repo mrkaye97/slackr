@@ -2,8 +2,15 @@
 #'
 #' @param token a token
 #' @param bot_user_oauth_token another token
+#' @importFrom lifecycle deprecate_warn
+#' @importFrom rlang as_string
 #' @return A token
 check_tokens <- function(token, bot_user_oauth_token) {
+
+  calling_fun <- tryCatch({as_string(as.list(sys.call(-1))[[1]])}, error = function(e) "an unknown function")
+  dep_arg1 <- sprintf("%s(bot_user_oauth_token)", calling_fun)
+  dep_arg2 <- sprintf("%s(token)", calling_fun)
+
   if (token == "" & bot_user_oauth_token == "") {
     abort("No token found. Did you forget to call `slackr_setup()`?")
   }
@@ -15,7 +22,7 @@ check_tokens <- function(token, bot_user_oauth_token) {
   }
 
   if (bot_user_oauth_token != "") {
-    warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
+    deprecate_warn("3.0.0", dep_arg1, dep_arg2)
 
     return(bot_user_oauth_token)
   }

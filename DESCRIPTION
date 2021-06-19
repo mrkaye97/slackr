@@ -31,6 +31,7 @@ Imports:
     graphics,
     grDevices,
     httr (>= 1.4.2),
+    lifecycle,
     jsonlite,
     magrittr,
     memoise (>= 2.0.0),
