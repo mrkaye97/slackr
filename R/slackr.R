@@ -36,6 +36,7 @@ slackr <- function(...,
                    icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
                    token = Sys.getenv("SLACK_TOKEN"),
                    bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+
   local_options(list(cli.num_colors = 1))
   token <- check_tokens(token, bot_user_oauth_token)
 
@@ -112,9 +113,11 @@ slackr <- function(...,
     # combined all of them (rval is a character vector)
     output <- paste0(rval, collapse = "\n")
 
-    loc <- Sys.getlocale("LC_CTYPE")
-    Sys.setlocale("LC_CTYPE", "C")
-    on.exit(Sys.setlocale("LC_CTYPE", loc))
+    local_locale(
+      list(
+        "LC_CTYPE" = "C"
+      )
+    )
 
     resp <-
       post_message(
@@ -171,9 +174,11 @@ slackr_msg <- function(txt = "",
 
   output <- paste0(txt, collapse = "\n\n")
 
-  loc <- Sys.getlocale("LC_CTYPE")
-  Sys.setlocale("LC_CTYPE", "C")
-  on.exit(Sys.setlocale("LC_CTYPE", loc))
+  local_locale(
+    list(
+      "LC_CTYPE" = "C"
+    )
+  )
 
   z <-
     post_message(

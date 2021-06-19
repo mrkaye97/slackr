@@ -32,11 +32,12 @@ slackr_dev <- function(channels = Sys.getenv("SLACK_CHANNEL"),
                        plot_text = "",
                        file = "plot",
                        bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+
   token <- check_tokens(token, bot_user_oauth_token)
 
-  loc <- Sys.getlocale("LC_CTYPE")
-  Sys.setlocale("LC_CTYPE", "C")
-  on.exit(Sys.setlocale("LC_CTYPE", loc))
+  local_locale(
+    list("LC_CTYPE" = "C")
+  )
 
   ftmp <- tempfile(file, fileext = ".png")
   dev.copy(png, file = ftmp)
