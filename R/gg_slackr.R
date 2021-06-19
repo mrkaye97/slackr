@@ -19,7 +19,6 @@
 #' @param ... other arguments passed to graphics device
 #' @importFrom ggplot2 ggsave last_plot ggplot aes geom_point
 #' @importFrom graphics par
-#' @importFrom withr local_locale
 #' @return `httr` response object (invisibly)
 #' @examples
 #' \dontrun{
