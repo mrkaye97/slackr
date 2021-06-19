@@ -34,11 +34,9 @@ slackr_tex <- function(obj,
   # check if texPreview is installed, if not provide feedback
   check_tex_pkg()
 
-  local_locale(
-    list(
-      "LC_CTYPE" = "C"
-    )
-  )
+  loc <- Sys.getlocale("LC_CTYPE")
+  Sys.setlocale("LC_CTYPE", "C")
+  on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   if (!is.null(path)) {
     td <- path

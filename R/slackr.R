@@ -112,11 +112,9 @@ slackr <- function(...,
     # combined all of them (rval is a character vector)
     output <- paste0(rval, collapse = "\n")
 
-    local_locale(
-      list(
-        "LC_CTYPE" = "C"
-      )
-    )
+    loc <- Sys.getlocale("LC_CTYPE")
+    Sys.setlocale("LC_CTYPE", "C")
+    on.exit(Sys.setlocale("LC_CTYPE", loc))
 
     resp <-
       post_message(
@@ -173,11 +171,9 @@ slackr_msg <- function(txt = "",
 
   output <- paste0(txt, collapse = "\n\n")
 
-  local_locale(
-    list(
-      "LC_CTYPE" = "C"
-    )
-  )
+  loc <- Sys.getlocale("LC_CTYPE")
+  Sys.setlocale("LC_CTYPE", "C")
+  on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   z <-
     post_message(
