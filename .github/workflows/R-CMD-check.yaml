@@ -82,7 +82,7 @@ jobs:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
         run: |
           options(crayon.enabled = TRUE)
-          devtools::check(manual = FALSE, cran = TRUE, vignettes = FALSE, error_on = "note", check_dir = "check")
+          devtools::check(manual = FALSE, cran = TRUE, vignettes = FALSE, error_on = "note", check_dir = "check", args = "--no-examples")
         shell: Rscript {0}
 
       - name: Upload check results
