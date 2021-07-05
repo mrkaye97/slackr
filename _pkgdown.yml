@@ -26,14 +26,3 @@ reference:
   - -matches("[Ss]lackr")
   - -register_onexit
 
-- title: "Deprecated functions"
-  desc: >
-    These functions have all been superceded by their `snake_case` and `slackr_{fn}` equivalents
-- contents:
-  - matches(".*?\\..*")
-  - matches("slackr[A-Z].*")
-  - -starts_with("slackr_")
-  - textSlackr
-  - tex_slackr
-  - save_slackr
-  - dev_slackr
