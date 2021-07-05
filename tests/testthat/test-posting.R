@@ -98,7 +98,6 @@ test_that("ggslackr works from in a function", {
     ggslackr(plt)
   }
 
-
   res <- f()
   expect_equal(res$ok, TRUE)
 })

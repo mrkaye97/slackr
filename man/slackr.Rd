@@ -6,7 +6,7 @@
 \usage{
 slackr(
   ...,
-  channels = Sys.getenv("SLACK_CHANNEL"),
+  channel = Sys.getenv("SLACK_CHANNEL"),
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
   token = Sys.getenv("SLACK_TOKEN")
@@ -15,13 +15,13 @@ slackr(
 \arguments{
 \item{...}{expressions to be sent to Slack.}
 
+\item{channel}{Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See the \href{https://api.slack.com/methods/chat.postMessage#channels}{chat.postMessage endpoint documentation} for details.}
+
 \item{username}{what user should the bot be named as (chr).}
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default.}
 
 \item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
-
-\item{channel}{Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See the \href{https://api.slack.com/methods/chat.postMessage#channels}{chat.postMessage endpoint documentation} for details.}
 }
 \value{
 the response (invisibly)
