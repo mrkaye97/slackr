@@ -30,7 +30,7 @@
 #' }
 #' @export
 slackr <- function(...,
-                   channels = Sys.getenv("SLACK_CHANNEL"),
+                   channel = Sys.getenv("SLACK_CHANNEL"),
                    username = Sys.getenv("SLACK_USERNAME"),
                    icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
                    token = Sys.getenv("SLACK_TOKEN")) {
@@ -112,7 +112,7 @@ slackr <- function(...,
     resp <-
       post_message(
         token = token,
-        channels = channels,
+        channel = channel,
         username = username,
         emoji = icon_emoji,
         txt = sprintf("```%s```", output),
@@ -147,7 +147,7 @@ slackr <- function(...,
 #' }
 #' @export
 slackr_msg <- function(txt = "",
-                       channels = Sys.getenv("SLACK_CHANNEL"),
+                       channel = Sys.getenv("SLACK_CHANNEL"),
                        username = Sys.getenv("SLACK_USERNAME"),
                        icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
                        token = Sys.getenv("SLACK_TOKEN"),
@@ -165,7 +165,7 @@ slackr_msg <- function(txt = "",
     post_message(
       txt        = output,
       emoji = icon_emoji,
-      channels    = channels,
+      channel    = channel,
       token = token,
       username = username,
       link_names = 1,
