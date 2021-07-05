@@ -25,7 +25,7 @@ is passed in, they will be combined and separated by newlines.}
 
 \item{...}{other arguments passed to the Slack API \code{chat.postMessage} call}
 
-\item{channel}{Comma-separated list of channel names or IDs where the file will be shared.}
+\item{channel}{Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See https://api.slack.com/methods/chat.postMessage#channels for more details.}
 }
 \value{
 the response (invisibly)

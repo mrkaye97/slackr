@@ -17,7 +17,7 @@ slackr_history(
 \arguments{
 \item{message_count}{The number of messages to retrieve (only when \code{paginate = FALSE})}
 
-\item{channel}{The channel to get history from}
+\item{channel}{Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See below for more details.}
 
 \item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 

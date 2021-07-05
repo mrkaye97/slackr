@@ -8,7 +8,7 @@
 #'   channels:history * groups:history * im:history * mpim:history
 #'
 #' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
-#' @param channel The channel to get history from
+#' @param channel Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See below for more details.
 #' @param posted_from_time Timestamp of the first post time to consider
 #' @param duration Number of hours of history to retrieve.  By default retrieves
 #'   24 hours of history.

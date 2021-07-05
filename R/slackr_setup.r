@@ -126,7 +126,7 @@ slackr_setup <- function(channel="#general",
 #' @param incoming_webhook_url the incoming webhook URL (Default: whatever is set as an env var)
 #' @param icon_emoji the icon emoji to use as the default
 #' @param username the username to send messages from (will default to "slackr" if no username is set)
-#' @param channel the channel to send messages to (will default to "#general" if no channel is set)
+#' @param channel Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See https://api.slack.com/methods/chat.postMessage#channels for more details.
 #' @importFrom rlang inform
 #' @seealso [slackr_setup()]
 #' @examples

@@ -24,7 +24,7 @@ create_config_file(
 
 \item{username}{the username to send messages from (will default to "slackr" if no username is set)}
 
-\item{channel}{the channel to send messages to (will default to "#general" if no channel is set)}
+\item{channel}{Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See https://api.slack.com/methods/chat.postMessage#channels for more details.}
 }
 \value{
 TRUE if successful (invisibly)

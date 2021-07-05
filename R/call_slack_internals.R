@@ -56,14 +56,14 @@ list_users <- function(token = Sys.getenv("SLACK_TOKEN"), ...) {
 #'
 #' @param txt Passed to `text` parameter of `chat.postMessage` API
 #' @param emoji Emoji
-#' @param channel Passed to `channel` parameter of `chat.postMessage` API
+#' @param channel Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See below for more details.
 #' @param username Passed to `username` parameter of `chat.postMessage` API
 #' @param as_user Passed to `as_user` parameter of `chat.postMessage` API
 #' @param link_names Passed to `link_names` parameter of `chat.postMessage` API
 #'
 #' @references https://api.slack.com/methods/chat.postMessage
 post_message <- function(txt,
-                         channels,
+                         channel,
                          emoji = "",
                          username = Sys.getenv("SLACK_USERNAME"),
                          token = Sys.getenv("SLACK_TOKEN"),
@@ -75,7 +75,7 @@ post_message <- function(txt,
       token = token,
       body = list(
         text       = txt,
-        channels    = channels,
+        channel    = channel,
         username   = username,
         link_names = 1,
         icon_emoji = emoji,

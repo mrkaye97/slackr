@@ -29,6 +29,8 @@ Default: FALSE}
 \item{env}{environment to assign appended function to with relation to the function environment,
 Default: parent.frame(2) (global environment)}
 
+\item{channel}{Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See https://api.slack.com/methods/chat.postMessage#channels for more details.}
+
 \item{username}{what user should the bot be named as (chr)}
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}

@@ -15,13 +15,13 @@ slackr(
 \arguments{
 \item{...}{expressions to be sent to Slack}
 
-\item{channels}{Comma-separated list of channel names or IDs where the file will be shared.}
-
 \item{username}{what user should the bot be named as (chr)}
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
 
 \item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
+
+\item{channel}{Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See https://api.slack.com/methods/chat.postMessage#channels for more details.}
 }
 \value{
 the response (invisibly)
