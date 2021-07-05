@@ -33,8 +33,6 @@ stop_for_status <- function(r) {
       "\n",
       "The slack API returned an error: ", error_msg, "\n",
       additional_msg,
-      call. = FALSE,
-      immediate. = TRUE
     )
   }
   invisible(NULL)
@@ -87,10 +85,7 @@ call_slack_api <- function(path, ..., body = NULL, .method = c("GET", "POST"),
     token <- Sys.getenv("SLACK_TOKEN", "")
   }
   if (is.null(token) || token == "") {
-    warn("Provide a value for token",
-      immediate. = TRUE,
-      call. = FALSE
-    )
+    warn("Provide a value for token")
   }
 
   url <- "https://slack.com"
