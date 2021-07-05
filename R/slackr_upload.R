@@ -15,10 +15,14 @@
 #' @return `httr` response object from `POST` call (invisibly)
 #' @importFrom httr add_headers upload_file
 #' @export
-slackr_upload <- function(filename, title = basename(filename),
-                          initial_comment = basename(filename),
-                          channels = Sys.getenv("SLACK_CHANNEL"),
-                          token = Sys.getenv("SLACK_TOKEN")) {
+slackr_upload <- function(
+  filename,
+  title = NULL,
+  initial_comment = NULL,
+  channels = Sys.getenv("SLACK_CHANNEL"),
+  token = Sys.getenv("SLACK_TOKEN"),
+  thread_ts = NULL
+) {
 
   if (channels == "") abort("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
   f_path <- path.expand(filename)
@@ -26,17 +30,14 @@ slackr_upload <- function(filename, title = basename(filename),
   if (file.exists(f_path)) {
     f_name <- basename(f_path)
 
-    res <- POST(
-      url = "https://slack.com/api/files.upload",
-      add_headers(`Content-Type` = "multipart/form-data"),
-      body = list(
-        file = upload_file(f_path), filename = f_name,
-        title = title, initial_comment = initial_comment,
-        token = token, channels = paste(channels, collapse = ",")
-      )
+    res <- files_upload(
+      file = f_path,
+      token = token,
+      channels = channels,
+      title = title,
+      initial_comment = initial_comment,
+      thread_ts = thread_ts
     )
-
-    if (!content(res)$ok) abort(content(res)$error, " -- Are you sure you used the right token and channel name?")
 
     return(invisible(res))
   } else {

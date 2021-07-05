@@ -26,6 +26,9 @@ slackr_tex <- function(obj,
                        token = Sys.getenv("SLACK_TOKEN"),
                        ext = "png",
                        path = NULL,
+                       title = NULL,
+                       initial_comment = NULL,
+                       thread_ts = NULL,
                        ...) {
 
   # check if texPreview is installed, if not provide feedback
@@ -47,14 +50,13 @@ slackr_tex <- function(obj,
     ...
   )
 
-  res <- POST(
-    url = "https://slack.com/api/files.upload",
-    add_headers(`Content-Type` = "multipart/form-data"),
-    body = list(
-      file = upload_file(file.path(td, paste0("slack.", ext))),
-      token = token,
-      channels = channels
-    )
+  res <- files_upload(
+    file = td,
+    channels = channels,
+    token = token,
+    title = title,
+    initial_comment = initial_comment,
+    thread_ts = thread_ts
   )
 
   # cleanup

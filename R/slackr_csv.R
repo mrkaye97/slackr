@@ -32,7 +32,7 @@ slackr_csv <- function(data,
     file = filename,
     title = title,
     initial_comment = initial_comment,
-    channel = channels,
+    channels = channels,
     token = token,
     thread_ts = thread_ts
   )

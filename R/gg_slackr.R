@@ -59,7 +59,7 @@ ggslackr <- function(plot = last_plot(),
   res <-
     files_upload(
       file = ftmp,
-      channel = channels,
+      channels = channels,
       token = token,
       initial_comment = initial_comment,
       thread_ts = thread_ts,
