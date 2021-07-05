@@ -10,6 +10,8 @@ slackr_msg(
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
   token = Sys.getenv("SLACK_TOKEN"),
+  thread_ts = NULL,
+  reply_broadcast = FALSE,
   ...
 )
 }
@@ -24,6 +26,10 @@ is passed in, they will be combined and separated by newlines.}
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default.}
 
 \item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
+
+\item{thread_ts}{Provide another message's ts value to make this message a reply. Avoid using a reply's ts value; use its parent instead.}
+
+\item{reply_broadcast}{Used in conjunction with thread_ts and indicates whether reply should be made visible to everyone in the channel or conversation. Defaults to FALSE.}
 
 \item{...}{other arguments passed to the Slack API \code{chat.postMessage} call}
 }

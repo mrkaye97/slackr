@@ -13,6 +13,8 @@
 #' @param username what user should the bot be named as (chr).
 #' @param icon_emoji what emoji to use (chr) `""` will mean use the default.
 #' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
+#' @param thread_ts Provide another message's ts value to make this message a reply. Avoid using a reply's ts value; use its parent instead.
+#' @param reply_broadcast Used in conjunction with thread_ts and indicates whether reply should be made visible to everyone in the channel or conversation. Defaults to FALSE.
 #' @return the response (invisibly)
 #' @note You need a <https://www.slack.com> account and will also need to
 #'       set up an API token <https://api.slack.com/>
@@ -33,7 +35,9 @@ slackr <- function(...,
                    channel = Sys.getenv("SLACK_CHANNEL"),
                    username = Sys.getenv("SLACK_USERNAME"),
                    icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-                   token = Sys.getenv("SLACK_TOKEN")) {
+                   token = Sys.getenv("SLACK_TOKEN"),
+                   thread_ts = NULL,
+                   reply_broadcast = FALSE) {
   local_options(list(cli.num_colors = 1))
 
   warn_for_args(
@@ -116,7 +120,9 @@ slackr <- function(...,
         username = username,
         emoji = icon_emoji,
         txt = sprintf("```%s```", output),
-        link_names = 1
+        link_names = 1,
+        thread_ts = thread_ts,
+        reply_broadcast = reply_broadcast
       )
   }
 
@@ -131,8 +137,10 @@ slackr <- function(...,
 #' @param username what user should the bot be named as (chr).
 #' @param icon_emoji what emoji to use (chr) `""` will mean use the default.
 #' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
-#' @return the response (invisibly)
+#' @param thread_ts Provide another message's ts value to make this message a reply. Avoid using a reply's ts value; use its parent instead.
+#' @param reply_broadcast Used in conjunction with thread_ts and indicates whether reply should be made visible to everyone in the channel or conversation. Defaults to FALSE.
 #' @param ... other arguments passed to the Slack API `chat.postMessage` call
+#' @return the response (invisibly)
 #' @note You need a <https://www.slack.com> account and will also need to
 #'       setup an API token <https://api.slack.com/>
 #'       Also, you can pass in `add_user=TRUE` as part of the `...`
@@ -151,6 +159,8 @@ slackr_msg <- function(txt = "",
                        username = Sys.getenv("SLACK_USERNAME"),
                        icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
                        token = Sys.getenv("SLACK_TOKEN"),
+                       thread_ts = NULL,
+                       reply_broadcast = FALSE,
                        ...) {
   warn_for_args(
     token,
@@ -168,6 +178,8 @@ slackr_msg <- function(txt = "",
       token = token,
       username = username,
       link_names = 1,
+      thread_ts = thread_ts,
+      reply_broadcast = reply_broadcast,
       ...
     )
 
