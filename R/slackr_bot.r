@@ -9,9 +9,9 @@
 #' instead, but it's probably better to call [slackr_setup()] first.
 #'
 #'
-#' @param ... expressions to be sent to Slack
+#' @param ... expressions to be sent to Slack.
 #' @param incoming_webhook_url which `slack.com` API endpoint URL to use
-#'   (see section **Webhook URLs** for details)
+#'   (see section **Webhook URLs** for details).
 #' @importFrom utils URLencode
 #' @importFrom rlang warn abort
 #' @note You need a <https://www.slack.com> account and will also need to

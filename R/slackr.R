@@ -8,10 +8,10 @@
 #' environment variable. You can override or just specify these values directly instead,
 #' but it's probably better to call [slackr_setup()] first.
 #' @importFrom withr local_options
-#' @param ... expressions to be sent to Slack
-#' @param channel Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See https://api.slack.com/methods/chat.postMessage#channels for more details.
-#' @param username what user should the bot be named as (chr)
-#' @param icon_emoji what emoji to use (chr) `""` will mean use the default
+#' @param ... expressions to be sent to Slack.
+#' @param channel Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See the \href{https://api.slack.com/methods/chat.postMessage#channels}{chat.postMessage endpoint documentation} for details.
+#' @param username what user should the bot be named as (chr).
+#' @param icon_emoji what emoji to use (chr) `""` will mean use the default.
 #' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
 #' @return the response (invisibly)
 #' @note You need a <https://www.slack.com> account and will also need to
@@ -127,9 +127,9 @@ slackr <- function(...,
 #'
 #' @param txt text message to send to Slack. If a character vector of length > 1
 #'        is passed in, they will be combined and separated by newlines.
-#' @param channel Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See https://api.slack.com/methods/chat.postMessage#channels for more details.
-#' @param username what user should the bot be named as (chr)
-#' @param icon_emoji what emoji to use (chr) `""` will mean use the default
+#' @param channel Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See the \href{https://api.slack.com/methods/chat.postMessage#channels}{chat.postMessage endpoint documentation} for details.
+#' @param username what user should the bot be named as (chr).
+#' @param icon_emoji what emoji to use (chr) `""` will mean use the default.
 #' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
 #' @return the response (invisibly)
 #' @param ... other arguments passed to the Slack API `chat.postMessage` call

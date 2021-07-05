@@ -17,21 +17,21 @@ slackr_tex(
 )
 }
 \arguments{
-\item{obj}{character object containing tex to compile}
+\item{obj}{character object containing tex to compile.}
 
 \item{channels}{Comma-separated list of channel names or IDs where the file will be shared.}
 
 \item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 
-\item{ext}{character, type of format to return, can be tex, pdf, or any image device, Default: 'png'}
+\item{ext}{character, type of format to return, can be tex, pdf, or any image device, Default: 'png'.}
 
-\item{path}{character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL}
+\item{path}{character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL.}
 
-\item{title}{Title of file}
+\item{title}{Title of file.}
 
-\item{initial_comment}{The message text introducing the file in specified channels}
+\item{initial_comment}{The message text introducing the file in specified channels.}
 
-\item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead}
+\item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.}
 
 \item{...}{other arguments passed to \code{\link[texPreview:tex_preview]{texPreview::tex_preview()}}, see Details}
 }

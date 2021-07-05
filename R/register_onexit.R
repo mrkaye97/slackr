@@ -1,12 +1,12 @@
 #' @title Append slackr_msg as on.exit to functions.
 #' @description Appends to the body of a function an on.exit call to run at the end of the call.
-#' @param f function or character
-#' @param ... expressions to be sent to Slack
-#' @param header_msg boolean, message to append to start of Slack output, Default: NULL
+#' @param f function or character.
+#' @param ... expressions to be sent to Slack.
+#' @param header_msg boolean, message to append to start of Slack output, Default: NULL.
 #' @param use_device boolean, passes current image in the graphics device to Slack as part of f,
-#' Default: FALSE
+#' Default: FALSE.
 #' @param env environment to assign appended function to with relation to the function environment,
-#' Default: parent.frame(2) (global environment)
+#' Default: parent.frame(2) (global environment).
 #' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
 #' @inherit slackr
 #' @return function

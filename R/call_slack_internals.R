@@ -2,7 +2,7 @@
 #'
 #' @inheritParams auth_test
 #'
-#' @param exclude_archived If TRUE, excludes archived channels
+#' @param exclude_archived If TRUE, excludes archived channels.
 #'
 #' @return tibble of channels
 #'
@@ -54,12 +54,12 @@ list_users <- function(token = Sys.getenv("SLACK_TOKEN"), ...) {
 #' @keywords internal
 #' @noRd
 #'
-#' @param txt Passed to `text` parameter of `chat.postMessage` API
-#' @param emoji Emoji
-#' @param channel Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See below for more details.
-#' @param username Passed to `username` parameter of `chat.postMessage` API
-#' @param as_user Passed to `as_user` parameter of `chat.postMessage` API
-#' @param link_names Passed to `link_names` parameter of `chat.postMessage` API
+#' @param txt Passed to `text` parameter of `chat.postMessage` API.
+#' @param emoji Emoji to use as the icon for this message. Overrides icon_url. Must be used in conjunction with as_user set to false, otherwise ignored.
+#' @param channel Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name.
+#' @param username Set your bot's user name. Must be used in conjunction with as_user set to false, otherwise ignored.
+#' @param as_user Set your bot's user name. Must be used in conjunction with as_user set to false, otherwise ignored.
+#' @param link_names Find and link channel names and usernames.
 #'
 #' @references https://api.slack.com/methods/chat.postMessage
 post_message <- function(txt,
@@ -94,11 +94,11 @@ post_message <- function(txt,
 #'
 #' This needs the scope `files:write:user`
 #'
-#' @param file Name of file to upload
+#' @param file Name of file to upload.
 #' @param channels Comma-separated list of channel names or IDs where the file will be shared.
-#' @param initial_comment The message text introducing the file in specified channels
-#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter
-#' @param ... Additional arguments to be passed in the POST body to the `files.upload` endpoint. See here for details: https://api.slack.com/methods/files.upload
+#' @param initial_comment The message text introducing the file in specified channels.
+#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
+#' @param ... Additional arguments to be passed in the POST body to the `files.upload` endpoint. See the \href{https://api.slack.com/methods/files.upload}{files.upload endpoint documentation} for details.
 #' @importFrom httr upload_file
 #' @keywords internal
 #' @noRd

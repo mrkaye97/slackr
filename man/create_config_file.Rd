@@ -18,13 +18,13 @@ create_config_file(
 
 \item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 
-\item{incoming_webhook_url}{the incoming webhook URL (Default: whatever is set as an env var)}
+\item{incoming_webhook_url}{the incoming webhook URL (Default: whatever is set as an env var).}
 
-\item{icon_emoji}{the icon emoji to use as the default}
+\item{icon_emoji}{the icon emoji to use as the default.}
 
-\item{username}{the username to send messages from (will default to "slackr" if no username is set)}
+\item{username}{the username to send messages from (will default to "slackr" if no username is set).}
 
-\item{channel}{Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See https://api.slack.com/methods/chat.postMessage#channels for more details.}
+\item{channel}{Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See the \href{https://api.slack.com/methods/chat.postMessage#channels}{chat.postMessage endpoint documentation} for details.}
 }
 \value{
 TRUE if successful (invisibly)

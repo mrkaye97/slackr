@@ -11,9 +11,9 @@ slackr_delete(
 )
 }
 \arguments{
-\item{count}{the number of messages to delete}
+\item{count}{The number of messages to delete.}
 
-\item{channel}{Channel, private group, or IM channel to delete messages from. Can be an encoded ID, or a name. See https://api.slack.com/methods/chat.postMessage#channels for more details.}
+\item{channel}{Channel, private group, or IM channel to delete messages from. Can be an encoded ID, or a name. See the \href{https://api.slack.com/methods/chat.postMessage#channels}{chat.postMessage endpoint documentation} for details.}
 
 \item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 }

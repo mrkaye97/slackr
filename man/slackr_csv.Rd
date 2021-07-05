@@ -16,21 +16,21 @@ slackr_csv(
 )
 }
 \arguments{
-\item{data}{the data frame to upload}
+\item{data}{the data frame or tibble to upload.}
 
-\item{filename}{the file to save to. Defaults to a tempfile. Using the default is \emph{highly} advised, as using a non-tempfile will write a file that persists on the disk (either in the working directory, or at the location specified)}
+\item{filename}{the file to save to. Defaults to a tempfile. Using the default is \emph{highly} advised, as using a non-tempfile will write a file that persists on the disk (either in the working directory, or at the location specified).}
 
-\item{title}{title on Slack (optional - defaults to filename)}
+\item{title}{Title of file.}
 
-\item{initial_comment}{comment for file on slack (optional - defaults to filename)}
+\item{initial_comment}{The message text introducing the file in specified channels.}
 
 \item{channels}{Comma-separated list of channel names or IDs where the file will be shared.}
 
 \item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 
-\item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead}
+\item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.}
 
-\item{...}{additional arguments to be passed to \code{write.csv()}}
+\item{...}{additional arguments to be passed to \code{write.csv()}.}
 }
 \value{
 \code{httr} response object from \code{POST} call (invisibly)

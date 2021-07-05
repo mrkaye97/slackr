@@ -14,17 +14,17 @@ slackr_upload(
 )
 }
 \arguments{
-\item{filename}{path to file}
+\item{filename}{path to file.}
 
-\item{title}{Title of file}
+\item{title}{Title of file.}
 
-\item{initial_comment}{The message text introducing the file in specified channels}
+\item{initial_comment}{The message text introducing the file in specified channels.}
 
 \item{channels}{Comma-separated list of channel names or IDs where the file will be shared.}
 
 \item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 
-\item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead}
+\item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.}
 }
 \value{
 \code{httr} response object from \code{POST} call (invisibly)

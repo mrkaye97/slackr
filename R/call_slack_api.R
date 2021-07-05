@@ -6,7 +6,7 @@ POST <- "POST"
 #' The function is called for the side effect of warning when the API response
 #' has errors, and is a thin wrapper around httr::stop_for_status
 #'
-#' @param r The response from a call to the Slack API
+#' @param r The response from a call to the Slack API.
 #'
 #' @return NULL
 #' @importFrom httr status_code content
@@ -69,10 +69,10 @@ with_retry <- function(fun) {
 #'
 #' @inheritParams auth_test
 #'
-#' @param path The API definition path, e.g. `/api/auth.test`
-#' @param ... These arguments must be named and will be added to the API query string
-#' @param body If `.method = POST` the `body` gets passed to the API body
-#' @param .method Either "GET" or "POST"
+#' @param path The API definition path, e.g. `/api/auth.test`.
+#' @param ... These arguments must be named and will be added to the API query string.
+#' @param body If `.method = POST` the `body` gets passed to the API body.
+#' @param .method Either "GET" or "POST".
 #' @param .verbose If TRUE, prints `httr` verbose messages.  Useful for debugging.
 #' @param .next_cursor The value of the next cursor, when using pagination.
 #' @importFrom httr add_headers verbose set_config GET POST
@@ -172,8 +172,8 @@ get_retry_after <- function(x) {
 #' This loops over `fun`, extracts the `next_cursor` from the API response, and
 #' injects this into the next loop.  At the completion of each loop, the function [convert_response_to_tibble()] is run with `extract` as and argument. The results are combined with [dplyr::bind_rows()]
 #'
-#' @param fun A function that calls the slack API
-#' @param extract The name of the element to extract from the API response
+#' @param fun A function that calls the slack API.
+#' @param extract The name of the element to extract from the API response.
 #'
 #' @return A `tibble`
 #' @seealso call_slack_api
@@ -242,8 +242,8 @@ auth_test <- function(token = Sys.getenv("SLACK_TOKEN")) {
 
 #' Convert Slack API json response to tibble.
 #'
-#' @param x The Slack API response object, returned from [call_slack_api]
-#' @param element The name of the list element to extract
+#' @param x The Slack API response object, returned from [call_slack_api].
+#' @param element The name of the list element to extract.
 #' @importFrom magrittr %>%
 #' @importFrom jsonlite fromJSON
 #' @importFrom tibble as_tibble

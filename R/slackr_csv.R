@@ -4,14 +4,14 @@
 #' It is highly recommended to leave the `filename` argument as the default (tempfile), as changing it will persist a csv file in your working directory.
 #'
 #' @importFrom utils write.csv
-#' @param data the data frame to upload
-#' @param filename the file to save to. Defaults to a tempfile. Using the default is _highly_ advised, as using a non-tempfile will write a file that persists on the disk (either in the working directory, or at the location specified)
+#' @param data the data frame or tibble to upload.
+#' @param filename the file to save to. Defaults to a tempfile. Using the default is _highly_ advised, as using a non-tempfile will write a file that persists on the disk (either in the working directory, or at the location specified).
 #' @param channels Comma-separated list of channel names or IDs where the file will be shared.
-#' @param title title on Slack (optional - defaults to filename)
-#' @param initial_comment comment for file on slack (optional - defaults to filename)
+#' @param title Title of file.
+#' @param initial_comment The message text introducing the file in specified channels.
 #' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
-#' @param thread_ts Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead
-#' @param ... additional arguments to be passed to `write.csv()`
+#' @param thread_ts Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.
+#' @param ... additional arguments to be passed to `write.csv()`.
 #' @return `httr` response object from `POST` call (invisibly)
 #' @author Matt Kaye (aut)
 #' @seealso [slackr_upload()]

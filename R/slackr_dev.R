@@ -4,11 +4,11 @@
 #' specified Slack channel.
 #'
 #' @param channels Comma-separated list of channel names or IDs where the file will be shared.
-#' @param file prefix for filenames (defaults to `plot`)
-#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter
-#' @param initial_comment The message text introducing the file in specified channels
-#' @param thread_ts Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead
-#' @param title Title of file
+#' @param file prefix for filenames (defaults to `plot`).
+#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
+#' @param initial_comment The message text introducing the file in specified channels.
+#' @param thread_ts Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.
+#' @param title Title of file.
 #' @importFrom grDevices dev.copy dev.off png
 #' @return `httr` response object from `POST` call
 #' @seealso [slackr_setup()], [slackr_save()], [slackr_upload()]

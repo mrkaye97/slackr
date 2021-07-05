@@ -22,35 +22,35 @@ ggslackr(
 )
 }
 \arguments{
-\item{plot}{ggplot object to save, defaults to last plot displayed}
+\item{plot}{ggplot object to save, defaults to last plot displayed.}
 
 \item{channels}{Comma-separated list of channel names or IDs where the file will be shared.}
 
-\item{scale}{scaling factor}
+\item{scale}{scaling factor.}
 
-\item{width}{width (defaults to the width of current plotting window)}
+\item{width}{width (defaults to the width of current plotting window).}
 
-\item{height}{height (defaults to the height of current plotting window)}
+\item{height}{height (defaults to the height of current plotting window).}
 
 \item{units}{units for width and height when either one is explicitly specified
-(in, cm, or mm)}
+(in, cm, or mm).}
 
-\item{dpi}{dpi to use for raster graphics}
+\item{dpi}{dpi to use for raster graphics.}
 
 \item{limitsize}{when TRUE (the default), ggsave will not save images larger
 than 50x50 inches, to prevent the common error of specifying dimensions in pixels.}
 
 \item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 
-\item{file}{prefix for filenames (defaults to \code{ggplot})}
+\item{file}{Prefix for filenames (defaults to \code{ggplot}).}
 
-\item{initial_comment}{The message text introducing the file in specified channels}
+\item{initial_comment}{The message text introducing the file in specified channels.}
 
-\item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead}
+\item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.}
 
-\item{title}{Title of file}
+\item{title}{Title of file.}
 
-\item{...}{other arguments passed to graphics device}
+\item{...}{other arguments passed to graphics device.}
 }
 \value{
 \code{httr} response object (invisibly)

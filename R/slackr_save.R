@@ -4,13 +4,13 @@
 #' to Slack and (optionally) post them to one or more channels
 #' (if `channels` is not empty).
 #'
-#' @param ... objects to store in the R data file
+#' @param ... objects to store in the R data file.
 #' @param channels Comma-separated list of channel names or IDs where the file will be shared.
-#' @param file filename (without extension) to use
+#' @param file filename (without extension) to use.
 #' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
-#' @param initial_comment The message text introducing the file in specified channels
-#' @param thread_ts Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead
-#' @param title Title of file
+#' @param initial_comment The message text introducing the file in specified channels.
+#' @param thread_ts Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.
+#' @param title Title of file.
 #' @return `httr` response object from `POST` call
 #' @seealso [slackr_setup()], [slackr_dev()], [slackr_upload()]
 #' @importFrom httr add_headers upload_file
