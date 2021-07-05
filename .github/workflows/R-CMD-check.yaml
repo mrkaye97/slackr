@@ -73,7 +73,7 @@ jobs:
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
-          remotes::install_cran("devtools")
+          remotes::install_cran("devtools", dependencies = TRUE)
         shell: Rscript {0}
 
       - name: Check
