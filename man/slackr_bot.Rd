@@ -6,20 +6,11 @@
 \usage{
 slackr_bot(
   ...,
-  channel = "",
-  username = "",
-  icon_emoji = "",
-  incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX")
+  incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL")
 )
 }
 \arguments{
 \item{...}{expressions to be sent to Slack}
-
-\item{channel}{Deprecated. will have no effect}
-
-\item{username}{Deprecated. will have no effect}
-
-\item{icon_emoji}{Deprecated. will have no effect}
 
 \item{incoming_webhook_url}{which \code{slack.com} API endpoint URL to use
 (see section \strong{Webhook URLs} for details)}
@@ -56,7 +47,8 @@ slackr_bot("iris info", head(iris), str(iris))
 
 # or directly
 slackr_bot("Test message",
-           incoming_webhook_url = "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX")
+  incoming_webhook_url = "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX"
+)
 }
 }
 \seealso{

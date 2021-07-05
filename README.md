@@ -14,30 +14,32 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![codecov](https://codecov.io/gh/mrkaye97/slackr/branch/master/graph/badge.svg?token=5HjUtFfIJR)](https://codecov.io/gh/mrkaye97/slackr)
 <!-- badges: end -->
 
-The `slackr` package contains functions to interact with the Slack
-messaging platform. When you need to share information/data from R,
-rather than resorting to copy/paste, emails, other services like Skype,
-you can use this package to send well-formatted output from R to all
-teammates at the same time with little effort. You can send text, R
+`slackr` provides a set of tools for making it easier to send messages,
+data, alerts, etc. directly from R to Slack. You can use this package to
+send well-formatted output from R to all teammates (or to specific
+individuals) at the same time with little effort. You can send text, R
 function output, images from the current graphics device and `ggplots`,
 R objects (as R data files), rendered LaTeX expressions, and uploaded
 files.
 
 ## Installation
 
-    # CRAN version
-    install.packages("slackr")
+``` r
+# CRAN version
+install.packages("slackr")
 
-    # Development version
-    devtools::install_github("mrkaye97/slackr")
+# Development version
+devtools::install_github("mrkaye97/slackr")
+```
 
 ## Breaking Changes
 
-Version 2.0.0+ is updated to work with the new Slack API structure!
+Version 2.4.0+ now allows users to choose between using a bot token and
+a user token. See below for details.
 
 ## Setup
 
-There are two ways of interfacing with `slackr` that provide
+There are three ways of interfacing with `slackr` that provide
 significantly different functionality:
 
 1.  Creating a single-channel bot
@@ -49,6 +51,14 @@ significantly different functionality:
     Creating a bot user to send messages to multiple channels, including
     plots, tables, files, etc. as well as deleting messages, reading the
     channels in a workspace, etc.
+
+3.  Using a user token to send messages from a specific user’s account
+
+    Similar to the fully-scoped bot token, but connected to the account
+    of a single user. This approach is not recommended in production
+    settings – or any settings where a token needs to be shared – but it
+    can be useful for one-off Slack messages as it lets users send data
+    as themselves as opposed to through a bot.
 
 In most cases, we recommend `Option 1` above. This requires the fewest
 permissions and is the simplest to set up, and will allow basic
@@ -64,6 +74,9 @@ The vignettes contain setup instructions and example usage:
 -   Option 2 setup: `vignette('webhook-setup', package = 'slackr')`
 -   Usage: `vignette('using-slackr', package = 'slackr')`
 
+**Important Note:** The setup process for `Option 2` and `Option 3` are
+roughly the same, with only slightly differing scopes.
+
 ### Config File Setup
 
 The `slackr_setup()` function will try to read setup values from a
@@ -78,7 +91,7 @@ what `DESCRIPTION` files are coded in.
 
 Here’s the basic format for the configuration file:
 
-    bot_user_oauth_token: Your app's bot user OAuth token
+    token: xox*-<your app's token>
     channel: #general
     username: slackr
     incoming_webhook_url: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX

@@ -13,7 +13,8 @@
 #' @param dpi dpi to use for raster graphics
 #' @param limitsize when TRUE (the default), ggsave will not save images larger
 #'        than 50x50 inches, to prevent the common error of specifying dimensions in pixels.
-#' @param bot_user_oauth_token the Slack bot user OAuth token (chr)
+#' @param token A Slack token (either a user token or a bot user token)
+#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @param file prefix for filenames (defaults to `ggplot`)
 #' @param ... other arguments passed to graphics device
 #' @importFrom ggplot2 ggsave last_plot ggplot aes geom_point
@@ -25,8 +26,7 @@
 #' ggslackr(qplot(mpg, wt, data = mtcars))
 #' }
 #' @export
-ggslackr <- function(
-                     plot = last_plot(),
+ggslackr <- function(plot = last_plot(),
                      channels = Sys.getenv("SLACK_CHANNEL"),
                      scale = 1,
                      width = par("din")[1],
@@ -34,12 +34,11 @@ ggslackr <- function(
                      units = c("in", "cm", "mm"),
                      dpi = 300,
                      limitsize = TRUE,
-                     bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                     token = Sys.getenv("SLACK_TOKEN"),
                      file = "ggplot",
+                     bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                      ...) {
-  loc <- Sys.getlocale("LC_CTYPE")
-  Sys.setlocale("LC_CTYPE", "C")
-  on.exit(Sys.setlocale("LC_CTYPE", loc))
+  token <- check_tokens(token, bot_user_oauth_token)
 
   ftmp <- tempfile(file, fileext = ".png")
   ggsave(
@@ -58,7 +57,7 @@ ggslackr <- function(
     files_upload(
       file = ftmp,
       channel = channels,
-      bot_user_oauth_token = bot_user_oauth_token
+      token = token
     )
 
   invisible(res)

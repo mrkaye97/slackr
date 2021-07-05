@@ -1,46 +1,54 @@
-Package: slackr
 Type: Package
-Title: Send Messages, Images, R Objects and Files to 'Slack' Channels/Users
-Version: 2.3.1
+Package: slackr
+Title: Send Messages, Images, R Objects and Files to 'Slack'
+    Channels/Users
+Version: 2.4.0
 Author: Bob Rudis [aut, cre], Jay Jacobs [ctb], David Severski [ctb],
-    Quinn Weber [ctb], Konrad Karczewski [ctb], Shinya Uryu [ctb],
-    Gregory Jefferis [ctb], Ed Niles [ctb], Rick Saporta [ctb],
-    Jonathan Sidi [aut, ctb], Matt Kaye [aut, ctb], Xinye Li [ctb], Andrie de Vries [aut, ctb]
+    Quinn Weber [ctb], Konrad Karczewski [ctb], Shinya Uryu [ctb], Gregory
+    Jefferis [ctb], Ed Niles [ctb], Rick Saporta [ctb], Jonathan Sidi
+    [aut, ctb], Matt Kaye [aut, ctb], Xinye Li [ctb], Andrie de Vries
+    [aut, ctb]
 Maintainer: Matt Kaye <mrkaye97@gmail.com>
 Description: 'Slack' <https://slack.com/> provides a service for teams to
-    collaborate by sharing messages, images, links, files and more. Functions are provided
-    that make it possible to interact with the 'Slack' platform 'API'. When
-    you need to share information or data from R, rather than resort to copy/
-    paste in e-mails or other services like 'Skype' <https://www.skype.com/en/>, you
-    can use this package to send well-formatted output from multiple R objects and
-    expressions to all teammates at the same time with little effort. You can also
-    send images from the current graphics device, R objects, and upload files.
-URL: https://github.com/mrkaye97/slackr, https://mrkaye97.github.io/slackr/
-BugReports: https://github.com/mrkaye97/slackr/issues
+    collaborate by sharing messages, images, links, files and more.
+    Functions are provided that make it possible to interact with the
+    'Slack' platform 'API'. When you need to share information or data
+    from R, rather than resort to copy/ paste in e-mails or other services
+    like 'Skype' <https://www.skype.com/en/>, you can use this package to
+    send well-formatted output from multiple R objects and expressions to
+    all teammates at the same time with little effort. You can also send
+    images from the current graphics device, R objects, and upload files.
 License: MIT + file LICENSE
-Suggests:
-    testthat (>= 3.0.0),
-    covr,
-    knitr,
-    rmarkdown,
-    texPreview
-Encoding: UTF-8
+URL: https://github.com/mrkaye97/slackr,
+    https://mrkaye97.github.io/slackr/
+BugReports: https://github.com/mrkaye97/slackr/issues
 Depends:
     R (>= 3.3.0)
 Imports:
-    httr (>= 1.4.2),
-    jsonlite,
-    ggplot2,
-    utils,
-    methods,
+    cachem (>= 1.0.4),
     dplyr,
+    ggplot2,
     graphics,
     grDevices,
-    tibble,
+    httr (>= 1.4.2),
+    lifecycle,
+    jsonlite,
     magrittr,
     memoise (>= 2.0.0),
-    cachem (>= 1.0.4)
-RoxygenNote: 7.1.1
-Roxygen: list(markdown = TRUE)
+    methods,
+    rlang,
+    tibble,
+    utils,
+    withr
+Suggests:
+    covr,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    texPreview
+VignetteBuilder: 
+    knitr
 Config/testthat/edition: 3
-VignetteBuilder: knitr
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1

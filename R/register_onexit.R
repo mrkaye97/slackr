@@ -7,6 +7,8 @@
 #' Default: FALSE
 #' @param env environment to assign appended function to with relation to the function environment,
 #' Default: parent.frame(2) (global environment)
+#' @param token A Slack token (either a user token or a bot user token)
+#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @inherit slackr
 #' @return function
 #' @details If a character is passed to f then it will evaluate internally to a function.
@@ -62,7 +64,16 @@ register_onexit <- function(f,
                             channel = Sys.getenv("SLACK_CHANNEL"),
                             username = Sys.getenv("SLACK_USERNAME"),
                             icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
+                            token = Sys.getenv("SLACK_TOKEN"),
                             bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+  token <- check_tokens(token, bot_user_oauth_token)
+
+  warn_for_args(
+    token,
+    username = username,
+    icon_emoji = icon_emoji
+  )
+
   f.val <- deparse(match.call()[[2]])
 
   if (inherits(f, "character")) f <- eval(parse(text = f))
@@ -78,13 +89,13 @@ register_onexit <- function(f,
   b[[length(b)]] <- substitute(on.exit(
     {
       if (!is.null(header_msg)) {
-        slackr(header_msg, channel = channel, username = username, icon_emoji = icon_emoji, bot_user_oauth_token = bot_user_oauth_token)
+        slackr(header_msg, channel = channel, username = username, icon_emoji = icon_emoji, token = token)
       }
 
-      slackr(..., channel = channel, username = username, icon_emoji = icon_emoji, bot_user_oauth_token = bot_user_oauth_token)
+      slackr(..., channel = channel, username = username, icon_emoji = icon_emoji, token = token)
 
       if (use_device & !is.null(dev.list())) {
-        slackr_dev(channels = channel, bot_user_oauth_token = bot_user_oauth_token)
+        slackr_dev(channels = channel, token = token)
       }
     },
     add = TRUE

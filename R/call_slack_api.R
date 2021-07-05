@@ -29,12 +29,10 @@ stop_for_status <- function(r) {
       sapply(seq_along(cr), function(i) paste(names(cr)[i], ":=", unname(cr)[i])),
       collapse = "\n"
     )
-    warning(
+    warn(
       "\n",
       "The slack API returned an error: ", error_msg, "\n",
       additional_msg,
-      call. = FALSE,
-      immediate. = TRUE
     )
   }
   invisible(NULL)
@@ -55,7 +53,7 @@ with_retry <- function(fun) {
     r <- fun()
     if (r$status_code == 429) {
       retry_after <- headers(r)[["retry-after"]]
-      message("\nPausing for ", retry_after, " seconds due to Slack API rate limit")
+      inform("\nPausing for ", retry_after, " seconds due to Slack API rate limit")
       Sys.sleep(retry_after)
     } else {
       ok <- TRUE
@@ -79,27 +77,19 @@ with_retry <- function(fun) {
 #' @return The API response (a named list)
 #' @export
 #'
-call_slack_api <- function(
-                           path, ..., body = NULL, .method = c("GET", "POST"),
-                           bot_user_oauth_token,
+call_slack_api <- function(path, ..., body = NULL, .method = c("GET", "POST"),
+                           token,
                            .verbose = Sys.getenv("SLACKR_VERBOSE", "FALSE"),
                            .next_cursor = "") {
-  if (missing(bot_user_oauth_token) || is.null(bot_user_oauth_token)) {
-    bot_user_oauth_token <- Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN", "")
+  if (missing(token) || is.null(token)) {
+    token <- Sys.getenv("SLACK_TOKEN", "")
   }
-  if (is.null(bot_user_oauth_token) || bot_user_oauth_token == "") {
-    warning("Provide a value for bot_user_oauth_token",
-      immediate. = TRUE,
-      call. = FALSE
-    )
+  if (is.null(token) || token == "") {
+    warn("Provide a value for token")
   }
+
   url <- "https://slack.com"
   .method <- match.arg(.method)
-
-  # Set locale to C (POSIX)
-  loc <- Sys.getlocale("LC_CTYPE")
-  Sys.setlocale("LC_CTYPE", "C")
-  on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   # Make verbose call if env var is set
   if (.verbose == "TRUE") {
@@ -116,7 +106,7 @@ call_slack_api <- function(
         url = url,
         path = path,
         add_headers(
-          .headers = c(Authorization = paste("Bearer", bot_user_oauth_token))
+          .headers = c(Authorization = paste("Bearer", token))
         ),
         query = add_cursor_get(..., .next_cursor = .next_cursor)
         # ...
@@ -126,7 +116,7 @@ call_slack_api <- function(
         url = url,
         path = path,
         add_headers(
-          .headers = c(Authorization = paste("Bearer", bot_user_oauth_token))
+          .headers = c(Authorization = paste("Bearer", token))
         ),
         body = add_cursor_post(body, .next_cursor = .next_cursor)
       )
@@ -142,7 +132,7 @@ call_slack_api <- function(
 add_cursor_get <- function(..., .next_cursor = "") {
   z <- list(...)
   if (!is.null(.next_cursor) && .next_cursor != "") {
-    # message("Appending cursor to query")
+    # inform("Appending cursor to query")
     z <- append(z, list(cursor = .next_cursor))
   }
   z
@@ -151,7 +141,7 @@ add_cursor_get <- function(..., .next_cursor = "") {
 add_cursor_post <- function(..., .next_cursor = "") {
   z <- list(...)[[1]]
   if (!is.null(.next_cursor) && .next_cursor != "") {
-    message("Appending cursor to query")
+    inform("Appending cursor to query")
     z <- append(z, list(cursor = .next_cursor))
   }
   z
@@ -161,7 +151,7 @@ add_cursor_post <- function(..., .next_cursor = "") {
 
 
 # POST("https://slack.com/api/conversations.list?limit=500&types=public_channel,private_channel",
-# httr::add_headers(Authorization = bot_user_oauth_token))
+# httr::add_headers(Authorization = token))
 
 get_next_cursor <- function(x) {
   content(x)[["response_metadata"]][["next_cursor"]]
@@ -203,8 +193,8 @@ with_pagination <- function(fun, extract) {
       done <- TRUE
       next_cursor <- ""
     } else {
-      if (gn == old_cursor) stop("Repeating cursor: ", gn)
-      message(".", appendLF = FALSE)
+      if (gn == old_cursor) abort("Repeating cursor: ", gn)
+      inform(".", appendLF = FALSE)
       had_to_cursor <- TRUE
       old_cursor <- next_cursor
       next_cursor <- gn
@@ -218,14 +208,15 @@ with_pagination <- function(fun, extract) {
       )
     }
   }
-  if (had_to_cursor) message("")
+  if (had_to_cursor) inform("")
   result
 }
 
 
 #' Checks authentication & identity against the Slack API.
 #'
-#' @param bot_user_oauth_token The Slack bot OAuth token {character vector}
+#' @param token The Slack bot OAuth token {character vector}
+#' @param bot_user_oauth_token Deprecated
 #'
 #' @references https://api.slack.com/methods/auth.test
 #' @export
@@ -233,14 +224,16 @@ with_pagination <- function(fun, extract) {
 #' @importFrom jsonlite fromJSON
 #'
 #' @examples
-#' if (Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN") != "") {
+#' if (Sys.getenv("SLACK_TOKEN") != "") {
 #'   auth_test()
 #' }
-auth_test <- function(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+auth_test <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+  if (bot_user_oauth_token != "") warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 2.4.0`. Please use `token` instead.")
+
   call_slack_api(
     "/api/auth.test",
     .method = GET,
-    bot_user_oauth_token = bot_user_oauth_token,
+    token = token,
     types = "public_channel,private_channel"
   ) %>%
     content()

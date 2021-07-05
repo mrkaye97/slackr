@@ -6,17 +6,18 @@
 \usage{
 create_config_file(
   filename = "~/.slackr",
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
-  incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX"),
+  token = Sys.getenv("SLACK_TOKEN"),
+  incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
   username = Sys.getenv("SLACK_USERNAME"),
-  channel = Sys.getenv("SLACK_CHANNEL")
+  channel = Sys.getenv("SLACK_CHANNEL"),
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
 )
 }
 \arguments{
 \item{filename}{the name of the config file to save. We recommend using a hidden file (starting with '.')}
 
-\item{bot_user_oauth_token}{the Slack bot user OAuth token (Default: whatever is set as an env var)}
+\item{token}{A Slack token (either a user token or a bot user token)}
 
 \item{incoming_webhook_url}{the incoming webhook URL (Default: whatever is set as an env var)}
 
@@ -25,6 +26,8 @@ create_config_file(
 \item{username}{the username to send messages from (will default to "slackr" if no username is set)}
 
 \item{channel}{the channel to send messages to (will default to "#general" if no channel is set)}
+
+\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 }
 \value{
 TRUE if successful (invisibly)
@@ -38,7 +41,7 @@ Create the config file used in \code{slackr_setup()}
 create_config_file()
 
 # using `create_config_file()` before `slackr_setup()`
-create_config_file(bot_user_oauth_token = 'xox-',
+create_config_file(token = 'xox-',
   incoming_webhook_url = 'https://hooks-',
   channel = '#general',
   username = 'slackr',

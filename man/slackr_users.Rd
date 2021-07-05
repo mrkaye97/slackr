@@ -4,10 +4,15 @@
 \alias{slackr_users}
 \title{Get a data frame of Slack users}
 \usage{
-slackr_users(bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"))
+slackr_users(
+  token = Sys.getenv("SLACK_TOKEN"),
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+)
 }
 \arguments{
-\item{bot_user_oauth_token}{the Slack bot OAuth token (chr)}
+\item{token}{A Slack token (either a user token or a bot user token)}
+
+\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 }
 \value{
 \code{data.frame} of users

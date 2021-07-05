@@ -9,6 +9,7 @@ slackr(
   channel = Sys.getenv("SLACK_CHANNEL"),
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
+  token = Sys.getenv("SLACK_TOKEN"),
   bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
 )
 }
@@ -21,7 +22,9 @@ slackr(
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
 
-\item{bot_user_oauth_token}{Slack bot user OAuth token}
+\item{token}{A Slack token (either a user token or a bot user token)}
+
+\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 }
 \value{
 the response (invisibly)
@@ -38,7 +41,7 @@ but it's probably better to call \code{\link[=slackr_setup]{slackr_setup()}} fir
 }
 \note{
 You need a \url{https://www.slack.com} account and will also need to
-setup an API token \url{https://api.slack.com/}
+set up an API token \url{https://api.slack.com/}
 Also, you can pass in \code{as_user=TRUE}, the default, as part of the \code{...}
 parameters and the Slack API will post the message as your logged-in
 user account (this will override anything set in \code{username}).

@@ -22,6 +22,7 @@ test_that("slackr posts", {
 
 test_that("ggslackr posts", {
   skip_on_cran()
+  skip_on_ci()
 
   res <- ggslackr(
     ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
@@ -37,15 +38,9 @@ test_that("slackr_msg posts", {
   expect_true(res$ok)
 })
 
-test_that("text_slackr posts", {
-  skip_on_cran()
-
-  expect_warning(text_slackr("Testing"))
-  expect_true(suppressWarnings(text_slackr("Testing"))$ok)
-})
-
 test_that("slackr_delete works", {
   skip_on_cran()
+  skip_on_ci()
 
   slackr_msg("Testing deletion")
   res <- slackr_delete(1)
@@ -97,6 +92,7 @@ test_that("slackr_save works", {
 
 test_that("ggslackr works from in a function", {
   skip_on_cran()
+  skip_on_ci()
 
   f <- function() {
     plt <- ggplot2::ggplot(iris, ggplot2::aes(Sepal.Length, Sepal.Width)) +
@@ -109,4 +105,3 @@ test_that("ggslackr works from in a function", {
   res <- f()
   expect_equal(res$ok, TRUE)
 })
-

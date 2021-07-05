@@ -7,15 +7,16 @@
 #' By default, everything but `expr` will be looked for in a "`SLACK_`"
 #' environment variable. You can override or just specify these values directly instead,
 #' but it's probably better to call [slackr_setup()] first.
-#'
+#' @importFrom withr local_options
 #' @param ... expressions to be sent to Slack
 #' @param channel which channel to post the message to (chr)
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) `""` will mean use the default
-#' @param bot_user_oauth_token Slack bot user OAuth token
+#' @param token A Slack token (either a user token or a bot user token)
+#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @return the response (invisibly)
 #' @note You need a <https://www.slack.com> account and will also need to
-#'       setup an API token <https://api.slack.com/>
+#'       set up an API token <https://api.slack.com/>
 #'       Also, you can pass in `as_user=TRUE`, the default, as part of the `...`
 #'       parameters and the Slack API will post the message as your logged-in
 #'       user account (this will override anything set in `username`).
@@ -33,12 +34,16 @@ slackr <- function(...,
                    channel = Sys.getenv("SLACK_CHANNEL"),
                    username = Sys.getenv("SLACK_USERNAME"),
                    icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
+                   token = Sys.getenv("SLACK_TOKEN"),
                    bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-  if ((bot_user_oauth_token == "") | is.na(bot_user_oauth_token)) {
-    stop("No token specified. Did you forget to call slackr_setup()?", call. = FALSE)
-  }
+  local_options(list(cli.num_colors = 1))
+  token <- check_tokens(token, bot_user_oauth_token)
 
-  resp_ret <- ""
+  warn_for_args(
+    token,
+    username = username,
+    icon_emoji = icon_emoji
+  )
 
   if (!missing(...)) {
 
@@ -88,7 +93,7 @@ slackr <- function(...,
         logical = ,
         numeric = cat(sprintf("%s\n\n", as.character(expr))),
         character = cat(sprintf("%s\n\n", expr)),
-        stop("mode of argument not handled at present by slackr")
+        abort("mode of argument not handled at present by slackr")
       )
 
       for (item in tmp) {
@@ -107,13 +112,9 @@ slackr <- function(...,
     # combined all of them (rval is a character vector)
     output <- paste0(rval, collapse = "\n")
 
-    loc <- Sys.getlocale("LC_CTYPE")
-    Sys.setlocale("LC_CTYPE", "C")
-    on.exit(Sys.setlocale("LC_CTYPE", loc))
-
     resp <-
       post_message(
-        bot_user_oauth_token = bot_user_oauth_token,
+        token = token,
         channel = channel,
         username = username,
         emoji = icon_emoji,
@@ -132,7 +133,8 @@ slackr <- function(...,
 #' @param channel which channel to post the message to (chr)
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) `""` will mean use the default
-#' @param bot_user_oauth_token Slack bot user OAuth token
+#' @param token A Slack token (either a user token or a bot user token)
+#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @return the response (invisibly)
 #' @param ... other arguments passed to the Slack API `chat.postMessage` call
 #' @note You need a <https://www.slack.com> account and will also need to
@@ -152,24 +154,25 @@ slackr_msg <- function(txt = "",
                        channel = Sys.getenv("SLACK_CHANNEL"),
                        username = Sys.getenv("SLACK_USERNAME"),
                        icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
+                       token = Sys.getenv("SLACK_TOKEN"),
                        bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                        ...) {
-  if (bot_user_oauth_token == "") {
-    stop("No token specified. Did you forget to call slackr_setup()?", call. = FALSE)
-  }
+  token <- check_tokens(token, bot_user_oauth_token)
+
+  warn_for_args(
+    token,
+    username = username,
+    icon_emoji = icon_emoji
+  )
 
   output <- paste0(txt, collapse = "\n\n")
-
-  loc <- Sys.getlocale("LC_CTYPE")
-  Sys.setlocale("LC_CTYPE", "C")
-  on.exit(Sys.setlocale("LC_CTYPE", loc))
 
   z <-
     post_message(
       txt        = output,
       emoji = icon_emoji,
       channel    = channel,
-      bot_user_oauth_token = bot_user_oauth_token,
+      token = token,
       username = username,
       link_names = 1,
       ...

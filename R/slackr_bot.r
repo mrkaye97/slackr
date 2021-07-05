@@ -12,10 +12,8 @@
 #' @param ... expressions to be sent to Slack
 #' @param incoming_webhook_url which `slack.com` API endpoint URL to use
 #'   (see section **Webhook URLs** for details)
-#' @param channel Deprecated. will have no effect
-#' @param username Deprecated. will have no effect
-#' @param icon_emoji Deprecated. will have no effect
 #' @importFrom utils URLencode
+#' @importFrom rlang warn abort
 #' @note You need a <https://www.slack.com> account and will also need to
 #'   setup an incoming webhook: <https://api.slack.com/>. Old style webhooks are
 #'   no longer supported.
@@ -37,21 +35,16 @@
 #'
 #' # or directly
 #' slackr_bot("Test message",
-#'            incoming_webhook_url = "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX")
+#'   incoming_webhook_url = "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX"
+#' )
 #' }
 #' @export
-slackr_bot <- function(...,
-                       channel = "",
-                       username = "",
-                       icon_emoji = "",
-                       incoming_webhook_url = Sys.getenv("SLACK_INCOMING_URL_PREFIX")) {
-  if (incoming_webhook_url == "" | is.na(incoming_webhook_url)) {
-    stop("No incoming webhook URL specified. Did you forget to call slackr_setup()?", call. = FALSE)
-  }
+slackr_bot <- function(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL")) {
+  local_options(list(cli.num_colors = 1))
 
-  if (channel != "") warning("The channel argument is deprecated as of slackr 2.1.1, as it no longer has any effect when used with a webhook")
-  if (username != "") warning("The username argument is deprecated as of slackr 2.1.1, as it no longer has any effect when used with a webhook")
-  if (icon_emoji != "") warning("The icon_emoji argument is deprecated as of slackr 2.1.1, as it no longer has any effect when used with a webhook")
+  if (incoming_webhook_url == "" | is.na(incoming_webhook_url)) {
+    abort("No incoming webhook URL specified. Did you forget to call slackr_setup()?")
+  }
 
   if (!missing(...)) {
 
@@ -81,8 +74,7 @@ slackr_bot <- function(...,
       expr <- args[[i]]
 
       # do something, note all the newlines...Slack ``` needs them
-      tmp <- switch(
-        mode(expr),
+      tmp <- switch(mode(expr),
         # if it's actually an expression, iterate over it
         expression = {
           cat(sprintf("> %s\n", deparse(expr)))
@@ -102,7 +94,7 @@ slackr_bot <- function(...,
         logical = ,
         numeric = cat(sprintf("%s\n\n", as.character(expr))),
         character = cat(sprintf("%s\n\n", expr)),
-        stop("mode of argument not handled at present by slackr")
+        abort("mode of argument not handled at present by slackr")
       )
 
       for (item in tmp) {
@@ -120,10 +112,6 @@ slackr_bot <- function(...,
 
     # combined all of them (rval is a character vector)
     output <- paste0(rval, collapse = "\n")
-
-    loc <- Sys.getlocale("LC_CTYPE")
-    Sys.setlocale("LC_CTYPE", "C")
-    on.exit(Sys.setlocale("LC_CTYPE", loc))
 
     resp <- POST(
       url = incoming_webhook_url,

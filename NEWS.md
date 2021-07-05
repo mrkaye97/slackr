@@ -1,3 +1,14 @@
+# slackr 2.4.0
+
+* Deprecates the `bot_user_oauth_token` argument for `slackr*` functions in favor of `token`
+* Allows users to choose between a user token and a bot token
+* Uses `withr::local_options(list(cli.num_colors = 1))` inside of `slackr` to fix garbled tibble printing. [Linked issue](https://github.com/mrkaye97/slackr/issues/152)
+* Removes the `channel`, `username` and `icon_emoji` parameters for `slackr_bot()` which were deprecated in version `2.1.1` and have no effect
+* Removes the `cacheChannels` parameter for `slackr_setup()` which was deprecated in version `2.1.0`
+* Removes hard-coded locale settings [linked issue](https://github.com/mrkaye97/slackr/issues/154)
+* Small error handling improvements and other miscellaneous fixes
+
+
 # slackr 2.3.0
 
 * Adds `slackr_csv()`, which simplifies the process of writing data frames to Slack as csv files

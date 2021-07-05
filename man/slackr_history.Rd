@@ -6,18 +6,19 @@
 \usage{
 slackr_history(
   channel = Sys.getenv("SLACK_CHANNEL"),
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+  token = Sys.getenv("SLACK_TOKEN"),
   posted_to_time = as.numeric(Sys.time()),
   message_count,
   duration,
   posted_from_time,
-  paginate = FALSE
+  paginate = FALSE,
+  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
 )
 }
 \arguments{
 \item{channel}{The channel to get history from}
 
-\item{bot_user_oauth_token}{the Slack bot user OAuth token}
+\item{token}{A Slack token (either a user token or a bot user token)}
 
 \item{posted_to_time}{Timestamp of the last post to consider (default:
 current time)}
@@ -30,6 +31,8 @@ current time)}
 \item{posted_from_time}{Timestamp of the first post time to consider}
 
 \item{paginate}{If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to the API and retrieves a maximum of \code{message_count} messages}
+
+\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 }
 \value{
 A \code{tibble} with message metadata
