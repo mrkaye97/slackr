@@ -73,7 +73,8 @@ jobs:
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
-          remotes::install_cran("devtools", dependencies = TRUE)
+          install.packages("stringi", type="source")
+          remotes::install_cran("devtools")
         shell: Rscript {0}
 
       - name: Check
