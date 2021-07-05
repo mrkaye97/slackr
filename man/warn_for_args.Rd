@@ -7,7 +7,7 @@
 warn_for_args(token, ...)
 }
 \arguments{
-\item{token}{a token}
+\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 
 \item{...}{Additiional arguments passed to the function called}
 }

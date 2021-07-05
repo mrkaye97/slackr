@@ -33,7 +33,7 @@ Default: parent.frame(2) (global environment)}
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 }
 \value{
 function

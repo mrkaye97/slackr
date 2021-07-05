@@ -218,7 +218,7 @@ with_pagination <- function(fun, extract) {
 
 #' Checks authentication & identity against the Slack API.
 #'
-#' @param token The Slack bot OAuth token {character vector}
+#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
 #'
 #' @references https://api.slack.com/methods/auth.test
 #' @export

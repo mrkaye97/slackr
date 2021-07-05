@@ -23,7 +23,7 @@ call_slack_api(
 
 \item{.method}{Either "GET" or "POST"}
 
-\item{token}{The Slack bot OAuth token {character vector}}
+\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 
 \item{.verbose}{If TRUE, prints \code{httr} verbose messages.  Useful for debugging.}
 

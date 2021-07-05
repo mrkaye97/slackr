@@ -1,6 +1,6 @@
 #' Check for token-parameter mismatches
 #'
-#' @param token a token
+#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
 #' @param ... Additiional arguments passed to the function called
 #' @return No return value. Called for side effects
 warn_for_args <- function(token, ...) {
