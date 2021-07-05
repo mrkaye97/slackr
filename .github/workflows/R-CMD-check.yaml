@@ -65,6 +65,7 @@ jobs:
       - name: Install system dependencies
         if: runner.os == 'Linux'
         run: |
+          sudo apt-get install libcurl4-openssl-dev -y
           while read -r cmd
           do
             eval sudo $cmd
