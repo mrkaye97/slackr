@@ -1,6 +1,7 @@
 # slackr 2.4.0
 
-* Replaces the `bot_user_oauth_token` argument for `slackr*` functions with `token`, and allows users to choose between a user token and a bot token
+* Deprecates the `bot_user_oauth_token` argument for `slackr*` functions in favor of `token`
+* Allows users to choose between a user token and a bot token
 * Uses `withr::local_options(list(cli.num_colors = 1))` inside of `slackr` to fix garbled tibble printing. [Linked issue](https://github.com/mrkaye97/slackr/issues/152)
 * Removes the `channel`, `username` and `icon_emoji` parameters for `slackr_bot()` which were deprecated in version `2.1.1` and have no effect
 * Removes the `cacheChannels` parameter for `slackr_setup()` which was deprecated in version `2.1.0`
