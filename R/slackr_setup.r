@@ -56,7 +56,7 @@ slackr_setup <- function(channel="#general",
                          cache_dir = '',
                          bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
 
-  if (bot_user_oauth_token != "") warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 3.0.0`. Please use `token` instead.")
+  if (bot_user_oauth_token != "") warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 2.4.0`. Please use `token` instead.")
 
 
   Sys.setenv(SLACK_CACHE_DIR = cache_dir)

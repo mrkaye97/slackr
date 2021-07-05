@@ -34,7 +34,7 @@ devtools::install_github("mrkaye97/slackr")
 
 ## Breaking Changes
 
-Version 3.0.0+ now allows users to choose between using a bot token and
+Version 2.4.0+ now allows users to choose between using a bot token and
 a user token. See below for details.
 
 ## Setup

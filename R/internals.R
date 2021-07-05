@@ -26,7 +26,7 @@ check_tokens <- function(token, bot_user_oauth_token) {
   }
 
   if (bot_user_oauth_token != "") {
-    deprecate_warn("3.0.0", dep_arg1, dep_arg2)
+    deprecate_warn("2.4.0", dep_arg1, dep_arg2)
 
     return(bot_user_oauth_token)
   }
