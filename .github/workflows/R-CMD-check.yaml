@@ -73,7 +73,7 @@ jobs:
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
-          remotes::install_cran("rcmdcheck")
+          remotes::install_cran("devtools")
         shell: Rscript {0}
 
       - name: Check
@@ -81,7 +81,7 @@ jobs:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
         run: |
           options(crayon.enabled = TRUE)
-          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "--no-build-vignettes", "--ignore-vignettes"), error_on = "warning", check_dir = "check")
+          devtools::check(manual = FALSE, cran = TRUE, vignettes = FALSE, error_on = "note", check_dir = "check")
         shell: Rscript {0}
 
       - name: Upload check results
