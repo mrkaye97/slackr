@@ -75,6 +75,7 @@ jobs:
         run: |
           remotes::install_deps(dependencies = TRUE)
           install.packages("stringi", type="source")
+          install.packages("curl", type="source")
           remotes::install_cran("devtools")
         shell: Rscript {0}
 
