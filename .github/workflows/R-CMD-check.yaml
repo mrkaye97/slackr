@@ -65,7 +65,8 @@ jobs:
       - name: Install system dependencies
         if: runner.os == 'Linux'
         run: |
-          sudo apt-get install libcurl4-openssl-dev -y
+          sudo apt-get remove --auto-remove libcurl4-openssl-dev -y
+          sudo apt-get install libcurl3 -y
           while read -r cmd
           do
             eval sudo $cmd
