@@ -45,10 +45,6 @@ slackr_channels <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_to
 slackr_ims <- function(token = Sys.getenv("SLACK_TOKEN"), bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
   token <- check_tokens(token, bot_user_oauth_token)
 
-  loc <- Sys.getlocale("LC_CTYPE")
-  Sys.setlocale("LC_CTYPE", "C")
-  on.exit(Sys.setlocale("LC_CTYPE", loc))
-
   ims <- list_channels(token = token, types = "im")
   users <- slackr_users(token = token)
 

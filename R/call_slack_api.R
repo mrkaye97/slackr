@@ -91,11 +91,6 @@ call_slack_api <- function(path, ..., body = NULL, .method = c("GET", "POST"),
   url <- "https://slack.com"
   .method <- match.arg(.method)
 
-  # Set locale to C (POSIX)
-  loc <- Sys.getlocale("LC_CTYPE")
-  Sys.setlocale("LC_CTYPE", "C")
-  on.exit(Sys.setlocale("LC_CTYPE", loc))
-
   # Make verbose call if env var is set
   if (.verbose == "TRUE") {
     old_config <- set_config(verbose())

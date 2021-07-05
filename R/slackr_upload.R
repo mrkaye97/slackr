@@ -29,10 +29,6 @@ slackr_upload <- function(filename, title = basename(filename),
   if (file.exists(f_path)) {
     f_name <- basename(f_path)
 
-    loc <- Sys.getlocale("LC_CTYPE")
-    Sys.setlocale("LC_CTYPE", "C")
-    on.exit(Sys.setlocale("LC_CTYPE", loc))
-
     res <- POST(
       url = "https://slack.com/api/files.upload",
       add_headers(`Content-Type` = "multipart/form-data"),

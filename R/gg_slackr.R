@@ -40,10 +40,6 @@ ggslackr <- function(plot = last_plot(),
                      ...) {
   token <- check_tokens(token, bot_user_oauth_token)
 
-  loc <- Sys.getlocale("LC_CTYPE")
-  Sys.setlocale("LC_CTYPE", "C")
-  on.exit(Sys.setlocale("LC_CTYPE", loc))
-
   ftmp <- tempfile(file, fileext = ".png")
   ggsave(
     filename = ftmp,

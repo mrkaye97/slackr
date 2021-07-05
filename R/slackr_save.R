@@ -29,10 +29,6 @@ slackr_save <- function(...,
 
   if (channels == "") abort("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
 
-  loc <- Sys.getlocale("LC_CTYPE")
-  Sys.setlocale("LC_CTYPE", "C")
-  on.exit(Sys.setlocale("LC_CTYPE", loc))
-
   ftmp <- tempfile(file, fileext = ".Rdata")
   save(..., file = ftmp, envir = parent.frame())
 

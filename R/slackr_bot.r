@@ -113,10 +113,6 @@ slackr_bot <- function(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WE
     # combined all of them (rval is a character vector)
     output <- paste0(rval, collapse = "\n")
 
-    loc <- Sys.getlocale("LC_CTYPE")
-    Sys.setlocale("LC_CTYPE", "C")
-    on.exit(Sys.setlocale("LC_CTYPE", loc))
-
     resp <- POST(
       url = incoming_webhook_url,
       encode = "form",
