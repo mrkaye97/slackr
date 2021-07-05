@@ -16,13 +16,15 @@ slackr_upload(
 \arguments{
 \item{filename}{path to file}
 
-\item{title}{title on Slack (optional - defaults to filename)}
+\item{title}{Title of file}
 
-\item{initial_comment}{comment for file on slack (optional - defaults to filename)}
+\item{initial_comment}{The message text introducing the file in specified channels}
 
 \item{channels}{Slack channels to save to (optional)}
 
 \item{token}{A Slack token (either a user token or a bot user token)}
+
+\item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead}
 }
 \value{
 \code{httr} response object from \code{POST} call (invisibly)

@@ -27,6 +27,12 @@ slackr_tex(
 
 \item{path}{character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL}
 
+\item{title}{Title of file}
+
+\item{initial_comment}{The message text introducing the file in specified channels}
+
+\item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead}
+
 \item{...}{other arguments passed to \code{\link[texPreview:tex_preview]{texPreview::tex_preview()}}, see Details}
 }
 \value{

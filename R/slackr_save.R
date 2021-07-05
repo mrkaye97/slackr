@@ -8,7 +8,9 @@
 #' @param channels Slack channels to save to (optional)
 #' @param file filename (without extension) to use
 #' @param token A Slack token (either a user token or a bot user token)
-#' @param plot_text the plot text to send with the plot (defaults to "")
+#' @param initial_comment The message text introducing the file in specified channels
+#' @param thread_ts Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead
+#' @param title Title of file
 #' @return `httr` response object from `POST` call
 #' @seealso [slackr_setup()], [slackr_dev()], [slackr_upload()]
 #' @importFrom httr add_headers upload_file
@@ -37,7 +39,7 @@ slackr_save <- function(
 
   res <- files_upload(
     file = ftmp,
-    channel = channels,
+    channels = channels,
     txt = initial_comment,
     token = token,
     filename = sprintf("%s.Rdata", file),

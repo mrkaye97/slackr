@@ -4,8 +4,9 @@
 #' (optionally) post them to one or more channels (if `channels` is not empty).
 #'
 #' @param filename path to file
-#' @param title title on Slack (optional - defaults to filename)
-#' @param initial_comment comment for file on slack (optional - defaults to filename)
+#' @param initial_comment The message text introducing the file in specified channels
+#' @param thread_ts Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead
+#' @param title Title of file
 #' @param channels Slack channels to save to (optional)
 #' @param token A Slack token (either a user token or a bot user token)
 #' @return `httr` response object from `POST` call (invisibly)
