@@ -39,7 +39,6 @@ test_that("slackr_msg posts", {
 
 test_that("slackr_delete works", {
   skip_on_cran()
-  skip_on_ci()
 
   slackr_msg("Testing deletion")
   res <- slackr_delete(1)
