@@ -10,6 +10,9 @@ slackr_tex(
   token = Sys.getenv("SLACK_TOKEN"),
   ext = "png",
   path = NULL,
+  title = NULL,
+  initial_comment = NULL,
+  thread_ts = NULL,
   ...
 )
 }

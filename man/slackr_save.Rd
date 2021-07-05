@@ -9,7 +9,9 @@ slackr_save(
   channels = Sys.getenv("SLACK_CHANNEL"),
   file = "slackr",
   token = Sys.getenv("SLACK_TOKEN"),
-  plot_text = ""
+  initial_comment = NULL,
+  title = NULL,
+  thread_ts = NULL
 )
 }
 \arguments{

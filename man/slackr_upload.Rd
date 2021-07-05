@@ -6,10 +6,11 @@
 \usage{
 slackr_upload(
   filename,
-  title = basename(filename),
-  initial_comment = basename(filename),
+  title = NULL,
+  initial_comment = NULL,
   channels = Sys.getenv("SLACK_CHANNEL"),
-  token = Sys.getenv("SLACK_TOKEN")
+  token = Sys.getenv("SLACK_TOKEN"),
+  thread_ts = NULL
 )
 }
 \arguments{
