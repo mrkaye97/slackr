@@ -30,12 +30,15 @@ stop_for_status <- function(r) {
       collapse = "\n"
     )
     warn(
-      "\n",
-      "The slack API returned an error: ", error_msg, "\n",
-      additional_msg,
+      sprintf(
+        "The slack API returned an error: %s \r\n%s",
+        error_msg,
+        additional_msg
+      )
     )
   }
-  invisible(NULL)
+
+  invisible()
 }
 
 #' with_retry
