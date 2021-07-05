@@ -14,7 +14,6 @@
 #' @param limitsize when TRUE (the default), ggsave will not save images larger
 #'        than 50x50 inches, to prevent the common error of specifying dimensions in pixels.
 #' @param token A Slack token (either a user token or a bot user token)
-#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @param file prefix for filenames (defaults to `ggplot`)
 #' @param ... other arguments passed to graphics device
 #' @importFrom ggplot2 ggsave last_plot ggplot aes geom_point
@@ -36,10 +35,7 @@ ggslackr <- function(plot = last_plot(),
                      limitsize = TRUE,
                      token = Sys.getenv("SLACK_TOKEN"),
                      file = "ggplot",
-                     bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                      ...) {
-
-  token <- check_tokens(token, bot_user_oauth_token)
 
   ftmp <- tempfile(file, fileext = ".png")
   ggsave(

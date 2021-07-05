@@ -15,7 +15,6 @@ ggslackr(
   limitsize = TRUE,
   token = Sys.getenv("SLACK_TOKEN"),
   file = "ggplot",
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
   ...
 )
 }
@@ -41,8 +40,6 @@ than 50x50 inches, to prevent the common error of specifying dimensions in pixel
 \item{token}{A Slack token (either a user token or a bot user token)}
 
 \item{file}{prefix for filenames (defaults to \code{ggplot})}
-
-\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 
 \item{...}{other arguments passed to graphics device}
 }

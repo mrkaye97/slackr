@@ -8,7 +8,6 @@
 #'   channels:history * groups:history * im:history * mpim:history
 #'
 #' @param token A Slack token (either a user token or a bot user token)
-#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @param channel The channel to get history from
 #' @param posted_from_time Timestamp of the first post time to consider
 #' @param duration Number of hours of history to retrieve.  By default retrieves
@@ -28,9 +27,7 @@ slackr_history <- function(channel = Sys.getenv("SLACK_CHANNEL"),
                            message_count,
                            duration,
                            posted_from_time,
-                           paginate = FALSE,
-                           bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-  token <- check_tokens(token, bot_user_oauth_token)
+                           paginate = FALSE) {
 
   channel <- slackr_chtrans(channel, token)
 

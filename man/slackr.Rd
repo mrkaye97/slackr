@@ -9,8 +9,7 @@ slackr(
   channel = Sys.getenv("SLACK_CHANNEL"),
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-  token = Sys.getenv("SLACK_TOKEN"),
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+  token = Sys.getenv("SLACK_TOKEN")
 )
 }
 \arguments{
@@ -23,8 +22,6 @@ slackr(
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
 
 \item{token}{A Slack token (either a user token or a bot user token)}
-
-\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 }
 \value{
 the response (invisibly)

@@ -8,7 +8,6 @@
 #' @param env environment to assign appended function to with relation to the function environment,
 #' Default: parent.frame(2) (global environment)
 #' @param token A Slack token (either a user token or a bot user token)
-#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @inherit slackr
 #' @return function
 #' @details If a character is passed to f then it will evaluate internally to a function.
@@ -64,9 +63,7 @@ register_onexit <- function(f,
                             channel = Sys.getenv("SLACK_CHANNEL"),
                             username = Sys.getenv("SLACK_USERNAME"),
                             icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-                            token = Sys.getenv("SLACK_TOKEN"),
-                            bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-  token <- check_tokens(token, bot_user_oauth_token)
+                            token = Sys.getenv("SLACK_TOKEN")) {
 
   warn_for_args(
     token,

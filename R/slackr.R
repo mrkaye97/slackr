@@ -13,7 +13,6 @@
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) `""` will mean use the default
 #' @param token A Slack token (either a user token or a bot user token)
-#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @return the response (invisibly)
 #' @note You need a <https://www.slack.com> account and will also need to
 #'       set up an API token <https://api.slack.com/>
@@ -34,10 +33,8 @@ slackr <- function(...,
                    channel = Sys.getenv("SLACK_CHANNEL"),
                    username = Sys.getenv("SLACK_USERNAME"),
                    icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-                   token = Sys.getenv("SLACK_TOKEN"),
-                   bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
+                   token = Sys.getenv("SLACK_TOKEN")) {
   local_options(list(cli.num_colors = 1))
-  token <- check_tokens(token, bot_user_oauth_token)
 
   warn_for_args(
     token,
@@ -134,7 +131,6 @@ slackr <- function(...,
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) `""` will mean use the default
 #' @param token A Slack token (either a user token or a bot user token)
-#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @return the response (invisibly)
 #' @param ... other arguments passed to the Slack API `chat.postMessage` call
 #' @note You need a <https://www.slack.com> account and will also need to
@@ -155,9 +151,7 @@ slackr_msg <- function(txt = "",
                        username = Sys.getenv("SLACK_USERNAME"),
                        icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
                        token = Sys.getenv("SLACK_TOKEN"),
-                       bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                        ...) {
-  token <- check_tokens(token, bot_user_oauth_token)
 
   warn_for_args(
     token,

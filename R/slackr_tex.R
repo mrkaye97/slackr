@@ -8,7 +8,6 @@
 #' @param ext character, type of format to return, can be tex, pdf, or any image device, Default: 'png'
 #' @param path character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL
 #' @param token A Slack token (either a user token or a bot user token)
-#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @param ... other arguments passed to [texPreview::tex_preview()], see Details
 #' @note You need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
 #'       Also, you can pass in `add_user=TRUE` as part of the `...`
@@ -27,9 +26,7 @@ slackr_tex <- function(obj,
                        token = Sys.getenv("SLACK_TOKEN"),
                        ext = "png",
                        path = NULL,
-                       bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                        ...) {
-  token <- check_tokens(token, bot_user_oauth_token)
 
   # check if texPreview is installed, if not provide feedback
   check_tex_pkg()

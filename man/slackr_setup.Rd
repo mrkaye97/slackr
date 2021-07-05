@@ -12,8 +12,7 @@ slackr_setup(
   token = "",
   config_file = "~/.slackr",
   echo = FALSE,
-  cache_dir = "",
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+  cache_dir = ""
 )
 }
 \arguments{
@@ -34,8 +33,6 @@ with the config values.}
 \item{echo}{display the configuration variables (bool) initially \code{FALSE}}
 
 \item{cache_dir}{the location for an on-disk cache. defaults to an in-memory cache if no location is specified}
-
-\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 }
 \value{
 "Successfully connected to Slack"

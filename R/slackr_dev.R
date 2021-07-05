@@ -5,7 +5,6 @@
 #'
 #' @param channels list of channels to post image to
 #' @param token A Slack token (either a user token or a bot user token)
-#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @param file prefix for filenames (defaults to `plot`)
 #' @param plot_text the plot text to send with the plot (defaults to "")
 #' @importFrom grDevices dev.copy dev.off png
@@ -30,9 +29,7 @@
 slackr_dev <- function(channels = Sys.getenv("SLACK_CHANNEL"),
                        token = Sys.getenv("SLACK_TOKEN"),
                        plot_text = "",
-                       file = "plot",
-                       bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-  token <- check_tokens(token, bot_user_oauth_token)
+                       file = "plot") {
 
   ftmp <- tempfile(file, fileext = ".png")
   dev.copy(png, file = ftmp)

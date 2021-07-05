@@ -10,7 +10,6 @@
 #' @param title title on Slack (optional - defaults to filename)
 #' @param initial_comment comment for file on slack (optional - defaults to filename)
 #' @param token A Slack token (either a user token or a bot user token)
-#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
 #' @param ... additional arguments to be passed to `write.csv()`
 #' @return `httr` response object from `POST` call (invisibly)
 #' @author Matt Kaye (aut)
@@ -23,9 +22,7 @@ slackr_csv <- function(data,
                        initial_comment = basename(filename),
                        channels = Sys.getenv("SLACK_CHANNEL"),
                        token = Sys.getenv("SLACK_TOKEN"),
-                       bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                        ...) {
-  token <- check_tokens(token, bot_user_oauth_token)
 
   write.csv(data, filename, ...)
 

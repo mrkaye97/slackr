@@ -8,8 +8,7 @@ slackr_dev(
   channels = Sys.getenv("SLACK_CHANNEL"),
   token = Sys.getenv("SLACK_TOKEN"),
   plot_text = "",
-  file = "plot",
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+  file = "plot"
 )
 }
 \arguments{
@@ -20,8 +19,6 @@ slackr_dev(
 \item{plot_text}{the plot text to send with the plot (defaults to "")}
 
 \item{file}{prefix for filenames (defaults to \code{plot})}
-
-\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 }
 \value{
 \code{httr} response object from \code{POST} call

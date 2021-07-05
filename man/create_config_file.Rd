@@ -10,8 +10,7 @@ create_config_file(
   incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
   username = Sys.getenv("SLACK_USERNAME"),
-  channel = Sys.getenv("SLACK_CHANNEL"),
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+  channel = Sys.getenv("SLACK_CHANNEL")
 )
 }
 \arguments{
@@ -26,8 +25,6 @@ create_config_file(
 \item{username}{the username to send messages from (will default to "slackr" if no username is set)}
 
 \item{channel}{the channel to send messages to (will default to "#general" if no channel is set)}
-
-\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
 }
 \value{
 TRUE if successful (invisibly)
