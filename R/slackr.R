@@ -9,10 +9,10 @@
 #' but it's probably better to call [slackr_setup()] first.
 #' @importFrom withr local_options
 #' @param ... expressions to be sent to Slack
-#' @param channel which channel to post the message to (chr)
+#' @param channels Comma-separated list of channel names or IDs where the file will be shared.
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) `""` will mean use the default
-#' @param token A Slack token (either a user token or a bot user token)
+#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
 #' @return the response (invisibly)
 #' @note You need a <https://www.slack.com> account and will also need to
 #'       set up an API token <https://api.slack.com/>
@@ -30,7 +30,7 @@
 #' }
 #' @export
 slackr <- function(...,
-                   channel = Sys.getenv("SLACK_CHANNEL"),
+                   channels = Sys.getenv("SLACK_CHANNEL"),
                    username = Sys.getenv("SLACK_USERNAME"),
                    icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
                    token = Sys.getenv("SLACK_TOKEN")) {
@@ -112,7 +112,7 @@ slackr <- function(...,
     resp <-
       post_message(
         token = token,
-        channel = channel,
+        channels = channels,
         username = username,
         emoji = icon_emoji,
         txt = sprintf("```%s```", output),
@@ -127,10 +127,10 @@ slackr <- function(...,
 #'
 #' @param txt text message to send to Slack. If a character vector of length > 1
 #'        is passed in, they will be combined and separated by newlines.
-#' @param channel which channel to post the message to (chr)
+#' @param channel Comma-separated list of channel names or IDs where the file will be shared.
 #' @param username what user should the bot be named as (chr)
 #' @param icon_emoji what emoji to use (chr) `""` will mean use the default
-#' @param token A Slack token (either a user token or a bot user token)
+#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
 #' @return the response (invisibly)
 #' @param ... other arguments passed to the Slack API `chat.postMessage` call
 #' @note You need a <https://www.slack.com> account and will also need to
@@ -147,7 +147,7 @@ slackr <- function(...,
 #' }
 #' @export
 slackr_msg <- function(txt = "",
-                       channel = Sys.getenv("SLACK_CHANNEL"),
+                       channels = Sys.getenv("SLACK_CHANNEL"),
                        username = Sys.getenv("SLACK_USERNAME"),
                        icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
                        token = Sys.getenv("SLACK_TOKEN"),
@@ -165,7 +165,7 @@ slackr_msg <- function(txt = "",
     post_message(
       txt        = output,
       emoji = icon_emoji,
-      channel    = channel,
+      channels    = channels,
       token = token,
       username = username,
       link_names = 1,

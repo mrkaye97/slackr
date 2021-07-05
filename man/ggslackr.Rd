@@ -24,7 +24,7 @@ ggslackr(
 \arguments{
 \item{plot}{ggplot object to save, defaults to last plot displayed}
 
-\item{channels}{list of channels to post image to}
+\item{channels}{Comma-separated list of channel names or IDs where the file will be shared.}
 
 \item{scale}{scaling factor}
 
@@ -40,7 +40,7 @@ ggslackr(
 \item{limitsize}{when TRUE (the default), ggsave will not save images larger
 than 50x50 inches, to prevent the common error of specifying dimensions in pixels.}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 
 \item{file}{prefix for filenames (defaults to \code{ggplot})}
 

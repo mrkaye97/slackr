@@ -5,24 +5,24 @@
 \title{Reads history of a channel.}
 \usage{
 slackr_history(
+  message_count,
   channel = Sys.getenv("SLACK_CHANNEL"),
   token = Sys.getenv("SLACK_TOKEN"),
   posted_to_time = as.numeric(Sys.time()),
-  message_count,
   duration,
   posted_from_time,
   paginate = FALSE
 )
 }
 \arguments{
+\item{message_count}{The number of messages to retrieve (only when \code{paginate = FALSE})}
+
 \item{channel}{The channel to get history from}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 
 \item{posted_to_time}{Timestamp of the last post to consider (default:
 current time)}
-
-\item{message_count}{The number of messages to retrieve (only when \code{paginate = FALSE})}
 
 \item{duration}{Number of hours of history to retrieve.  By default retrieves
 24 hours of history.}

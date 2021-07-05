@@ -29,8 +29,6 @@ Default: FALSE}
 \item{env}{environment to assign appended function to with relation to the function environment,
 Default: parent.frame(2) (global environment)}
 
-\item{channel}{which channel to post the message to (chr)}
-
 \item{username}{what user should the bot be named as (chr)}
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}

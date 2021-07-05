@@ -16,7 +16,7 @@ create_config_file(
 \arguments{
 \item{filename}{the name of the config file to save. We recommend using a hidden file (starting with '.')}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 
 \item{incoming_webhook_url}{the incoming webhook URL (Default: whatever is set as an env var)}
 

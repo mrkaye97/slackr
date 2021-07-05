@@ -1,6 +1,6 @@
 #' Get a data frame of Slack users
 #'
-#' @param token A Slack token (either a user token or a bot user token)
+#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
 #' @return `data.frame` of users
 #' @importFrom dplyr bind_cols setdiff
 #' @export
@@ -16,7 +16,7 @@ slackr_users <- function(token = Sys.getenv("SLACK_TOKEN")) {
 
 #' Get a data frame of Slack channels
 #'
-#' @param token A Slack token (either a user token or a bot user token)
+#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
 #' @importFrom dplyr bind_rows
 #' @return data.table of channels
 #' @export
@@ -30,7 +30,7 @@ slackr_channels <- function(token = Sys.getenv("SLACK_TOKEN")) {
 
 #' Get a data frame of Slack IM ids
 #'
-#' @param token A Slack token (either a user token or a bot user token)
+#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
 #' @importFrom dplyr left_join
 #'
 #' @author Quinn Weber (aut), Bob Rudis (ctb)
@@ -55,8 +55,8 @@ slackr_ims <- function(token = Sys.getenv("SLACK_TOKEN")) {
 #' active channels and try to replace channels that begin with "`#`" or "`@@`"
 #' with the channel ID for that channel.
 #'
-#' @param channels vector of channel names to parse
-#' @param token A Slack token (either a user token or a bot user token)
+#' @param channels Comma-separated list of channel names or IDs where the file will be shared.
+#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
 #' @author Quinn Weber (ctb), Bob Rudis (aut)
 #' @return character vector - original channel list with `#` or
 #'          `@@` channels replaced with ID's.
@@ -78,7 +78,7 @@ slackr_chtrans <- function(channels, token = Sys.getenv("SLACK_TOKEN")) {
 
 #' Create a cache of the users and channels in the workspace in order to limit API requests
 #'
-#' @param token A Slack token (either a user token or a bot user token)
+#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
 #' @return A data.frame of channels and users
 #' @importFrom dplyr bind_rows distinct
 #' @importFrom tibble tibble

@@ -15,7 +15,7 @@ slackr_delete(
 
 \item{channel}{the channel to delete from}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 }
 \description{
 Deletes the specified number of messages from the channel

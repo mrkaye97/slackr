@@ -7,7 +7,7 @@
 slackr_channels(token = Sys.getenv("SLACK_TOKEN"))
 }
 \arguments{
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 }
 \value{
 data.table of channels

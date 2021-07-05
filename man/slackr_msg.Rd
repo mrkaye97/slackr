@@ -6,7 +6,7 @@
 \usage{
 slackr_msg(
   txt = "",
-  channel = Sys.getenv("SLACK_CHANNEL"),
+  channels = Sys.getenv("SLACK_CHANNEL"),
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
   token = Sys.getenv("SLACK_TOKEN"),
@@ -17,15 +17,15 @@ slackr_msg(
 \item{txt}{text message to send to Slack. If a character vector of length > 1
 is passed in, they will be combined and separated by newlines.}
 
-\item{channel}{which channel to post the message to (chr)}
-
 \item{username}{what user should the bot be named as (chr)}
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 
 \item{...}{other arguments passed to the Slack API \code{chat.postMessage} call}
+
+\item{channel}{Comma-separated list of channel names or IDs where the file will be shared.}
 }
 \value{
 the response (invisibly)

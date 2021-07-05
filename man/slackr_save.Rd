@@ -17,11 +17,11 @@ slackr_save(
 \arguments{
 \item{...}{objects to store in the R data file}
 
-\item{channels}{Slack channels to save to (optional)}
+\item{channels}{Comma-separated list of channel names or IDs where the file will be shared.}
 
 \item{file}{filename (without extension) to use}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 
 \item{initial_comment}{The message text introducing the file in specified channels}
 

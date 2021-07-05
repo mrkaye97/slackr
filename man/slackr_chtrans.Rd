@@ -7,9 +7,9 @@
 slackr_chtrans(channels, token = Sys.getenv("SLACK_TOKEN"))
 }
 \arguments{
-\item{channels}{vector of channel names to parse}
+\item{channels}{Comma-separated list of channel names or IDs where the file will be shared.}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 }
 \value{
 character vector - original channel list with \verb{#} or

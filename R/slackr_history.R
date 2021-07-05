@@ -7,7 +7,7 @@
 #'   You need one or more of these scopes enabled in your slack app: *
 #'   channels:history * groups:history * im:history * mpim:history
 #'
-#' @param token A Slack token (either a user token or a bot user token)
+#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
 #' @param channel The channel to get history from
 #' @param posted_from_time Timestamp of the first post time to consider
 #' @param duration Number of hours of history to retrieve.  By default retrieves

@@ -3,7 +3,7 @@
 #' Deletes the specified number of messages from the channel
 #' @param count the number of messages to delete
 #' @param channel the channel to delete from
-#' @param token A Slack token (either a user token or a bot user token)
+#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
 #' @export
 slackr_delete <- function(count,
                           channel = Sys.getenv("SLACK_CHANNEL"),

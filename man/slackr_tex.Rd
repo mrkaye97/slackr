@@ -19,9 +19,9 @@ slackr_tex(
 \arguments{
 \item{obj}{character object containing tex to compile}
 
-\item{channels}{list of channels to post image to}
+\item{channels}{Comma-separated list of channel names or IDs where the file will be shared.}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 
 \item{ext}{character, type of format to return, can be tex, pdf, or any image device, Default: 'png'}
 

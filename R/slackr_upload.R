@@ -7,8 +7,8 @@
 #' @param initial_comment The message text introducing the file in specified channels
 #' @param thread_ts Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead
 #' @param title Title of file
-#' @param channels Slack channels to save to (optional)
-#' @param token A Slack token (either a user token or a bot user token)
+#' @param channels Comma-separated list of channel names or IDs where the file will be shared.
+#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
 #' @return `httr` response object from `POST` call (invisibly)
 #' @author Quinn Weber (ctb), Bob Rudis (aut)
 #' @references <https://github.com/mrkaye97/slackr/pull/15/files>

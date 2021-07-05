@@ -6,7 +6,7 @@
 \usage{
 slackr(
   ...,
-  channel = Sys.getenv("SLACK_CHANNEL"),
+  channels = Sys.getenv("SLACK_CHANNEL"),
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
   token = Sys.getenv("SLACK_TOKEN")
@@ -15,13 +15,13 @@ slackr(
 \arguments{
 \item{...}{expressions to be sent to Slack}
 
-\item{channel}{which channel to post the message to (chr)}
+\item{channels}{Comma-separated list of channel names or IDs where the file will be shared.}
 
 \item{username}{what user should the bot be named as (chr)}
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 }
 \value{
 the response (invisibly)

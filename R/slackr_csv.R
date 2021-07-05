@@ -6,10 +6,10 @@
 #' @importFrom utils write.csv
 #' @param data the data frame to upload
 #' @param filename the file to save to. Defaults to a tempfile. Using the default is _highly_ advised, as using a non-tempfile will write a file that persists on the disk (either in the working directory, or at the location specified)
-#' @param channels Slack channels to save to (optional)
+#' @param channels Comma-separated list of channel names or IDs where the file will be shared.
 #' @param title title on Slack (optional - defaults to filename)
 #' @param initial_comment comment for file on slack (optional - defaults to filename)
-#' @param token A Slack token (either a user token or a bot user token)
+#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
 #' @param thread_ts Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead
 #' @param ... additional arguments to be passed to `write.csv()`
 #' @return `httr` response object from `POST` call (invisibly)

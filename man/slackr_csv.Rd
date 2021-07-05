@@ -24,9 +24,9 @@ slackr_csv(
 
 \item{initial_comment}{comment for file on slack (optional - defaults to filename)}
 
-\item{channels}{Slack channels to save to (optional)}
+\item{channels}{Comma-separated list of channel names or IDs where the file will be shared.}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
 
 \item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead}
 

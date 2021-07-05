@@ -63,7 +63,7 @@ list_users <- function(token = Sys.getenv("SLACK_TOKEN"), ...) {
 #'
 #' @references https://api.slack.com/methods/chat.postMessage
 post_message <- function(txt,
-                         channel,
+                         channels,
                          emoji = "",
                          username = Sys.getenv("SLACK_USERNAME"),
                          token = Sys.getenv("SLACK_TOKEN"),
@@ -75,7 +75,7 @@ post_message <- function(txt,
       token = token,
       body = list(
         text       = txt,
-        channel    = channel,
+        channels    = channels,
         username   = username,
         link_names = 1,
         icon_emoji = emoji,
