@@ -10,7 +10,7 @@ ggslackr(
   scale = 1,
   width = par("din")[1],
   height = par("din")[2],
-  units = c("in", "cm", "mm"),
+  units = NULL,
   dpi = 300,
   limitsize = TRUE,
   token = Sys.getenv("SLACK_TOKEN"),

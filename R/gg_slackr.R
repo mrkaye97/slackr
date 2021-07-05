@@ -31,13 +31,14 @@ ggslackr <- function(plot = last_plot(),
                      scale = 1,
                      width = par("din")[1],
                      height = par("din")[2],
-                     units = c("in", "cm", "mm"),
+                     units = NULL,
                      dpi = 300,
                      limitsize = TRUE,
                      token = Sys.getenv("SLACK_TOKEN"),
                      file = "ggplot",
                      bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
                      ...) {
+
   token <- check_tokens(token, bot_user_oauth_token)
 
   ftmp <- tempfile(file, fileext = ".png")

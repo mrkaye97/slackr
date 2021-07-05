@@ -22,7 +22,6 @@ test_that("slackr posts", {
 
 test_that("ggslackr posts", {
   skip_on_cran()
-  skip_on_ci()
 
   res <- ggslackr(
     ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
@@ -92,7 +91,6 @@ test_that("slackr_save works", {
 
 test_that("ggslackr works from in a function", {
   skip_on_cran()
-  skip_on_ci()
 
   f <- function() {
     plt <- ggplot2::ggplot(iris, ggplot2::aes(Sepal.Length, Sepal.Width)) +
