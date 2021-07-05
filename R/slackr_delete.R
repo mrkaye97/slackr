@@ -8,7 +8,6 @@
 slackr_delete <- function(count,
                           channel = Sys.getenv("SLACK_CHANNEL"),
                           token = Sys.getenv("SLACK_TOKEN")) {
-
   if (!is.character(channel) | length(channel) > 1) {
     abort("channel must be a character vector of length one")
   }

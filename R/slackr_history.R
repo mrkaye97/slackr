@@ -21,16 +21,13 @@
 #' @return A `tibble` with message metadata
 #' @references <https://api.slack.com/methods/conversations.history>
 #'
-slackr_history <- function(
-  message_count,
-  channel = Sys.getenv("SLACK_CHANNEL"),
-  token = Sys.getenv("SLACK_TOKEN"),
-  posted_to_time = as.numeric(Sys.time()),
-  duration,
-  posted_from_time,
-  paginate = FALSE
-) {
-
+slackr_history <- function(message_count,
+                           channel = Sys.getenv("SLACK_CHANNEL"),
+                           token = Sys.getenv("SLACK_TOKEN"),
+                           posted_to_time = as.numeric(Sys.time()),
+                           duration,
+                           posted_from_time,
+                           paginate = FALSE) {
   channel <- slackr_chtrans(channel, token)
 
   if (!missing(duration) && !is.null(duration) && !missing(posted_from_time) && !is.null(posted_from_time)) {

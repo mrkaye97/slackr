@@ -230,7 +230,6 @@ with_pagination <- function(fun, extract) {
 #'   auth_test()
 #' }
 auth_test <- function(token = Sys.getenv("SLACK_TOKEN")) {
-
   call_slack_api(
     "/api/auth.test",
     .method = GET,

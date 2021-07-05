@@ -42,7 +42,6 @@ ggslackr <- function(plot = last_plot(),
                      thread_ts = NULL,
                      title = NULL,
                      ...) {
-
   ftmp <- tempfile(file, fileext = ".png")
   ggsave(
     filename = ftmp,

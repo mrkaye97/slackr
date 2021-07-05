@@ -64,7 +64,6 @@ register_onexit <- function(f,
                             username = Sys.getenv("SLACK_USERNAME"),
                             icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
                             token = Sys.getenv("SLACK_TOKEN")) {
-
   warn_for_args(
     token,
     username = username,

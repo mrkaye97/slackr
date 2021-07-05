@@ -105,14 +105,11 @@ post_message <- function(txt,
 #'
 #'
 #' @references https://api.slack.com/methods/files.upload
-files_upload <- function(
-  file,
-  channels,
-  initial_comment = NULL,
-  token = Sys.getenv("SLACK_TOKEN"),
-  ...
-) {
-
+files_upload <- function(file,
+                         channels,
+                         initial_comment = NULL,
+                         token = Sys.getenv("SLACK_TOKEN"),
+                         ...) {
   r <- call_slack_api(
     "/api/files.upload",
     .method = POST,

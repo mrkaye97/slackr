@@ -25,7 +25,6 @@ slackr_csv <- function(data,
                        token = Sys.getenv("SLACK_TOKEN"),
                        thread_ts = NULL,
                        ...) {
-
   write.csv(data, filename, ...)
 
   res <- files_upload(
