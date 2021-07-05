@@ -91,7 +91,7 @@ eliminating the need to have a graphics device (think use in scripts)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.0</span>
       </span>
     </div>
 
@@ -167,8 +167,9 @@ eliminating the need to have a graphics device (think use in scripts).</p>
   units <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"in"</span>, <span class='st'>"cm"</span>, <span class='st'>"mm"</span><span class='op'>)</span>,
   dpi <span class='op'>=</span> <span class='fl'>300</span>,
   limitsize <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>,
+  token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_TOKEN"</span><span class='op'>)</span>,
   file <span class='op'>=</span> <span class='st'>"ggplot"</span>,
+  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -210,12 +211,16 @@ eliminating the need to have a graphics device (think use in scripts).</p>
 than 50x50 inches, to prevent the common error of specifying dimensions in pixels.</p></td>
     </tr>
     <tr>
-      <th>bot_user_oauth_token</th>
-      <td><p>the Slack bot user OAuth token (chr)</p></td>
+      <th>token</th>
+      <td><p>A Slack token (either a user token or a bot user token)</p></td>
     </tr>
     <tr>
       <th>file</th>
       <td><p>prefix for filenames (defaults to <code>ggplot</code>)</p></td>
+    </tr>
+    <tr>
+      <th>bot_user_oauth_token</th>
+      <td><p>Deprecated. A Slack bot user OAuth token</p></td>
     </tr>
     <tr>
       <th>...</th>

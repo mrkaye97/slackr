@@ -91,7 +91,7 @@ eliminating the need write to pdf and convert to png to pass to slack." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.0</span>
       </span>
     </div>
 
@@ -161,9 +161,10 @@ eliminating the need write to pdf and convert to png to pass to slack.</p>
     <pre class="usage"><span class='fu'>slackr_tex</span><span class='op'>(</span>
   <span class='va'>obj</span>,
   channels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_CHANNEL"</span><span class='op'>)</span>,
-  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>,
+  token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_TOKEN"</span><span class='op'>)</span>,
   ext <span class='op'>=</span> <span class='st'>"png"</span>,
   path <span class='op'>=</span> <span class='cn'>NULL</span>,
+  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -179,8 +180,8 @@ eliminating the need write to pdf and convert to png to pass to slack.</p>
       <td><p>list of channels to post image to</p></td>
     </tr>
     <tr>
-      <th>bot_user_oauth_token</th>
-      <td><p>the Slack full bot user OAuth token (chr)</p></td>
+      <th>token</th>
+      <td><p>A Slack token (either a user token or a bot user token)</p></td>
     </tr>
     <tr>
       <th>ext</th>
@@ -189,6 +190,10 @@ eliminating the need write to pdf and convert to png to pass to slack.</p>
     <tr>
       <th>path</th>
       <td><p>character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL</p></td>
+    </tr>
+    <tr>
+      <th>bot_user_oauth_token</th>
+      <td><p>Deprecated. A Slack bot user OAuth token</p></td>
     </tr>
     <tr>
       <th>...</th>

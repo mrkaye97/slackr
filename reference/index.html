@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.0</span>
       </span>
     </div>
 
@@ -281,12 +281,6 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="text_slackr.html">text_slackr()</a></code> </p>
-        </td>
-        <td><p>text_slackr</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="register_onexit.html">register_onexit()</a></code> </p>
         </td>
         <td><p>Append slackr_msg as on.exit to functions.</p></td>
@@ -324,6 +318,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="check_tokens.html">check_tokens()</a></code> </p>
+        </td>
+        <td><p>Check for token issues</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="convert_response_to_tibble.html">convert_response_to_tibble()</a></code> </p>
         </td>
         <td><p>Convert Slack API json response to tibble.</p></td>
@@ -333,6 +333,12 @@
           <p><code><a href="create_config_file.html">create_config_file()</a></code> </p>
         </td>
         <td><p>Create the config file used in <code>slackr_setup()</code></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="warn_for_args.html">warn_for_args()</a></code> </p>
+        </td>
+        <td><p>Check for token-parameter mismatches</p></td>
       </tr><tr>
         
         <td>
@@ -355,87 +361,63 @@
       <tr>
         
         <td>
-          <p><code><a href="dev.slackr.html">dev.slackr()</a></code> </p>
+          <p><code><a href="auth_test.html">auth_test()</a></code> </p>
         </td>
-        <td><p>Superseded by slackr_dev</p></td>
+        <td><p>Checks authentication &amp; identity against the Slack API.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="save.slackr.html">save.slackr()</a></code> </p>
+          <p><code><a href="call_slack_api.html">call_slack_api()</a></code> </p>
         </td>
-        <td><p>Superseded by save_slackr</p></td>
+        <td><p>A wrapper function to call the Slack API with authentication and pagination.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="slackrBot.html">slackrBot()</a></code> </p>
+          <p><code><a href="check_tokens.html">check_tokens()</a></code> </p>
         </td>
-        <td><p>Superseded by slackr_bot</p></td>
+        <td><p>Check for token issues</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="slackrChannels.html">slackrChannels()</a></code> </p>
+          <p><code><a href="convert_response_to_tibble.html">convert_response_to_tibble()</a></code> </p>
         </td>
-        <td><p>Superseded by slackr_channels</p></td>
+        <td><p>Convert Slack API json response to tibble.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="slackrChtrans.html">slackrChtrans()</a></code> <code><a href="slackrChtrans.html">slackrChTrans()</a></code> </p>
+          <p><code><a href="create_config_file.html">create_config_file()</a></code> </p>
         </td>
-        <td><p>Superseded by slackr_chtrans</p></td>
+        <td><p>Create the config file used in <code>slackr_setup()</code></p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="slackrIms.html">slackrIms()</a></code> </p>
+          <p><code><a href="ggslackr.html">ggslackr()</a></code> </p>
         </td>
-        <td><p>Superseded by slackr_ims</p></td>
+        <td><p>Post a ggplot to a Slack channel</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="slackrMsg.html">slackrMsg()</a></code> </p>
+          <p><code><a href="register_onexit.html">register_onexit()</a></code> </p>
         </td>
-        <td><p>Superseded by slackr_msg</p></td>
+        <td><p>Append slackr_msg as on.exit to functions.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="slackrSetup.html">slackrSetup()</a></code> </p>
+          <p><code><a href="slackr.html">slackr()</a></code> </p>
         </td>
-        <td><p>Superseded by slackr_setup</p></td>
+        <td><p>Output R expressions to a Slack channel/user</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="slackrUpload.html">slackrUpload()</a></code> </p>
+          <p><code><a href="warn_for_args.html">warn_for_args()</a></code> </p>
         </td>
-        <td><p>Superseded by slackr_upload</p></td>
+        <td><p>Check for token-parameter mismatches</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="slackrUsers.html">slackrUsers()</a></code> </p>
+          <p><code><a href="with_pagination.html">with_pagination()</a></code> </p>
         </td>
-        <td><p>Superseded by slackr_users</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="textSlackr.html">textSlackr()</a></code> </p>
-        </td>
-        <td><p>Superseded by text_slackr</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tex_slackr.html">tex_slackr()</a></code> </p>
-        </td>
-        <td><p>Superseded by slackr_tex</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="save_slackr.html">save_slackr()</a></code> </p>
-        </td>
-        <td><p>Superseded by slackr_save</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dev_slackr.html">dev_slackr()</a></code> </p>
-        </td>
-        <td><p>Superseded by slackr_dev</p></td>
+        <td><p>Calls the slack API with pagination using cursors.</p></td>
       </tr>
     </tbody>
     </table>

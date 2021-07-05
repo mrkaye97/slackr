@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.0</span>
       </span>
     </div>
 
@@ -150,6 +150,24 @@
       <small>Source: <a href='https://github.com/mrkaye97/slackr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="slackr-240" class="section level1">
+<h1 class="page-header" data-toc-text="2.4.0">
+<a href="#slackr-240" class="anchor"></a>slackr 2.4.0<small> Unreleased </small>
+</h1>
+<ul>
+<li>Deprecates the <code>bot_user_oauth_token</code> argument for <code>slackr*</code> functions in favor of <code>token</code>
+</li>
+<li>Allows users to choose between a user token and a bot token</li>
+<li>Uses <code><a href="https://withr.r-lib.org/reference/with_options.html">withr::local_options(list(cli.num_colors = 1))</a></code> inside of <code>slackr</code> to fix garbled tibble printing. <a href="https://github.com/mrkaye97/slackr/issues/152">Linked issue</a>
+</li>
+<li>Removes the <code>channel</code>, <code>username</code> and <code>icon_emoji</code> parameters for <code><a href="../reference/slackr_bot.html">slackr_bot()</a></code> which were deprecated in version <code>2.1.1</code> and have no effect</li>
+<li>Removes the <code>cacheChannels</code> parameter for <code><a href="../reference/slackr_setup.html">slackr_setup()</a></code> which was deprecated in version <code>2.1.0</code>
+</li>
+<li>Removes hard-coded locale settings <a href="https://github.com/mrkaye97/slackr/issues/154">linked issue</a>
+</li>
+<li>Small error handling improvements and other miscellaneous fixes</li>
+</ul>
+</div>
     <div id="slackr-230" class="section level1">
 <h1 class="page-header" data-toc-text="2.3.0">
 <a href="#slackr-230" class="anchor"></a>slackr 2.3.0<small> 2021-05-02 </small>
@@ -159,7 +177,7 @@
 <li>Adds <code><a href="../reference/slackr_teardown.html">slackr_teardown()</a></code>, which reverts the changes made by <code><a href="../reference/slackr_setup.html">slackr_setup()</a></code> by unsetting the environment variables</li>
 <li>Adds <code><a href="../reference/create_config_file.html">create_config_file()</a></code> to simplify the process of setting up a config file</li>
 <li>
-<code><a href="../reference/save_slackr.html">save_slackr()</a></code> is now deprecated in favor of <code><a href="../reference/slackr_save.html">slackr_save()</a></code> and <code><a href="../reference/tex_slackr.html">tex_slackr()</a></code> has been deprecated in favor of <code><a href="../reference/slackr_tex.html">slackr_tex()</a></code>
+<code>save_slackr()</code> is now deprecated in favor of <code><a href="../reference/slackr_save.html">slackr_save()</a></code> and <code>tex_slackr()</code> has been deprecated in favor of <code><a href="../reference/slackr_tex.html">slackr_tex()</a></code>
 </li>
 </ul>
 </div>
@@ -273,7 +291,7 @@
 <a href="#slackr-141" class="anchor"></a>slackr 1.4.1<small> 2016-04-27 </small>
 </h1>
 <ul>
-<li>There is a new <code><a href="../reference/slackr_msg.html">slackr_msg()</a></code> function which behaves slightly differently than <code><a href="../reference/text_slackr.html">text_slackr()</a></code>
+<li>There is a new <code><a href="../reference/slackr_msg.html">slackr_msg()</a></code> function which behaves slightly differently than <code>text_slackr()</code>
 </li>
 <li>Versions 1.4+ BREAK THINGS.</li>
 <li>Support has been removed for the “old style” incoming web hooks (see “Setup” in the README for the required incoming web hook URL format).</li>

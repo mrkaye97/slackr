@@ -5,7 +5,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Send Messages, Images, R Objects and Files to Slack Channels/Users • slackr</title>
+<title>Send Messages, Images, R Objects and Files to Slack
+    Channels/Users • slackr</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -17,15 +18,17 @@
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Send Messages, Images, R Objects and Files to Slack Channels/Users">
+<script src="pkgdown.js"></script><meta property="og:title" content="Send Messages, Images, R Objects and Files to Slack
+    Channels/Users">
 <meta property="og:description" content="Slack &lt;https://slack.com/&gt; provides a service for teams to
-    collaborate by sharing messages, images, links, files and more. Functions are provided
-    that make it possible to interact with the Slack platform API. When
-    you need to share information or data from R, rather than resort to copy/
-    paste in e-mails or other services like Skype &lt;https://www.skype.com/en/&gt;, you
-    can use this package to send well-formatted output from multiple R objects and
-    expressions to all teammates at the same time with little effort. You can also
-    send images from the current graphics device, R objects, and upload files.">
+    collaborate by sharing messages, images, links, files and more.
+    Functions are provided that make it possible to interact with the
+    Slack platform API. When you need to share information or data
+    from R, rather than resort to copy/ paste in e-mails or other services
+    like Skype &lt;https://www.skype.com/en/&gt;, you can use this package to
+    send well-formatted output from multiple R objects and expressions to
+    all teammates at the same time with little effort. You can also send
+    images from the current graphics device, R objects, and upload files.">
 <meta property="og:image" content="/logo.svg">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -51,7 +54,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.0</span>
       </span>
     </div>
 
@@ -113,25 +116,26 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>The <code>slackr</code> package contains functions to interact with the Slack messaging platform. When you need to share information/data from R, rather than resorting to copy/paste, emails, other services like Skype, you can use this package to send well-formatted output from R to all teammates at the same time with little effort. You can send text, R function output, images from the current graphics device and <code>ggplots</code>, R objects (as R data files), rendered LaTeX expressions, and uploaded files.</p>
+<p><code>slackr</code> provides a set of tools for making it easier to send messages, data, alerts, etc. directly from R to Slack. You can use this package to send well-formatted output from R to all teammates (or to specific individuals) at the same time with little effort. You can send text, R function output, images from the current graphics device and <code>ggplots</code>, R objects (as R data files), rendered LaTeX expressions, and uploaded files.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># CRAN version</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">install.packages</span>(<span class="st">"slackr"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># Development version</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"mrkaye97/slackr"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># CRAN version</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"slackr"</span><span class="op">)</span>
+
+<span class="co"># Development version</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mrkaye97/slackr"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="breaking-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#breaking-changes" class="anchor"></a>Breaking Changes</h2>
-<p>Version 2.0.0+ is updated to work with the new Slack API structure!</p>
+<p>Version 2.4.0+ now allows users to choose between using a bot token and a user token. See below for details.</p>
 </div>
 <div id="setup" class="section level2">
 <h2 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h2>
-<p>There are two ways of interfacing with <code>slackr</code> that provide significantly different functionality:</p>
+<p>There are three ways of interfacing with <code>slackr</code> that provide significantly different functionality:</p>
 <ol>
 <li>
 <p>Creating a single-channel bot</p>
@@ -140,6 +144,10 @@
 <li>
 <p>Creating a fully-functional multi-channel bot</p>
 <p>Creating a bot user to send messages to multiple channels, including plots, tables, files, etc. as well as deleting messages, reading the channels in a workspace, etc.</p>
+</li>
+<li>
+<p>Using a user token to send messages from a specific user’s account</p>
+<p>Similar to the fully-scoped bot token, but connected to the account of a single user. This approach is not recommended in production settings – or any settings where a token needs to be shared – but it can be useful for one-off Slack messages as it lets users send data as themselves as opposed to through a bot.</p>
 </li>
 </ol>
 <p>In most cases, we recommend <code>Option 1</code> above. This requires the fewest permissions and is the simplest to set up, and will allow basic messaging to a specific channel.</p>
@@ -157,13 +165,14 @@
 <li>Usage: <code><a href="articles/using-slackr.html">vignette('using-slackr', package = 'slackr')</a></code>
 </li>
 </ul>
+<p><strong>Important Note:</strong> The setup process for <code>Option 2</code> and <code>Option 3</code> are roughly the same, with only slightly differing scopes.</p>
 <div id="config-file-setup" class="section level3">
 <h3 class="hasAnchor">
 <a href="#config-file-setup" class="anchor"></a>Config File Setup</h3>
 <p>The <code><a href="reference/slackr_setup.html">slackr_setup()</a></code> function will try to read setup values from a <code>~/.slackr</code> (you can change the default) configuration file, which may be easier and more secure than passing them in manually (plus, will allow you to have multiple <code>slackr</code> configurations for multiple Slack.com teams).</p>
 <p>The file is in Debian Control File (DCF) format since it really doesn’t need to be JSON and R has a handy <code><a href="https://rdrr.io/r/base/dcf.html">read.dcf()</a></code> function since that’s what <code>DESCRIPTION</code> files are coded in.</p>
 <p>Here’s the basic format for the configuration file:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>bot_user_oauth_token<span class="op">:</span><span class="st"> </span>Your app<span class="st">'s bot user OAuth token</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>token<span class="op">:</span><span class="st"> </span>xox<span class="op">*-</span><span class="er">&lt;</span>your app<span class="st">'s token&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="st">channel: #general</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="st">username: slackr</span></span>
 <span id="cb2-4"><a href="#cb2-4"></a><span class="st">incoming_webhook_url: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX</span></span>

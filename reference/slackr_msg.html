@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.0</span>
       </span>
     </div>
 
@@ -161,6 +161,7 @@
   channel <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_CHANNEL"</span><span class='op'>)</span>,
   username <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_USERNAME"</span><span class='op'>)</span>,
   icon_emoji <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_ICON_EMOJI"</span><span class='op'>)</span>,
+  token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_TOKEN"</span><span class='op'>)</span>,
   bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
@@ -186,8 +187,12 @@ is passed in, they will be combined and separated by newlines.</p></td>
       <td><p>what emoji to use (chr) <code>""</code> will mean use the default</p></td>
     </tr>
     <tr>
+      <th>token</th>
+      <td><p>A Slack token (either a user token or a bot user token)</p></td>
+    </tr>
+    <tr>
       <th>bot_user_oauth_token</th>
-      <td><p>Slack bot user OAuth token</p></td>
+      <td><p>Deprecated. A Slack bot user OAuth token</p></td>
     </tr>
     <tr>
       <th>...</th>

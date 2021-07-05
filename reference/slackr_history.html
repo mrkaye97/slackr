@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.0</span>
       </span>
     </div>
 
@@ -158,12 +158,13 @@
 
     <pre class="usage"><span class='fu'>slackr_history</span><span class='op'>(</span>
   channel <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_CHANNEL"</span><span class='op'>)</span>,
-  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>,
+  token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_TOKEN"</span><span class='op'>)</span>,
   posted_to_time <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>,
   <span class='va'>message_count</span>,
   <span class='va'>duration</span>,
   <span class='va'>posted_from_time</span>,
-  paginate <span class='op'>=</span> <span class='cn'>FALSE</span>
+  paginate <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -174,8 +175,8 @@
       <td><p>The channel to get history from</p></td>
     </tr>
     <tr>
-      <th>bot_user_oauth_token</th>
-      <td><p>the Slack bot user OAuth token</p></td>
+      <th>token</th>
+      <td><p>A Slack token (either a user token or a bot user token)</p></td>
     </tr>
     <tr>
       <th>posted_to_time</th>
@@ -198,6 +199,10 @@ current time)</p></td>
     <tr>
       <th>paginate</th>
       <td><p>If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to the API and retrieves a maximum of <code>message_count</code> messages</p></td>
+    </tr>
+    <tr>
+      <th>bot_user_oauth_token</th>
+      <td><p>Deprecated. A Slack bot user OAuth token</p></td>
     </tr>
     </table>
 

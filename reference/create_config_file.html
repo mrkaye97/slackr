@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.0</span>
       </span>
     </div>
 
@@ -158,11 +158,12 @@
 
     <pre class="usage"><span class='fu'>create_config_file</span><span class='op'>(</span>
   filename <span class='op'>=</span> <span class='st'>"~/.slackr"</span>,
-  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>,
-  incoming_webhook_url <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_INCOMING_URL_PREFIX"</span><span class='op'>)</span>,
+  token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_TOKEN"</span><span class='op'>)</span>,
+  incoming_webhook_url <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_INCOMING_WEBHOOK_URL"</span><span class='op'>)</span>,
   icon_emoji <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_ICON_EMOJI"</span><span class='op'>)</span>,
   username <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_USERNAME"</span><span class='op'>)</span>,
-  channel <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_CHANNEL"</span><span class='op'>)</span>
+  channel <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_CHANNEL"</span><span class='op'>)</span>,
+  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -173,8 +174,8 @@
       <td><p>the name of the config file to save. We recommend using a hidden file (starting with '.')</p></td>
     </tr>
     <tr>
-      <th>bot_user_oauth_token</th>
-      <td><p>the Slack bot user OAuth token (Default: whatever is set as an env var)</p></td>
+      <th>token</th>
+      <td><p>A Slack token (either a user token or a bot user token)</p></td>
     </tr>
     <tr>
       <th>incoming_webhook_url</th>
@@ -192,6 +193,10 @@
       <th>channel</th>
       <td><p>the channel to send messages to (will default to "#general" if no channel is set)</p></td>
     </tr>
+    <tr>
+      <th>bot_user_oauth_token</th>
+      <td><p>Deprecated. A Slack bot user OAuth token</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -207,7 +212,7 @@
 <span class='fu'>create_config_file</span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'># using `create_config_file()` before `slackr_setup()`</span>
-<span class='fu'>create_config_file</span><span class='op'>(</span>bot_user_oauth_token <span class='op'>=</span> <span class='st'>'xox-'</span>,
+<span class='fu'>create_config_file</span><span class='op'>(</span>token <span class='op'>=</span> <span class='st'>'xox-'</span>,
   incoming_webhook_url <span class='op'>=</span> <span class='st'>'https://hooks-'</span>,
   channel <span class='op'>=</span> <span class='st'>'#general'</span>,
   username <span class='op'>=</span> <span class='st'>'slackr'</span>,
