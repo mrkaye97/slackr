@@ -35,6 +35,9 @@ ggslackr <- function(plot = last_plot(),
                      limitsize = TRUE,
                      token = Sys.getenv("SLACK_TOKEN"),
                      file = "ggplot",
+                     initial_comment = NULL,
+                     thread_ts = NULL,
+                     title = NULL,
                      ...) {
 
   ftmp <- tempfile(file, fileext = ".png")
@@ -54,7 +57,10 @@ ggslackr <- function(plot = last_plot(),
     files_upload(
       file = ftmp,
       channel = channels,
-      token = token
+      token = token,
+      initial_comment = initial_comment,
+      thread_ts = thread_ts,
+      title = title
     )
 
   invisible(res)
