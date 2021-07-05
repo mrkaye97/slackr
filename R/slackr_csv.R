@@ -10,6 +10,7 @@
 #' @param title title on Slack (optional - defaults to filename)
 #' @param initial_comment comment for file on slack (optional - defaults to filename)
 #' @param token A Slack token (either a user token or a bot user token)
+#' @param thread_ts Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead
 #' @param ... additional arguments to be passed to `write.csv()`
 #' @return `httr` response object from `POST` call (invisibly)
 #' @author Matt Kaye (aut)
@@ -18,20 +19,22 @@
 #' @export
 slackr_csv <- function(data,
                        filename = tempfile(fileext = ".csv"),
-                       title = basename(filename),
-                       initial_comment = basename(filename),
+                       title = NULL,
+                       initial_comment = NULL,
                        channels = Sys.getenv("SLACK_CHANNEL"),
                        token = Sys.getenv("SLACK_TOKEN"),
+                       thread_ts = NULL,
                        ...) {
 
   write.csv(data, filename, ...)
 
-  res <- slackr_upload(
-    filename = filename,
+  res <- files_upload(
+    file = filename,
     title = title,
     initial_comment = initial_comment,
-    channels = channels,
-    token = token
+    channel = channels,
+    token = token,
+    thread_ts = thread_ts
   )
 
   return(invisible(res))

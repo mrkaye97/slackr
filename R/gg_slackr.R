@@ -15,6 +15,9 @@
 #'        than 50x50 inches, to prevent the common error of specifying dimensions in pixels.
 #' @param token A Slack token (either a user token or a bot user token)
 #' @param file prefix for filenames (defaults to `ggplot`)
+#' @param initial_comment The message text introducing the file in specified channels
+#' @param thread_ts Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead
+#' @param title Title of file
 #' @param ... other arguments passed to graphics device
 #' @importFrom ggplot2 ggsave last_plot ggplot aes geom_point
 #' @importFrom graphics par

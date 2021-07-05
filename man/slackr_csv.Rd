@@ -7,10 +7,11 @@
 slackr_csv(
   data,
   filename = tempfile(fileext = ".csv"),
-  title = basename(filename),
-  initial_comment = basename(filename),
+  title = NULL,
+  initial_comment = NULL,
   channels = Sys.getenv("SLACK_CHANNEL"),
   token = Sys.getenv("SLACK_TOKEN"),
+  thread_ts = NULL,
   ...
 )
 }
@@ -26,6 +27,8 @@ slackr_csv(
 \item{channels}{Slack channels to save to (optional)}
 
 \item{token}{A Slack token (either a user token or a bot user token)}
+
+\item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead}
 
 \item{...}{additional arguments to be passed to \code{write.csv()}}
 }

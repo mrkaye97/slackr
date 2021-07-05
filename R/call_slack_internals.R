@@ -68,7 +68,7 @@ post_message <- function(txt,
                          username = Sys.getenv("SLACK_USERNAME"),
                          token = Sys.getenv("SLACK_TOKEN"),
                          ...) {
-  z <-
+  r <-
     call_slack_api(
       "/api/chat.postMessage",
       .method = POST,
@@ -83,7 +83,7 @@ post_message <- function(txt,
       )
     )
 
-  invisible(content(z))
+  invisible(content(r))
 }
 
 
@@ -94,43 +94,45 @@ post_message <- function(txt,
 #'
 #' This needs the scope `files:write:user`
 #'
-#' @inheritParams auth_test
-#' @inheritParams post_message
-#'
 #' @param file Name of file to upload
+#' @param channels Comma-separated list of channel names or IDs where the file will be shared.
+#' @param initial_comment The message text introducing the file in specified channels
+#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter
+#' @param ... Additional arguments to be passed in the POST body to the `files.upload` endpoint. See here for details: https://api.slack.com/methods/files.upload
 #' @importFrom httr upload_file
 #' @keywords internal
 #' @noRd
 #'
 #'
 #' @references https://api.slack.com/methods/files.upload
-files_upload <- function(file,
-                         channel,
-                         txt = "",
-                         username = Sys.getenv("SLACK_USERNAME"),
-                         token = Sys.getenv("SLACK_TOKEN"),
-                         ...) {
-  z <- call_slack_api(
+files_upload <- function(
+  file,
+  channels,
+  initial_comment = NULL,
+  token = Sys.getenv("SLACK_TOKEN"),
+  ...
+) {
+
+  r <- call_slack_api(
     "/api/files.upload",
     .method = POST,
     token = token,
     body = list(
       file            = upload_file(file),
-      initial_comment = txt,
-      channels        = channel,
-      username        = username,
+      initial_comment = initial_comment,
+      channels        = paste(channels, collapse = ","),
       ...
     )
   )
-  invisible(content(z))
+  invisible(content(r))
 }
 
 
 list_scopes <- function(token = Sys.getenv("SLACK_TOKEN")) {
-  z <- call_slack_api(
+  r <- call_slack_api(
     "/api/apps.permissions.scopes.list",
     .method = GET,
     token = token
   )
-  invisible(content(z))
+  invisible(content(r))
 }

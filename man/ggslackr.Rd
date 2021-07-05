@@ -15,6 +15,9 @@ ggslackr(
   limitsize = TRUE,
   token = Sys.getenv("SLACK_TOKEN"),
   file = "ggplot",
+  initial_comment = NULL,
+  thread_ts = NULL,
+  title = NULL,
   ...
 )
 }
@@ -40,6 +43,12 @@ than 50x50 inches, to prevent the common error of specifying dimensions in pixel
 \item{token}{A Slack token (either a user token or a bot user token)}
 
 \item{file}{prefix for filenames (defaults to \code{ggplot})}
+
+\item{initial_comment}{The message text introducing the file in specified channels}
+
+\item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead}
+
+\item{title}{Title of file}
 
 \item{...}{other arguments passed to graphics device}
 }
