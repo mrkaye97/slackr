@@ -22,6 +22,8 @@ slackr_dev(
 
 \item{initial_comment}{The message text introducing the file in specified channels}
 
+\item{title}{Title of file}
+
 \item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead}
 }
 \value{
