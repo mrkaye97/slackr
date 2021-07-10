@@ -150,20 +150,29 @@
       <small>Source: <a href='https://github.com/mrkaye97/slackr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="slackr-241" class="section level1">
+<h1 class="page-header" data-toc-text="2.4.1">
+<a href="#slackr-241" class="anchor"></a>slackr 2.4.1<small> 2021-07-06 </small>
+</h1>
+<ul>
+<li>Small bug fix for <code>ggslackr</code>
+</li>
+</ul>
+</div>
     <div id="slackr-240" class="section level1">
 <h1 class="page-header" data-toc-text="2.4.0">
-<a href="#slackr-240" class="anchor"></a>slackr 2.4.0<small> Unreleased </small>
+<a href="#slackr-240" class="anchor"></a>slackr 2.4.0<small> 2021-07-05 </small>
 </h1>
 <ul>
 <li>Deprecates the <code>bot_user_oauth_token</code> argument for <code>slackr*</code> functions in favor of <code>token</code>
 </li>
 <li>Allows users to choose between a user token and a bot token</li>
-<li>Uses <code><a href="https://withr.r-lib.org/reference/with_options.html">withr::local_options(list(cli.num_colors = 1))</a></code> inside of <code>slackr</code> to fix garbled tibble printing. <a href="https://github.com/mrkaye97/slackr/issues/152">Linked issue</a>
+<li>Uses <code><a href="https://withr.r-lib.org/reference/with_options.html">withr::local_options(list(cli.num_colors = 1))</a></code> inside of <code>slackr</code> to fix garbled tibble printing. <a href="https://github.com/mrkaye97/slackr/issues/152">linked issue</a>
 </li>
 <li>Removes the <code>channel</code>, <code>username</code> and <code>icon_emoji</code> parameters for <code><a href="../reference/slackr_bot.html">slackr_bot()</a></code> which were deprecated in version <code>2.1.1</code> and have no effect</li>
 <li>Removes the <code>cacheChannels</code> parameter for <code><a href="../reference/slackr_setup.html">slackr_setup()</a></code> which was deprecated in version <code>2.1.0</code>
 </li>
-<li>Removes hard-coded locale settings <a href="https://github.com/mrkaye97/slackr/issues/154">linked issue</a>
+<li>Removes hard-coded locale settings. <a href="https://github.com/mrkaye97/slackr/issues/154">linked issue</a>
 </li>
 <li>Small error handling improvements and other miscellaneous fixes</li>
 </ul>
