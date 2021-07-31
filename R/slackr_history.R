@@ -28,6 +28,7 @@ slackr_history <- function(message_count,
                            duration,
                            posted_from_time,
                            paginate = FALSE) {
+
   channel <- slackr_chtrans(channel, token)
 
   if (!missing(duration) && !is.null(duration) && !missing(posted_from_time) && !is.null(posted_from_time)) {
