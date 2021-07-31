@@ -8,6 +8,8 @@
 #' environment variable. You can override or just specify these values directly instead,
 #' but it's probably better to call [slackr_setup()] first.
 #' @importFrom withr local_options
+#' @importFrom purrr map quietly pluck discard modify_at
+#' @importFrom rlang call2 eval
 #' @param ... expressions to be sent to Slack.
 #' @param channel Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See the \href{https://api.slack.com/methods/chat.postMessage#channels}{chat.postMessage endpoint documentation} for details.
 #' @param username what user should the bot be named as (chr).
@@ -38,6 +40,7 @@ slackr <- function(...,
                    token = Sys.getenv("SLACK_TOKEN"),
                    thread_ts = NULL,
                    reply_broadcast = FALSE) {
+
   local_options(list(cli.num_colors = 1))
 
   warn_for_args(
@@ -48,70 +51,22 @@ slackr <- function(...,
 
   if (!missing(...)) {
 
-    # mimics capture.output
-
     # get the arglist
     args <- substitute(list(...))[-1L]
 
-    # setup in-memory sink
-    rval <- NULL
-    fil <- textConnection("rval", "w", local = TRUE)
-
-    sink(fil)
-    on.exit({
-      sink()
-      close(fil)
-    })
-
-    # where we'll need to eval expressions
-    pf <- parent.frame()
-
-    # how we'll eval expressions
-    evalVis <- function(expr) withVisible(eval(expr, pf))
-
-    # for each expression
-    for (i in seq_along(args)) {
-      expr <- args[[i]]
-
-      # do something, note all the newlines...Slack ``` needs them
-      tmp <- switch(mode(expr),
-        # if it's actually an expresison, iterate over it
-        expression = {
-          cat(sprintf("> %s\n", deparse(expr)))
-          lapply(expr, evalVis)
-        },
-        # if it's a call or a name, eval, printing run output as if in console
-        call = ,
-        name = {
-          cat(sprintf("> %s\n", deparse(expr)))
-          list(evalVis(expr))
-        },
-        # if pretty much anything else (i.e. a bare value) just output it
-        integer = ,
-        double = ,
-        complex = ,
-        raw = ,
-        logical = ,
-        numeric = cat(sprintf("%s\n\n", as.character(expr))),
-        character = cat(sprintf("%s\n\n", expr)),
-        abort("mode of argument not handled at present by slackr")
-      )
-
-      for (item in tmp) {
-        if (item$visible) {
-          print(item$value)
-          cat("\n")
-        }
-      }
-    }
-
-    on.exit()
-
-    sink()
-    close(fil)
-
-    # combined all of them (rval is a character vector)
-    output <- paste0(rval, collapse = "\n")
+    output <- map(
+      args,
+      ~ eval(call2(quiet_prex, .x, input = tempfile(), html_preview = FALSE, render = TRUE, style = FALSE))
+    ) %>%
+      map(
+        ~ .x %>%
+          pluck("result") %>%
+          discard(grepl("```", .)) %>%
+          modify_at(
+            c(1),
+            function(s) paste(">", s)) %>% paste(collapse = "\n")
+      ) %>%
+      paste(collapse = "\n\n")
 
     resp <-
       post_message(
