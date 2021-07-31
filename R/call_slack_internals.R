@@ -55,11 +55,10 @@ list_users <- function(token = Sys.getenv("SLACK_TOKEN"), ...) {
 #' @noRd
 #'
 #' @param txt Passed to `text` parameter of `chat.postMessage` API.
-#' @param emoji Emoji to use as the icon for this message. Overrides icon_url. Must be used in conjunction with as_user set to false, otherwise ignored.
 #' @param channel Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name.
+#' @param emoji Emoji to use as the icon for this message. Overrides icon_url. Must be used in conjunction with as_user (hard coded in `slackr`) set to false, otherwise ignored.
 #' @param username Set your bot's user name. Must be used in conjunction with as_user set to false, otherwise ignored.
-#' @param as_user Set your bot's user name. Must be used in conjunction with as_user set to false, otherwise ignored.
-#' @param link_names Find and link channel names and usernames.
+#' @param token A Slack API token.
 #'
 #' @references https://api.slack.com/methods/chat.postMessage
 post_message <- function(txt,

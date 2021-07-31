@@ -20,11 +20,6 @@
 #' @return the response (invisibly)
 #' @note You need a <https://www.slack.com> account and will also need to
 #'       set up an API token <https://api.slack.com/>
-#'       Also, you can pass in `as_user=TRUE`, the default, as part of the `...`
-#'       parameters and the Slack API will post the message as your logged-in
-#'       user account (this will override anything set in `username`).
-#'       Passing `as_user=FALSE`, results in the Slack API posting the
-#'       message as set in `username`
 #' @seealso [slackr_setup()], [slackr_bot()], [slackr_dev()],
 #'          [slackr_save()], [slackr_upload()]
 #' @examples
