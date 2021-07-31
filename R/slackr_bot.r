@@ -58,7 +58,9 @@ slackr_bot <- function(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WE
       map(
         ~ .x %>%
           pluck("result") %>%
-          discard(grepl("```", .)) %>%
+          discard(
+            function(s) grepl("```", s)
+          ) %>%
           modify_at(
             c(1),
             function(s) paste(">", s)
@@ -70,7 +72,7 @@ slackr_bot <- function(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WE
     if ((Sys.getenv("SLACKR_ERRORS") != "IGNORE") && grepl("Error: ", output)) {
       error_message <- sprintf(
         "Found a (potential) error in `slackr_bot` call. Attempt at parsing the error:\n\n  %s\n\nWe tried to extract the call for you too:\n\n  %s\n\nNo message was posted.\nYou can ignore this warning and post the message with `Sys.setenv('SLACKR_ERRORS' = 'IGNORE')`.\n\n",
-        output %>% gsub("\n", "\n  ", .),
+        gsub("\n", "\n  ", output),
         deparse(sys.call())
       )
 
