@@ -73,7 +73,7 @@ slackr <- function(...,
 
     if ((Sys.getenv("SLACKR_ERRORS") != "IGNORE") && grepl("Error", output)) {
       error_message <- sprintf(
-        "Found a (potential) error in `slackr` call. Attempt at parsing the error:\n\n  %s\n\nWe tried to extract the call for you too:\n\n  %s\n\nNo message was posted. You can ignore this warning and post the message with `Sys.setenv('SLACKR_ERRORS' = 'IGNORE')`.",
+        "Found a (potential) error in `slackr` call. Attempt at parsing the error:\n\n  %s\n\nWe tried to extract the call for you too:\n\n  %s\n\nNo message was posted.\nYou can ignore this warning and post the message with `Sys.setenv('SLACKR_ERRORS' = 'IGNORE')`.\n\n",
         output %>% gsub("\n", "\n  ", .),
         deparse(sys.call())
       )
