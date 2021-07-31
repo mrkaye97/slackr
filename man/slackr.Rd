@@ -23,7 +23,7 @@ slackr(
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default.}
 
-\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
+\item{token}{Authentication token bearing required scopes.}
 
 \item{thread_ts}{Provide another message's ts value to make this message a reply. Avoid using a reply's ts value; use its parent instead.}
 
@@ -45,11 +45,6 @@ but it's probably better to call \code{\link[=slackr_setup]{slackr_setup()}} fir
 \note{
 You need a \url{https://www.slack.com} account and will also need to
 set up an API token \url{https://api.slack.com/}
-Also, you can pass in \code{as_user=TRUE}, the default, as part of the \code{...}
-parameters and the Slack API will post the message as your logged-in
-user account (this will override anything set in \code{username}).
-Passing \code{as_user=FALSE}, results in the Slack API posting the
-message as set in \code{username}
 }
 \examples{
 \dontrun{

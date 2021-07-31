@@ -25,7 +25,7 @@ is passed in, they will be combined and separated by newlines.}
 
 \item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default.}
 
-\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
+\item{token}{Authentication token bearing required scopes.}
 
 \item{thread_ts}{Provide another message's ts value to make this message a reply. Avoid using a reply's ts value; use its parent instead.}
 

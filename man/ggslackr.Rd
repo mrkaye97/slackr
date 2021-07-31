@@ -40,7 +40,7 @@ ggslackr(
 \item{limitsize}{when TRUE (the default), ggsave will not save images larger
 than 50x50 inches, to prevent the common error of specifying dimensions in pixels.}
 
-\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
+\item{token}{Authentication token bearing required scopes.}
 
 \item{file}{Prefix for filenames (defaults to \code{ggplot}).}
 

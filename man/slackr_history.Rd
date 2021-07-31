@@ -19,7 +19,7 @@ slackr_history(
 
 \item{channel}{Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name.}
 
-\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
+\item{token}{Authentication token bearing required scopes.}
 
 \item{posted_to_time}{Timestamp of the last post to consider (default:
 current time).}

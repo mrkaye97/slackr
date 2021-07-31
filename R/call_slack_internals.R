@@ -96,7 +96,7 @@ post_message <- function(txt,
 #' @param file Name of file to upload.
 #' @param channels Comma-separated list of channel names or IDs where the file will be shared.
 #' @param initial_comment The message text introducing the file in specified channels.
-#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
+#' @param token Authentication token bearing required scopes.
 #' @param ... Additional arguments to be passed in the POST body to the `files.upload` endpoint. See the \href{https://api.slack.com/methods/files.upload}{files.upload endpoint documentation} for details.
 #' @importFrom httr upload_file
 #' @keywords internal

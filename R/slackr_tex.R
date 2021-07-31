@@ -7,7 +7,7 @@
 #' @param channels Comma-separated list of channel names or IDs where the file will be shared.
 #' @param ext character, type of format to return, can be tex, pdf, or any image device, Default: 'png'.
 #' @param path character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL.
-#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
+#' @param token Authentication token bearing required scopes.
 #' @param initial_comment The message text introducing the file in specified channels.
 #' @param thread_ts Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.
 #' @param title Title of file.

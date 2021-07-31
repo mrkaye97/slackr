@@ -25,7 +25,7 @@ left blank in config file as well).}
 
 \item{incoming_webhook_url}{the Slack URL prefix to use (chr) defaults to none.}
 
-\item{token}{Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.}
+\item{token}{Authentication token bearing required scopes.}
 
 \item{config_file}{a configuration file (DCF) - see \link{read.dcf} - format
 with the config values.}

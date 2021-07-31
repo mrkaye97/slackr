@@ -13,7 +13,7 @@
 #' @param dpi dpi to use for raster graphics.
 #' @param limitsize when TRUE (the default), ggsave will not save images larger
 #'        than 50x50 inches, to prevent the common error of specifying dimensions in pixels.
-#' @param token Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.
+#' @param token Authentication token bearing required scopes.
 #' @param file Prefix for filenames (defaults to `ggplot`).
 #' @param initial_comment The message text introducing the file in specified channels.
 #' @param thread_ts Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.
