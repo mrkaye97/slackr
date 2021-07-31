@@ -9,7 +9,7 @@
 #' but it's probably better to call [slackr_setup()] first.
 #' @importFrom withr local_options
 #' @importFrom purrr map quietly pluck discard modify_at
-#' @importFrom rlang call2 eval
+#' @importFrom rlang call2
 #' @param ... expressions to be sent to Slack.
 #' @param channel Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See the \href{https://api.slack.com/methods/chat.postMessage#channels}{chat.postMessage endpoint documentation} for details.
 #' @param username what user should the bot be named as (chr).
