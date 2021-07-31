@@ -54,6 +54,7 @@ slackr <- function(...,
     # get the arglist
     args <- substitute(list(...))[-1L]
 
+    ## map over each thing passed to `slackr` and evaluate it
     output <- map(
       args,
       ~ eval(call2(quiet_prex, .x, input = tempfile(), html_preview = FALSE, render = TRUE, style = FALSE))
@@ -64,7 +65,9 @@ slackr <- function(...,
           discard(grepl("```", .)) %>%
           modify_at(
             c(1),
-            function(s) paste(">", s)) %>% paste(collapse = "\n")
+            function(s) paste(">", s)
+          ) %>%
+          paste(collapse = "\n")
       ) %>%
       paste(collapse = "\n\n")
 
