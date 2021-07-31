@@ -1,2 +1,2 @@
-prex <- utils::getFromNamespace("prex", "prex")
-quiet_prex <- quietly(prex)
+prex <- utils::getFromNamespace("prex", "reprex")
+quiet_prex <- purrr::quietly(prex)
