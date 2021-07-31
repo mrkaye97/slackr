@@ -47,7 +47,10 @@ slackr_bot <- function(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WE
   }
 
   if (!missing(...)) {
-    ## map over each thing passed to `slackr` and evaluate it
+
+    # get the arglist
+    args <- substitute(list(...))[-1L]
+
     output <- map(
       args,
       ~ eval(call2(quiet_prex, .x, input = tempfile(), html_preview = FALSE, render = TRUE, style = FALSE))
@@ -68,16 +71,18 @@ slackr_bot <- function(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WE
       url = incoming_webhook_url,
       encode = "form",
       add_headers(
-        `Content-Type` = "application/x-www-form-urlencoded",
+        `Content-Type` = "application/json",
         Accept = "*/*"
       ),
-      body = URLencode(
-        sprintf(
-          "payload={\"text\": \"```%s```\"}",
-          output
+      body = list(
+        text = sprintf("```%s```", output)
+      ) %>%
+        toJSON(
+          pretty = TRUE,
+          auto_unbox = TRUE
         )
-      )
     )
+
     stop_for_status(resp)
   }
   return(invisible(resp))
