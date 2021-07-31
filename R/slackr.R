@@ -52,19 +52,31 @@ slackr <- function(...,
     ## map over each thing passed to `slackr` and evaluate it
     output <- map(
       args,
-      ~ eval(call2(quiet_prex, .x, input = tempfile(), html_preview = FALSE, render = TRUE, style = FALSE))
+      function(.x) {
+        if (mode(.x) %in% c("integer", "double", "complex", "raw", "logical", "character", "numeric")) {
+          .x
+        } else {
+          eval(call2(quiet_prex, .x, input = tempfile(), html_preview = FALSE, render = TRUE, style = FALSE))
+        }
+      }
     ) %>%
       map(
-        ~ .x %>%
-          pluck("result") %>%
-          discard(
-            function(s) grepl("```", s)
-          ) %>%
-          modify_at(
-            c(1),
-            function(s) paste(">", s)
-          ) %>%
-          paste(collapse = "\n")
+        function(.x) {
+          if (mode(.x) %in% c("integer", "double", "complex", "raw", "logical", "character", "numeric")) {
+            .x
+          } else {
+            .x %>%
+              pluck("result") %>%
+              discard(
+                function(s) grepl("```", s)
+              ) %>%
+              modify_at(
+                c(1),
+                function(s) paste(">", s)
+              ) %>%
+              paste(collapse = "\n")
+          }
+        }
       ) %>%
       paste(collapse = "\n\n")
 
