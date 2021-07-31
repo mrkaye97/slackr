@@ -34,8 +34,9 @@ Imports:
     jsonlite,
     magrittr,
     memoise (>= 2.0.0),
-    purrr,
     methods,
+    purrr,
+    reprex (>= 2.0.0.9000),
     rlang,
     tibble,
     utils,
@@ -48,6 +49,8 @@ Suggests:
     texPreview
 VignetteBuilder:
     knitr
+Remotes:
+    tidyverse/reprex
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
