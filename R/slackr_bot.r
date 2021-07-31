@@ -68,33 +68,34 @@ slackr_bot <- function(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WE
       paste(collapse = "\n\n")
 
     if ((Sys.getenv("SLACKR_ERRORS") != "IGNORE") && grepl("Error", output)) {
-      warning_message <- sprintf(
-        "Found a (potential) error in `slackr_bot` call. Attempt at parsing the error:\n\n  %s\n\nWe tried to extract the call for you too:\n\n  %s\n\nYou can ignore this warning with `Sys.setenv('SLACKR_ERRORS' = 'IGNORE')`.",
+      error_message <- sprintf(
+        "Found a (potential) error in `slackr_bot` call. Attempt at parsing the error:\n\n  %s\n\nWe tried to extract the call for you too:\n\n  %s\n\nNo message was posted. You can ignore this warning and post the message with `Sys.setenv('SLACKR_ERRORS' = 'IGNORE')`.",
         output %>% gsub("\n", "\n  ", .),
         deparse(sys.call())
       )
-      warn(
-        warning_message
+
+      abort(
+        error_message
       )
+    } else {
+      resp <- POST(
+        url = incoming_webhook_url,
+        encode = "form",
+        add_headers(
+          `Content-Type` = "application/json",
+          Accept = "*/*"
+        ),
+        body = list(
+          text = sprintf("```%s```", output)
+        ) %>%
+          toJSON(
+            pretty = TRUE,
+            auto_unbox = TRUE
+          )
+      )
+
+      stop_for_status(resp)
     }
-
-    resp <- POST(
-      url = incoming_webhook_url,
-      encode = "form",
-      add_headers(
-        `Content-Type` = "application/json",
-        Accept = "*/*"
-      ),
-      body = list(
-        text = sprintf("```%s```", output)
-      ) %>%
-        toJSON(
-          pretty = TRUE,
-          auto_unbox = TRUE
-        )
-    )
-
-    stop_for_status(resp)
   }
   return(invisible(resp))
 }
