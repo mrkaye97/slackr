@@ -47,71 +47,22 @@ slackr_bot <- function(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WE
   }
 
   if (!missing(...)) {
-
-    # mimics capture.output
-
-    # get the arglist
-    args <- substitute(list(...))[-1L]
-
-    # setup in-memory sink
-    rval <- NULL
-    fil <- textConnection("rval", "w", local = TRUE)
-
-    sink(fil)
-    on.exit({
-      sink()
-      close(fil)
-    })
-
-    # where we'll need to eval expressions
-    pf <- parent.frame()
-
-    # how we'll eval expressions
-    evalVis <- function(expr) withVisible(eval(expr, pf))
-
-    # for each expression
-    for (i in seq_along(args)) {
-      expr <- args[[i]]
-
-      # do something, note all the newlines...Slack ``` needs them
-      tmp <- switch(mode(expr),
-        # if it's actually an expression, iterate over it
-        expression = {
-          cat(sprintf("> %s\n", deparse(expr)))
-          lapply(expr, evalVis)
-        },
-        # if it's a call or a name, eval, printing run output as if in console
-        call = ,
-        name = {
-          cat(sprintf("> %s\n", deparse(expr)))
-          list(evalVis(expr))
-        },
-        # if pretty much anything else (i.e. a bare value) just output it
-        integer = ,
-        double = ,
-        complex = ,
-        raw = ,
-        logical = ,
-        numeric = cat(sprintf("%s\n\n", as.character(expr))),
-        character = cat(sprintf("%s\n\n", expr)),
-        abort("mode of argument not handled at present by slackr")
-      )
-
-      for (item in tmp) {
-        if (item$visible) {
-          print(item$value, quote = FALSE)
-          cat("\n")
-        }
-      }
-    }
-
-    on.exit()
-
-    sink()
-    close(fil)
-
-    # combined all of them (rval is a character vector)
-    output <- paste0(rval, collapse = "\n")
+    ## map over each thing passed to `slackr` and evaluate it
+    output <- map(
+      args,
+      ~ eval(call2(quiet_prex, .x, input = tempfile(), html_preview = FALSE, render = TRUE, style = FALSE))
+    ) %>%
+      map(
+        ~ .x %>%
+          pluck("result") %>%
+          discard(grepl("```", .)) %>%
+          modify_at(
+            c(1),
+            function(s) paste(">", s)
+          ) %>%
+          paste(collapse = "\n")
+      ) %>%
+      paste(collapse = "\n\n")
 
     resp <- POST(
       url = incoming_webhook_url,
