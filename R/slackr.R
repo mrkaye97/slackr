@@ -49,11 +49,13 @@ slackr <- function(...,
     # get the arglist
     args <- substitute(list(...))[-1L]
 
+    modes_to_not_prex <- c("integer", "double", "complex", "raw", "logical", "character", "numeric")
+
     ## map over each thing passed to `slackr` and evaluate it
     output <- map(
       args,
       function(.x) {
-        if (mode(.x) %in% c("integer", "double", "complex", "raw", "logical", "character", "numeric")) {
+        if (mode(.x) %in% modes_to_not_prex) {
           .x
         } else {
           eval(call2(quiet_prex, .x, input = tempfile(), html_preview = FALSE, render = TRUE, style = FALSE))
@@ -62,14 +64,11 @@ slackr <- function(...,
     ) %>%
       map(
         function(.x) {
-          if (mode(.x) %in% c("integer", "double", "complex", "raw", "logical", "character", "numeric")) {
+          if (mode(.x) %in% modes_to_not_prex) {
             .x
           } else {
             .x %>%
               pluck("result") %>%
-              discard(
-                function(s) grepl("```", s)
-              ) %>%
               modify_at(
                 c(1),
                 function(s) paste(">", s)
