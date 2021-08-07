@@ -7,9 +7,9 @@
 warn_for_args(token, ...)
 }
 \arguments{
-\item{token}{a token}
+\item{token}{Authentication token bearing required scopes.}
 
-\item{...}{Additiional arguments passed to the function called}
+\item{...}{Additiional arguments passed to the function called.}
 }
 \value{
 No return value. Called for side effects

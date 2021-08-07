@@ -42,7 +42,9 @@ devtools::install_github("mrkaye97/slackr")
 
 ## Breaking Changes
 
-Version 2.4.0+ now allows users to choose between using a bot token and a user token. See below for details.
+Version `3.0.0+` removes all references to `bot_user_oauth_token` (deprecated in `v2.4.0`) in favor of `token`. There have also been significant changes to how `slackr` and `slackr_bot` handle errors. See [the changelog](https://mrkaye97.github.io/slackr/news/index.html) for more details.
+
+Version `2.4.0+` now allows users to choose between using a bot token and a user token. See below for details and check the changelog (`NEWS.md`) for more changes.
 
 
 ## Setup

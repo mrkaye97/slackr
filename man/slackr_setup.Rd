@@ -12,30 +12,27 @@ slackr_setup(
   token = "",
   config_file = "~/.slackr",
   echo = FALSE,
-  cache_dir = "",
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+  cache_dir = ""
 )
 }
 \arguments{
-\item{channel}{default channel to send the output to (chr) defaults to \verb{#general}}
+\item{channel}{default channel to send the output to (chr) defaults to \verb{#general}.}
 
-\item{username}{the username output will appear from (chr) defaults to \code{slackr}}
+\item{username}{the username output will appear from (chr) defaults to \code{slackr}.}
 
 \item{icon_emoji}{which emoji picture to use (chr) defaults to none (can be
-left blank in config file as well)}
+left blank in config file as well).}
 
-\item{incoming_webhook_url}{the Slack URL prefix to use (chr) defaults to none}
+\item{incoming_webhook_url}{the Slack URL prefix to use (chr) defaults to none.}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes.}
 
 \item{config_file}{a configuration file (DCF) - see \link{read.dcf} - format
 with the config values.}
 
-\item{echo}{display the configuration variables (bool) initially \code{FALSE}}
+\item{echo}{display the configuration variables (bool) initially \code{FALSE}.}
 
-\item{cache_dir}{the location for an on-disk cache. defaults to an in-memory cache if no location is specified}
-
-\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
+\item{cache_dir}{the location for an on-disk cache. defaults to an in-memory cache if no location is specified.}
 }
 \value{
 "Successfully connected to Slack"

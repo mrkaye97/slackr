@@ -10,7 +10,8 @@ slackr_msg(
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
   token = Sys.getenv("SLACK_TOKEN"),
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+  thread_ts = NULL,
+  reply_broadcast = FALSE,
   ...
 )
 }
@@ -18,15 +19,17 @@ slackr_msg(
 \item{txt}{text message to send to Slack. If a character vector of length > 1
 is passed in, they will be combined and separated by newlines.}
 
-\item{channel}{which channel to post the message to (chr)}
+\item{channel}{Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See the \href{https://api.slack.com/methods/chat.postMessage#channels}{chat.postMessage endpoint documentation} for details.}
 
-\item{username}{what user should the bot be named as (chr)}
+\item{username}{what user should the bot be named as (chr).}
 
-\item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
+\item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default.}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes.}
 
-\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
+\item{thread_ts}{Provide another message's ts value to make this message a reply. Avoid using a reply's ts value; use its parent instead.}
+
+\item{reply_broadcast}{Used in conjunction with thread_ts and indicates whether reply should be made visible to everyone in the channel or conversation. Defaults to FALSE.}
 
 \item{...}{other arguments passed to the Slack API \code{chat.postMessage} call}
 }

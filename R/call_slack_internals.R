@@ -2,7 +2,7 @@
 #'
 #' @inheritParams auth_test
 #'
-#' @param exclude_archived If TRUE, excludes archived channels
+#' @param exclude_archived If TRUE, excludes archived channels.
 #'
 #' @return tibble of channels
 #'
@@ -54,12 +54,11 @@ list_users <- function(token = Sys.getenv("SLACK_TOKEN"), ...) {
 #' @keywords internal
 #' @noRd
 #'
-#' @param txt Passed to `text` parameter of `chat.postMessage` API
-#' @param emoji Emoji
-#' @param channel Passed to `channel` parameter of `chat.postMessage` API
-#' @param username Passed to `username` parameter of `chat.postMessage` API
-#' @param as_user Passed to `as_user` parameter of `chat.postMessage` API
-#' @param link_names Passed to `link_names` parameter of `chat.postMessage` API
+#' @param txt Passed to `text` parameter of `chat.postMessage` API.
+#' @param channel Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name.
+#' @param emoji Emoji to use as the icon for this message. Overrides icon_url. Must be used in conjunction with as_user (hard coded in `slackr`) set to false, otherwise ignored.
+#' @param username Set your bot's user name. Must be used in conjunction with as_user set to false, otherwise ignored.
+#' @param token A Slack API token.
 #'
 #' @references https://api.slack.com/methods/chat.postMessage
 post_message <- function(txt,
@@ -68,7 +67,7 @@ post_message <- function(txt,
                          username = Sys.getenv("SLACK_USERNAME"),
                          token = Sys.getenv("SLACK_TOKEN"),
                          ...) {
-  z <-
+  r <-
     call_slack_api(
       "/api/chat.postMessage",
       .method = POST,
@@ -83,7 +82,7 @@ post_message <- function(txt,
       )
     )
 
-  invisible(content(z))
+  invisible(content(r))
 }
 
 
@@ -94,10 +93,11 @@ post_message <- function(txt,
 #'
 #' This needs the scope `files:write:user`
 #'
-#' @inheritParams auth_test
-#' @inheritParams post_message
-#'
-#' @param file Name of file to upload
+#' @param file Name of file to upload.
+#' @param channels Comma-separated list of channel names or IDs where the file will be shared.
+#' @param initial_comment The message text introducing the file in specified channels.
+#' @param token Authentication token bearing required scopes.
+#' @param ... Additional arguments to be passed in the POST body to the `files.upload` endpoint. See the \href{https://api.slack.com/methods/files.upload}{files.upload endpoint documentation} for details.
 #' @importFrom httr upload_file
 #' @keywords internal
 #' @noRd
@@ -105,32 +105,30 @@ post_message <- function(txt,
 #'
 #' @references https://api.slack.com/methods/files.upload
 files_upload <- function(file,
-                         channel,
-                         txt = "",
-                         username = Sys.getenv("SLACK_USERNAME"),
+                         channels,
+                         initial_comment = NULL,
                          token = Sys.getenv("SLACK_TOKEN"),
                          ...) {
-  z <- call_slack_api(
+  r <- call_slack_api(
     "/api/files.upload",
     .method = POST,
     token = token,
     body = list(
       file            = upload_file(file),
-      initial_comment = txt,
-      channels        = channel,
-      username        = username,
+      initial_comment = initial_comment,
+      channels        = paste(channels, collapse = ","),
       ...
     )
   )
-  invisible(content(z))
+  invisible(content(r))
 }
 
 
 list_scopes <- function(token = Sys.getenv("SLACK_TOKEN")) {
-  z <- call_slack_api(
+  r <- call_slack_api(
     "/api/apps.permissions.scopes.list",
     .method = GET,
     token = token
   )
-  invisible(content(z))
+  invisible(content(r))
 }

@@ -7,21 +7,24 @@
 slackr_dev(
   channels = Sys.getenv("SLACK_CHANNEL"),
   token = Sys.getenv("SLACK_TOKEN"),
-  plot_text = "",
   file = "plot",
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+  initial_comment = NULL,
+  title = NULL,
+  thread_ts = NULL
 )
 }
 \arguments{
-\item{channels}{list of channels to post image to}
+\item{channels}{Comma-separated list of channel names or IDs where the file will be shared.}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes.}
 
-\item{plot_text}{the plot text to send with the plot (defaults to "")}
+\item{file}{prefix for filenames (defaults to \code{plot}).}
 
-\item{file}{prefix for filenames (defaults to \code{plot})}
+\item{initial_comment}{The message text introducing the file in specified channels.}
 
-\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
+\item{title}{Title of file.}
+
+\item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.}
 }
 \value{
 \code{httr} response object from \code{POST} call

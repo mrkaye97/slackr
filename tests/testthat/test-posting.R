@@ -39,7 +39,6 @@ test_that("slackr_msg posts", {
 
 test_that("slackr_delete works", {
   skip_on_cran()
-  skip_on_ci()
 
   slackr_msg("Testing deletion")
   res <- slackr_delete(1)
@@ -55,7 +54,7 @@ test_that("slackr_upload posts", {
   res <- slackr_upload(tf, channels = "#test")
   unlink(tf)
 
-  expect_equal(content(res)$ok, TRUE)
+  expect_equal(res$ok, TRUE)
 })
 
 test_that("slackr can post to other channels", {
@@ -70,7 +69,7 @@ test_that("slackr_csv posts", {
   skip_on_cran()
 
   res <- slackr_csv(iris)
-  expect_true(content(res)$ok)
+  expect_true(res$ok)
 })
 
 test_that("slackr_save works", {
@@ -98,7 +97,6 @@ test_that("ggslackr works from in a function", {
 
     ggslackr(plt)
   }
-
 
   res <- f()
   expect_equal(res$ok, TRUE)

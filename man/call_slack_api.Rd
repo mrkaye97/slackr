@@ -15,15 +15,15 @@ call_slack_api(
 )
 }
 \arguments{
-\item{path}{The API definition path, e.g. \verb{/api/auth.test}}
+\item{path}{The API definition path, e.g. \verb{/api/auth.test}.}
 
-\item{...}{These arguments must be named and will be added to the API query string}
+\item{...}{These arguments must be named and will be added to the API query string.}
 
-\item{body}{If \code{.method = POST} the \code{body} gets passed to the API body}
+\item{body}{If \code{.method = POST} the \code{body} gets passed to the API body.}
 
-\item{.method}{Either "GET" or "POST"}
+\item{.method}{Either "GET" or "POST".}
 
-\item{token}{The Slack bot OAuth token {character vector}}
+\item{token}{Authentication token bearing required scopes.}
 
 \item{.verbose}{If TRUE, prints \code{httr} verbose messages.  Useful for debugging.}
 

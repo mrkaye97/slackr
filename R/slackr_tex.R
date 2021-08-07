@@ -3,12 +3,14 @@
 #' Unlike the [slackr_dev()] function, this one takes a `tex` object,
 #' eliminating the need write to pdf and convert to png to pass to slack.
 #'
-#' @param obj character object containing tex to compile
-#' @param channels list of channels to post image to
-#' @param ext character, type of format to return, can be tex, pdf, or any image device, Default: 'png'
-#' @param path character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL
-#' @param token A Slack token (either a user token or a bot user token)
-#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
+#' @param obj character object containing tex to compile.
+#' @param channels Comma-separated list of channel names or IDs where the file will be shared.
+#' @param ext character, type of format to return, can be tex, pdf, or any image device, Default: 'png'.
+#' @param path character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL.
+#' @param token Authentication token bearing required scopes.
+#' @param initial_comment The message text introducing the file in specified channels.
+#' @param thread_ts Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.
+#' @param title Title of file.
 #' @param ... other arguments passed to [texPreview::tex_preview()], see Details
 #' @note You need to setup a full API token (i.e. not a webhook & not OAuth) for this to work
 #'       Also, you can pass in `add_user=TRUE` as part of the `...`
@@ -27,9 +29,10 @@ slackr_tex <- function(obj,
                        token = Sys.getenv("SLACK_TOKEN"),
                        ext = "png",
                        path = NULL,
-                       bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                       title = NULL,
+                       initial_comment = NULL,
+                       thread_ts = NULL,
                        ...) {
-  token <- check_tokens(token, bot_user_oauth_token)
 
   # check if texPreview is installed, if not provide feedback
   check_tex_pkg()
@@ -50,14 +53,13 @@ slackr_tex <- function(obj,
     ...
   )
 
-  res <- POST(
-    url = "https://slack.com/api/files.upload",
-    add_headers(`Content-Type` = "multipart/form-data"),
-    body = list(
-      file = upload_file(file.path(td, paste0("slack.", ext))),
-      token = token,
-      channels = channels
-    )
+  res <- files_upload(
+    file = td,
+    channels = channels,
+    token = token,
+    title = title,
+    initial_comment = initial_comment,
+    thread_ts = thread_ts
   )
 
   # cleanup

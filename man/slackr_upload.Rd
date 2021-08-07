@@ -6,25 +6,25 @@
 \usage{
 slackr_upload(
   filename,
-  title = basename(filename),
-  initial_comment = basename(filename),
+  title = NULL,
+  initial_comment = NULL,
   channels = Sys.getenv("SLACK_CHANNEL"),
   token = Sys.getenv("SLACK_TOKEN"),
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+  thread_ts = NULL
 )
 }
 \arguments{
-\item{filename}{path to file}
+\item{filename}{path to file.}
 
-\item{title}{title on Slack (optional - defaults to filename)}
+\item{title}{Title of file.}
 
-\item{initial_comment}{comment for file on slack (optional - defaults to filename)}
+\item{initial_comment}{The message text introducing the file in specified channels.}
 
-\item{channels}{Slack channels to save to (optional)}
+\item{channels}{Comma-separated list of channel names or IDs where the file will be shared.}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes.}
 
-\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
+\item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.}
 }
 \value{
 \code{httr} response object from \code{POST} call (invisibly)

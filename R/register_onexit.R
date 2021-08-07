@@ -1,14 +1,13 @@
 #' @title Append slackr_msg as on.exit to functions.
 #' @description Appends to the body of a function an on.exit call to run at the end of the call.
-#' @param f function or character
-#' @param ... expressions to be sent to Slack
-#' @param header_msg boolean, message to append to start of Slack output, Default: NULL
+#' @param f function or character.
+#' @param ... expressions to be sent to Slack.
+#' @param header_msg boolean, message to append to start of Slack output, Default: NULL.
 #' @param use_device boolean, passes current image in the graphics device to Slack as part of f,
-#' Default: FALSE
+#' Default: FALSE.
 #' @param env environment to assign appended function to with relation to the function environment,
-#' Default: parent.frame(2) (global environment)
-#' @param token A Slack token (either a user token or a bot user token)
-#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
+#' Default: parent.frame(2) (global environment).
+#' @param token Authentication token bearing required scopes.
 #' @inherit slackr
 #' @return function
 #' @details If a character is passed to f then it will evaluate internally to a function.
@@ -64,10 +63,7 @@ register_onexit <- function(f,
                             channel = Sys.getenv("SLACK_CHANNEL"),
                             username = Sys.getenv("SLACK_USERNAME"),
                             icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-                            token = Sys.getenv("SLACK_TOKEN"),
-                            bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-  token <- check_tokens(token, bot_user_oauth_token)
-
+                            token = Sys.getenv("SLACK_TOKEN")) {
   warn_for_args(
     token,
     username = username,

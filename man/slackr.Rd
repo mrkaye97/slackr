@@ -10,21 +10,24 @@ slackr(
   username = Sys.getenv("SLACK_USERNAME"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
   token = Sys.getenv("SLACK_TOKEN"),
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+  thread_ts = NULL,
+  reply_broadcast = FALSE
 )
 }
 \arguments{
-\item{...}{expressions to be sent to Slack}
+\item{...}{expressions to be sent to Slack.}
 
-\item{channel}{which channel to post the message to (chr)}
+\item{channel}{Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See the \href{https://api.slack.com/methods/chat.postMessage#channels}{chat.postMessage endpoint documentation} for details.}
 
-\item{username}{what user should the bot be named as (chr)}
+\item{username}{what user should the bot be named as (chr).}
 
-\item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default}
+\item{icon_emoji}{what emoji to use (chr) \code{""} will mean use the default.}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes.}
 
-\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
+\item{thread_ts}{Provide another message's ts value to make this message a reply. Avoid using a reply's ts value; use its parent instead.}
+
+\item{reply_broadcast}{Used in conjunction with thread_ts and indicates whether reply should be made visible to everyone in the channel or conversation. Defaults to FALSE.}
 }
 \value{
 the response (invisibly)
@@ -42,11 +45,6 @@ but it's probably better to call \code{\link[=slackr_setup]{slackr_setup()}} fir
 \note{
 You need a \url{https://www.slack.com} account and will also need to
 set up an API token \url{https://api.slack.com/}
-Also, you can pass in \code{as_user=TRUE}, the default, as part of the \code{...}
-parameters and the Slack API will post the message as your logged-in
-user account (this will override anything set in \code{username}).
-Passing \code{as_user=FALSE}, results in the Slack API posting the
-message as set in \code{username}
 }
 \examples{
 \dontrun{

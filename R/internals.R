@@ -1,43 +1,7 @@
-#' Check for token issues
-#'
-#' @param token a token
-#' @param bot_user_oauth_token another token
-#' @importFrom lifecycle deprecate_warn
-#' @importFrom rlang as_string
-#' @return A token
-check_tokens <- function(token, bot_user_oauth_token) {
-  calling_fun <- tryCatch(
-    {
-      as_string(as.list(sys.call(-1))[[1]])
-    },
-    error = function(e) "an unknown function"
-  )
-  dep_arg1 <- sprintf("%s(bot_user_oauth_token)", calling_fun)
-  dep_arg2 <- sprintf("%s(token)", calling_fun)
-
-  if (token == "" & bot_user_oauth_token == "") {
-    abort("No token found. Did you forget to call `slackr_setup()`?")
-  }
-
-  if (token != "" & bot_user_oauth_token != "" & token != bot_user_oauth_token) {
-    abort(
-      "You specified both a `token` and a `bot_user_oauth_token`, and the two were not the same. Please only specify a `token`."
-    )
-  }
-
-  if (bot_user_oauth_token != "") {
-    deprecate_warn("2.4.0", dep_arg1, dep_arg2)
-
-    return(bot_user_oauth_token)
-  }
-
-  return(token)
-}
-
 #' Check for token-parameter mismatches
 #'
-#' @param token a token
-#' @param ... Additiional arguments passed to the function called
+#' @param token Authentication token bearing required scopes.
+#' @param ... Additiional arguments passed to the function called.
 #' @return No return value. Called for side effects
 warn_for_args <- function(token, ...) {
   if (substr(token, 1L, 4L) == "xoxp") {

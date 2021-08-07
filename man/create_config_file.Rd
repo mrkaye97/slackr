@@ -10,24 +10,21 @@ create_config_file(
   incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL"),
   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
   username = Sys.getenv("SLACK_USERNAME"),
-  channel = Sys.getenv("SLACK_CHANNEL"),
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+  channel = Sys.getenv("SLACK_CHANNEL")
 )
 }
 \arguments{
 \item{filename}{the name of the config file to save. We recommend using a hidden file (starting with '.')}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes.}
 
-\item{incoming_webhook_url}{the incoming webhook URL (Default: whatever is set as an env var)}
+\item{incoming_webhook_url}{the incoming webhook URL (Default: whatever is set as an env var).}
 
-\item{icon_emoji}{the icon emoji to use as the default}
+\item{icon_emoji}{the icon emoji to use as the default.}
 
-\item{username}{the username to send messages from (will default to "slackr" if no username is set)}
+\item{username}{the username to send messages from (will default to "slackr" if no username is set).}
 
-\item{channel}{the channel to send messages to (will default to "#general" if no channel is set)}
-
-\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
+\item{channel}{Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See the \href{https://api.slack.com/methods/chat.postMessage#channels}{chat.postMessage endpoint documentation} for details.}
 }
 \value{
 TRUE if successful (invisibly)

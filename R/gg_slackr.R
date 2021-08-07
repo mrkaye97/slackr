@@ -3,20 +3,22 @@
 #' Unlike the [slackr_dev()] function, this one takes a `ggplot` object,
 #' eliminating the need to have a graphics device (think use in scripts).
 #'
-#' @param plot ggplot object to save, defaults to last plot displayed
-#' @param channels list of channels to post image to
-#' @param scale scaling factor
-#' @param width width (defaults to the width of current plotting window)
-#' @param height height (defaults to the height of current plotting window)
+#' @param plot ggplot object to save, defaults to last plot displayed.
+#' @param channels Comma-separated list of channel names or IDs where the file will be shared.
+#' @param scale scaling factor.
+#' @param width width (defaults to the width of current plotting window).
+#' @param height height (defaults to the height of current plotting window).
 #' @param units units for width and height when either one is explicitly specified
-#'        (in, cm, or mm)
-#' @param dpi dpi to use for raster graphics
+#'        (in, cm, or mm).
+#' @param dpi dpi to use for raster graphics.
 #' @param limitsize when TRUE (the default), ggsave will not save images larger
 #'        than 50x50 inches, to prevent the common error of specifying dimensions in pixels.
-#' @param token A Slack token (either a user token or a bot user token)
-#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
-#' @param file prefix for filenames (defaults to `ggplot`)
-#' @param ... other arguments passed to graphics device
+#' @param token Authentication token bearing required scopes.
+#' @param file Prefix for filenames (defaults to `ggplot`).
+#' @param initial_comment The message text introducing the file in specified channels.
+#' @param thread_ts Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.
+#' @param title Title of file.
+#' @param ... other arguments passed to graphics device.
 #' @importFrom ggplot2 ggsave last_plot ggplot aes geom_point
 #' @importFrom graphics par
 #' @return `httr` response object (invisibly)
@@ -36,11 +38,10 @@ ggslackr <- function(plot = last_plot(),
                      limitsize = TRUE,
                      token = Sys.getenv("SLACK_TOKEN"),
                      file = "ggplot",
-                     bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+                     initial_comment = NULL,
+                     thread_ts = NULL,
+                     title = NULL,
                      ...) {
-
-  token <- check_tokens(token, bot_user_oauth_token)
-
   ftmp <- tempfile(file, fileext = ".png")
   ggsave(
     filename = ftmp,
@@ -57,8 +58,11 @@ ggslackr <- function(plot = last_plot(),
   res <-
     files_upload(
       file = ftmp,
-      channel = channels,
-      token = token
+      channels = channels,
+      token = token,
+      initial_comment = initial_comment,
+      thread_ts = thread_ts,
+      title = title
     )
 
   invisible(res)

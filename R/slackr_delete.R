@@ -1,24 +1,21 @@
 #' slackr_delete
 #'
 #' Deletes the specified number of messages from the channel
-#' @param count the number of messages to delete
-#' @param channel the channel to delete from
-#' @param token A Slack token (either a user token or a bot user token)
-#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
+#' @param count The number of messages to delete.
+#' @param channel Channel, private group, or IM channel to delete messages from. Can be an encoded ID, or a name. See the \href{https://api.slack.com/methods/chat.postMessage#channels}{chat.postMessage endpoint documentation} for details.
+#' @param token Authentication token bearing required scopes.
 #' @export
 slackr_delete <- function(count,
                           channel = Sys.getenv("SLACK_CHANNEL"),
-                          token = Sys.getenv("SLACK_TOKEN"),
-                          bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-  token <- check_tokens(token, bot_user_oauth_token)
-
+                          token = Sys.getenv("SLACK_TOKEN")) {
   if (!is.character(channel) | length(channel) > 1) {
     abort("channel must be a character vector of length one")
   }
   if (!is.character(token) | length(token) > 1) {
     abort("token must be a character vector of length one")
   }
-  channel <- slackr_chtrans(channel, token)
+
+  channel_translated <- slackr_chtrans(channel, token)
 
   timestamps <- slackr_history(channel = channel, message_count = count, paginate = FALSE)[["ts"]]
 
@@ -28,7 +25,7 @@ slackr_delete <- function(count,
       token = token,
       .method = POST,
       body = list(
-        channel = channel,
+        channel = channel_translated,
         ts = ts
       )
     )

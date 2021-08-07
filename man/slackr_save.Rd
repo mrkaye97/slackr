@@ -9,22 +9,25 @@ slackr_save(
   channels = Sys.getenv("SLACK_CHANNEL"),
   file = "slackr",
   token = Sys.getenv("SLACK_TOKEN"),
-  plot_text = "",
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+  initial_comment = NULL,
+  title = NULL,
+  thread_ts = NULL
 )
 }
 \arguments{
-\item{...}{objects to store in the R data file}
+\item{...}{objects to store in the R data file.}
 
-\item{channels}{Slack channels to save to (optional)}
+\item{channels}{Comma-separated list of channel names or IDs where the file will be shared.}
 
-\item{file}{filename (without extension) to use}
+\item{file}{filename (without extension) to use.}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes.}
 
-\item{plot_text}{the plot text to send with the plot (defaults to "")}
+\item{initial_comment}{The message text introducing the file in specified channels.}
 
-\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
+\item{title}{Title of file.}
+
+\item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.}
 }
 \value{
 \code{httr} response object from \code{POST} call

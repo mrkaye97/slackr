@@ -7,9 +7,9 @@
 convert_response_to_tibble(x, element)
 }
 \arguments{
-\item{x}{The Slack API response object, returned from \link{call_slack_api}}
+\item{x}{The Slack API response object, returned from \link{call_slack_api}.}
 
-\item{element}{The name of the list element to extract}
+\item{element}{The name of the list element to extract.}
 }
 \value{
 A tibble

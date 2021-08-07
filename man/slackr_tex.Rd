@@ -10,22 +10,28 @@ slackr_tex(
   token = Sys.getenv("SLACK_TOKEN"),
   ext = "png",
   path = NULL,
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN"),
+  title = NULL,
+  initial_comment = NULL,
+  thread_ts = NULL,
   ...
 )
 }
 \arguments{
-\item{obj}{character object containing tex to compile}
+\item{obj}{character object containing tex to compile.}
 
-\item{channels}{list of channels to post image to}
+\item{channels}{Comma-separated list of channel names or IDs where the file will be shared.}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{token}{Authentication token bearing required scopes.}
 
-\item{ext}{character, type of format to return, can be tex, pdf, or any image device, Default: 'png'}
+\item{ext}{character, type of format to return, can be tex, pdf, or any image device, Default: 'png'.}
 
-\item{path}{character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL}
+\item{path}{character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL.}
 
-\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
+\item{title}{Title of file.}
+
+\item{initial_comment}{The message text introducing the file in specified channels.}
+
+\item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.}
 
 \item{...}{other arguments passed to \code{\link[texPreview:tex_preview]{texPreview::tex_preview()}}, see Details}
 }

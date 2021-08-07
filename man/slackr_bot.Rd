@@ -10,10 +10,10 @@ slackr_bot(
 )
 }
 \arguments{
-\item{...}{expressions to be sent to Slack}
+\item{...}{expressions to be sent to Slack.}
 
 \item{incoming_webhook_url}{which \code{slack.com} API endpoint URL to use
-(see section \strong{Webhook URLs} for details)}
+(see section \strong{Webhook URLs} for details).}
 }
 \description{
 Takes an \code{expr}, evaluates it and sends the output to a Slack

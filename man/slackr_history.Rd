@@ -5,34 +5,31 @@
 \title{Reads history of a channel.}
 \usage{
 slackr_history(
+  message_count,
   channel = Sys.getenv("SLACK_CHANNEL"),
   token = Sys.getenv("SLACK_TOKEN"),
   posted_to_time = as.numeric(Sys.time()),
-  message_count,
   duration,
   posted_from_time,
-  paginate = FALSE,
-  bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+  paginate = FALSE
 )
 }
 \arguments{
-\item{channel}{The channel to get history from}
+\item{message_count}{The number of messages to retrieve (only when \code{paginate = FALSE}).}
 
-\item{token}{A Slack token (either a user token or a bot user token)}
+\item{channel}{Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name.}
+
+\item{token}{Authentication token bearing required scopes.}
 
 \item{posted_to_time}{Timestamp of the last post to consider (default:
-current time)}
-
-\item{message_count}{The number of messages to retrieve (only when \code{paginate = FALSE})}
+current time).}
 
 \item{duration}{Number of hours of history to retrieve.  By default retrieves
 24 hours of history.}
 
-\item{posted_from_time}{Timestamp of the first post time to consider}
+\item{posted_from_time}{Timestamp of the first post time to consider.}
 
-\item{paginate}{If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to the API and retrieves a maximum of \code{message_count} messages}
-
-\item{bot_user_oauth_token}{Deprecated. A Slack bot user OAuth token}
+\item{paginate}{If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to the API and retrieves a maximum of \code{message_count} messages.}
 }
 \value{
 A \code{tibble} with message metadata

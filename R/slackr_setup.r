@@ -16,17 +16,16 @@
 #'  incoming_webhook_url: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX
 #' }
 #'
-#' @param channel default channel to send the output to (chr) defaults to `#general`
-#' @param username the username output will appear from (chr) defaults to `slackr`
+#' @param channel default channel to send the output to (chr) defaults to `#general`.
+#' @param username the username output will appear from (chr) defaults to `slackr`.
 #' @param icon_emoji which emoji picture to use (chr) defaults to none (can be
-#'        left blank in config file as well)
-#' @param incoming_webhook_url the Slack URL prefix to use (chr) defaults to none
-#' @param token A Slack token (either a user token or a bot user token)
-#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
+#'        left blank in config file as well).
+#' @param incoming_webhook_url the Slack URL prefix to use (chr) defaults to none.
+#' @param token Authentication token bearing required scopes.
 #' @param config_file a configuration file (DCF) - see [read.dcf] - format
 #'        with the config values.
-#' @param echo display the configuration variables (bool) initially `FALSE`
-#' @param cache_dir the location for an on-disk cache. defaults to an in-memory cache if no location is specified
+#' @param echo display the configuration variables (bool) initially `FALSE`.
+#' @param cache_dir the location for an on-disk cache. defaults to an in-memory cache if no location is specified.
 #' @importFrom jsonlite toJSON
 #' @return "Successfully connected to Slack"
 #' @note You need a [Slack](https://slack.com) account and all your API URLs & tokens setup
@@ -53,11 +52,7 @@ slackr_setup <- function(channel="#general",
                          token="",
                          config_file="~/.slackr",
                          echo=FALSE,
-                         cache_dir = '',
-                         bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-
-  if (bot_user_oauth_token != "") warn("The use of `bot_user_oauth_token` is deprecated as of `slackr 2.4.0`. Please use `token` instead.")
-
+                         cache_dir = '') {
 
   Sys.setenv(SLACK_CACHE_DIR = cache_dir)
 
@@ -127,12 +122,11 @@ slackr_setup <- function(channel="#general",
 
 #' Create the config file used in `slackr_setup()`
 #' @param filename the name of the config file to save. We recommend using a hidden file (starting with '.')
-#' @param token A Slack token (either a user token or a bot user token)
-#' @param bot_user_oauth_token Deprecated. A Slack bot user OAuth token
-#' @param incoming_webhook_url the incoming webhook URL (Default: whatever is set as an env var)
-#' @param icon_emoji the icon emoji to use as the default
-#' @param username the username to send messages from (will default to "slackr" if no username is set)
-#' @param channel the channel to send messages to (will default to "#general" if no channel is set)
+#' @param token Authentication token bearing required scopes.
+#' @param incoming_webhook_url the incoming webhook URL (Default: whatever is set as an env var).
+#' @param icon_emoji the icon emoji to use as the default.
+#' @param username the username to send messages from (will default to "slackr" if no username is set).
+#' @param channel Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See the \href{https://api.slack.com/methods/chat.postMessage#channels}{chat.postMessage endpoint documentation} for details.
 #' @importFrom rlang inform
 #' @seealso [slackr_setup()]
 #' @examples
@@ -156,10 +150,7 @@ create_config_file <- function(filename = '~/.slackr',
                                incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL"),
                                icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
                                username = Sys.getenv("SLACK_USERNAME"),
-                               channel = Sys.getenv("SLACK_CHANNEL"),
-                               bot_user_oauth_token = Sys.getenv("SLACK_BOT_USER_OAUTH_TOKEN")) {
-
-  token <- check_tokens(token, bot_user_oauth_token)
+                               channel = Sys.getenv("SLACK_CHANNEL")) {
 
   username <- if (username == '') 'slackr' else username
   channel <- if (channel == '') '#general' else channel

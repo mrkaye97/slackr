@@ -1,3 +1,17 @@
+# slackr 3.0.0
+
+Lots of breaking changes in this release:
+* `bot_user_oauth_token` has been removed entirely in favor of `token`
+* `slackr_history` now has `message_count` as it's first argument
+* Adding the capability to pass the `thread_ts` parameter to all `slackr_*` functions (i.e. allowing you to reply to a message in a thread)
+* Adding `reply_broadcast` capability in `slackr` and `slackr_msg`
+* Adding `title` and `initial_comment` parameters for all functions relying on the `files.upload` endpoint (basically everything except for `slackr`, `slackr_bot`, `slackr_msg`, `slackr_history`, and `slackr_delete`)
+* `slackr` and `slackr_bot` now use `reprex::prex()` in the background, which means that they no longer throw errors the same way as they did before. `slackr` will try to be helpful in telling you what went wrong if your `prex` output contains an error (instead of posting), but it isn't guaranteed to work all of the time. You can prevent this behavior by setting the `SLACKR_ERRORS` environment variable to `"IGNORE"`.
+
+Other changes:
+* Significant improvements to documentation, which now aligns with Slack API descriptions
+* Significant internal overhauls of how the functions call the API
+
 # slackr 2.4.1
 
 * Small bug fix for `ggslackr`
@@ -36,7 +50,7 @@
 # slackr 2.1.1
 
 * Changes a few badly-set function default channels to be `Sys.getenv('SLACK_CHANNEL')` instead of `''`
-* Adds a more informative error message on `slackr_upload()` when the request returns `not authed` as per #137 
+* Adds a more informative error message on `slackr_upload()` when the request returns `not authed` as per #137
 * Deprecates some arguments in `slackr_bot()` that no longer work (username, channel, icon emoji) that used to work with the old API structure
 
 # slackr 2.1.0
@@ -81,4 +95,3 @@
 * Versions 1.4+ BREAK THINGS.
 * Support has been removed for the "old style" incoming web hooks (see "Setup" in the README for the required incoming web hook URL format).
 * the incoming webhook "token" is no longer required or used.
-
