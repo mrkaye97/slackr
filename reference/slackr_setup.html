@@ -91,7 +91,7 @@ work properly." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -166,8 +166,7 @@ work properly.</p>
   token <span class='op'>=</span> <span class='st'>""</span>,
   config_file <span class='op'>=</span> <span class='st'>"~/.slackr"</span>,
   echo <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  cache_dir <span class='op'>=</span> <span class='st'>""</span>,
-  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>
+  cache_dir <span class='op'>=</span> <span class='st'>""</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -175,24 +174,24 @@ work properly.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>channel</th>
-      <td><p>default channel to send the output to (chr) defaults to <code>#general</code></p></td>
+      <td><p>default channel to send the output to (chr) defaults to <code>#general</code>.</p></td>
     </tr>
     <tr>
       <th>username</th>
-      <td><p>the username output will appear from (chr) defaults to <code>slackr</code></p></td>
+      <td><p>the username output will appear from (chr) defaults to <code>slackr</code>.</p></td>
     </tr>
     <tr>
       <th>icon_emoji</th>
       <td><p>which emoji picture to use (chr) defaults to none (can be
-left blank in config file as well)</p></td>
+left blank in config file as well).</p></td>
     </tr>
     <tr>
       <th>incoming_webhook_url</th>
-      <td><p>the Slack URL prefix to use (chr) defaults to none</p></td>
+      <td><p>the Slack URL prefix to use (chr) defaults to none.</p></td>
     </tr>
     <tr>
       <th>token</th>
-      <td><p>A Slack token (either a user token or a bot user token)</p></td>
+      <td><p>Authentication token bearing required scopes.</p></td>
     </tr>
     <tr>
       <th>config_file</th>
@@ -201,15 +200,11 @@ with the config values.</p></td>
     </tr>
     <tr>
       <th>echo</th>
-      <td><p>display the configuration variables (bool) initially <code>FALSE</code></p></td>
+      <td><p>display the configuration variables (bool) initially <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>cache_dir</th>
-      <td><p>the location for an on-disk cache. defaults to an in-memory cache if no location is specified</p></td>
-    </tr>
-    <tr>
-      <th>bot_user_oauth_token</th>
-      <td><p>Deprecated. A Slack bot user OAuth token</p></td>
+      <td><p>the location for an on-disk cache. defaults to an in-memory cache if no location is specified.</p></td>
     </tr>
     </table>
 

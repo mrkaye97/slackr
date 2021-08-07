@@ -91,7 +91,7 @@ eliminating the need to have a graphics device (think use in scripts)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -169,7 +169,9 @@ eliminating the need to have a graphics device (think use in scripts).</p>
   limitsize <span class='op'>=</span> <span class='cn'>TRUE</span>,
   token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_TOKEN"</span><span class='op'>)</span>,
   file <span class='op'>=</span> <span class='st'>"ggplot"</span>,
-  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>,
+  initial_comment <span class='op'>=</span> <span class='cn'>NULL</span>,
+  thread_ts <span class='op'>=</span> <span class='cn'>NULL</span>,
+  title <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -178,32 +180,32 @@ eliminating the need to have a graphics device (think use in scripts).</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>plot</th>
-      <td><p>ggplot object to save, defaults to last plot displayed</p></td>
+      <td><p>ggplot object to save, defaults to last plot displayed.</p></td>
     </tr>
     <tr>
       <th>channels</th>
-      <td><p>list of channels to post image to</p></td>
+      <td><p>Comma-separated list of channel names or IDs where the file will be shared.</p></td>
     </tr>
     <tr>
       <th>scale</th>
-      <td><p>scaling factor</p></td>
+      <td><p>scaling factor.</p></td>
     </tr>
     <tr>
       <th>width</th>
-      <td><p>width (defaults to the width of current plotting window)</p></td>
+      <td><p>width (defaults to the width of current plotting window).</p></td>
     </tr>
     <tr>
       <th>height</th>
-      <td><p>height (defaults to the height of current plotting window)</p></td>
+      <td><p>height (defaults to the height of current plotting window).</p></td>
     </tr>
     <tr>
       <th>units</th>
       <td><p>units for width and height when either one is explicitly specified
-(in, cm, or mm)</p></td>
+(in, cm, or mm).</p></td>
     </tr>
     <tr>
       <th>dpi</th>
-      <td><p>dpi to use for raster graphics</p></td>
+      <td><p>dpi to use for raster graphics.</p></td>
     </tr>
     <tr>
       <th>limitsize</th>
@@ -212,19 +214,27 @@ than 50x50 inches, to prevent the common error of specifying dimensions in pixel
     </tr>
     <tr>
       <th>token</th>
-      <td><p>A Slack token (either a user token or a bot user token)</p></td>
+      <td><p>Authentication token bearing required scopes.</p></td>
     </tr>
     <tr>
       <th>file</th>
-      <td><p>prefix for filenames (defaults to <code>ggplot</code>)</p></td>
+      <td><p>Prefix for filenames (defaults to <code>ggplot</code>).</p></td>
     </tr>
     <tr>
-      <th>bot_user_oauth_token</th>
-      <td><p>Deprecated. A Slack bot user OAuth token</p></td>
+      <th>initial_comment</th>
+      <td><p>The message text introducing the file in specified channels.</p></td>
+    </tr>
+    <tr>
+      <th>thread_ts</th>
+      <td><p>Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.</p></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p>Title of file.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>other arguments passed to graphics device</p></td>
+      <td><p>other arguments passed to graphics device.</p></td>
     </tr>
     </table>
 

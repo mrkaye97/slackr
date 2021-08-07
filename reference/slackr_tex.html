@@ -91,7 +91,7 @@ eliminating the need write to pdf and convert to png to pass to slack." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -164,7 +164,9 @@ eliminating the need write to pdf and convert to png to pass to slack.</p>
   token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_TOKEN"</span><span class='op'>)</span>,
   ext <span class='op'>=</span> <span class='st'>"png"</span>,
   path <span class='op'>=</span> <span class='cn'>NULL</span>,
-  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>,
+  title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  initial_comment <span class='op'>=</span> <span class='cn'>NULL</span>,
+  thread_ts <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -173,27 +175,35 @@ eliminating the need write to pdf and convert to png to pass to slack.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>obj</th>
-      <td><p>character object containing tex to compile</p></td>
+      <td><p>character object containing tex to compile.</p></td>
     </tr>
     <tr>
       <th>channels</th>
-      <td><p>list of channels to post image to</p></td>
+      <td><p>Comma-separated list of channel names or IDs where the file will be shared.</p></td>
     </tr>
     <tr>
       <th>token</th>
-      <td><p>A Slack token (either a user token or a bot user token)</p></td>
+      <td><p>Authentication token bearing required scopes.</p></td>
     </tr>
     <tr>
       <th>ext</th>
-      <td><p>character, type of format to return, can be tex, pdf, or any image device, Default: 'png'</p></td>
+      <td><p>character, type of format to return, can be tex, pdf, or any image device, Default: 'png'.</p></td>
     </tr>
     <tr>
       <th>path</th>
-      <td><p>character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL</p></td>
+      <td><p>character, path to save tex_preview outputs, if NULL then tempdir is used, Default: NULL.</p></td>
     </tr>
     <tr>
-      <th>bot_user_oauth_token</th>
-      <td><p>Deprecated. A Slack bot user OAuth token</p></td>
+      <th>title</th>
+      <td><p>Title of file.</p></td>
+    </tr>
+    <tr>
+      <th>initial_comment</th>
+      <td><p>The message text introducing the file in specified channels.</p></td>
+    </tr>
+    <tr>
+      <th>thread_ts</th>
+      <td><p>Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.</p></td>
     </tr>
     <tr>
       <th>...</th>

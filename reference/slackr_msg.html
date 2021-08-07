@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -162,7 +162,8 @@
   username <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_USERNAME"</span><span class='op'>)</span>,
   icon_emoji <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_ICON_EMOJI"</span><span class='op'>)</span>,
   token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_TOKEN"</span><span class='op'>)</span>,
-  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>,
+  thread_ts <span class='op'>=</span> <span class='cn'>NULL</span>,
+  reply_broadcast <span class='op'>=</span> <span class='cn'>FALSE</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -176,23 +177,27 @@ is passed in, they will be combined and separated by newlines.</p></td>
     </tr>
     <tr>
       <th>channel</th>
-      <td><p>which channel to post the message to (chr)</p></td>
+      <td><p>Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See the <a href='https://api.slack.com/methods/chat.postMessage#channels'>chat.postMessage endpoint documentation</a> for details.</p></td>
     </tr>
     <tr>
       <th>username</th>
-      <td><p>what user should the bot be named as (chr)</p></td>
+      <td><p>what user should the bot be named as (chr).</p></td>
     </tr>
     <tr>
       <th>icon_emoji</th>
-      <td><p>what emoji to use (chr) <code>""</code> will mean use the default</p></td>
+      <td><p>what emoji to use (chr) <code>""</code> will mean use the default.</p></td>
     </tr>
     <tr>
       <th>token</th>
-      <td><p>A Slack token (either a user token or a bot user token)</p></td>
+      <td><p>Authentication token bearing required scopes.</p></td>
     </tr>
     <tr>
-      <th>bot_user_oauth_token</th>
-      <td><p>Deprecated. A Slack bot user OAuth token</p></td>
+      <th>thread_ts</th>
+      <td><p>Provide another message's ts value to make this message a reply. Avoid using a reply's ts value; use its parent instead.</p></td>
+    </tr>
+    <tr>
+      <th>reply_broadcast</th>
+      <td><p>Used in conjunction with thread_ts and indicates whether reply should be made visible to everyone in the channel or conversation. Defaults to FALSE.</p></td>
     </tr>
     <tr>
       <th>...</th>

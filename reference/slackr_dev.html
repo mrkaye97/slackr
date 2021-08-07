@@ -91,7 +91,7 @@ specified Slack channel." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -161,9 +161,10 @@ specified Slack channel.</p>
     <pre class="usage"><span class='fu'>slackr_dev</span><span class='op'>(</span>
   channels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_CHANNEL"</span><span class='op'>)</span>,
   token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_TOKEN"</span><span class='op'>)</span>,
-  plot_text <span class='op'>=</span> <span class='st'>""</span>,
   file <span class='op'>=</span> <span class='st'>"plot"</span>,
-  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>
+  initial_comment <span class='op'>=</span> <span class='cn'>NULL</span>,
+  title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  thread_ts <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -171,23 +172,27 @@ specified Slack channel.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>channels</th>
-      <td><p>list of channels to post image to</p></td>
+      <td><p>Comma-separated list of channel names or IDs where the file will be shared.</p></td>
     </tr>
     <tr>
       <th>token</th>
-      <td><p>A Slack token (either a user token or a bot user token)</p></td>
-    </tr>
-    <tr>
-      <th>plot_text</th>
-      <td><p>the plot text to send with the plot (defaults to "")</p></td>
+      <td><p>Authentication token bearing required scopes.</p></td>
     </tr>
     <tr>
       <th>file</th>
-      <td><p>prefix for filenames (defaults to <code>plot</code>)</p></td>
+      <td><p>prefix for filenames (defaults to <code>plot</code>).</p></td>
     </tr>
     <tr>
-      <th>bot_user_oauth_token</th>
-      <td><p>Deprecated. A Slack bot user OAuth token</p></td>
+      <th>initial_comment</th>
+      <td><p>The message text introducing the file in specified channels.</p></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p>Title of file.</p></td>
+    </tr>
+    <tr>
+      <th>thread_ts</th>
+      <td><p>Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.</p></td>
     </tr>
     </table>
 

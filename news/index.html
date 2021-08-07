@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -150,6 +150,30 @@
       <small>Source: <a href='https://github.com/mrkaye97/slackr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="slackr-300" class="section level1">
+<h1 class="page-header" data-toc-text="3.0.0">
+<a href="#slackr-300" class="anchor"></a>slackr 3.0.0<small> Unreleased </small>
+</h1>
+<p>Lots of breaking changes in this release:</p>
+<ul>
+<li>
+<code>bot_user_oauth_token</code> has been removed entirely in favor of <code>token</code>
+</li>
+<li>
+<code>slackr_history</code> now has <code>message_count</code> as it’s first argument</li>
+<li>Adding the capability to pass the <code>thread_ts</code> parameter to all <code>slackr_*</code> functions (i.e. allowing you to reply to a message in a thread)</li>
+<li>Adding <code>reply_broadcast</code> capability in <code>slackr</code> and <code>slackr_msg</code>
+</li>
+<li>Adding <code>title</code> and <code>initial_comment</code> parameters for all functions relying on the <code>files.upload</code> endpoint (basically everything except for <code>slackr</code>, <code>slackr_bot</code>, <code>slackr_msg</code>, <code>slackr_history</code>, and <code>slackr_delete</code>)</li>
+<li>
+<code>slackr</code> and <code>slackr_bot</code> now use <code>reprex::prex()</code> in the background, which means that they no longer throw errors the same way as they did before. <code>slackr</code> will try to be helpful in telling you what went wrong if your <code>prex</code> output contains an error (instead of posting), but it isn’t guaranteed to work all of the time. You can prevent this behavior by setting the <code>SLACKR_ERRORS</code> environment variable to <code>"IGNORE"</code>.</li>
+</ul>
+<p>Other changes:</p>
+<ul>
+<li>Significant improvements to documentation, which now aligns with Slack API descriptions</li>
+<li>Significant internal overhauls of how the functions call the API</li>
+</ul>
+</div>
     <div id="slackr-241" class="section level1">
 <h1 class="page-header" data-toc-text="2.4.1">
 <a href="#slackr-241" class="anchor"></a>slackr 2.4.1<small> 2021-07-06 </small>

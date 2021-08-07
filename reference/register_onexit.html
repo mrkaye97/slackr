@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -165,8 +165,7 @@
   channel <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_CHANNEL"</span><span class='op'>)</span>,
   username <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_USERNAME"</span><span class='op'>)</span>,
   icon_emoji <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_ICON_EMOJI"</span><span class='op'>)</span>,
-  token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_TOKEN"</span><span class='op'>)</span>,
-  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>
+  token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_TOKEN"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -174,45 +173,41 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>f</th>
-      <td><p>function or character</p></td>
+      <td><p>function or character.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>expressions to be sent to Slack</p></td>
+      <td><p>expressions to be sent to Slack.</p></td>
     </tr>
     <tr>
       <th>header_msg</th>
-      <td><p>boolean, message to append to start of Slack output, Default: NULL</p></td>
+      <td><p>boolean, message to append to start of Slack output, Default: NULL.</p></td>
     </tr>
     <tr>
       <th>use_device</th>
       <td><p>boolean, passes current image in the graphics device to Slack as part of f,
-Default: FALSE</p></td>
+Default: FALSE.</p></td>
     </tr>
     <tr>
       <th>env</th>
       <td><p>environment to assign appended function to with relation to the function environment,
-Default: parent.frame(2) (global environment)</p></td>
+Default: parent.frame(2) (global environment).</p></td>
     </tr>
     <tr>
       <th>channel</th>
-      <td><p>which channel to post the message to (chr)</p></td>
+      <td><p>Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See the <a href='https://api.slack.com/methods/chat.postMessage#channels'>chat.postMessage endpoint documentation</a> for details.</p></td>
     </tr>
     <tr>
       <th>username</th>
-      <td><p>what user should the bot be named as (chr)</p></td>
+      <td><p>what user should the bot be named as (chr).</p></td>
     </tr>
     <tr>
       <th>icon_emoji</th>
-      <td><p>what emoji to use (chr) <code>""</code> will mean use the default</p></td>
+      <td><p>what emoji to use (chr) <code>""</code> will mean use the default.</p></td>
     </tr>
     <tr>
       <th>token</th>
-      <td><p>A Slack token (either a user token or a bot user token)</p></td>
-    </tr>
-    <tr>
-      <th>bot_user_oauth_token</th>
-      <td><p>Deprecated. A Slack bot user OAuth token</p></td>
+      <td><p>Authentication token bearing required scopes.</p></td>
     </tr>
     </table>
 

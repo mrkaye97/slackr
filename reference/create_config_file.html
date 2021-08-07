@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -162,8 +162,7 @@
   incoming_webhook_url <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_INCOMING_WEBHOOK_URL"</span><span class='op'>)</span>,
   icon_emoji <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_ICON_EMOJI"</span><span class='op'>)</span>,
   username <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_USERNAME"</span><span class='op'>)</span>,
-  channel <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_CHANNEL"</span><span class='op'>)</span>,
-  bot_user_oauth_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_BOT_USER_OAUTH_TOKEN"</span><span class='op'>)</span>
+  channel <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"SLACK_CHANNEL"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -175,27 +174,23 @@
     </tr>
     <tr>
       <th>token</th>
-      <td><p>A Slack token (either a user token or a bot user token)</p></td>
+      <td><p>Authentication token bearing required scopes.</p></td>
     </tr>
     <tr>
       <th>incoming_webhook_url</th>
-      <td><p>the incoming webhook URL (Default: whatever is set as an env var)</p></td>
+      <td><p>the incoming webhook URL (Default: whatever is set as an env var).</p></td>
     </tr>
     <tr>
       <th>icon_emoji</th>
-      <td><p>the icon emoji to use as the default</p></td>
+      <td><p>the icon emoji to use as the default.</p></td>
     </tr>
     <tr>
       <th>username</th>
-      <td><p>the username to send messages from (will default to "slackr" if no username is set)</p></td>
+      <td><p>the username to send messages from (will default to "slackr" if no username is set).</p></td>
     </tr>
     <tr>
       <th>channel</th>
-      <td><p>the channel to send messages to (will default to "#general" if no channel is set)</p></td>
-    </tr>
-    <tr>
-      <th>bot_user_oauth_token</th>
-      <td><p>Deprecated. A Slack bot user OAuth token</p></td>
+      <td><p>Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See the <a href='https://api.slack.com/methods/chat.postMessage#channels'>chat.postMessage endpoint documentation</a> for details.</p></td>
     </tr>
     </table>
 
