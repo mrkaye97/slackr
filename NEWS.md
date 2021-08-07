@@ -6,6 +6,7 @@ Lots of breaking changes in this release:
 * Adding the capability to pass the `thread_ts` parameter to all `slackr_*` functions (i.e. allowing you to reply to a message in a thread)
 * Adding `reply_broadcast` capability in `slackr` and `slackr_msg`
 * Adding `title` and `initial_comment` parameters for all functions relying on the `files.upload` endpoint (basically everything except for `slackr`, `slackr_bot`, `slackr_msg`, `slackr_history`, and `slackr_delete`)
+* `slackr` and `slackr_bot` now use `reprex::prex()` in the background, which means that they no longer throw errors the same way as they did before. `slackr` will try to be helpful in telling you what went wrong if your `prex` output contains an error (instead of posting), but it isn't guaranteed to work all of the time. You can prevent this behavior by setting the `SLACKR_ERRORS` environment variable to `"IGNORE"`.
 
 Other changes:
 * Significant improvements to documentation, which now aligns with Slack API descriptions
