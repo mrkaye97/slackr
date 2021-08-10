@@ -77,8 +77,8 @@ slackr_setup <- function(channel="#general",
     Sys.setenv(SLACK_TOKEN=config[,"token"])
 
   } else {
-    if (token == '') {
-      abort("No config file found. Please specify your Slack bot OAuth token\n   with the token argument in slackr_setup().")
+    if (token == '' | is.null(token) | is.na(token) | missing(token)) {
+      abort("No config file found. Please specify your Slack OAuth token\n   with the token argument in slackr_setup().")
     }
 
     warn_for_args(

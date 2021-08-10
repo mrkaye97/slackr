@@ -4,6 +4,10 @@
 #' @param ... Additiional arguments passed to the function called.
 #' @return No return value. Called for side effects
 warn_for_args <- function(token, ...) {
+  if (missing(token) | is.na(token) | is.null(token)) {
+    abort("You must supply a token.")
+  }
+
   if (substr(token, 1L, 4L) == "xoxp") {
     all_args <- list(...)
     non_missing_args <- all_args[all_args != ""]
