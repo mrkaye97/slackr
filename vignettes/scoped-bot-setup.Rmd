@@ -35,7 +35,7 @@ Setting up the multi-functional bot is slightly more complex than the single-cha
   * `channels:history`
 5. Click "Install to Workspace"
 6. Select a channel (for webhook messages)
-7. Copy the Bot User OAuth Access Token
+7. Copy the Bot User (or User, depending on the type of app you want to use) OAuth Access Token
 8. Click "Incoming Webhooks" under "Features"
 9. Copy the Webhook URL
 8. Call 
