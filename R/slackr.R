@@ -8,7 +8,6 @@
 #' environment variable. You can override or just specify these values directly instead,
 #' but it's probably better to call [slackr_setup()] first.
 #' @importFrom withr local_options
-#' @importFrom purrr map quietly pluck discard modify_at
 #' @importFrom rlang call2
 #' @param ... expressions to be sent to Slack.
 #' @param channel Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See the \href{https://api.slack.com/methods/chat.postMessage#channels}{chat.postMessage endpoint documentation} for details.
@@ -52,28 +51,29 @@ slackr <- function(...,
     modes_to_not_prex <- c("integer", "double", "complex", "raw", "logical", "character", "numeric")
 
     ## map over each thing passed to `slackr` and evaluate it
-    output <- map(
+    output <- lapply(
       args,
       function(.x) {
         if (mode(.x) %in% modes_to_not_prex) {
           .x
         } else {
-          eval(call2(quiet_prex, .x, input = tempfile(), html_preview = FALSE, render = TRUE, style = FALSE))
+          inform(
+            "slackr now relies on `reprex` for rendering.\nRendering messages will print, and reprex output will be saved to the clipboard.\nYou can directly paste the results into Slack.\n\n",
+            .frequency = "once",
+            .frequency_id = "36531017-f90e-4e39-8e39-4c9042634cb7"
+          )
+          eval(call2(prex_r, .x, input = tempfile(), html_preview = FALSE, render = TRUE, style = FALSE))
         }
       }
     ) %>%
-      map(
+      lapply(
         function(.x) {
           if (mode(.x) %in% modes_to_not_prex) {
             .x
           } else {
-            .x %>%
-              pluck("result") %>%
-              modify_at(
-                c(1),
-                function(s) paste(">", s)
-              ) %>%
-              paste(collapse = "\n")
+            .x <- .x$result
+            .x[1] <- paste(">", .x[1])
+            paste(.x, collapse = "\n")
           }
         }
       ) %>%

@@ -53,7 +53,7 @@ slackr_bot <- function(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WE
 
     modes_to_not_prex <- c("integer", "double", "complex", "raw", "logical", "character", "numeric")
 
-    output <- map(
+    output <- lapply(
       args,
       function(.x) {
         if (mode(.x) %in% modes_to_not_prex) {
@@ -63,18 +63,14 @@ slackr_bot <- function(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WE
         }
       }
     ) %>%
-      map(
+      lapply(
         function(.x) {
           if (mode(.x) %in% modes_to_not_prex) {
             .x
           } else {
-            .x %>%
-              pluck("result") %>%
-              modify_at(
-                c(1),
-                function(s) paste(">", s)
-              ) %>%
-              paste(collapse = "\n")
+            .x <- .x$result
+            .x[1] <- paste(">", .x[1])
+            paste(.x, collapse = "\n")
           }
         }
       ) %>%

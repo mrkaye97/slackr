@@ -120,7 +120,7 @@ slackr_setup <- function(channel="#general",
     Sys.getenv("SLACK_TOKEN")
   )
 
-  if (auth$result$ok) {
+  if (auth) {
     return('Successfully connected to Slack')
   } else {
     abort("Could not connect to Slack with the token you provided. Are you sure you've set up your app correctly?")
