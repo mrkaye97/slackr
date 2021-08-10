@@ -41,7 +41,7 @@ Setting up the multi-functional bot is slightly more complex than the single-cha
 8. Call 
 ```r
 slackr_setup(channel = '#channel_with_webhook', 
-             bot_user_oauth_token = 'your_token', 
+             token = 'your_token', 
              incoming_webhook_url = 'your_webhook')
 ``` 
 
@@ -59,9 +59,9 @@ Without all of the scopes enabled, only certain functions will work. Which ones 
 ```{r demo2, eval=FALSE}
 library(slackr)
 slackr_setup(
-  channel="#channel", 
-  incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX",
-  bot_user_oauth_token='token'
+  channel = "<< channel >>", 
+  incoming_webhook_url = "https://hooks.slack.com/services/<< hook >>",
+  token = 'xoxb-<< token >>'
 )
 
 slackr(str(iris))
