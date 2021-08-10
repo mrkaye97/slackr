@@ -12,3 +12,4 @@ tests/testthat/.config
 docs
 .config
 .slackr
+test_config
