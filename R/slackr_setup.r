@@ -116,8 +116,15 @@ slackr_setup <- function(channel="#general",
       pretty=TRUE))
   }
 
-  msg <- 'Successfully connected to Slack'
-  return(msg)
+  auth <- quiet_auth(
+    Sys.getenv("SLACK_TOKEN")
+  )
+
+  if (auth$result$ok) {
+    return('Successfully connected to Slack')
+  } else {
+    abort("Could not connect to Slack with the token you provided. Are you sure you've set up your app correctly?")
+  }
 }
 
 #' Create the config file used in `slackr_setup()`
