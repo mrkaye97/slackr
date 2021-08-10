@@ -2,7 +2,7 @@ Type: Package
 Package: slackr
 Title: Send Messages, Images, R Objects and Files to 'Slack'
     Channels/Users
-Version: 3.0.0
+Version: 3.0.1
 Author: Bob Rudis [aut, cre], Jay Jacobs [ctb], David Severski [ctb],
     Quinn Weber [ctb], Konrad Karczewski [ctb], Shinya Uryu [ctb], Gregory
     Jefferis [ctb], Ed Niles [ctb], Rick Saporta [ctb], Jonathan Sidi
