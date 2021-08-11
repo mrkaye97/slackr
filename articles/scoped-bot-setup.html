@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.1</span>
       </span>
     </div>
 
@@ -138,14 +138,14 @@
 <ol start="5" style="list-style-type: decimal">
 <li>Click “Install to Workspace”</li>
 <li>Select a channel (for webhook messages)</li>
-<li>Copy the Bot User OAuth Access Token</li>
+<li>Copy the Bot User (or User, depending on the type of app you want to use) OAuth Access Token</li>
 <li>Click “Incoming Webhooks” under “Features”</li>
 <li>Copy the Webhook URL</li>
 <li>Call</li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/slackr_setup.html">slackr_setup</a></span><span class="op">(</span>channel <span class="op">=</span> <span class="st">'#channel_with_webhook'</span>, 
-             bot_user_oauth_token <span class="op">=</span> <span class="st">'your_token'</span>, 
+             token <span class="op">=</span> <span class="st">'your_token'</span>, 
              incoming_webhook_url <span class="op">=</span> <span class="st">'your_webhook'</span><span class="op">)</span></code></pre></div>
 <p>You can also follow the config file setup directions below instead of passing the channel, token, and webhook directly.</p>
 <p>And that’s it! You should be able to post a message with <code><a href="../reference/slackr.html">slackr('test message')</a></code></p>
@@ -161,9 +161,9 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrkaye97/slackr">slackr</a></span><span class="op">)</span>
 <span class="fu"><a href="../reference/slackr_setup.html">slackr_setup</a></span><span class="op">(</span>
-  channel<span class="op">=</span><span class="st">"#channel"</span>, 
-  incoming_webhook_url<span class="op">=</span><span class="st">"https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX"</span>,
-  bot_user_oauth_token<span class="op">=</span><span class="st">'token'</span>
+  channel <span class="op">=</span> <span class="st">"&lt;&lt; channel &gt;&gt;"</span>, 
+  incoming_webhook_url <span class="op">=</span> <span class="st">"https://hooks.slack.com/services/&lt;&lt; hook &gt;&gt;"</span>,
+  token <span class="op">=</span> <span class="st">'xoxb-&lt;&lt; token &gt;&gt;'</span>
 <span class="op">)</span>
 
 <span class="fu"><a href="../reference/slackr.html">slackr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">)</span>
