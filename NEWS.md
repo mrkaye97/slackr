@@ -1,3 +1,10 @@
+# slackr 3.0.1
+
+Fixes to a couple of bugs
+* Updated error handling for edge cases when you supply a username with a user token.
+* Removes references to `purrr`, since it's GPL.
+* Updates the vignettes
+
 # slackr 3.0.0
 
 Lots of breaking changes in this release:
