@@ -14,3 +14,4 @@ inst/secrets
 ^pkgdown$
 ^CRAN-RELEASE$
 ^LICENSE\.md$
+test_config

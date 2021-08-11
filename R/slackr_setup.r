@@ -77,8 +77,8 @@ slackr_setup <- function(channel="#general",
     Sys.setenv(SLACK_TOKEN=config[,"token"])
 
   } else {
-    if (token == '') {
-      abort("No config file found. Please specify your Slack bot OAuth token\n   with the token argument in slackr_setup().")
+    if (token == '' | is.null(token) | is.na(token) | missing(token)) {
+      abort("No config file found. Please specify your Slack OAuth token\n   with the token argument in slackr_setup().")
     }
 
     warn_for_args(
@@ -116,8 +116,15 @@ slackr_setup <- function(channel="#general",
       pretty=TRUE))
   }
 
-  msg <- 'Successfully connected to Slack'
-  return(msg)
+  auth <- quiet_auth(
+    Sys.getenv("SLACK_TOKEN")
+  )
+
+  if (auth) {
+    return('Successfully connected to Slack')
+  } else {
+    abort("Could not connect to Slack with the token you provided. Are you sure you've set up your app correctly?")
+  }
 }
 
 #' Create the config file used in `slackr_setup()`

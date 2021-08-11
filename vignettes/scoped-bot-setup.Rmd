@@ -35,13 +35,13 @@ Setting up the multi-functional bot is slightly more complex than the single-cha
   * `channels:history`
 5. Click "Install to Workspace"
 6. Select a channel (for webhook messages)
-7. Copy the Bot User OAuth Access Token
+7. Copy the Bot User (or User, depending on the type of app you want to use) OAuth Access Token
 8. Click "Incoming Webhooks" under "Features"
 9. Copy the Webhook URL
 8. Call 
 ```r
 slackr_setup(channel = '#channel_with_webhook', 
-             bot_user_oauth_token = 'your_token', 
+             token = 'your_token', 
              incoming_webhook_url = 'your_webhook')
 ``` 
 
@@ -59,9 +59,9 @@ Without all of the scopes enabled, only certain functions will work. Which ones 
 ```{r demo2, eval=FALSE}
 library(slackr)
 slackr_setup(
-  channel="#channel", 
-  incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX",
-  bot_user_oauth_token='token'
+  channel = "<< channel >>", 
+  incoming_webhook_url = "https://hooks.slack.com/services/<< hook >>",
+  token = 'xoxb-<< token >>'
 )
 
 slackr(str(iris))
