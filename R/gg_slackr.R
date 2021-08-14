@@ -18,6 +18,7 @@
 #' @param initial_comment The message text introducing the file in specified channels.
 #' @param thread_ts Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.
 #' @param title Title of file.
+#' @param device the file extension to use. Options: "png", "eps", "ps", "pdf", "jpeg", "tiff", "bmp", "svg". Default: "png".
 #' @param ... other arguments passed to graphics device.
 #' @importFrom ggplot2 ggsave last_plot ggplot aes geom_point
 #' @importFrom graphics par
@@ -41,8 +42,12 @@ ggslackr <- function(plot = last_plot(),
                      initial_comment = NULL,
                      thread_ts = NULL,
                      title = NULL,
+                     device = c("png", "eps", "ps", "pdf", "jpeg", "tiff", "bmp", "svg"),
                      ...) {
-  ftmp <- tempfile(file, fileext = ".png")
+
+  ext <- paste0(".", match.arg(device))
+  ftmp <- tempfile(file, fileext = ext)
+
   ggsave(
     filename = ftmp,
     plot = plot,
