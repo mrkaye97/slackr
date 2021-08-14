@@ -51,9 +51,9 @@ than 50x50 inches, to prevent the common error of specifying dimensions in pixel
 
 \item{title}{Title of file.}
 
-\item{...}{other arguments passed to graphics device.}
+\item{device}{the file extension to use. Options: "png", "eps", "ps", "pdf", "jpeg", "tiff", "bmp", "svg". Default: "png".}
 
-\item{ext}{the file extension to use. Default: png}
+\item{...}{other arguments passed to graphics device.}
 }
 \value{
 \code{httr} response object (invisibly)

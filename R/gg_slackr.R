@@ -18,7 +18,7 @@
 #' @param initial_comment The message text introducing the file in specified channels.
 #' @param thread_ts Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.
 #' @param title Title of file.
-#' @param ext the file extension to use. Default: png
+#' @param device the file extension to use. Options: "png", "eps", "ps", "pdf", "jpeg", "tiff", "bmp", "svg". Default: "png".
 #' @param ... other arguments passed to graphics device.
 #' @importFrom ggplot2 ggsave last_plot ggplot aes geom_point
 #' @importFrom graphics par
