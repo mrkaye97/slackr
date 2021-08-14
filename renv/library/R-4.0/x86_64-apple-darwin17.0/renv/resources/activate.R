@@ -2,7 +2,7 @@
 local({
 
   # the requested version of renv
-  version <- "0.13.2"
+  version <- "${VERSION}"
 
   # the project directory
   project <- getwd()
