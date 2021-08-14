@@ -51,32 +51,34 @@ slackr <- function(...,
     modes_to_not_prex <- c("integer", "double", "complex", "raw", "logical", "character", "numeric")
 
     ## map over each thing passed to `slackr` and evaluate it
-    output <- lapply(
-      args,
+    raw_output <- lapply(
+      seq_along(args),
       function(.x) {
-        if (mode(.x) %in% modes_to_not_prex) {
-          .x
+        if (mode(args[[.x]]) %in% modes_to_not_prex) {
+          args[[.x]]
         } else {
           inform(
             "slackr now relies on `reprex` for rendering.\nRendering messages will print, and reprex output will be saved to the clipboard.\nYou can directly paste the results into Slack.\n\n",
             .frequency = "once",
             .frequency_id = "36531017-f90e-4e39-8e39-4c9042634cb7"
           )
-          eval(call2(prex_r, .x, input = tempfile(), html_preview = FALSE, render = TRUE, style = FALSE))
+          eval(call2(prex_r, args[[.x]], input = tempfile(), html_preview = FALSE, render = TRUE, style = FALSE))
+        }
+      }
+    )
+
+    output <- lapply(
+      seq_along(args),
+      function(.x) {
+        if (mode(args[[.x]]) %in% modes_to_not_prex) {
+          raw_output[[.x]]
+        } else {
+          .x <- raw_output[[.x]]
+          .x[1] <- paste(">", .x[1])
+          paste(.x, collapse = "\n")
         }
       }
     ) %>%
-      lapply(
-        function(.x) {
-          if (mode(.x) %in% modes_to_not_prex) {
-            .x
-          } else {
-            .x <- .x$result
-            .x[1] <- paste(">", .x[1])
-            paste(.x, collapse = "\n")
-          }
-        }
-      ) %>%
       paste(collapse = "\n\n")
 
     if ((Sys.getenv("SLACKR_ERRORS") != "IGNORE") && grepl("Error: ", output)) {

@@ -18,6 +18,7 @@ ggslackr(
   initial_comment = NULL,
   thread_ts = NULL,
   title = NULL,
+  device = c("png", "eps", "ps", "pdf", "jpeg", "tiff", "bmp", "svg"),
   ...
 )
 }
@@ -49,6 +50,8 @@ than 50x50 inches, to prevent the common error of specifying dimensions in pixel
 \item{thread_ts}{Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.}
 
 \item{title}{Title of file.}
+
+\item{device}{the file extension to use. Options: "png", "eps", "ps", "pdf", "jpeg", "tiff", "bmp", "svg". Default: "png".}
 
 \item{...}{other arguments passed to graphics device.}
 }

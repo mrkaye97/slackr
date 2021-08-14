@@ -20,13 +20,49 @@ test_that("slackr posts", {
   expect_true(res$ok)
 })
 
-test_that("ggslackr posts", {
+test_that("ggslackr posts png by default", {
   skip_on_cran()
 
   res <- ggslackr(
     ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
       geom_point()
   )
+  expect_true(res$ok)
+})
+
+test_that("ggslackr posts pdfs", {
+  skip_on_cran()
+
+  res <- ggslackr(
+    ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
+      geom_point(),
+    device = "pdf"
+  )
+
+  expect_true(res$ok)
+})
+
+test_that("ggslackr posts tiffs", {
+  skip_on_cran()
+
+  res <- ggslackr(
+    ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
+      geom_point(),
+    device = "tiff"
+  )
+
+  expect_true(res$ok)
+})
+
+test_that("ggslackr posts svgs", {
+  skip_on_cran()
+
+  res <- ggslackr(
+    ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
+      geom_point(),
+    device = "svg"
+  )
+
   expect_true(res$ok)
 })
 
