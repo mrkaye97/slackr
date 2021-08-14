@@ -63,6 +63,7 @@ jobs:
         run: |
           if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
           renv::restore()
+          renv::install("devtools")
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
