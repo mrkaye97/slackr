@@ -91,7 +91,7 @@ eliminating the need to have a graphics device (think use in scripts)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.1.0</span>
       </span>
     </div>
 
@@ -172,6 +172,7 @@ eliminating the need to have a graphics device (think use in scripts).</p>
   initial_comment <span class='op'>=</span> <span class='cn'>NULL</span>,
   thread_ts <span class='op'>=</span> <span class='cn'>NULL</span>,
   title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  device <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"png"</span>, <span class='st'>"eps"</span>, <span class='st'>"ps"</span>, <span class='st'>"pdf"</span>, <span class='st'>"jpeg"</span>, <span class='st'>"tiff"</span>, <span class='st'>"bmp"</span>, <span class='st'>"svg"</span><span class='op'>)</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -231,6 +232,10 @@ than 50x50 inches, to prevent the common error of specifying dimensions in pixel
     <tr>
       <th>title</th>
       <td><p>Title of file.</p></td>
+    </tr>
+    <tr>
+      <th>device</th>
+      <td><p>the file extension to use. Options: "png", "eps", "ps", "pdf", "jpeg", "tiff", "bmp", "svg". Default: "png".</p></td>
     </tr>
     <tr>
       <th>...</th>
