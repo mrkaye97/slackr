@@ -534,6 +534,13 @@
       "Repository": "CRAN",
       "Hash": "76048f6726a1bcc497e34b86c01cf941"
     },
+    "svglite": {
+      "Package": "svglite",
+      "Version": "2.0.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "8fb6188960bf0f90996ce52f9c2106ac"
+    },
     "sys": {
       "Package": "sys",
       "Version": "3.4",
