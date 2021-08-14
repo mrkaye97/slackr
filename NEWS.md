@@ -1,3 +1,8 @@
+# slackr 3.1.0
+
+* Allows `ggslackr` to post multiple file types
+* Fixes a bug in `slackr` and `slackr_bot` that led to garbled output
+
 # slackr 3.0.1
 
 Fixes to a couple of bugs
