@@ -18,6 +18,7 @@ ggslackr(
   initial_comment = NULL,
   thread_ts = NULL,
   title = NULL,
+  device = c("png", "eps", "ps", "pdf", "jpeg", "tiff", "bmp", "svg"),
   ...
 )
 }
@@ -51,6 +52,8 @@ than 50x50 inches, to prevent the common error of specifying dimensions in pixel
 \item{title}{Title of file.}
 
 \item{...}{other arguments passed to graphics device.}
+
+\item{ext}{the file extension to use. Default: png}
 }
 \value{
 \code{httr} response object (invisibly)
