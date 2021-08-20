@@ -9,6 +9,11 @@ on:
     branches:
       - main
       - master
+  pull_request_target:
+    branches:
+      - main
+      - master
+    types: [assigned]
 
 name: R-CMD-check
 
