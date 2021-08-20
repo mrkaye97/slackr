@@ -222,7 +222,6 @@ with_pagination <- function(fun, extract) {
 #'
 #' @references https://api.slack.com/methods/auth.test
 #' @export
-#' @importFrom magrittr %>%
 #' @importFrom jsonlite fromJSON
 #'
 #' @examples
@@ -243,7 +242,6 @@ auth_test <- function(token = Sys.getenv("SLACK_TOKEN")) {
 #'
 #' @param x The Slack API response object, returned from [call_slack_api].
 #' @param element The name of the list element to extract.
-#' @importFrom magrittr %>%
 #' @importFrom jsonlite fromJSON
 #' @importFrom tibble as_tibble
 #' @importFrom httr content
