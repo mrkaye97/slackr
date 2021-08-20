@@ -5,7 +5,7 @@
 #' @importFrom dplyr bind_cols setdiff
 #' @export
 slackr_users <- function(token = Sys.getenv("SLACK_TOKEN")) {
-  members <- list_users()
+  members <- list_users(token = token)
   cols <- setdiff(colnames(members), c("profile", "real_name"))
   bind_cols(
     members[, cols],
@@ -37,7 +37,7 @@ slackr_channels <- function(token = Sys.getenv("SLACK_TOKEN")) {
 #' @export
 slackr_ims <- function(token = Sys.getenv("SLACK_TOKEN")) {
   ims <- list_channels(token = token, types = "im") %>%
-    rename(channel = id)
+    rename(channel = "id")
   users <- slackr_users(token = token)
 
   if ((nrow(ims) == 0) | (nrow(users) == 0)) {
