@@ -1,3 +1,8 @@
+# slackr 3.1.1
+
+* `slackr_ims` bug fix.
+* Using `usethis::use_pipe()` to import `{magrittr}`'s pipe.
+
 # slackr 3.1.0
 
 * Allows `ggslackr` to post multiple file types

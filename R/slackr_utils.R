@@ -29,7 +29,7 @@ slackr_channels <- function(token = Sys.getenv("SLACK_TOKEN")) {
 #' Get a data frame of Slack IM ids
 #'
 #' @param token Authentication token bearing required scopes.
-#' @importFrom dplyr `%>%` left_join rename
+#' @importFrom dplyr left_join rename
 #'
 #' @author Quinn Weber (aut), Bob Rudis (ctb)
 #' @references <https://github.com/mrkaye97/slackr/pull/13>
