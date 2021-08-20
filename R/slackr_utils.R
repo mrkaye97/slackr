@@ -29,21 +29,22 @@ slackr_channels <- function(token = Sys.getenv("SLACK_TOKEN")) {
 #' Get a data frame of Slack IM ids
 #'
 #' @param token Authentication token bearing required scopes.
-#' @importFrom dplyr left_join
+#' @importFrom dplyr `%>%` left_join rename
 #'
 #' @author Quinn Weber (aut), Bob Rudis (ctb)
 #' @references <https://github.com/mrkaye97/slackr/pull/13>
 #' @return `data.frame` of im ids and user names
 #' @export
 slackr_ims <- function(token = Sys.getenv("SLACK_TOKEN")) {
-  ims <- list_channels(token = token, types = "im")
+  ims <- list_channels(token = token, types = "im") %>%
+    rename(channel = id)
   users <- slackr_users(token = token)
 
   if ((nrow(ims) == 0) | (nrow(users) == 0)) {
     abort("slackr is not seeing any users in your workspace. Are you sure you have the right scopes enabled? See the readme for details.")
   }
 
-  left_join(users, ims, by = "id")
+  left_join(users, ims, by = c(id = "user"))
 }
 
 #' Translate vector of channel names to channel IDs for API
