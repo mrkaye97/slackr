@@ -53,8 +53,16 @@ slackr_tex <- function(obj,
     ...
   )
 
+  fname <- file.path(
+    td,
+    paste0(
+      'slack.',
+      ifelse(ext == "tex", "png", ext)
+      )
+  )
+
   res <- files_upload(
-    file = td,
+    file = fname,
     channels = channels,
     token = token,
     title = title,
@@ -62,9 +70,7 @@ slackr_tex <- function(obj,
     thread_ts = thread_ts
   )
 
-  # cleanup
   file.remove(list.files(td, pattern = "Doc", full.names = TRUE))
-
   if (is.null(path)) unlink(td, recursive = TRUE)
 
   invisible(res)
