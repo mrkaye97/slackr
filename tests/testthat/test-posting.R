@@ -1,18 +1,22 @@
 test_that("slackr_bot posts", {
   skip_on_cran()
 
-  res <- slackr_bot("testing slackr_bot")
-  expect_equal(res$status_code, 200)
+  res <- slackr_bot("testing slackr_bot")$content %>%
+    rawToChar()
+  expect_equal(res, "ok")
 })
 
 test_that("slackr_bot posts from inside a function", {
   skip_on_cran()
 
   x <- function() {
-    res <- slackr_bot("testing slackr_bot")
+    res <- slackr_bot("testing slackr_bot")$content %>%
+      rawToChar()
+
     res
   }
-  expect_equal(x()$status_code, 200)
+
+  expect_equal(res, "ok")
 })
 
 test_that("slackr posts", {
@@ -37,7 +41,8 @@ test_that("slackr posts from inside a function", {
     res <- slackr("testing slackr_bot")
     res
   }
-  expect_equal(x()$status_code, 200)
+
+  expect_true(x()$ok)
 })
 
 test_that("ggslackr posts png by default", {
