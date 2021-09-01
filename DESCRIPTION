@@ -35,7 +35,6 @@ Imports:
     magrittr,
     memoise (>= 2.0.0),
     methods,
-    reprex (>= 2.0.1),
     rlang,
     tibble,
     utils,
