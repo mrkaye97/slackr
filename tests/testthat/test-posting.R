@@ -5,6 +5,16 @@ test_that("slackr_bot posts", {
   expect_equal(res$status_code, 200)
 })
 
+test_that("slackr_bot posts from inside a function", {
+  skip_on_cran()
+
+  x <- function() {
+    res <- slackr_bot("testing slackr_bot")
+    res
+  }
+  expect_equal(x()$status_code, 200)
+})
+
 test_that("slackr posts", {
   skip_on_cran()
 
@@ -18,6 +28,16 @@ test_that("slackr posts", {
     summary(lm(Petal.Width ~ Sepal.Width, data = iris))
   )
   expect_true(res$ok)
+})
+
+test_that("slackr posts from inside a function", {
+  skip_on_cran()
+
+  x <- function() {
+    res <- slackr("testing slackr_bot")
+    res
+  }
+  expect_equal(x()$status_code, 200)
 })
 
 test_that("ggslackr posts png by default", {
@@ -90,7 +110,7 @@ test_that("slackr_upload posts", {
   res <- slackr_upload(tf, channels = "#test")
   unlink(tf)
 
-  expect_equal(res$ok, TRUE)
+  expect_true(res$ok)
 })
 
 test_that("slackr can post to other channels", {
@@ -112,7 +132,7 @@ test_that("slackr_save works", {
   skip_on_cran()
 
   res <- slackr_save(iris)
-  expect_equal(res$ok, TRUE)
+  expect_true(res$ok)
 
   ## making sure saving works from inside of a function
   f <- function() {
@@ -121,7 +141,7 @@ test_that("slackr_save works", {
   }
 
   res <- f()
-  expect_equal(res$ok, TRUE)
+  expect_true(res$ok)
 })
 
 test_that("ggslackr works from in a function", {
@@ -135,5 +155,15 @@ test_that("ggslackr works from in a function", {
   }
 
   res <- f()
-  expect_equal(res$ok, TRUE)
+  expect_true(res$ok)
+})
+
+test_that("slackr_tex posts", {
+  skip_on_cran()
+
+  res <- slackr_tex(
+    "$\\sum_{n=0}^{\\infty} \\frac{1}{n!}$"
+  )
+
+  expect_true(res$ok)
 })
