@@ -165,6 +165,7 @@ test_that("ggslackr works from in a function", {
 
 test_that("slackr_tex posts", {
   skip_on_cran()
+  skip_on_ci()
 
   res <- slackr_tex(
     "$\\sum_{n=0}^{\\infty} \\frac{1}{n!}$"
