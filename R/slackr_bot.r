@@ -51,68 +51,83 @@ slackr_bot <- function(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WE
     # get the arglist
     args <- substitute(list(...))[-1L]
 
-    modes_to_not_prex <- c("integer", "double", "complex", "raw", "logical", "character", "numeric")
+    # setup in-memory sink
+    rval <- NULL
+    fil <- textConnection("rval", "w", local = TRUE)
 
-    ## map over each thing passed to `slackr` and evaluate it
-    raw_output <- lapply(
-      seq_along(args),
-      function(.x) {
-        if (mode(args[[.x]]) %in% modes_to_not_prex) {
-          args[[.x]]
-        } else {
-          inform(
-            "slackr now relies on `reprex` for rendering.\nRendering messages will print, and reprex output will be saved to the clipboard.\nYou can directly paste the results into Slack.\n\n",
-            .frequency = "once",
-            .frequency_id = "36531017-f90e-4e39-8e39-4c9042634cb7"
-          )
-          eval(call2(prex_r, args[[.x]], input = tempfile(), html_preview = FALSE, render = TRUE, style = FALSE))
+    sink(fil)
+    on.exit({
+      sink()
+      close(fil)
+    })
+
+    # where we'll need to eval expressions
+    pf <- parent.frame()
+
+    # how we'll eval expressions
+    evalVis <- function(expr) withVisible(eval(expr, pf))
+
+    # for each expression
+    for (i in seq_along(args)) {
+      expr <- args[[i]]
+
+      # do something, note all the newlines...Slack ``` needs them
+      tmp <- switch(mode(expr),
+                    # if it's actually an expression, iterate over it
+                    expression = {
+                      cat(sprintf("> %s\n", deparse(expr)))
+                      lapply(expr, evalVis)
+                    },
+                    # if it's a call or a name, eval, printing run output as if in console
+                    call = ,
+                    name = {
+                      cat(sprintf("> %s\n", deparse(expr)))
+                      list(evalVis(expr))
+                    },
+                    # if pretty much anything else (i.e. a bare value) just output it
+                    integer = ,
+                    double = ,
+                    complex = ,
+                    raw = ,
+                    logical = ,
+                    numeric = cat(sprintf("%s\n\n", as.character(expr))),
+                    character = cat(sprintf("%s\n\n", expr)),
+                    abort("mode of argument not handled at present by slackr")
+      )
+
+      for (item in tmp) {
+        if (item$visible) {
+          print(item$value, quote = FALSE)
+          cat("\n")
         }
       }
+    }
+
+    on.exit()
+
+    sink()
+    close(fil)
+
+    output <- paste0(rval, collapse = "\n")
+
+    resp <- POST(
+      url = incoming_webhook_url,
+      encode = "form",
+      add_headers(
+        `Content-Type` = "application/x-www-form-urlencoded",
+        Accept = "*/*"
+      ),
+      body = URLencode(
+        sprintf(
+          "payload={\"text\": \"```%s```\"}",
+          output
+        )
+      )
     )
 
-    output <- lapply(
-      seq_along(args),
-      function(.x) {
-        if (mode(args[[.x]]) %in% modes_to_not_prex) {
-          raw_output[[.x]]
-        } else {
-          .x <- raw_output[[.x]]
-          .x[1] <- paste(">", .x[1])
-          paste(.x, collapse = "\n")
-        }
-      }
-    ) %>%
-      paste(collapse = "\n\n")
+    stop_for_status(resp)
 
-    if ((Sys.getenv("SLACKR_ERRORS") != "IGNORE") && grepl("Error: ", output)) {
-      error_message <- sprintf(
-        "Found a (potential) error in `slackr_bot` call. Attempt at parsing the error:\n\n  %s\n\nWe tried to extract the call for you too:\n\n  %s\n\nNo message was posted.\nYou can ignore this warning and post the message with `Sys.setenv('SLACKR_ERRORS' = 'IGNORE')`.\n\n",
-        gsub("\n", "\n  ", output),
-        deparse(sys.call())
-      )
-
-      abort(
-        error_message
-      )
-    } else {
-      resp <- POST(
-        url = incoming_webhook_url,
-        encode = "form",
-        add_headers(
-          `Content-Type` = "application/json",
-          Accept = "*/*"
-        ),
-        body = list(
-          text = sprintf("```%s```", output)
-        ) %>%
-          toJSON(
-            pretty = TRUE,
-            auto_unbox = TRUE
-          )
-      )
-
-      stop_for_status(resp)
-    }
   }
+
   return(invisible(resp))
 }

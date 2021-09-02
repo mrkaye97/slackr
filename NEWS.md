@@ -1,3 +1,7 @@
+# slackr 3.2.0
+
+* `slackr` and `slackr_bot` no longer rely on `reprex`, as `prex_r` would fail when an eval environment needed to be specified, but couldn't.
+
 # slackr 3.1.1
 
 * `slackr_ims` bug fix.
