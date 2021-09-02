@@ -16,7 +16,7 @@ test_that("slackr_bot posts from inside a function", {
     res
   }
 
-  expect_equal(res, "ok")
+  expect_equal(x(), "ok")
 })
 
 test_that("slackr posts", {
