@@ -78,8 +78,6 @@ post_message <- function(txt,
         username   = username,
         link_names = 1,
         icon_emoji = emoji,
-        thread_ts = thread_ts,
-        reply_broadcast = reply_broadcast,
         ...
       )
     )

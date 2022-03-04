@@ -116,7 +116,9 @@ slackr <- function(...,
         username = username,
         emoji = icon_emoji,
         txt = sprintf("```%s```", output),
-        link_names = 1
+        link_names = 1,
+        thread_ts = thread_ts,
+        reply_broadcast = reply_broadcast
       )
 
   }
