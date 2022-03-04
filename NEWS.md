@@ -1,3 +1,7 @@
+# slackr 3.2.1
+
+* Fixes a bug where specifying a `thread_ts` or `reply_broadcast` in `slackr` did nothing
+
 # slackr 3.2.0
 
 * `slackr` and `slackr_bot` no longer rely on `reprex`, as `prex_r` would fail when an eval environment needed to be specified, but couldn't.
