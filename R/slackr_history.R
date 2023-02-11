@@ -9,9 +9,11 @@
 #'
 #' @param token Authentication token bearing required scopes.
 #' @param channel Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name.
-#' @param posted_from_time Timestamp of the first post time to consider.
-#' @param duration Number of hours of history to retrieve.  By default retrieves
-#'   24 hours of history.
+#' @param posted_from_time Timestamp of the first post time to consider. If both
+#'   posted_to_time and duration is specifed, they take precedence.
+#' @param duration Number of hours of history to retrieve.  If neither `duration`
+#'   nor `posted_from_time` is specified, there is no time limit on the retrieved
+#'   history.
 #' @param posted_to_time Timestamp of the last post to consider (default:
 #'   current time).
 #' @param paginate If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to the API and retrieves a maximum of `message_count` messages.
@@ -31,7 +33,7 @@ slackr_history <- function(message_count,
 
   channel <- slackr_chtrans(channel, token)
 
-  if (!missing(duration) && !is.null(duration) && !missing(posted_from_time) && !is.null(posted_from_time)) {
+  if (!missing(duration) && !is.null(duration) && !missing(posted_to_time) && !is.null(posted_to_time)) {
     posted_from_time <- posted_to_time - duration * 3600
   } else {
     posted_from_time <- ""
