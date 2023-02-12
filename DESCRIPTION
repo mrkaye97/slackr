@@ -34,7 +34,6 @@ Imports:
     jsonlite,
     magrittr,
     memoise (>= 2.0.0),
-    methods,
     rlang,
     tibble,
     utils,
