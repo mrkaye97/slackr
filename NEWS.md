@@ -1,3 +1,7 @@
+# slackr 3.2.2
+
+* Fixes a bug where specifying specifying `duration` had no effect in `slackr_history()` if posted_from_time was not specified also. [linked issue](https://github.com/mrkaye97/slackr/issues/181)
+
 # slackr 3.2.1
 
 * Fixes a bug where specifying a `thread_ts` or `reply_broadcast` in `slackr` did nothing
