@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - master
-  pull_request:
-    branches:
-      - master
   pull_request_target:
     branches:
       - master
@@ -18,6 +15,7 @@ jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+    if: ${{ github.event_name == 'pull_request' }}
 
     strategy:
       fail-fast: false
