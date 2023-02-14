@@ -56,7 +56,7 @@ with_retry <- function(fun) {
     r <- fun()
     if (r$status_code == 429) {
       retry_after <- headers(r)[["retry-after"]]
-      inform("\nPausing for ", retry_after, " seconds due to Slack API rate limit")
+      inform(paste("\nPausing for", retry_after, "seconds due to Slack API rate limit"))
       Sys.sleep(retry_after)
     } else {
       ok <- TRUE

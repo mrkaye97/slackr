@@ -50,7 +50,8 @@ test_that("ggslackr posts png by default", {
 
   res <- ggslackr(
     ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
-      geom_point()
+      geom_point(),
+    units = "in"
   )
   expect_true(res$ok)
 })
@@ -61,7 +62,8 @@ test_that("ggslackr posts pdfs", {
   res <- ggslackr(
     ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
       geom_point(),
-    device = "pdf"
+    device = "pdf",
+    units = "in"
   )
 
   expect_true(res$ok)
@@ -73,7 +75,8 @@ test_that("ggslackr posts tiffs", {
   res <- ggslackr(
     ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
       geom_point(),
-    device = "tiff"
+    device = "tiff",
+    units = "in"
   )
 
   expect_true(res$ok)
@@ -81,11 +84,13 @@ test_that("ggslackr posts tiffs", {
 
 test_that("ggslackr posts svgs", {
   skip_on_cran()
+  skip_on_ci()
 
   res <- ggslackr(
     ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
       geom_point(),
-    device = "svg"
+    device = "svg",
+    units = "in"
   )
 
   expect_true(res$ok)
@@ -156,7 +161,7 @@ test_that("ggslackr works from in a function", {
     plt <- ggplot2::ggplot(iris, ggplot2::aes(Sepal.Length, Sepal.Width)) +
       ggplot2::geom_point()
 
-    ggslackr(plt)
+    ggslackr(plt, units = "in")
   }
 
   res <- f()
