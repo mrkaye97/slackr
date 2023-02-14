@@ -1,17 +1,15 @@
 on:
   push:
     branches:
-      - main
       - master
   pull_request:
     branches:
-      - main
       - master
   pull_request_target:
     branches:
       - main
       - master
-    types: [assigned]
+    types: [assigned, review_requested, opened]
 
 name: test-coverage
 
