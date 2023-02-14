@@ -15,7 +15,7 @@ jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
-    if: ${{ github.event_name == 'pull_request_target' || github.repository != 'mrkaye97/slackr'}
+    if: ${{ github.event_name == 'pull_request_target' || github.repository != 'mrkaye97/slackr' }}
     strategy:
       fail-fast: false
       matrix:
