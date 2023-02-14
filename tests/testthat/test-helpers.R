@@ -26,7 +26,7 @@ test_that("Channels works", {
 
   expect_equal(
     ncol(channels),
-    26
+    28
   )
 
   expect_gte(

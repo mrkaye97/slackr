@@ -12,7 +12,7 @@ test_that("Initial setup completes", {
       )
     } else {
       slackr_setup(
-        config_file = "~/.slackr_config_bot"
+        config_file = "~/.slackr_config"
       )
     },
     "Successfully connected to Slack"
@@ -67,3 +67,4 @@ test_that("config file setup works", {
     "Successfully connected to Slack"
   )
 })
+
