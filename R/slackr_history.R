@@ -36,7 +36,16 @@ slackr_history <- function(message_count,
   if (!missing(duration) && !is.null(duration) && !missing(posted_to_time) && !is.null(posted_to_time)) {
     if (!missing(posted_from_time) & !is.null(posted_from_time)) {
       warn(
-        "You specified both a `duration` and a `posted_to_time`. Doing this makes `slackr` infer `posted_from_time`. If you meant to specify a `posted_from_time`, please remove the `duration` you specified.",
+        paste(
+          "You specified all three of `duration`, `posted_to_time`,",
+          "and `posted_from_time`.",
+          "Doing this makes `slackr` infer `posted_from_time`",
+          "from a combination of the `duration` you specified and the",
+          "`posted_to_time`.",
+          "If you meant to retrieve history between your specified",
+          "`posted_from_time` and `posted_to_time`, please remove",
+          "the `duration` you specified."
+        ),
         .frequency = "regularly",
         .frequency_id = "slackr_history_posted_from_infer_warning"
       )
