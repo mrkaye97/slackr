@@ -168,8 +168,7 @@ slackr_msg <- function(
 
   output <- paste0(txt, collapse = "\n\n")
 
-  z <-
-    post_message(
+  z <- post_message(
       txt = output,
       emoji = icon_emoji,
       channel = channel,
