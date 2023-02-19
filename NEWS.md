@@ -1,3 +1,17 @@
+# slackr 3.3.0
+  User-facing changes:
+  
+  * `ggslackr` now relies on dots (`...`) to pass arguments through to `ggsave`
+  * `ggplot2` is now in `suggests`, so the user doesn't need it installed to use `slackr`. `ggslackr` will prompt to install if it's not already.
+  * Fixes a "bug" with pagination in `slackr_history` causing an almost infinite loop
+  * Fixes a bug in `slackr_save` where `initial_comment` would do nothing
+  * Improves documentation of `slackr_history` to be more helpful in pointing the user to the Slack API docs
+  
+  Backend changes:
+  
+  * Gets rid of default args in some un-exported functions to make tracking down bugs easier
+  * Adds significant test coverage
+
 # slackr 3.2.2
 
 * Fixes a bug where specifying specifying `duration` had no effect in `slackr_history()` if posted_from_time was not specified also. [linked issue](https://github.com/mrkaye97/slackr/issues/181)
