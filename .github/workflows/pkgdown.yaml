@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [main, fix-pkgdown-deploy]
+    branches: [master]
   release:
     types: [published]
   workflow_dispatch:
