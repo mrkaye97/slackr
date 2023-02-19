@@ -14,7 +14,7 @@ Unset env vars created by \code{slackr_setup()}
 }
 \examples{
 \dontrun{
-  slackr_teardown()
+slackr_teardown()
 }
 }
 \seealso{

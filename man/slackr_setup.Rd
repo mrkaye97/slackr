@@ -65,12 +65,15 @@ to use this package.
 slackr_setup()
 
 # reads from alternate config
-slackr_setup(config_file="/path/to/my/slackrconfig)
+slackr_setup(config_file = "/path/to/my/slackrconfig")
 
 # the hard way
-slackr_setup(channel="#code",
-  incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX")
+slackr_setup(
+  channel = "#code",
+  incoming_webhook_url = "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX"
+)
 }
+
 }
 \seealso{
 \code{\link[=slackr]{slackr()}}, \code{\link[=slackr_dev]{slackr_dev()}}, \code{\link[=slackr_save]{slackr_save()}},
