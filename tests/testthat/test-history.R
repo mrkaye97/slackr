@@ -1,4 +1,6 @@
 test_that("slackr_history correctly retrieves post", {
+  skip_on_cran()
+
   post <- slackr("History test")
 
   history <- slackr_history(
@@ -12,6 +14,8 @@ test_that("slackr_history correctly retrieves post", {
 })
 
 test_that("slackr_history works when posted_from and posted_to are specified", {
+  skip_on_cran()
+
   post <- slackr_msg("History posted_from posted_to test")
 
   history <- slackr_history(
@@ -29,6 +33,7 @@ test_that("slackr_history works when posted_from and posted_to are specified", {
 
 test_that("slackr_history works with duration specified", {
   skip_on_ci()
+  skip_on_cran()
 
   post1 <- slackr_msg("History test post 1.")
 
@@ -64,6 +69,8 @@ test_that("slackr_history works with duration specified", {
 })
 
 test_that("slackr_history works when posted_from and posted_to are specified for multiple posts", {
+  skip_on_cran()
+
   post1 <- slackr_msg("History test post 1.")
 
   Sys.sleep(1)
@@ -95,6 +102,8 @@ test_that("slackr_history works when posted_from and posted_to are specified for
 })
 
 test_that("Specifycing post times in slackr_history correctly limits time window", {
+  skip_on_cran()
+
   post1 <- slackr_msg("History test post 1.")
 
   Sys.sleep(1)
