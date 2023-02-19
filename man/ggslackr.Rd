@@ -8,7 +8,7 @@ ggslackr(
   plot = last_plot(),
   channels = Sys.getenv("SLACK_CHANNEL"),
   token = Sys.getenv("SLACK_TOKEN"),
-  file = "ggplot",
+  file = "ggplot.png",
   initial_comment = NULL,
   thread_ts = NULL,
   title = NULL,

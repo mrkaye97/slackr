@@ -4,6 +4,7 @@
 #' eliminating the need to have a graphics device (think use in scripts).
 #'
 #' @importFrom rlang check_installed
+#' @importFrom tools file_ext
 #'
 #' @param plot ggplot object to save, defaults to last plot displayed.
 #' @param channels Comma-separated list of channel names or IDs where the file will be shared.
@@ -26,7 +27,7 @@ ggslackr <- function(
   plot = last_plot(),
   channels = Sys.getenv("SLACK_CHANNEL"),
   token = Sys.getenv("SLACK_TOKEN"),
-  file = "ggplot",
+  file = "ggplot.png",
   initial_comment = NULL,
   thread_ts = NULL,
   title = NULL,
@@ -35,7 +36,7 @@ ggslackr <- function(
 
   check_installed("ggplot2")
 
-  ext <- paste0(".", match.arg(device))
+  ext <- paste0(".", file_ext(file))
   ftmp <- tempfile(file, fileext = ext)
 
   ggplot2::ggsave(
