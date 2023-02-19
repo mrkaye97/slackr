@@ -1,0 +1,23 @@
+test_that("dev works", {
+  skip_on_cran()
+  skip_on_ci()
+
+  hist(rnorm(100))
+
+  post <- slackr_dev()
+
+  expect_true(post$ok)
+  expect_equal(post$file$filetype, "png")
+})
+
+test_that("tex works", {
+  skip_on_cran()
+  skip_on_ci()
+
+  hist(rnorm(100))
+
+  post <- slackr_tex("$$e^{i \\pi} + 1 = 0$$")
+
+  expect_true(post$ok)
+  expect_equal(post$file$filetype, "png")
+})
