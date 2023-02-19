@@ -57,6 +57,14 @@ test_that("Echoing config works", {
 test_that("slackr_teardown removes env vars", {
   skip_on_cran()
 
+  if (Sys.getenv("ENVIRONMENT") == "production") {
+    channel <- Sys.getenv("SLACK_CHANNEL")
+    username <- Sys.getenv("SLACK_USERNAME")
+    icon_emoji <- Sys.getenv("SLACK_ICON_EMOJI")
+    incoming_webhook_url <- Sys.getenv("SLACK_INCOMING_WEBHOOK_URL")
+    token <- Sys.getenv("SLACK_TOKEN")
+  }
+
   slackr_teardown()
 
   expect_identical(Sys.getenv("SLACK_TOKEN"), "")
@@ -68,11 +76,11 @@ test_that("slackr_teardown removes env vars", {
   ## Set up again
   if (Sys.getenv("ENVIRONMENT") == "production") {
     slackr_setup(
-      channel = Sys.getenv("SLACK_CHANNEL"),
-      username = Sys.getenv("SLACK_USERNAME"),
-      icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-      incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL"),
-      token = Sys.getenv("SLACK_TOKEN")
+      channel = channel,
+      username = username,
+      icon_emoji = icon_emoji,
+      incoming_webhook_url = incoming_webhook_url,
+      token = token
     )
   } else {
     slackr_setup(
