@@ -116,11 +116,11 @@
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># CRAN version</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"slackr"</span><span class="op">)</span>
-
-<span class="co"># Development version</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mrkaye97/slackr"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># CRAN version</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"slackr"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Development version</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mrkaye97/slackr"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="breaking-changes">Breaking Changes<a class="anchor" aria-label="anchor" href="#breaking-changes"></a>
@@ -168,11 +168,11 @@
 <p>The <code><a href="reference/slackr_setup.html">slackr_setup()</a></code> function will try to read setup values from a <code>~/.slackr</code> (you can change the default) configuration file, which may be easier and more secure than passing them in manually (plus, will allow you to have multiple <code>slackr</code> configurations for multiple Slack.com teams).</p>
 <p>The file is in Debian Control File (DCF) format since it really doesn’t need to be JSON and R has a handy <code><a href="https://rdrr.io/r/base/dcf.html" class="external-link">read.dcf()</a></code> function since that’s what <code>DESCRIPTION</code> files are coded in.</p>
 <p>Here’s the basic format for the configuration file:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>token<span class="op">:</span><span class="st"> </span>xox<span class="op">*-</span><span class="er">&lt;</span>your app<span class="st">'s token&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="st">channel: #general</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="st">username: slackr</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="st">incoming_webhook_url: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="st">icon_emoji: '</span>boom<span class="st">'</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>token<span class="sc">:</span> xox<span class="sc">*-</span><span class="er">&lt;</span>your app<span class="st">'s token&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">channel: #general</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">username: slackr</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">incoming_webhook_url: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">icon_emoji: '</span>boom<span class="st">'</span></span></code></pre></div>
 <p><strong>As of <code>slackr 2.3.0</code>, you can create a config file with <code><a href="reference/create_config_file.html">create_config_file()</a></code> instead of setting it up manually.</strong> See the docs for details.</p>
 <p>You can also change the default emoji icon (from the one you setup at integration creation time) with <code>icon_emoji</code>.</p>
 </div>
@@ -260,7 +260,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

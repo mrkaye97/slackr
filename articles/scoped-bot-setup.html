@@ -94,7 +94,7 @@
 
       
 
-      </header><script src="scoped-bot-setup_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Multi-Functional Bot Setup</h1>
@@ -110,13 +110,15 @@
 <div class="section level2">
 <h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
 </h2>
-<p>Setting up the multi-functional bot is slightly more complex than the single-channel one.</p>
+<p>Setting up the multi-functional bot is slightly more complex than the
+single-channel one.</p>
 <ol style="list-style-type: decimal">
 <li>Go to <a href="https://api.slack.com/apps" class="external-link">https://api.slack.com/apps</a>
 </li>
 <li>Click “Create New App” and then follow the setup instructions</li>
 <li>Click “OAuth &amp; Permissions” under “Features”</li>
-<li>Enable the following scopes in order to get all of the functionality:</li>
+<li>Enable the following scopes in order to get all of the
+functionality:</li>
 </ol>
 <ul>
 <li><code>channels:read</code></li>
@@ -134,50 +136,60 @@
 <ol start="5" style="list-style-type: decimal">
 <li>Click “Install to Workspace”</li>
 <li>Select a channel (for webhook messages)</li>
-<li>Copy the Bot User (or User, depending on the type of app you want to use) OAuth Access Token</li>
+<li>Copy the Bot User (or User, depending on the type of app you want to
+use) OAuth Access Token</li>
 <li>Click “Incoming Webhooks” under “Features”</li>
 <li>Copy the Webhook URL</li>
 <li>Call</li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/slackr_setup.html">slackr_setup</a></span><span class="op">(</span>channel <span class="op">=</span> <span class="st">'#channel_with_webhook'</span>, 
-             token <span class="op">=</span> <span class="st">'your_token'</span>, 
-             incoming_webhook_url <span class="op">=</span> <span class="st">'your_webhook'</span><span class="op">)</span></code></pre></div>
-<p>You can also follow the config file setup directions below instead of passing the channel, token, and webhook directly.</p>
-<p>And that’s it! You should be able to post a message with <code>slackr('test message')</code></p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/slackr_setup.html">slackr_setup</a></span><span class="op">(</span>channel <span class="op">=</span> <span class="st">'#channel_with_webhook'</span>, </span>
+<span>             token <span class="op">=</span> <span class="st">'your_token'</span>, </span>
+<span>             incoming_webhook_url <span class="op">=</span> <span class="st">'your_webhook'</span><span class="op">)</span></span></code></pre></div>
+<p>You can also follow the config file setup directions below instead of
+passing the channel, token, and webhook directly.</p>
+<p>And that’s it! You should be able to post a message with
+<code>slackr('test message')</code></p>
 </div>
 <div class="section level2">
 <h2 id="scopes">Scopes<a class="anchor" aria-label="anchor" href="#scopes"></a>
 </h2>
-<p>Without all of the scopes enabled, only certain functions will work. Which ones depends on which scopes you have enabled. See the function documentation for which scopes are needed for that function.</p>
+<p>Without all of the scopes enabled, only certain functions will work.
+Which ones depends on which scopes you have enabled. See the function
+documentation for which scopes are needed for that function.</p>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrkaye97/slackr" class="external-link">slackr</a></span><span class="op">)</span>
-<span class="fu"><a href="../reference/slackr_setup.html">slackr_setup</a></span><span class="op">(</span>
-  channel <span class="op">=</span> <span class="st">"&lt;&lt; channel &gt;&gt;"</span>, 
-  incoming_webhook_url <span class="op">=</span> <span class="st">"https://hooks.slack.com/services/&lt;&lt; hook &gt;&gt;"</span>,
-  token <span class="op">=</span> <span class="st">'xoxb-&lt;&lt; token &gt;&gt;'</span>
-<span class="op">)</span>
-
-<span class="fu"><a href="../reference/slackr.html">slackr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># send images</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html" class="external-link">qplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">wt</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span>
-<span class="fu"><a href="../reference/slackr_dev.html">slackr_dev</a></span><span class="op">(</span><span class="st">"#results"</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="va">VADeaths</span><span class="op">)</span>
-<span class="fu"><a href="../reference/slackr_dev.html">slackr_dev</a></span><span class="op">(</span><span class="st">"@jayjacobs"</span><span class="op">)</span>
-
-<span class="fu"><a href="../reference/ggslackr.html">ggslackr</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html" class="external-link">qplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">wt</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mrkaye97/slackr" class="external-link">slackr</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/slackr_setup.html">slackr_setup</a></span><span class="op">(</span></span>
+<span>  channel <span class="op">=</span> <span class="st">"&lt;&lt; channel &gt;&gt;"</span>, </span>
+<span>  incoming_webhook_url <span class="op">=</span> <span class="st">"https://hooks.slack.com/services/&lt;&lt; hook &gt;&gt;"</span>,</span>
+<span>  token <span class="op">=</span> <span class="st">'xoxb-&lt;&lt; token &gt;&gt;'</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/slackr.html">slackr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># send images</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html" class="external-link">qplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">wt</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/slackr_dev.html">slackr_dev</a></span><span class="op">(</span><span class="st">"#results"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="va">VADeaths</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/slackr_dev.html">slackr_dev</a></span><span class="op">(</span><span class="st">"@jayjacobs"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/ggslackr.html">ggslackr</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html" class="external-link">qplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">wt</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="latex-for-slackr_tex">LaTeX for <code>slackr_tex</code><a class="anchor" aria-label="anchor" href="#latex-for-slackr_tex"></a>
 </h3>
-<p>The new function <code>slackr_tex</code> in versions <code>2.0.0+</code> requires package <a href="https://github.com/yonicd/texPreview" class="external-link"><code>texPreview</code></a> which is lazy-loaded when the former is called.</p>
-<p>For setting up LaTeX see <a href="https://github.com/yonicd/texPreview#functionality" class="external-link"><code>texPreview</code>’s System Requirements</a>, and for specific OS setup check out its Github Actions like <a href="https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-mac.yml#L46" class="external-link">this MacOS example</a>.</p>
+<p>The new function <code>slackr_tex</code> in versions
+<code>2.0.0+</code> requires package <a href="https://github.com/yonicd/texPreview" class="external-link"><code>texPreview</code></a>
+which is lazy-loaded when the former is called.</p>
+<p>For setting up LaTeX see <a href="https://github.com/yonicd/texPreview#functionality" class="external-link"><code>texPreview</code>’s
+System Requirements</a>, and for specific OS setup check out its Github
+Actions like <a href="https://github.com/yonicd/texPreview/blob/master/.github/workflows/R-mac.yml#L46" class="external-link">this
+MacOS example</a>.</p>
 </div>
 </div>
   </div>
@@ -199,7 +211,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

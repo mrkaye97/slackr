@@ -77,71 +77,102 @@ eliminating the need to have a graphics device (think use in scripts).</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ggslackr</span><span class="op">(</span>
-  plot <span class="op">=</span> <span class="fu">last_plot</span><span class="op">(</span><span class="op">)</span>,
-  channels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_CHANNEL"</span><span class="op">)</span>,
-  scale <span class="op">=</span> <span class="fl">1</span>,
-  width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"din"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,
-  height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"din"</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,
-  units <span class="op">=</span> <span class="cn">NULL</span>,
-  dpi <span class="op">=</span> <span class="fl">300</span>,
-  limitsize <span class="op">=</span> <span class="cn">TRUE</span>,
-  token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_TOKEN"</span><span class="op">)</span>,
-  file <span class="op">=</span> <span class="st">"ggplot"</span>,
-  initial_comment <span class="op">=</span> <span class="cn">NULL</span>,
-  thread_ts <span class="op">=</span> <span class="cn">NULL</span>,
-  title <span class="op">=</span> <span class="cn">NULL</span>,
-  device <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"png"</span>, <span class="st">"eps"</span>, <span class="st">"ps"</span>, <span class="st">"pdf"</span>, <span class="st">"jpeg"</span>, <span class="st">"tiff"</span>, <span class="st">"bmp"</span>, <span class="st">"svg"</span><span class="op">)</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ggslackr</span><span class="op">(</span></span>
+<span>  plot <span class="op">=</span> <span class="fu">last_plot</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  channels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_CHANNEL"</span><span class="op">)</span>,</span>
+<span>  scale <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"din"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>  height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"din"</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
+<span>  units <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  dpi <span class="op">=</span> <span class="fl">300</span>,</span>
+<span>  limitsize <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_TOKEN"</span><span class="op">)</span>,</span>
+<span>  file <span class="op">=</span> <span class="st">"ggplot"</span>,</span>
+<span>  initial_comment <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  thread_ts <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  device <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"png"</span>, <span class="st">"eps"</span>, <span class="st">"ps"</span>, <span class="st">"pdf"</span>, <span class="st">"jpeg"</span>, <span class="st">"tiff"</span>, <span class="st">"bmp"</span>, <span class="st">"svg"</span><span class="op">)</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>plot</dt>
 <dd><p>ggplot object to save, defaults to last plot displayed.</p></dd>
+
+
 <dt>channels</dt>
 <dd><p>Comma-separated list of channel names or IDs where the file will be shared.</p></dd>
+
+
 <dt>scale</dt>
 <dd><p>scaling factor.</p></dd>
+
+
 <dt>width</dt>
 <dd><p>width (defaults to the width of current plotting window).</p></dd>
+
+
 <dt>height</dt>
 <dd><p>height (defaults to the height of current plotting window).</p></dd>
+
+
 <dt>units</dt>
 <dd><p>units for width and height when either one is explicitly specified
 (in, cm, or mm).</p></dd>
+
+
 <dt>dpi</dt>
 <dd><p>dpi to use for raster graphics.</p></dd>
+
+
 <dt>limitsize</dt>
 <dd><p>when TRUE (the default), ggsave will not save images larger
 than 50x50 inches, to prevent the common error of specifying dimensions in pixels.</p></dd>
+
+
 <dt>token</dt>
 <dd><p>Authentication token bearing required scopes.</p></dd>
+
+
 <dt>file</dt>
 <dd><p>Prefix for filenames (defaults to <code>ggplot</code>).</p></dd>
+
+
 <dt>initial_comment</dt>
 <dd><p>The message text introducing the file in specified channels.</p></dd>
+
+
 <dt>thread_ts</dt>
 <dd><p>Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.</p></dd>
+
+
 <dt>title</dt>
 <dd><p>Title of file.</p></dd>
+
+
 <dt>device</dt>
 <dd><p>the file extension to use. Options: "png", "eps", "ps", "pdf", "jpeg", "tiff", "bmp", "svg". Default: "png".</p></dd>
+
+
 <dt>...</dt>
 <dd><p>other arguments passed to graphics device.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>httr</code> response object (invisibly)</p>
+    
+
+<p><code>httr</code> response object (invisibly)</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu"><a href="slackr_setup.html">slackr_setup</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">ggslackr</span><span class="op">(</span><span class="fu">qplot</span><span class="op">(</span><span class="va">mpg</span>, <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="slackr_setup.html">slackr_setup</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">ggslackr</span><span class="op">(</span><span class="fu">qplot</span><span class="op">(</span><span class="va">mpg</span>, <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -156,7 +187,7 @@ than 50x50 inches, to prevent the common error of specifying dimensions in pixel
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

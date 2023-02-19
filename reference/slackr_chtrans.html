@@ -79,19 +79,24 @@ with the channel ID for that channel.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">slackr_chtrans</span><span class="op">(</span><span class="va">channels</span>, token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_TOKEN"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">slackr_chtrans</span><span class="op">(</span><span class="va">channels</span>, token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_TOKEN"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>channels</dt>
 <dd><p>Comma-separated list of channel names or IDs where the file will be shared.</p></dd>
+
+
 <dt>token</dt>
 <dd><p>Authentication token bearing required scopes.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>character vector - original channel list with <code>#</code> or
+    
+
+<p>character vector - original channel list with <code>#</code> or
 <code>@</code> channels replaced with ID's.</p>
     </div>
     <div id="author">
@@ -111,7 +116,7 @@ with the channel ID for that channel.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

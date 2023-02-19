@@ -75,21 +75,26 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">slackr_delete</span><span class="op">(</span>
-  <span class="va">count</span>,
-  channel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_CHANNEL"</span><span class="op">)</span>,
-  token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_TOKEN"</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">slackr_delete</span><span class="op">(</span></span>
+<span>  <span class="va">count</span>,</span>
+<span>  channel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_CHANNEL"</span><span class="op">)</span>,</span>
+<span>  token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_TOKEN"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>count</dt>
 <dd><p>The number of messages to delete.</p></dd>
+
+
 <dt>channel</dt>
 <dd><p>Channel, private group, or IM channel to delete messages from. Can be an encoded ID, or a name. See the <a href="https://api.slack.com/methods/chat.postMessage#channels" class="external-link">chat.postMessage endpoint documentation</a> for details.</p></dd>
+
+
 <dt>token</dt>
 <dd><p>Authentication token bearing required scopes.</p></dd>
+
 </dl></div>
 
   </div>
@@ -104,7 +109,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

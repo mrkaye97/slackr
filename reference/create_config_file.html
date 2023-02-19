@@ -75,34 +75,47 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">create_config_file</span><span class="op">(</span>
-  filename <span class="op">=</span> <span class="st">"~/.slackr"</span>,
-  token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_TOKEN"</span><span class="op">)</span>,
-  incoming_webhook_url <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_INCOMING_WEBHOOK_URL"</span><span class="op">)</span>,
-  icon_emoji <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_ICON_EMOJI"</span><span class="op">)</span>,
-  username <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_USERNAME"</span><span class="op">)</span>,
-  channel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_CHANNEL"</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_config_file</span><span class="op">(</span></span>
+<span>  filename <span class="op">=</span> <span class="st">"~/.slackr"</span>,</span>
+<span>  token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_TOKEN"</span><span class="op">)</span>,</span>
+<span>  incoming_webhook_url <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_INCOMING_WEBHOOK_URL"</span><span class="op">)</span>,</span>
+<span>  icon_emoji <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_ICON_EMOJI"</span><span class="op">)</span>,</span>
+<span>  username <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_USERNAME"</span><span class="op">)</span>,</span>
+<span>  channel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_CHANNEL"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>filename</dt>
 <dd><p>the name of the config file to save. We recommend using a hidden file (starting with '.')</p></dd>
+
+
 <dt>token</dt>
 <dd><p>Authentication token bearing required scopes.</p></dd>
+
+
 <dt>incoming_webhook_url</dt>
 <dd><p>the incoming webhook URL (Default: whatever is set as an env var).</p></dd>
+
+
 <dt>icon_emoji</dt>
 <dd><p>the icon emoji to use as the default.</p></dd>
+
+
 <dt>username</dt>
 <dd><p>the username to send messages from (will default to "slackr" if no username is set).</p></dd>
+
+
 <dt>channel</dt>
 <dd><p>Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See the <a href="https://api.slack.com/methods/chat.postMessage#channels" class="external-link">chat.postMessage endpoint documentation</a> for details.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>TRUE if successful (invisibly)</p>
+    
+
+<p>TRUE if successful (invisibly)</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -111,19 +124,19 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co"># using `create_config_file()` after `slackr_setup()`</span></span>
-<span class="r-in"><span class="fu">create_config_file</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># using `create_config_file()` before `slackr_setup()`</span></span>
-<span class="r-in"><span class="fu">create_config_file</span><span class="op">(</span>token <span class="op">=</span> <span class="st">'xox-'</span>,</span>
-<span class="r-in">  incoming_webhook_url <span class="op">=</span> <span class="st">'https://hooks-'</span>,</span>
-<span class="r-in">  channel <span class="op">=</span> <span class="st">'#general'</span>,</span>
-<span class="r-in">  username <span class="op">=</span> <span class="st">'slackr'</span>,</span>
-<span class="r-in">  icon_emoji <span class="op">=</span> <span class="st">'tada'</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="slackr_setup.html">slackr_setup</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># using `create_config_file()` after `slackr_setup()`</span></span></span>
+<span class="r-in"><span><span class="fu">create_config_file</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># using `create_config_file()` before `slackr_setup()`</span></span></span>
+<span class="r-in"><span><span class="fu">create_config_file</span><span class="op">(</span>token <span class="op">=</span> <span class="st">'xox-'</span>,</span></span>
+<span class="r-in"><span>  incoming_webhook_url <span class="op">=</span> <span class="st">'https://hooks-'</span>,</span></span>
+<span class="r-in"><span>  channel <span class="op">=</span> <span class="st">'#general'</span>,</span></span>
+<span class="r-in"><span>  username <span class="op">=</span> <span class="st">'slackr'</span>,</span></span>
+<span class="r-in"><span>  icon_emoji <span class="op">=</span> <span class="st">'tada'</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="slackr_setup.html">slackr_setup</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -138,7 +151,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

@@ -75,45 +75,64 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">register_onexit</span><span class="op">(</span>
-  <span class="va">f</span>,
-  <span class="va">...</span>,
-  header_msg <span class="op">=</span> <span class="cn">NULL</span>,
-  use_device <span class="op">=</span> <span class="cn">FALSE</span>,
-  env <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>,
-  channel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_CHANNEL"</span><span class="op">)</span>,
-  username <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_USERNAME"</span><span class="op">)</span>,
-  icon_emoji <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_ICON_EMOJI"</span><span class="op">)</span>,
-  token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_TOKEN"</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">register_onexit</span><span class="op">(</span></span>
+<span>  <span class="va">f</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  header_msg <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  use_device <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  env <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>,</span>
+<span>  channel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_CHANNEL"</span><span class="op">)</span>,</span>
+<span>  username <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_USERNAME"</span><span class="op">)</span>,</span>
+<span>  icon_emoji <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_ICON_EMOJI"</span><span class="op">)</span>,</span>
+<span>  token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_TOKEN"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>f</dt>
 <dd><p>function or character.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>expressions to be sent to Slack.</p></dd>
+
+
 <dt>header_msg</dt>
 <dd><p>boolean, message to append to start of Slack output, Default: NULL.</p></dd>
+
+
 <dt>use_device</dt>
 <dd><p>boolean, passes current image in the graphics device to Slack as part of f,
 Default: FALSE.</p></dd>
+
+
 <dt>env</dt>
 <dd><p>environment to assign appended function to with relation to the function environment,
 Default: parent.frame(2) (global environment).</p></dd>
+
+
 <dt>channel</dt>
 <dd><p>Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See the <a href="https://api.slack.com/methods/chat.postMessage#channels" class="external-link">chat.postMessage endpoint documentation</a> for details.</p></dd>
+
+
 <dt>username</dt>
 <dd><p>what user should the bot be named as (chr).</p></dd>
+
+
 <dt>icon_emoji</dt>
 <dd><p>what emoji to use (chr) <code>""</code> will mean use the default.</p></dd>
+
+
 <dt>token</dt>
 <dd><p>Authentication token bearing required scopes.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>function</p>
+    
+
+<p>function</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -130,45 +149,45 @@ Default: parent.frame(2) (global environment).</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="va">ctl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4.17</span>, <span class="fl">5.58</span>, <span class="fl">5.18</span>, <span class="fl">6.11</span>, <span class="fl">4.50</span>, <span class="fl">4.61</span>, <span class="fl">5.17</span>, <span class="fl">4.53</span>, <span class="fl">5.33</span>, <span class="fl">5.14</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">trt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4.81</span>, <span class="fl">4.17</span>, <span class="fl">4.41</span>, <span class="fl">3.59</span>, <span class="fl">5.87</span>, <span class="fl">3.83</span>, <span class="fl">6.03</span>, <span class="fl">4.89</span>, <span class="fl">4.32</span>, <span class="fl">4.69</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/gl.html" class="external-link">gl</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">10</span>, <span class="fl">20</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Ctl"</span>, <span class="st">"Trt"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">weight</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">ctl</span>, <span class="va">trt</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># pass a message to Slack channel 'general'</span></span>
-<span class="r-in"><span class="fu">register_onexit</span><span class="op">(</span><span class="va">lm</span>, <span class="st">"bazinga!"</span>, channel <span class="op">=</span> <span class="st">"#general"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">lm.D9</span> <span class="op">&lt;-</span> <span class="fu">slack_lm</span><span class="op">(</span><span class="va">weight</span> <span class="op">~</span> <span class="va">group</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># test that output keeps inheritance</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">lm.D9</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># pass a message to Slack channel 'general' with a header message to begin output</span></span>
-<span class="r-in"><span class="fu">register_onexit</span><span class="op">(</span><span class="va">lm</span>, <span class="st">"bazinga!"</span>,</span>
-<span class="r-in">  channel <span class="op">=</span> <span class="st">"#general"</span>,</span>
-<span class="r-in">  header_msg <span class="op">=</span> <span class="st">"This is a message to begin"</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">lm.D9</span> <span class="op">&lt;-</span> <span class="fu">slack_lm</span><span class="op">(</span><span class="va">weight</span> <span class="op">~</span> <span class="va">group</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># onexit with an expression that calls lm.plot</span></span>
-<span class="r-in"><span class="fu">register_onexit</span><span class="op">(</span><span class="va">lm</span>,</span>
-<span class="r-in">  <span class="op">{</span></span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>, oma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">}</span>,</span>
-<span class="r-in">  channel <span class="op">=</span> <span class="st">"#general"</span>,</span>
-<span class="r-in">  header_msg <span class="op">=</span> <span class="st">"This is a plot just for this output"</span>,</span>
-<span class="r-in">  use_device <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">lm.D9</span> <span class="op">&lt;-</span> <span class="fu">slack_lm</span><span class="op">(</span><span class="va">weight</span> <span class="op">~</span> <span class="va">group</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># clean up slack channel from examples</span></span>
-<span class="r-in"><span class="fu"><a href="slackr_delete.html">slackr_delete</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fl">6</span>, channel <span class="op">=</span> <span class="st">"#general"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="va">ctl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4.17</span>, <span class="fl">5.58</span>, <span class="fl">5.18</span>, <span class="fl">6.11</span>, <span class="fl">4.50</span>, <span class="fl">4.61</span>, <span class="fl">5.17</span>, <span class="fl">4.53</span>, <span class="fl">5.33</span>, <span class="fl">5.14</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">trt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4.81</span>, <span class="fl">4.17</span>, <span class="fl">4.41</span>, <span class="fl">3.59</span>, <span class="fl">5.87</span>, <span class="fl">3.83</span>, <span class="fl">6.03</span>, <span class="fl">4.89</span>, <span class="fl">4.32</span>, <span class="fl">4.69</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/gl.html" class="external-link">gl</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">10</span>, <span class="fl">20</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Ctl"</span>, <span class="st">"Trt"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">weight</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">ctl</span>, <span class="va">trt</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># pass a message to Slack channel 'general'</span></span></span>
+<span class="r-in"><span><span class="fu">register_onexit</span><span class="op">(</span><span class="va">lm</span>, <span class="st">"bazinga!"</span>, channel <span class="op">=</span> <span class="st">"#general"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">lm.D9</span> <span class="op">&lt;-</span> <span class="fu">slack_lm</span><span class="op">(</span><span class="va">weight</span> <span class="op">~</span> <span class="va">group</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># test that output keeps inheritance</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">lm.D9</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># pass a message to Slack channel 'general' with a header message to begin output</span></span></span>
+<span class="r-in"><span><span class="fu">register_onexit</span><span class="op">(</span><span class="va">lm</span>, <span class="st">"bazinga!"</span>,</span></span>
+<span class="r-in"><span>  channel <span class="op">=</span> <span class="st">"#general"</span>,</span></span>
+<span class="r-in"><span>  header_msg <span class="op">=</span> <span class="st">"This is a message to begin"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">lm.D9</span> <span class="op">&lt;-</span> <span class="fu">slack_lm</span><span class="op">(</span><span class="va">weight</span> <span class="op">~</span> <span class="va">group</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># onexit with an expression that calls lm.plot</span></span></span>
+<span class="r-in"><span><span class="fu">register_onexit</span><span class="op">(</span><span class="va">lm</span>,</span></span>
+<span class="r-in"><span>  <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>, oma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span>,</span></span>
+<span class="r-in"><span>  channel <span class="op">=</span> <span class="st">"#general"</span>,</span></span>
+<span class="r-in"><span>  header_msg <span class="op">=</span> <span class="st">"This is a plot just for this output"</span>,</span></span>
+<span class="r-in"><span>  use_device <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">lm.D9</span> <span class="op">&lt;-</span> <span class="fu">slack_lm</span><span class="op">(</span><span class="va">weight</span> <span class="op">~</span> <span class="va">group</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># clean up slack channel from examples</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="slackr_delete.html">slackr_delete</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fl">6</span>, channel <span class="op">=</span> <span class="st">"#general"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -183,7 +202,7 @@ Default: parent.frame(2) (global environment).</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

@@ -75,39 +75,54 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">slackr_history</span><span class="op">(</span>
-  <span class="va">message_count</span>,
-  channel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_CHANNEL"</span><span class="op">)</span>,
-  token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_TOKEN"</span><span class="op">)</span>,
-  posted_to_time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,
-  <span class="va">duration</span>,
-  <span class="va">posted_from_time</span>,
-  paginate <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">slackr_history</span><span class="op">(</span></span>
+<span>  <span class="va">message_count</span>,</span>
+<span>  channel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_CHANNEL"</span><span class="op">)</span>,</span>
+<span>  token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_TOKEN"</span><span class="op">)</span>,</span>
+<span>  posted_to_time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="va">duration</span>,</span>
+<span>  <span class="va">posted_from_time</span>,</span>
+<span>  paginate <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>message_count</dt>
 <dd><p>The number of messages to retrieve (only when <code>paginate = FALSE</code>).</p></dd>
+
+
 <dt>channel</dt>
 <dd><p>Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name.</p></dd>
+
+
 <dt>token</dt>
 <dd><p>Authentication token bearing required scopes.</p></dd>
+
+
 <dt>posted_to_time</dt>
 <dd><p>Timestamp of the last post to consider (default:
 current time).</p></dd>
+
+
 <dt>duration</dt>
 <dd><p>Number of hours of history to retrieve.  By default retrieves
 24 hours of history.</p></dd>
+
+
 <dt>posted_from_time</dt>
 <dd><p>Timestamp of the first post time to consider.</p></dd>
+
+
 <dt>paginate</dt>
 <dd><p>If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to the API and retrieves a maximum of <code>message_count</code> messages.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A <code>tibble</code> with message metadata</p>
+    
+
+<p>A <code>tibble</code> with message metadata</p>
     </div>
     <div id="scopes">
     <h2>Scopes</h2>
@@ -134,7 +149,7 @@ channels:history * groups:history * im:history * mpim:history</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

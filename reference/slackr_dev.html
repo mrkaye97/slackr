@@ -77,34 +77,47 @@ specified Slack channel.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">slackr_dev</span><span class="op">(</span>
-  channels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_CHANNEL"</span><span class="op">)</span>,
-  token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_TOKEN"</span><span class="op">)</span>,
-  file <span class="op">=</span> <span class="st">"plot"</span>,
-  initial_comment <span class="op">=</span> <span class="cn">NULL</span>,
-  title <span class="op">=</span> <span class="cn">NULL</span>,
-  thread_ts <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">slackr_dev</span><span class="op">(</span></span>
+<span>  channels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_CHANNEL"</span><span class="op">)</span>,</span>
+<span>  token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_TOKEN"</span><span class="op">)</span>,</span>
+<span>  file <span class="op">=</span> <span class="st">"plot"</span>,</span>
+<span>  initial_comment <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  thread_ts <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>channels</dt>
 <dd><p>Comma-separated list of channel names or IDs where the file will be shared.</p></dd>
+
+
 <dt>token</dt>
 <dd><p>Authentication token bearing required scopes.</p></dd>
+
+
 <dt>file</dt>
 <dd><p>prefix for filenames (defaults to <code>plot</code>).</p></dd>
+
+
 <dt>initial_comment</dt>
 <dd><p>The message text introducing the file in specified channels.</p></dd>
+
+
 <dt>title</dt>
 <dd><p>Title of file.</p></dd>
+
+
 <dt>thread_ts</dt>
 <dd><p>Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>httr</code> response object from <code>POST</code> call</p>
+    
+
+<p><code>httr</code> response object from <code>POST</code> call</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -121,18 +134,18 @@ specified Slack channel.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu"><a href="slackr_setup.html">slackr_setup</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># base</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">maps</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">map</span><span class="op">(</span><span class="st">"usa"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">slackr_dev</span><span class="op">(</span><span class="st">"#results"</span>, file <span class="op">=</span> <span class="st">"map"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># base</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="va">VADeaths</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">slackr_dev</span><span class="op">(</span><span class="st">"@jayjacobs"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="slackr_setup.html">slackr_setup</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># base</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">maps</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">map</span><span class="op">(</span><span class="st">"usa"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">slackr_dev</span><span class="op">(</span><span class="st">"#results"</span>, file <span class="op">=</span> <span class="st">"map"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># base</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="va">VADeaths</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">slackr_dev</span><span class="op">(</span><span class="st">"@jayjacobs"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -147,7 +160,7 @@ specified Slack channel.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
