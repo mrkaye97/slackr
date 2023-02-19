@@ -123,7 +123,8 @@ files_upload <- function(
     body = list(
       file = upload_file(file),
       initial_comment = initial_comment,
-      channels = paste(channels, collapse = ",")
+      channels = paste(channels, collapse = ","),
+      ...
     )
   )
 
