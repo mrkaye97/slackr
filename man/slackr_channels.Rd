@@ -4,13 +4,15 @@
 \alias{slackr_channels}
 \title{Get a data frame of Slack channels}
 \usage{
-slackr_channels(token = Sys.getenv("SLACK_TOKEN"))
+slackr_channels(token = Sys.getenv("SLACK_TOKEN"), exclude_archived = TRUE)
 }
 \arguments{
 \item{token}{Authentication token bearing required scopes.}
+
+\item{exclude_archived}{A boolean indicating whether or not to exclude archived channels.}
 }
 \value{
-data.table of channels
+A data.frame of channels
 }
 \description{
 Get a data frame of Slack channels

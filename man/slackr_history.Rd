@@ -11,7 +11,8 @@ slackr_history(
   posted_to_time = as.numeric(Sys.time()),
   duration = NULL,
   posted_from_time = 0,
-  paginate = FALSE
+  paginate = FALSE,
+  inclusive = TRUE
 )
 }
 \arguments{
@@ -32,6 +33,8 @@ history. (default: \code{NULL})}
 posted_to_time and duration is specifed, they take precedence. (default: 0)}
 
 \item{paginate}{If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to the API and retrieves a maximum of \code{message_count} messages.}
+
+\item{inclusive}{Include messages with oldest or latest timestamps in results. Ignored unless either timestamp is specified.}
 }
 \value{
 A \code{tibble} with message metadata

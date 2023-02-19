@@ -16,12 +16,15 @@ slackr_users <- function(token = Sys.getenv("SLACK_TOKEN")) {
 #' Get a data frame of Slack channels
 #'
 #' @param token Authentication token bearing required scopes.
+#' @param exclude_archived A boolean indicating whether or not to exclude archived channels.
+#'
 #' @importFrom dplyr bind_rows
-#' @return data.table of channels
+#'
+#' @return A data.frame of channels
 #' @export
-slackr_channels <- function(token = Sys.getenv("SLACK_TOKEN")) {
-  c1 <- list_channels(token = token, types = "public_channel")
-  c2 <- list_channels(token = token, types = "private_channel")
+slackr_channels <- function(token = Sys.getenv("SLACK_TOKEN"), exclude_archived = TRUE) {
+  c1 <- list_channels(token = token, types = "public_channel", exclude_archived = exclude_archived)
+  c2 <- list_channels(token = token, types = "private_channel", exclude_archived = exclude_archived)
 
   bind_rows(c1, c2)
 }
@@ -36,7 +39,7 @@ slackr_channels <- function(token = Sys.getenv("SLACK_TOKEN")) {
 #' @return `data.frame` of im ids and user names
 #' @export
 slackr_ims <- function(token = Sys.getenv("SLACK_TOKEN")) {
-  ims <- list_channels(token = token, types = "im") %>%
+  ims <- list_channels(token = token, types = "im", exclude_archived = TRUE) %>%
     rename(channel = "id")
   users <- slackr_users(token = token)
 

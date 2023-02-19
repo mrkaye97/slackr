@@ -18,6 +18,7 @@
 #'   current time).
 #' @param paginate If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to the API and retrieves a maximum of `message_count` messages.
 #' @param message_count The number of messages to retrieve (only when `paginate = FALSE`).
+#' @param inclusive Include messages with oldest or latest timestamps in results. Ignored unless either timestamp is specified.
 #' @export
 #'
 #' @return A `tibble` with message metadata
@@ -30,7 +31,8 @@ slackr_history <- function(
   posted_to_time = as.numeric(Sys.time()),
   duration = NULL,
   posted_from_time = 0,
-  paginate = FALSE
+  paginate = FALSE,
+  inclusive = TRUE
 ) {
   channel <- slackr_chtrans(channel, token)
 
@@ -63,7 +65,7 @@ slackr_history <- function(
         channel = channel,
         latest = posted_to_time,
         oldest = posted_from_time,
-        inclusive = "true",
+        inclusive = inclusive,
         limit = message_count
       )
       convert_response_to_tibble(resp, "messages")
@@ -77,7 +79,7 @@ slackr_history <- function(
             channel = channel,
             latest = posted_to_time,
             oldest = posted_from_time,
-            inclusive = "true",
+            inclusive = inclusive,
             limit = message_count,
             .next_cursor = cursor
           )
