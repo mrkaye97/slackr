@@ -168,13 +168,10 @@ test_that("ggslackr works from in a function", {
   expect_true(res$ok)
 })
 
-test_that("slackr_tex posts", {
-  skip_on_cran()
-  skip_on_ci()
+test_that("non-existent thread_ts throws error", {
+  post <- slackr_msg("Thread")
 
-  res <- slackr_tex(
-    "$\\sum_{n=0}^{\\infty} \\frac{1}{n!}$"
-  )
+  reply_1 <- slackr_msg("Reply", thread_ts = post$ts)
 
-  expect_true(res$ok)
+  expect_equal(post$ts, reply_1$message$thread_ts)
 })

@@ -64,6 +64,21 @@ test_that("slackr_teardown removes env vars", {
   expect_identical(Sys.getenv("SLACK_USERNAME"), "")
   expect_identical(Sys.getenv("SLACK_INCOMING_WEBHOOK_URL"), "")
   expect_identical(Sys.getenv("SLACK_ICON_EMOJI"), "")
+
+  ## Set up again
+  if (Sys.getenv("ENVIRONMENT") == "production") {
+    slackr_setup(
+      channel = Sys.getenv("SLACK_CHANNEL"),
+      username = Sys.getenv("SLACK_USERNAME"),
+      icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
+      incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL"),
+      token = Sys.getenv("SLACK_TOKEN")
+    )
+  } else {
+    slackr_setup(
+      config_file = "~/.slackr_config"
+    )
+  }
 })
 
 test_that("slackr_setup() connects", {

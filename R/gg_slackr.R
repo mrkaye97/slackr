@@ -5,6 +5,7 @@
 #'
 #' @importFrom rlang check_installed
 #' @importFrom tools file_ext
+#' @importFrom grDevices last_plot
 #'
 #' @param plot ggplot object to save, defaults to last plot displayed.
 #' @param channels Comma-separated list of channel names or IDs where the file will be shared.
