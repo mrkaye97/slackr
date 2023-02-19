@@ -9,8 +9,8 @@ slackr_history(
   channel = Sys.getenv("SLACK_CHANNEL"),
   token = Sys.getenv("SLACK_TOKEN"),
   posted_to_time = as.numeric(Sys.time()),
-  duration,
-  posted_from_time,
+  duration = NULL,
+  posted_from_time = 0,
   paginate = FALSE
 )
 }
@@ -24,10 +24,12 @@ slackr_history(
 \item{posted_to_time}{Timestamp of the last post to consider (default:
 current time).}
 
-\item{duration}{Number of hours of history to retrieve.  By default retrieves
-24 hours of history.}
+\item{duration}{Number of hours of history to retrieve.  If neither \code{duration}
+nor \code{posted_from_time} is specified, there is no time limit on the retrieved
+history. (default: \code{NULL})}
 
-\item{posted_from_time}{Timestamp of the first post time to consider.}
+\item{posted_from_time}{Timestamp of the first post time to consider. If both
+posted_to_time and duration is specifed, they take precedence. (default: 0)}
 
 \item{paginate}{If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to the API and retrieves a maximum of \code{message_count} messages.}
 }
