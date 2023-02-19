@@ -32,18 +32,22 @@
 #'       to use this package.
 #' @seealso [slackr()], [slackr_dev()], [slackr_save()],
 #'          [slackr_upload()]
+#'
 #' @examples
 #' \dontrun{
 #' # reads from default file (i.e. ~/.slackr)
 #' slackr_setup()
 #'
 #' # reads from alternate config
-#' slackr_setup(config_file="/path/to/my/slackrconfig)
+#' slackr_setup(config_file = "/path/to/my/slackrconfig")
 #'
 #' # the hard way
-#' slackr_setup(channel="#code",
-#'   incoming_webhook_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX")
+#' slackr_setup(
+#'   channel="#code",
+#'   incoming_webhook_url = "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX"
+#'  )
 #' }
+#'
 #' @export
 slackr_setup <- function(channel="#general",
                          username="slackr",
