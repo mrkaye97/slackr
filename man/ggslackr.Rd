@@ -5,7 +5,7 @@
 \title{Post a ggplot to a Slack channel}
 \usage{
 ggslackr(
-  plot = last_plot(),
+  plot = ggplot2::last_plot(),
   channels = Sys.getenv("SLACK_CHANNEL"),
   token = Sys.getenv("SLACK_TOKEN"),
   file = "ggplot.png",
