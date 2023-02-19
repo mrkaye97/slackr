@@ -83,7 +83,11 @@ post_message <- function(
       )
     )
 
-  invisible(content(r))
+  cont <- content(r)
+
+  cont$ts <- as.numeric(cont$ts)
+  cont$message$ts <- as.numeric(cont$message$ts)
+  invisible(cont)
 }
 
 
