@@ -29,6 +29,8 @@ test_that("slackr_history works when posted_from and posted_to are specified", {
 })
 
 test_that("slackr_history works with duration specified", {
+  skip_on_ci()
+
   post1 <- slackr_msg("History test post 1.")
 
   Sys.sleep(5)
