@@ -27,7 +27,6 @@ Depends:
 Imports:
     cachem (>= 1.0.4),
     dplyr,
-    ggplot2,
     graphics,
     grDevices,
     httr (>= 1.4.2),
@@ -40,6 +39,7 @@ Imports:
     withr
 Suggests:
     covr,
+    ggplot2,
     knitr,
     rmarkdown,
     svglite,
