@@ -27,7 +27,9 @@
 #' summary(lm.D9)
 #'
 #' # pass a message to Slack channel 'general' with a header message to begin output
-#' register_onexit(lm, "bazinga!",
+#' register_onexit(
+#'   lm,
+#'   "bazinga!",
 #'   channel = "#general",
 #'   header_msg = "This is a message to begin"
 #' )
@@ -35,7 +37,8 @@
 #' lm.D9 <- slack_lm(weight ~ group)
 #'
 #' # onexit with an expression that calls lm.plot
-#' register_onexit(lm,
+#' register_onexit(
+#'   lm,
 #'   {
 #'     par(mfrow = c(2, 2), oma = c(0, 0, 2, 0))
 #'     plot(z)
@@ -55,15 +58,17 @@
 #' [slackr_msg()]
 #' @author Jonathan Sidi (aut)
 #' @export
-register_onexit <- function(f,
-                            ...,
-                            header_msg = NULL,
-                            use_device = FALSE,
-                            env = parent.frame(2),
-                            channel = Sys.getenv("SLACK_CHANNEL"),
-                            username = Sys.getenv("SLACK_USERNAME"),
-                            icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-                            token = Sys.getenv("SLACK_TOKEN")) {
+register_onexit <- function(
+  f,
+  ...,
+  header_msg = NULL,
+  use_device = FALSE,
+  env = parent.frame(2),
+  channel = Sys.getenv("SLACK_CHANNEL"),
+  username = Sys.getenv("SLACK_USERNAME"),
+  icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
+  token = Sys.getenv("SLACK_TOKEN")
+) {
   warn_for_args(
     token,
     username = username,

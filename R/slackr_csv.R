@@ -17,14 +17,16 @@
 #' @seealso [slackr_upload()]
 #' @return `httr` response object from `POST` call (invisibly)
 #' @export
-slackr_csv <- function(data,
-                       filename = tempfile(fileext = ".csv"),
-                       title = NULL,
-                       initial_comment = NULL,
-                       channels = Sys.getenv("SLACK_CHANNEL"),
-                       token = Sys.getenv("SLACK_TOKEN"),
-                       thread_ts = NULL,
-                       ...) {
+slackr_csv <- function(
+  data,
+  filename = tempfile(fileext = ".csv"),
+  title = NULL,
+  initial_comment = NULL,
+  channels = Sys.getenv("SLACK_CHANNEL"),
+  token = Sys.getenv("SLACK_TOKEN"),
+  thread_ts = NULL,
+  ...
+) {
   write.csv(data, filename, ...)
 
   res <- files_upload(

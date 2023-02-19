@@ -29,22 +29,23 @@
 #' ggslackr(qplot(mpg, wt, data = mtcars))
 #' }
 #' @export
-ggslackr <- function(plot = last_plot(),
-                     channels = Sys.getenv("SLACK_CHANNEL"),
-                     scale = 1,
-                     width = par("din")[1],
-                     height = par("din")[2],
-                     units = NULL,
-                     dpi = 300,
-                     limitsize = TRUE,
-                     token = Sys.getenv("SLACK_TOKEN"),
-                     file = "ggplot",
-                     initial_comment = NULL,
-                     thread_ts = NULL,
-                     title = NULL,
-                     device = c("png", "eps", "ps", "pdf", "jpeg", "tiff", "bmp", "svg"),
-                     ...) {
-
+ggslackr <- function(
+  plot = last_plot(),
+  channels = Sys.getenv("SLACK_CHANNEL"),
+  scale = 1,
+  width = par("din")[1],
+  height = par("din")[2],
+  units = NULL,
+  dpi = 300,
+  limitsize = TRUE,
+  token = Sys.getenv("SLACK_TOKEN"),
+  file = "ggplot",
+  initial_comment = NULL,
+  thread_ts = NULL,
+  title = NULL,
+  device = c("png", "eps", "ps", "pdf", "jpeg", "tiff", "bmp", "svg"),
+  ...
+) {
   ext <- paste0(".", match.arg(device))
   ftmp <- tempfile(file, fileext = ext)
 

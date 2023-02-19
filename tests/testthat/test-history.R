@@ -1,5 +1,4 @@
 test_that("slackr_history correctly retrieves post", {
-
   post <- slackr("History test")
 
   history <- slackr_history(
@@ -115,4 +114,3 @@ test_that("Specifycing post times in slackr_history correctly limits time window
   expect_gte(max(as.numeric(all_history$ts)), as.numeric(post2$ts))
   expect_lt(as.numeric(max(all_history$ts)), as.numeric(post3$ts))
 })
-

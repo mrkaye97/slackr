@@ -80,10 +80,16 @@ with_retry <- function(fun) {
 #' @return The API response (a named list)
 #' @export
 #'
-call_slack_api <- function(path, ..., body = NULL, .method = c("GET", "POST"),
-                           token,
-                           .verbose = Sys.getenv("SLACKR_VERBOSE", "FALSE"),
-                           .next_cursor = "") {
+call_slack_api <- function(
+  path,
+  ...,
+  body = NULL,
+  .method = c("GET", "POST"),
+  token,
+  .verbose = Sys.getenv("SLACKR_VERBOSE", "FALSE"),
+  .next_cursor = ""
+) {
+
   if (missing(token) || is.null(token)) {
     token <- Sys.getenv("SLACK_TOKEN", "")
   }
@@ -98,9 +104,7 @@ call_slack_api <- function(path, ..., body = NULL, .method = c("GET", "POST"),
   if (.verbose == "TRUE") {
     old_config <- set_config(verbose())
     on.exit(set_config(old_config), add = TRUE)
-  } # else {
-  #   set_config(httr::verbose(data_out = FALSE, data_in = FALSE, info = FALSE, ssl = FALSE))
-  # }
+  }
 
   # Set up the API call
   call_api <- function() {
@@ -112,7 +116,6 @@ call_slack_api <- function(path, ..., body = NULL, .method = c("GET", "POST"),
           .headers = c(Authorization = paste("Bearer", token))
         ),
         query = add_cursor_get(..., .next_cursor = .next_cursor)
-        # ...
       )
     } else if (.method == "POST") {
       POST(
@@ -135,7 +138,6 @@ call_slack_api <- function(path, ..., body = NULL, .method = c("GET", "POST"),
 add_cursor_get <- function(..., .next_cursor = "") {
   z <- list(...)
   if (!is.null(.next_cursor) && .next_cursor != "") {
-    # inform("Appending cursor to query")
     z <- append(z, list(cursor = .next_cursor))
   }
   z
@@ -207,7 +209,8 @@ with_pagination <- function(fun, extract) {
       result <- convert_response_to_tibble(r, extract)
     } else {
       result <- bind_rows(
-        result, convert_response_to_tibble(r, extract)
+        result,
+        convert_response_to_tibble(r, extract)
       )
     }
   }

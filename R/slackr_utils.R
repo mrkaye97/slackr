@@ -63,9 +63,11 @@ slackr_chtrans <- function(channels, token = Sys.getenv("SLACK_TOKEN")) {
   channel_cache <- slackr_census(token)
 
   chan_xref <-
-    channel_cache[(channel_cache$name %in% channels) |
-      (channel_cache$real_name %in% channels) |
-      (channel_cache$id %in% channels), ]
+    channel_cache[
+      (channel_cache$name %in% channels) |
+        (channel_cache$real_name %in% channels) |
+        (channel_cache$id %in% channels),
+    ]
 
   ifelse(
     is.na(chan_xref$id),

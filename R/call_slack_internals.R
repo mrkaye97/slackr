@@ -61,12 +61,14 @@ list_users <- function(token = Sys.getenv("SLACK_TOKEN"), ...) {
 #' @param token A Slack API token.
 #'
 #' @references https://api.slack.com/methods/chat.postMessage
-post_message <- function(txt,
-                         channel,
-                         emoji = "",
-                         username = Sys.getenv("SLACK_USERNAME"),
-                         token = Sys.getenv("SLACK_TOKEN"),
-                         ...) {
+post_message <- function(
+  txt,
+  channel,
+  emoji = "",
+  username = Sys.getenv("SLACK_USERNAME"),
+  token = Sys.getenv("SLACK_TOKEN"),
+  ...
+) {
   r <-
     call_slack_api(
       "/api/chat.postMessage",
@@ -104,11 +106,13 @@ post_message <- function(txt,
 #'
 #'
 #' @references https://api.slack.com/methods/files.upload
-files_upload <- function(file,
-                         channels,
-                         initial_comment = NULL,
-                         token = Sys.getenv("SLACK_TOKEN"),
-                         ...) {
+files_upload <- function(
+  file,
+  channels,
+  initial_comment = NULL,
+  token = Sys.getenv("SLACK_TOKEN"),
+  ...
+) {
   r <- call_slack_api(
     "/api/files.upload",
     .method = POST,
