@@ -2,7 +2,7 @@
 title: "Onexit Usage in slackr"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Using slackr}
+  %\VignetteIndexEntry{Onexit Usage in slackr}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
