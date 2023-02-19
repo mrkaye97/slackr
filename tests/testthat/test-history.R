@@ -26,6 +26,40 @@ test_that("slackr_history works when posted_from and posted_to are specified", {
   expect_identical(post$message$app_id, history$app_id)
 })
 
+test_that("slackr_history works with duration specified", {
+  post1 <- slackr_msg("History test post 1.")
+
+  Sys.sleep(5)
+
+  post2 <- slackr_msg("History test post 2.")
+
+  Sys.sleep(0.50)
+  to_ts <- as.numeric(Sys.time())
+
+  ## Check the past six seconds
+  dur_s <- 6
+  dur_ms <- dur_s * 1000
+  dur_hours <- dur_s / 3600
+
+  history <- slackr_history(
+    message_count = 1000,
+    posted_to_time = to_ts,
+    duration = dur_hours
+  )
+
+  expect_gte(nrow(history), 2)
+  expect_gte(min(as.numeric(history$ts)), to_ts - dur_ms)
+
+  history_limited <- slackr_history(
+    message_count = 1000,
+    posted_to_time = to_ts,
+    duration = dur_hours / 2
+  )
+
+  expect_gte(as.numeric(post2$ts), max(as.numeric(history_limited$ts)))
+  expect_gte(nrow(history_limited), 1)
+})
+
 test_that("slackr_history works when posted_from and posted_to are specified for multiple posts", {
   post1 <- slackr_msg("History test post 1.")
 
