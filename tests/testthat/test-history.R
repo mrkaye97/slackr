@@ -86,11 +86,9 @@ test_that("slackr_history works when posted_from and posted_to are specified for
     posted_to_time = post2$ts
   )
 
-  expect_identical(post$message$text, history$text)
-  expect_identical(post$message$subtype, history$subtype)
-  expect_identical(post$message$ts, history$ts)
-  expect_identical(post$message$bot_id, history$bot_id)
-  expect_identical(post$message$app_id, history$app_id)
+  expect_gte(nrow(all_history), 2)
+  expect_equal(min(all_history$ts), post1$ts)
+  expect_equal(max(all_history$ts), post2$ts)
 })
 
 test_that("Specifycing post times in slackr_history correctly limits time window", {
