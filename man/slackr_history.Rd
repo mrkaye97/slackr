@@ -17,7 +17,9 @@ slackr_history(
 }
 \arguments{
 \item{message_count}{The number of messages to retrieve (only when \code{paginate = FALSE}).
-Corresponds to \code{limit} in the \href{https://api.slack.com/methods/conversations.history}{conversations.history} docs.}
+Corresponds to \code{limit} in the \href{https://api.slack.com/methods/conversations.history}{conversations.history} docs.
+Note: If using pagination, setting a value of (e.g.) 1 will result in paginating
+through the channel's history one message at a time. Slack recommends using a value of 200.}
 
 \item{channel}{Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name.}
 
