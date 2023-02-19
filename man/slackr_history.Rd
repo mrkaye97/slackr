@@ -16,21 +16,26 @@ slackr_history(
 )
 }
 \arguments{
-\item{message_count}{The number of messages to retrieve (only when \code{paginate = FALSE}).}
+\item{message_count}{The number of messages to retrieve (only when \code{paginate = FALSE}).
+Corresponds to \code{limit} in the \href{https://api.slack.com/methods/conversations.history}{conversations.history} docs.}
 
 \item{channel}{Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name.}
 
 \item{token}{Authentication token bearing required scopes.}
 
-\item{posted_to_time}{Timestamp of the last post to consider (default:
-current time).}
+\item{posted_to_time}{Timestamp of the last post to consider.
+Corresponds to \code{latest} in the \href{https://api.slack.com/methods/conversations.history}{conversations.history} docs.
+Default: current time.}
 
 \item{duration}{Number of hours of history to retrieve.  If neither \code{duration}
 nor \code{posted_from_time} is specified, there is no time limit on the retrieved
 history. (default: \code{NULL})}
 
 \item{posted_from_time}{Timestamp of the first post time to consider. If both
-posted_to_time and duration is specifed, they take precedence. (default: 0)}
+posted_to_time and duration is specifed, they take precedence.
+Corresponds to \code{oldest} in the \href{https://api.slack.com/methods/conversations.history}{conversations.history}
+docs.
+Default: 0}
 
 \item{paginate}{If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to the API and retrieves a maximum of \code{message_count} messages.}
 

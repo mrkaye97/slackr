@@ -10,14 +10,19 @@
 #' @param token Authentication token bearing required scopes.
 #' @param channel Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name.
 #' @param posted_from_time Timestamp of the first post time to consider. If both
-#'   posted_to_time and duration is specifed, they take precedence. (default: 0)
+#'   posted_to_time and duration is specifed, they take precedence.
+#'   Corresponds to `oldest` in the \href{https://api.slack.com/methods/conversations.history}{conversations.history}
+#'   docs.
+#'   Default: 0
 #' @param duration Number of hours of history to retrieve.  If neither `duration`
 #'   nor `posted_from_time` is specified, there is no time limit on the retrieved
 #'   history. (default: `NULL`)
-#' @param posted_to_time Timestamp of the last post to consider (default:
-#'   current time).
+#' @param posted_to_time Timestamp of the last post to consider.
+#'   Corresponds to `latest` in the \href{https://api.slack.com/methods/conversations.history}{conversations.history} docs.
+#'   Default: current time.
 #' @param paginate If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to the API and retrieves a maximum of `message_count` messages.
 #' @param message_count The number of messages to retrieve (only when `paginate = FALSE`).
+#'   Corresponds to `limit` in the \href{https://api.slack.com/methods/conversations.history}{conversations.history} docs.
 #' @param inclusive Include messages with oldest or latest timestamps in results. Ignored unless either timestamp is specified.
 #' @export
 #'
