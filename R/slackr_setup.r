@@ -43,45 +43,49 @@
 #'
 #' # the hard way
 #' slackr_setup(
-#'   channel="#code",
+#'   channel = "#code",
 #'   incoming_webhook_url = "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX"
-#'  )
+#' )
 #' }
 #'
 #' @export
-slackr_setup <- function(channel="#general",
-                         username="slackr",
-                         icon_emoji="",
-                         incoming_webhook_url="",
-                         token="",
-                         config_file="~/.slackr",
-                         echo=FALSE,
-                         cache_dir = '') {
-
+slackr_setup <- function(
+  channel = "#general",
+  username = "slackr",
+  icon_emoji = "",
+  incoming_webhook_url = "",
+  token = "",
+  config_file = "~/.slackr",
+  echo = FALSE,
+  cache_dir = ""
+) {
   Sys.setenv(SLACK_CACHE_DIR = cache_dir)
 
   if (file.exists(config_file)) {
-
     config <- read.dcf(
       config_file,
-      fields=c("channel", "icon_emoji",
-               "username", "incoming_webhook_url", "token")
+      fields = c(
+        "channel",
+        "icon_emoji",
+        "username",
+        "incoming_webhook_url",
+        "token"
       )
-
-    warn_for_args(
-      config[,"token"],
-      username = config[,"username"],
-      icon_emoji = config[,"icon_emoji"]
     )
 
-    Sys.setenv(SLACK_CHANNEL=config[,"channel"])
-    Sys.setenv(SLACK_USERNAME=config[,"username"])
-    Sys.setenv(SLACK_ICON_EMOJI=config[,"icon_emoji"])
-    Sys.setenv(SLACK_INCOMING_WEBHOOK_URL=config[,"incoming_webhook_url"])
-    Sys.setenv(SLACK_TOKEN=config[,"token"])
+    warn_for_args(
+      config[, "token"],
+      username = config[, "username"],
+      icon_emoji = config[, "icon_emoji"]
+    )
 
+    Sys.setenv(SLACK_CHANNEL = config[, "channel"])
+    Sys.setenv(SLACK_USERNAME = config[, "username"])
+    Sys.setenv(SLACK_ICON_EMOJI = config[, "icon_emoji"])
+    Sys.setenv(SLACK_INCOMING_WEBHOOK_URL = config[, "incoming_webhook_url"])
+    Sys.setenv(SLACK_TOKEN = config[, "token"])
   } else {
-    if (token == '' | is.null(token) | is.na(token) | missing(token)) {
+    if (token == "" | is.null(token) | is.na(token) | missing(token)) {
       abort("No config file found. Please specify your Slack OAuth token\n   with the token argument in slackr_setup().")
     }
 
@@ -91,33 +95,38 @@ slackr_setup <- function(channel="#general",
       icon_emoji = icon_emoji
     )
 
-    Sys.setenv(SLACK_CHANNEL=channel)
-    Sys.setenv(SLACK_USERNAME=username)
-    Sys.setenv(SLACK_ICON_EMOJI=icon_emoji)
-    Sys.setenv(SLACK_INCOMING_WEBHOOK_URL=incoming_webhook_url)
-    Sys.setenv(SLACK_TOKEN=token)
-
+    Sys.setenv(SLACK_CHANNEL = channel)
+    Sys.setenv(SLACK_USERNAME = username)
+    Sys.setenv(SLACK_ICON_EMOJI = icon_emoji)
+    Sys.setenv(SLACK_INCOMING_WEBHOOK_URL = incoming_webhook_url)
+    Sys.setenv(SLACK_TOKEN = token)
   }
 
   if (!grepl("?$", Sys.getenv("SLACK_INCOMING_WEBHOOK_URL"))) {
-    Sys.setenv(SLACK_INCOMING_WEBHOOK_URL=sprintf("%s?", config[,"incoming_webhook_url"]))
+    Sys.setenv(SLACK_INCOMING_WEBHOOK_URL = sprintf("%s?", config[, "incoming_webhook_url"]))
   }
 
-  if (length(Sys.getenv("SLACK_CHANNEL"))==0) {
+  if (length(Sys.getenv("SLACK_CHANNEL")) == 0) {
     Sys.setenv("SLACK_CHANNEL", "#general")
   }
 
-  if (length(Sys.getenv("SLACK_USERNAME"))==0) {
+  if (length(Sys.getenv("SLACK_USERNAME")) == 0) {
     Sys.setenv("SLACK_USERNAME", "slackr")
   }
 
   if (echo) {
-    print(toJSON(as.list(
-      Sys.getenv(c("SLACK_CHANNEL", "SLACK_USERNAME",
-                   "SLACK_ICON_EMOJI",
-                   "SLACK_INCOMING_WEBHOOK_URL", "SLACK_TOKEN")
-      )),
-      pretty=TRUE))
+    print(toJSON(
+      as.list(
+        Sys.getenv(c(
+          "SLACK_CHANNEL",
+          "SLACK_USERNAME",
+          "SLACK_ICON_EMOJI",
+          "SLACK_INCOMING_WEBHOOK_URL",
+          "SLACK_TOKEN"
+        ))
+      ),
+      pretty = TRUE
+    ))
   }
 
   auth <- quiet_auth(
@@ -125,7 +134,7 @@ slackr_setup <- function(channel="#general",
   )
 
   if (auth) {
-    return('Successfully connected to Slack')
+    return("Successfully connected to Slack")
   } else {
     abort("Could not connect to Slack with the token you provided. Are you sure you've set up your app correctly?")
   }
@@ -146,25 +155,28 @@ slackr_setup <- function(channel="#general",
 #' create_config_file()
 #'
 #' # using `create_config_file()` before `slackr_setup()`
-#' create_config_file(token = 'xox-',
-#'   incoming_webhook_url = 'https://hooks-',
-#'   channel = '#general',
-#'   username = 'slackr',
-#'   icon_emoji = 'tada')
+#' create_config_file(
+#'   token = "xox-",
+#'   incoming_webhook_url = "https://hooks-",
+#'   channel = "#general",
+#'   username = "slackr",
+#'   icon_emoji = "tada"
+#' )
 #'
 #' slackr_setup()
 #' }
 #' @return TRUE if successful (invisibly)
 #' @export
-create_config_file <- function(filename = '~/.slackr',
-                               token = Sys.getenv("SLACK_TOKEN"),
-                               incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL"),
-                               icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-                               username = Sys.getenv("SLACK_USERNAME"),
-                               channel = Sys.getenv("SLACK_CHANNEL")) {
-
-  username <- if (username == '') 'slackr' else username
-  channel <- if (channel == '') '#general' else channel
+create_config_file <- function(
+  filename = "~/.slackr",
+  token = Sys.getenv("SLACK_TOKEN"),
+  incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WEBHOOK_URL"),
+  icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
+  username = Sys.getenv("SLACK_USERNAME"),
+  channel = Sys.getenv("SLACK_CHANNEL")
+) {
+  username <- if (username == "") "slackr" else username
+  channel <- if (channel == "") "#general" else channel
 
   write.dcf(
     list(
@@ -179,7 +191,7 @@ create_config_file <- function(filename = '~/.slackr',
   )
 
   inform(
-    paste('Successfully wrote config file to', filename)
+    paste("Successfully wrote config file to", filename)
   )
 
   return(
@@ -191,32 +203,30 @@ create_config_file <- function(filename = '~/.slackr',
 #' @seealso [slackr_setup()]
 #' @examples
 #' \dontrun{
-#'   slackr_teardown()
+#' slackr_teardown()
 #' }
 #' @return TRUE if successful (invisibly)
 #' @export
 slackr_teardown <- function() {
   env_vars <- c(
-    'SLACK_TOKEN',
-    'SLACK_CACHE_DIR',
-    'SLACK_CHANNEL',
-    'SLACK_ICON_EMOJI',
-    'SLACK_INCOMING_WEBHOOK_URL',
-    'SLACK_USERNAME'
+    "SLACK_TOKEN",
+    "SLACK_CACHE_DIR",
+    "SLACK_CHANNEL",
+    "SLACK_ICON_EMOJI",
+    "SLACK_INCOMING_WEBHOOK_URL",
+    "SLACK_USERNAME"
   )
 
   invisible(
     lapply(
       env_vars,
       Sys.unsetenv
-      )
     )
+  )
 
-  inform('Successfully tore down environment variables created by slackr_setup()')
+  inform("Successfully tore down environment variables created by slackr_setup()")
 
   return(
     invisible(TRUE)
   )
 }
-
-

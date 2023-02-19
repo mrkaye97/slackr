@@ -23,14 +23,15 @@
 #' @return A `tibble` with message metadata
 #' @references <https://api.slack.com/methods/conversations.history>
 #'
-slackr_history <- function(message_count,
-                           channel = Sys.getenv("SLACK_CHANNEL"),
-                           token = Sys.getenv("SLACK_TOKEN"),
-                           posted_to_time = as.numeric(Sys.time()),
-                           duration = NULL,
-                           posted_from_time = 0,
-                           paginate = FALSE) {
-
+slackr_history <- function(
+  message_count,
+  channel = Sys.getenv("SLACK_CHANNEL"),
+  token = Sys.getenv("SLACK_TOKEN"),
+  posted_to_time = as.numeric(Sys.time()),
+  duration = NULL,
+  posted_from_time = 0,
+  paginate = FALSE
+) {
   channel <- slackr_chtrans(channel, token)
 
   if (!missing(duration) && !is.null(duration) && !missing(posted_to_time) && !is.null(posted_to_time)) {
@@ -57,13 +58,13 @@ slackr_history <- function(message_count,
     if (!paginate) {
       resp <- call_slack_api(
         "/api/conversations.history",
-        .method   = GET,
+        .method = GET,
         token = token,
-        channel   = channel,
-        latest    = posted_to_time,
-        oldest    = posted_from_time,
+        channel = channel,
+        latest = posted_to_time,
+        oldest = posted_from_time,
         inclusive = "true",
-        limit     = message_count
+        limit = message_count
       )
       convert_response_to_tibble(resp, "messages")
     } else {
@@ -71,13 +72,13 @@ slackr_history <- function(message_count,
         function(cursor) {
           call_slack_api(
             "/api/conversations.history",
-            .method   = GET,
+            .method = GET,
             token = token,
-            channel   = channel,
-            latest    = posted_to_time,
-            oldest    = posted_from_time,
+            channel = channel,
+            latest = posted_to_time,
+            oldest = posted_from_time,
             inclusive = "true",
-            limit     = message_count,
+            limit = message_count,
             .next_cursor = cursor
           )
         },

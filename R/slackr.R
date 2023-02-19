@@ -27,14 +27,15 @@
 #' slackr("iris info", head(iris), str(iris))
 #' }
 #' @export
-slackr <- function(...,
-                   channel = Sys.getenv("SLACK_CHANNEL"),
-                   username = Sys.getenv("SLACK_USERNAME"),
-                   icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-                   token = Sys.getenv("SLACK_TOKEN"),
-                   thread_ts = NULL,
-                   reply_broadcast = FALSE) {
-
+slackr <- function(
+  ...,
+  channel = Sys.getenv("SLACK_CHANNEL"),
+  username = Sys.getenv("SLACK_USERNAME"),
+  icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
+  token = Sys.getenv("SLACK_TOKEN"),
+  thread_ts = NULL,
+  reply_broadcast = FALSE
+) {
   local_options(list(cli.num_colors = 1))
 
   warn_for_args(
@@ -44,7 +45,6 @@ slackr <- function(...,
   )
 
   if (!missing(...)) {
-
     # get the arglist
     args <- substitute(list(...))[-1L]
 
@@ -69,31 +69,31 @@ slackr <- function(...,
       expr <- args[[i]]
 
       # do something, note all the newlines...Slack ``` needs them
-      tmp <- switch(mode(expr),
-                    # if it's actually an expresison, iterate over it
-                    expression = {
-                      cat(sprintf("> %s\n", deparse(expr)))
-                      lapply(expr, evalVis)
-                    },
-                    # if it's a call or a name, eval, printing run output as if in console
-                    call = ,
-                    name = {
-                      cat(sprintf("> %s\n", deparse(expr)))
-                      list(evalVis(expr))
-                    },
-                    # if pretty much anything else (i.e. a bare value) just output it
-                    integer = ,
-                    double = ,
-                    complex = ,
-                    raw = ,
-                    logical = ,
-                    numeric = cat(sprintf("%s\n\n", as.character(expr))),
-                    character = cat(sprintf("%s\n\n", expr)),
-                    abort("mode of argument not handled at present by slackr")
+      tmp <- switch(
+        mode(expr),
+        # if it's actually an expresison, iterate over it
+        expression = {
+          cat(sprintf("> %s\n", deparse(expr)))
+          lapply(expr, evalVis)
+        },
+        # if it's a call or a name, eval, printing run output as if in console
+        call = ,
+        name = {
+          cat(sprintf("> %s\n", deparse(expr)))
+          list(evalVis(expr))
+        },
+        # if pretty much anything else (i.e. a bare value) just output it
+        integer = ,
+        double = ,
+        complex = ,
+        raw = ,
+        logical = ,
+        numeric = cat(sprintf("%s\n\n", as.character(expr))),
+        character = cat(sprintf("%s\n\n", expr)),
+        abort("mode of argument not handled at present by slackr")
       )
 
       for (item in tmp) {
-
         if (item$visible) {
           print(item$value)
           cat("\n")
@@ -120,7 +120,6 @@ slackr <- function(...,
         thread_ts = thread_ts,
         reply_broadcast = reply_broadcast
       )
-
   }
 
   invisible(resp)
@@ -151,14 +150,16 @@ slackr <- function(...,
 #' slackr_msg("Hi")
 #' }
 #' @export
-slackr_msg <- function(txt = "",
-                       channel = Sys.getenv("SLACK_CHANNEL"),
-                       username = Sys.getenv("SLACK_USERNAME"),
-                       icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
-                       token = Sys.getenv("SLACK_TOKEN"),
-                       thread_ts = NULL,
-                       reply_broadcast = FALSE,
-                       ...) {
+slackr_msg <- function(
+  txt = "",
+  channel = Sys.getenv("SLACK_CHANNEL"),
+  username = Sys.getenv("SLACK_USERNAME"),
+  icon_emoji = Sys.getenv("SLACK_ICON_EMOJI"),
+  token = Sys.getenv("SLACK_TOKEN"),
+  thread_ts = NULL,
+  reply_broadcast = FALSE,
+  ...
+) {
   warn_for_args(
     token,
     username = username,
@@ -169,9 +170,9 @@ slackr_msg <- function(txt = "",
 
   z <-
     post_message(
-      txt        = output,
+      txt = output,
       emoji = icon_emoji,
-      channel    = channel,
+      channel = channel,
       token = token,
       username = username,
       link_names = 1,

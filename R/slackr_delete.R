@@ -5,9 +5,11 @@
 #' @param channel Channel, private group, or IM channel to delete messages from. Can be an encoded ID, or a name. See the \href{https://api.slack.com/methods/chat.postMessage#channels}{chat.postMessage endpoint documentation} for details.
 #' @param token Authentication token bearing required scopes.
 #' @export
-slackr_delete <- function(count,
-                          channel = Sys.getenv("SLACK_CHANNEL"),
-                          token = Sys.getenv("SLACK_TOKEN")) {
+slackr_delete <- function(
+  count,
+  channel = Sys.getenv("SLACK_CHANNEL"),
+  token = Sys.getenv("SLACK_TOKEN")
+) {
   if (!is.character(channel) | length(channel) > 1) {
     abort("channel must be a character vector of length one")
   }

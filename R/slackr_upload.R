@@ -16,12 +16,14 @@
 #' @return `httr` response object from `POST` call (invisibly)
 #' @importFrom httr add_headers upload_file
 #' @export
-slackr_upload <- function(filename,
-                          title = NULL,
-                          initial_comment = NULL,
-                          channels = Sys.getenv("SLACK_CHANNEL"),
-                          token = Sys.getenv("SLACK_TOKEN"),
-                          thread_ts = NULL) {
+slackr_upload <- function(
+  filename,
+  title = NULL,
+  initial_comment = NULL,
+  channels = Sys.getenv("SLACK_CHANNEL"),
+  token = Sys.getenv("SLACK_TOKEN"),
+  thread_ts = NULL
+) {
   if (channels == "") abort("No channels specified. Did you forget select which channels to post to with the 'channels' argument?")
   f_path <- path.expand(filename)
 

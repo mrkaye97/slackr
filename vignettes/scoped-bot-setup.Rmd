@@ -59,23 +59,22 @@ Without all of the scopes enabled, only certain functions will work. Which ones 
 ```{r demo2, eval=FALSE}
 library(slackr)
 slackr_setup(
-  channel = "<< channel >>", 
+  channel = "<< channel >>",
   incoming_webhook_url = "https://hooks.slack.com/services/<< hook >>",
-  token = 'xoxb-<< token >>'
+  token = "xoxb-<< token >>"
 )
 
 slackr(str(iris))
 
 # send images
 library(ggplot2)
-qplot(mpg, wt, data=mtcars)
+qplot(mpg, wt, data = mtcars)
 slackr_dev("#results")
 
 barplot(VADeaths)
 slackr_dev("@jayjacobs")
 
-ggslackr(qplot(mpg, wt, data=mtcars))
-
+ggslackr(qplot(mpg, wt, data = mtcars))
 ```
 
 

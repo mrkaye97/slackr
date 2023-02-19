@@ -28,12 +28,14 @@
 #' slackr_dev("@@jayjacobs")
 #' }
 #' @export
-slackr_dev <- function(channels = Sys.getenv("SLACK_CHANNEL"),
-                       token = Sys.getenv("SLACK_TOKEN"),
-                       file = "plot",
-                       initial_comment = NULL,
-                       title = NULL,
-                       thread_ts = NULL) {
+slackr_dev <- function(
+  channels = Sys.getenv("SLACK_CHANNEL"),
+  token = Sys.getenv("SLACK_TOKEN"),
+  file = "plot",
+  initial_comment = NULL,
+  title = NULL,
+  thread_ts = NULL
+) {
   ftmp <- tempfile(file, fileext = ".png")
   dev.copy(png, file = ftmp)
   dev.off()

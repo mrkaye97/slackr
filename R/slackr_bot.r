@@ -34,7 +34,8 @@
 #' slackr_bot("iris info", head(iris), str(iris))
 #'
 #' # or directly
-#' slackr_bot("Test message",
+#' slackr_bot(
+#'   "Test message",
 #'   incoming_webhook_url = "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX"
 #' )
 #' }
@@ -47,7 +48,6 @@ slackr_bot <- function(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WE
   }
 
   if (!missing(...)) {
-
     # get the arglist
     args <- substitute(list(...))[-1L]
 
@@ -72,27 +72,28 @@ slackr_bot <- function(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WE
       expr <- args[[i]]
 
       # do something, note all the newlines...Slack ``` needs them
-      tmp <- switch(mode(expr),
-                    # if it's actually an expression, iterate over it
-                    expression = {
-                      cat(sprintf("> %s\n", deparse(expr)))
-                      lapply(expr, evalVis)
-                    },
-                    # if it's a call or a name, eval, printing run output as if in console
-                    call = ,
-                    name = {
-                      cat(sprintf("> %s\n", deparse(expr)))
-                      list(evalVis(expr))
-                    },
-                    # if pretty much anything else (i.e. a bare value) just output it
-                    integer = ,
-                    double = ,
-                    complex = ,
-                    raw = ,
-                    logical = ,
-                    numeric = cat(sprintf("%s\n\n", as.character(expr))),
-                    character = cat(sprintf("%s\n\n", expr)),
-                    abort("mode of argument not handled at present by slackr")
+      tmp <- switch(
+        mode(expr),
+        # if it's actually an expression, iterate over it
+        expression = {
+          cat(sprintf("> %s\n", deparse(expr)))
+          lapply(expr, evalVis)
+        },
+        # if it's a call or a name, eval, printing run output as if in console
+        call = ,
+        name = {
+          cat(sprintf("> %s\n", deparse(expr)))
+          list(evalVis(expr))
+        },
+        # if pretty much anything else (i.e. a bare value) just output it
+        integer = ,
+        double = ,
+        complex = ,
+        raw = ,
+        logical = ,
+        numeric = cat(sprintf("%s\n\n", as.character(expr))),
+        character = cat(sprintf("%s\n\n", expr)),
+        abort("mode of argument not handled at present by slackr")
       )
 
       for (item in tmp) {
@@ -126,7 +127,6 @@ slackr_bot <- function(..., incoming_webhook_url = Sys.getenv("SLACK_INCOMING_WE
     )
 
     stop_for_status(resp)
-
   }
 
   return(invisible(resp))

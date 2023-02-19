@@ -1,5 +1,4 @@
 test_that("slackr_history correctly retrieves post", {
-
   post <- slackr("History test")
 
   history <- slackr_history(
@@ -40,8 +39,8 @@ test_that("slackr_history works with duration specified", {
   Sys.sleep(1.50)
   to_ts <- as.numeric(Sys.time())
 
-  ## Check the past six seconds
-  dur_s <- 6
+  ## Check the past seven seconds
+  dur_s <- 7
   dur_ms <- dur_s * 1000
   dur_hours <- dur_s / 3600
 
@@ -85,7 +84,7 @@ test_that("slackr_history works when posted_from and posted_to are specified for
   expect_equal(max(all_history$ts), post4$ts)
 
   all_history <- slackr_history(
-    message_count = 3,
+    message_count = 1000,
     posted_from_time = post1$ts,
     posted_to_time = post2$ts
   )
@@ -115,4 +114,3 @@ test_that("Specifycing post times in slackr_history correctly limits time window
   expect_gte(max(as.numeric(all_history$ts)), as.numeric(post2$ts))
   expect_lt(as.numeric(max(all_history$ts)), as.numeric(post3$ts))
 })
-

@@ -67,4 +67,3 @@ test_that("config file setup works", {
     "Successfully connected to Slack"
   )
 })
-
