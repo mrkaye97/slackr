@@ -35,8 +35,8 @@ slackr_tex <- function(
   thread_ts = NULL,
   ...
 ) {
-  # check if texPreview is installed, if not provide feedback
-  check_tex_pkg()
+
+  check_installed("texPreview")
 
   if (!is.null(path)) {
     td <- path
@@ -75,26 +75,4 @@ slackr_tex <- function(
   if (is.null(path)) unlink(td, recursive = TRUE)
 
   invisible(res)
-}
-
-
-
-#' check_tex_pkg
-#'
-#' Check if texPreview is intalled
-#' @description Install or load texPreview package,
-#'   inspired by the `parsnip` package
-#' @noRd
-#'
-check_tex_pkg <- function() {
-  is_installed <- try(
-    suppressPackageStartupMessages(
-      requireNamespace("texPreview", quietly = TRUE)
-    ),
-    silent = TRUE
-  )
-
-  if (!is_installed) {
-    abort("texPreview package is not installed, run ?slackr_tex and see Details.")
-  }
 }
