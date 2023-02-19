@@ -84,7 +84,7 @@ test_that("slackr_history works when posted_from and posted_to are specified for
   expect_equal(max(all_history$ts), post4$ts)
 
   all_history <- slackr_history(
-    message_count = 3,
+    message_count = 1000,
     posted_from_time = post1$ts,
     posted_to_time = post2$ts
   )
