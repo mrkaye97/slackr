@@ -39,8 +39,8 @@ test_that("slackr_history works with duration specified", {
   Sys.sleep(1.50)
   to_ts <- as.numeric(Sys.time())
 
-  ## Check the past six seconds
-  dur_s <- 6
+  ## Check the past seven seconds
+  dur_s <- 7
   dur_ms <- dur_s * 1000
   dur_hours <- dur_s / 3600
 
