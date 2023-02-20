@@ -24,7 +24,7 @@ eliminating the need to have a graphics device (think use in scripts)."><meta pr
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.0</span>
       </span>
     </div>
 
@@ -78,20 +78,13 @@ eliminating the need to have a graphics device (think use in scripts).</p>
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ggslackr</span><span class="op">(</span></span>
-<span>  plot <span class="op">=</span> <span class="fu">last_plot</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  plot <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/last_plot.html" class="external-link">last_plot</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  channels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_CHANNEL"</span><span class="op">)</span>,</span>
-<span>  scale <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"din"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
-<span>  height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"din"</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
-<span>  units <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  dpi <span class="op">=</span> <span class="fl">300</span>,</span>
-<span>  limitsize <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  token <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"SLACK_TOKEN"</span><span class="op">)</span>,</span>
-<span>  file <span class="op">=</span> <span class="st">"ggplot"</span>,</span>
+<span>  file <span class="op">=</span> <span class="st">"ggplot.png"</span>,</span>
 <span>  initial_comment <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  thread_ts <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  device <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"png"</span>, <span class="st">"eps"</span>, <span class="st">"ps"</span>, <span class="st">"pdf"</span>, <span class="st">"jpeg"</span>, <span class="st">"tiff"</span>, <span class="st">"bmp"</span>, <span class="st">"svg"</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -104,32 +97,6 @@ eliminating the need to have a graphics device (think use in scripts).</p>
 
 <dt>channels</dt>
 <dd><p>Comma-separated list of channel names or IDs where the file will be shared.</p></dd>
-
-
-<dt>scale</dt>
-<dd><p>scaling factor.</p></dd>
-
-
-<dt>width</dt>
-<dd><p>width (defaults to the width of current plotting window).</p></dd>
-
-
-<dt>height</dt>
-<dd><p>height (defaults to the height of current plotting window).</p></dd>
-
-
-<dt>units</dt>
-<dd><p>units for width and height when either one is explicitly specified
-(in, cm, or mm).</p></dd>
-
-
-<dt>dpi</dt>
-<dd><p>dpi to use for raster graphics.</p></dd>
-
-
-<dt>limitsize</dt>
-<dd><p>when TRUE (the default), ggsave will not save images larger
-than 50x50 inches, to prevent the common error of specifying dimensions in pixels.</p></dd>
 
 
 <dt>token</dt>
@@ -152,12 +119,8 @@ than 50x50 inches, to prevent the common error of specifying dimensions in pixel
 <dd><p>Title of file.</p></dd>
 
 
-<dt>device</dt>
-<dd><p>the file extension to use. Options: "png", "eps", "ps", "pdf", "jpeg", "tiff", "bmp", "svg". Default: "png".</p></dd>
-
-
 <dt>...</dt>
-<dd><p>other arguments passed to graphics device.</p></dd>
+<dd><p>other arguments passed to <a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggsave</a></p></dd>
 
 </dl></div>
     <div id="value">

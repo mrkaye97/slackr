@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.0</span>
       </span>
     </div>
 
@@ -69,6 +69,21 @@
       <small>Source: <a href="https://github.com/mrkaye97/slackr/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="3.3.0" id="slackr-330">slackr 3.3.0<a class="anchor" aria-label="anchor" href="#slackr-330"></a></h2>
+<p>User-facing changes:</p>
+<ul><li>
+<code>ggslackr</code> now relies on dots (<code>...</code>) to pass arguments through to <code>ggsave</code>
+</li>
+<li>
+<code>ggplot2</code> is now in <code>suggests</code>, so the user doesn’t need it installed to use <code>slackr</code>. <code>ggslackr</code> will prompt to install if it’s not already.</li>
+<li>Fixes a “bug” with pagination in <code>slackr_history</code> causing an almost infinite loop</li>
+<li>Fixes a bug in <code>slackr_save</code> where <code>initial_comment</code> would do nothing</li>
+<li>Improves documentation of <code>slackr_history</code> to be more helpful in pointing the user to the Slack API docs</li>
+</ul><p>Backend changes:</p>
+<ul><li>Gets rid of default args in some un-exported functions to make tracking down bugs easier</li>
+<li>Adds significant test coverage</li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="3.2.2" id="slackr-322">slackr 3.2.2<a class="anchor" aria-label="anchor" href="#slackr-322"></a></h2>
 <ul><li>Fixes a bug where specifying specifying <code>duration</code> had no effect in <code><a href="../reference/slackr_history.html">slackr_history()</a></code> if posted_from_time was not specified also. <a href="https://github.com/mrkaye97/slackr/issues/181" class="external-link">linked issue</a>

@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.0</span>
       </span>
     </div>
 
@@ -82,14 +82,18 @@
 <span>  posted_to_time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  duration <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  posted_from_time <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  paginate <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  paginate <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  inclusive <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>message_count</dt>
-<dd><p>The number of messages to retrieve (only when <code>paginate = FALSE</code>).</p></dd>
+<dd><p>The number of messages to retrieve (only when <code>paginate = FALSE</code>).
+Corresponds to <code>limit</code> in the <a href="https://api.slack.com/methods/conversations.history" class="external-link">conversations.history</a> docs.
+Note: If using pagination, setting a value of (e.g.) 1 will result in paginating
+through the channel's history one message at a time. Slack recommends using a value of 200.</p></dd>
 
 
 <dt>channel</dt>
@@ -101,8 +105,9 @@
 
 
 <dt>posted_to_time</dt>
-<dd><p>Timestamp of the last post to consider (default:
-current time).</p></dd>
+<dd><p>Timestamp of the last post to consider.
+Corresponds to <code>latest</code> in the <a href="https://api.slack.com/methods/conversations.history" class="external-link">conversations.history</a> docs.
+Default: current time.</p></dd>
 
 
 <dt>duration</dt>
@@ -113,11 +118,18 @@ history. (default: <code>NULL</code>)</p></dd>
 
 <dt>posted_from_time</dt>
 <dd><p>Timestamp of the first post time to consider. If both
-posted_to_time and duration is specifed, they take precedence. (default: 0)</p></dd>
+posted_to_time and duration is specifed, they take precedence.
+Corresponds to <code>oldest</code> in the <a href="https://api.slack.com/methods/conversations.history" class="external-link">conversations.history</a>
+docs.
+Default: 0</p></dd>
 
 
 <dt>paginate</dt>
 <dd><p>If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to the API and retrieves a maximum of <code>message_count</code> messages.</p></dd>
+
+
+<dt>inclusive</dt>
+<dd><p>Include messages with oldest or latest timestamps in results. Ignored unless either timestamp is specified.</p></dd>
 
 </dl></div>
     <div id="value">
