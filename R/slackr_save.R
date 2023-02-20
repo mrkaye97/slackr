@@ -39,7 +39,7 @@ slackr_save <- function(
   res <- files_upload(
     file = ftmp,
     channels = channels,
-    txt = initial_comment,
+    initial_comment = initial_comment,
     token = token,
     filename = sprintf("%s.Rdata", file),
     title = title,

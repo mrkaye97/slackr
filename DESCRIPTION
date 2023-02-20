@@ -2,7 +2,7 @@ Type: Package
 Package: slackr
 Title: Send Messages, Images, R Objects and Files to 'Slack'
     Channels/Users
-Version: 3.2.2
+Version: 3.3.0
 Author: Bob Rudis [aut, cre], Jay Jacobs [ctb], David Severski [ctb],
     Quinn Weber [ctb], Konrad Karczewski [ctb], Shinya Uryu [ctb], Gregory
     Jefferis [ctb], Ed Niles [ctb], Rick Saporta [ctb], Jonathan Sidi
@@ -27,7 +27,6 @@ Depends:
 Imports:
     cachem (>= 1.0.4),
     dplyr,
-    ggplot2,
     graphics,
     grDevices,
     httr (>= 1.4.2),
@@ -40,6 +39,7 @@ Imports:
     withr
 Suggests:
     covr,
+    ggplot2,
     knitr,
     rmarkdown,
     svglite,

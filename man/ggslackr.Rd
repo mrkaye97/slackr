@@ -5,20 +5,13 @@
 \title{Post a ggplot to a Slack channel}
 \usage{
 ggslackr(
-  plot = last_plot(),
+  plot = ggplot2::last_plot(),
   channels = Sys.getenv("SLACK_CHANNEL"),
-  scale = 1,
-  width = par("din")[1],
-  height = par("din")[2],
-  units = NULL,
-  dpi = 300,
-  limitsize = TRUE,
   token = Sys.getenv("SLACK_TOKEN"),
-  file = "ggplot",
+  file = "ggplot.png",
   initial_comment = NULL,
   thread_ts = NULL,
   title = NULL,
-  device = c("png", "eps", "ps", "pdf", "jpeg", "tiff", "bmp", "svg"),
   ...
 )
 }
@@ -26,20 +19,6 @@ ggslackr(
 \item{plot}{ggplot object to save, defaults to last plot displayed.}
 
 \item{channels}{Comma-separated list of channel names or IDs where the file will be shared.}
-
-\item{scale}{scaling factor.}
-
-\item{width}{width (defaults to the width of current plotting window).}
-
-\item{height}{height (defaults to the height of current plotting window).}
-
-\item{units}{units for width and height when either one is explicitly specified
-(in, cm, or mm).}
-
-\item{dpi}{dpi to use for raster graphics.}
-
-\item{limitsize}{when TRUE (the default), ggsave will not save images larger
-than 50x50 inches, to prevent the common error of specifying dimensions in pixels.}
 
 \item{token}{Authentication token bearing required scopes.}
 
@@ -51,9 +30,7 @@ than 50x50 inches, to prevent the common error of specifying dimensions in pixel
 
 \item{title}{Title of file.}
 
-\item{device}{the file extension to use. Options: "png", "eps", "ps", "pdf", "jpeg", "tiff", "bmp", "svg". Default: "png".}
-
-\item{...}{other arguments passed to graphics device.}
+\item{\dots}{other arguments passed to \link[ggplot2]{ggsave}}
 }
 \value{
 \code{httr} response object (invisibly)

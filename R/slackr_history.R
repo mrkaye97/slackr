@@ -10,14 +10,22 @@
 #' @param token Authentication token bearing required scopes.
 #' @param channel Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name.
 #' @param posted_from_time Timestamp of the first post time to consider. If both
-#'   posted_to_time and duration is specifed, they take precedence. (default: 0)
+#'   posted_to_time and duration is specifed, they take precedence.
+#'   Corresponds to `oldest` in the \href{https://api.slack.com/methods/conversations.history}{conversations.history}
+#'   docs.
+#'   Default: 0
 #' @param duration Number of hours of history to retrieve.  If neither `duration`
 #'   nor `posted_from_time` is specified, there is no time limit on the retrieved
 #'   history. (default: `NULL`)
-#' @param posted_to_time Timestamp of the last post to consider (default:
-#'   current time).
+#' @param posted_to_time Timestamp of the last post to consider.
+#'   Corresponds to `latest` in the \href{https://api.slack.com/methods/conversations.history}{conversations.history} docs.
+#'   Default: current time.
 #' @param paginate If TRUE, uses the Slack API pagination mechanism, and will retrieve all history inside the timeframe.  Otherwise, makes a single call to the API and retrieves a maximum of `message_count` messages.
 #' @param message_count The number of messages to retrieve (only when `paginate = FALSE`).
+#'   Corresponds to `limit` in the \href{https://api.slack.com/methods/conversations.history}{conversations.history} docs.
+#'   Note: If using pagination, setting a value of (e.g.) 1 will result in paginating
+#'   through the channel's history one message at a time. Slack recommends using a value of 200.
+#' @param inclusive Include messages with oldest or latest timestamps in results. Ignored unless either timestamp is specified.
 #' @export
 #'
 #' @return A `tibble` with message metadata
@@ -30,7 +38,8 @@ slackr_history <- function(
   posted_to_time = as.numeric(Sys.time()),
   duration = NULL,
   posted_from_time = 0,
-  paginate = FALSE
+  paginate = FALSE,
+  inclusive = TRUE
 ) {
   channel <- slackr_chtrans(channel, token)
 
@@ -54,21 +63,33 @@ slackr_history <- function(
     posted_from_time <- posted_to_time - duration * 3600
   }
 
-  resp <-
-    if (!paginate) {
-      resp <- call_slack_api(
-        "/api/conversations.history",
-        .method = GET,
-        token = token,
-        channel = channel,
-        latest = posted_to_time,
-        oldest = posted_from_time,
-        inclusive = "true",
-        limit = message_count
+  if (!paginate) {
+    resp <- call_slack_api(
+      "/api/conversations.history",
+      .method = GET,
+      token = token,
+      channel = channel,
+      latest = posted_to_time,
+      oldest = posted_from_time,
+      inclusive = inclusive,
+      limit = message_count
+    )
+
+    resp <- convert_response_to_tibble(resp, "messages")
+  } else {
+    if (missing(posted_from_time) | is.null(posted_to_time)) {
+      abort(
+        paste(
+          "To use pagination with `slackr_history`, you must",
+          "specify a value for `posted_from_time`.",
+          "Not doing so will result in paginating through the entire",
+          "history of the channel up to `posted_to_time`",
+          "(i.e. from `posted_from_time = 0` until `posted_to_time`)."
+        )
       )
-      convert_response_to_tibble(resp, "messages")
-    } else {
-      with_pagination(
+    }
+
+    resp <- with_pagination(
         function(cursor) {
           call_slack_api(
             "/api/conversations.history",
@@ -77,13 +98,14 @@ slackr_history <- function(
             channel = channel,
             latest = posted_to_time,
             oldest = posted_from_time,
-            inclusive = "true",
+            inclusive = inclusive,
             limit = message_count,
             .next_cursor = cursor
           )
         },
         extract = "messages"
       )
-    }
+  }
+
   resp
 }

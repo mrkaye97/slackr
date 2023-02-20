@@ -49,8 +49,8 @@ test_that("ggslackr posts png by default", {
   skip_on_cran()
 
   res <- ggslackr(
-    ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
-      geom_point(),
+    ggplot2::ggplot(data = iris, ggplot2::aes(x = Petal.Width, y = Petal.Length, color = Species)) +
+      ggplot2::geom_point(),
     units = "in"
   )
   expect_true(res$ok)
@@ -60,8 +60,8 @@ test_that("ggslackr posts pdfs", {
   skip_on_cran()
 
   res <- ggslackr(
-    ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
-      geom_point(),
+    ggplot2::ggplot(data = iris, ggplot2::aes(x = Petal.Width, y = Petal.Length, color = Species)) +
+      ggplot2::geom_point(),
     device = "pdf",
     units = "in"
   )
@@ -73,8 +73,8 @@ test_that("ggslackr posts tiffs", {
   skip_on_cran()
 
   res <- ggslackr(
-    ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
-      geom_point(),
+    ggplot2::ggplot(data = iris, ggplot2::aes(x = Petal.Width, y = Petal.Length, color = Species)) +
+      ggplot2::geom_point(),
     device = "tiff",
     units = "in"
   )
@@ -87,8 +87,8 @@ test_that("ggslackr posts svgs", {
   skip_on_ci()
 
   res <- ggslackr(
-    ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
-      geom_point(),
+    ggplot2::ggplot(data = iris, ggplot2::aes(x = Petal.Width, y = Petal.Length, color = Species)) +
+      ggplot2::geom_point(),
     device = "svg",
     units = "in"
   )
@@ -168,13 +168,10 @@ test_that("ggslackr works from in a function", {
   expect_true(res$ok)
 })
 
-test_that("slackr_tex posts", {
-  skip_on_cran()
-  skip_on_ci()
+test_that("non-existent thread_ts throws error", {
+  post <- slackr_msg("Thread")
 
-  res <- slackr_tex(
-    "$\\sum_{n=0}^{\\infty} \\frac{1}{n!}$"
-  )
+  reply_1 <- slackr_msg("Reply", thread_ts = post$ts)
 
-  expect_true(res$ok)
+  expect_equal(post$ts, reply_1$message$thread_ts)
 })

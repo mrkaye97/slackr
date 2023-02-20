@@ -46,7 +46,8 @@ slackr_setup()
 slackr_bot("iris info", head(iris), str(iris))
 
 # or directly
-slackr_bot("Test message",
+slackr_bot(
+  "Test message",
   incoming_webhook_url = "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX"
 )
 }

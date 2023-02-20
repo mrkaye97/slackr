@@ -109,17 +109,16 @@ slackr <- function(
     # combined all of them (rval is a character vector)
     output <- paste0(rval, collapse = "\n")
 
-    resp <-
-      post_message(
-        token = token,
-        channel = channel,
-        username = username,
-        emoji = icon_emoji,
-        txt = sprintf("```%s```", output),
-        link_names = 1,
-        thread_ts = thread_ts,
-        reply_broadcast = reply_broadcast
-      )
+    resp <- post_message(
+      token = token,
+      channel = channel,
+      username = username,
+      emoji = icon_emoji,
+      txt = sprintf("```%s```", output),
+      link_names = 1,
+      thread_ts = thread_ts,
+      reply_broadcast = reply_broadcast
+    )
   }
 
   invisible(resp)
@@ -168,18 +167,17 @@ slackr_msg <- function(
 
   output <- paste0(txt, collapse = "\n\n")
 
-  z <-
-    post_message(
-      txt = output,
-      emoji = icon_emoji,
-      channel = channel,
-      token = token,
-      username = username,
-      link_names = 1,
-      thread_ts = thread_ts,
-      reply_broadcast = reply_broadcast,
-      ...
-    )
+  z <- post_message(
+    txt = output,
+    emoji = icon_emoji,
+    channel = channel,
+    token = token,
+    username = username,
+    link_names = 1,
+    thread_ts = thread_ts,
+    reply_broadcast = reply_broadcast,
+    ...
+  )
 
   invisible(z)
 }

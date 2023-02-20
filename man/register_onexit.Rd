@@ -62,7 +62,9 @@ lm.D9 <- slack_lm(weight ~ group)
 summary(lm.D9)
 
 # pass a message to Slack channel 'general' with a header message to begin output
-register_onexit(lm, "bazinga!",
+register_onexit(
+  lm,
+  "bazinga!",
   channel = "#general",
   header_msg = "This is a message to begin"
 )
@@ -70,7 +72,8 @@ register_onexit(lm, "bazinga!",
 lm.D9 <- slack_lm(weight ~ group)
 
 # onexit with an expression that calls lm.plot
-register_onexit(lm,
+register_onexit(
+  lm,
   {
     par(mfrow = c(2, 2), oma = c(0, 0, 2, 0))
     plot(z)

@@ -14,8 +14,8 @@ POST <- "POST"
 #' @noRd
 #'
 stop_for_status <- function(r) {
-  # note that httr::stop_for_status should be called explicitly
 
+  # note that httr::stop_for_status should be called explicitly
   httr::stop_for_status(r)
   cr <- content(r, encoding = "UTF-8")
 

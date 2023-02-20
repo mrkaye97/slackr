@@ -38,11 +38,13 @@ Create the config file used in \code{slackr_setup()}
 create_config_file()
 
 # using `create_config_file()` before `slackr_setup()`
-create_config_file(token = 'xox-',
-  incoming_webhook_url = 'https://hooks-',
-  channel = '#general',
-  username = 'slackr',
-  icon_emoji = 'tada')
+create_config_file(
+  token = "xox-",
+  incoming_webhook_url = "https://hooks-",
+  channel = "#general",
+  username = "slackr",
+  icon_emoji = "tada"
+)
 
 slackr_setup()
 }
