@@ -168,7 +168,9 @@ test_that("ggslackr works from in a function", {
   expect_true(res$ok)
 })
 
-test_that("non-existent thread_ts throws error", {
+test_that("thread ts correctly posts", {
+  skip_on_cran()
+
   post <- slackr_msg("Thread")
 
   reply_1 <- slackr_msg("Reply", thread_ts = post$ts)
