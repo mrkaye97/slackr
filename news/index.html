@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slackr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.1</span>
       </span>
     </div>
 
@@ -70,7 +70,14 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="3.3.0" id="slackr-330">slackr 3.3.0<a class="anchor" aria-label="anchor" href="#slackr-330"></a></h2>
+<h2 class="page-header" data-toc-text="3.3.1" id="slackr-331">slackr 3.3.1<a class="anchor" aria-label="anchor" href="#slackr-331"></a></h2>
+<ul><li>Fixes a bug in <code>slackr_history</code> where the function fails to infer <code>posted_from_time</code> if not provided</li>
+<li>Adds default <code>message_count = 100</code> to <code>slackr_history</code>
+</li>
+<li>Improves test coverage</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="3.3.0" id="slackr-330">slackr 3.3.0<small>2023-02-20</small><a class="anchor" aria-label="anchor" href="#slackr-330"></a></h2>
 <p>User-facing changes:</p>
 <ul><li>
 <code>ggslackr</code> now relies on dots (<code>...</code>) to pass arguments through to <code>ggsave</code>
