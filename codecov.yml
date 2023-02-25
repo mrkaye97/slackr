@@ -12,6 +12,7 @@ coverage:
         target: auto
         threshold: 1%
         informational: true
-    ignore:
-      - "R/slackr_dev.R"
-      - "R/slackr_tex.R"
+
+ignore:
+  - "R/slackr_dev.R"
+  - "R/slackr_tex.R"
