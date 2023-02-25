@@ -50,5 +50,5 @@ jobs:
         shell: Rscript {0}
 
       - name: Test coverage
-        run: covr::codecov(quiet = FALSE)
+        run: covr::codecov(quiet = FALSE, function_exclusions = c("slackr_dev", "slackr_tex"))
         shell: Rscript {0}
