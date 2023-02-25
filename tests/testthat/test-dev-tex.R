@@ -10,7 +10,7 @@ test_that("slackr_dev posts", {
   expect_equal(post$file$filetype, "png")
 })
 
-test_that("slackr_tex posts", {
+test_that("slackr_tex posts with no dir specified", {
   skip_on_cran()
 
   ## No path specified
@@ -20,7 +20,7 @@ test_that("slackr_tex posts", {
   expect_equal(post$file$filetype, "png")
 })
 
-test_that("slackr_tex posts", {
+test_that("slackr_tex posts with dir specified", {
   skip_on_cran()
 
   ## With path specified

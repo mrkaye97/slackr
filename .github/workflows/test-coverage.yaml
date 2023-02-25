@@ -40,7 +40,9 @@ jobs:
           restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
 
       - name: Install Magick
-        run: brew install imagemagick@6
+        run: |
+          brew install imagemagick@6
+          sudo mv /etc/ImageMagick-6/policy.xml /etc/ImageMagick-6/policy.xml.off
 
       - name: Install dependencies
         run: |

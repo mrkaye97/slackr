@@ -27,7 +27,6 @@ Depends:
 Imports:
     cachem (>= 1.0.4),
     dplyr,
-    graphics,
     grDevices,
     httr (>= 1.4.2),
     jsonlite,
