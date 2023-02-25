@@ -18,6 +18,10 @@ test_that("slackr_tex posts", {
 
   expect_true(post$ok)
   expect_equal(post$file$filetype, "png")
+})
+
+test_that("slackr_tex posts", {
+  skip_on_cran()
 
   ## With path specified
   d <- tempdir()
