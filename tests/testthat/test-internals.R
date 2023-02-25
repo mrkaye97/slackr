@@ -74,3 +74,32 @@ test_that("Users works", {
     "mrkaye97" %in% users$name
   )
 })
+
+test_that("with_retry correctly retries requests", {
+  skip_on_cran()
+
+  i <- 1
+
+  mock <- function() {
+    if (i > 1) {
+      httr:::response(
+        headers = list(`retry-after` = 2),
+        status_code = 200,
+        ok = TRUE
+      )
+    } else {
+      i <<- i + 1
+      httr:::response(
+        headers = list(`retry-after` = 2),
+        status_code = 429
+      )
+    }
+  }
+
+  expect_message(with_retry(mock), "Pausing for 2 seconds due to Slack API rate limit")
+
+  out <- with_retry(mock)
+
+  expect_true(out$ok)
+  expect_equal(out$status_code, 200)
+})
