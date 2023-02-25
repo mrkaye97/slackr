@@ -120,7 +120,7 @@ test_that("slackr_history works when posted_from and posted_to are specified for
   )
 })
 
-test_that("Specifycing post times in slackr_history correctly limits time window", {
+test_that("Specifying post times in slackr_history correctly limits time window", {
   skip_on_cran()
 
   lapply(
@@ -146,5 +146,42 @@ test_that("Specifycing post times in slackr_history correctly limits time window
       expect_gte(max(as.numeric(all_history$ts)), as.numeric(post2$ts))
       expect_lt(as.numeric(max(all_history$ts)), as.numeric(post3$ts))
     }
+  )
+})
+
+test_that("Expect warning for too many params", {
+  skip_on_cran()
+
+  from_time <- slackr_msg("History warning test start")$ts
+  Sys.sleep(1)
+  slackr_msg("History warning test")
+  Sys.sleep(1)
+  to_time <- slackr_msg("History warning test end")$ts
+
+  expect_silent(
+    slackr_history(
+      posted_to_time = to_time,
+      duration = 2 * (as.numeric(to_time) - as.numeric(from_time)) / (60 * 60)
+    )
+  )
+
+  expect_warning(
+    slackr_history(
+      posted_from_time = from_time,
+      posted_to_time = to_time,
+      duration = 2 * (as.numeric(to_time) - as.numeric(from_time)) / (60 * 60)
+    ),
+    "You specified all three of"
+  )
+})
+
+test_that("Error if trying to paginate with no start time", {
+  skip_on_cran()
+
+  expect_error(
+    slackr_history(
+      paginate = TRUE
+    ),
+    "To use pagination with `slackr_history`, you must specify a value for `posted_from_time`"
   )
 })

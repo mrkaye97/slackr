@@ -1,3 +1,8 @@
+# slackr 3.3.1
+* Fixes a bug in `slackr_history` where the function fails to infer `posted_from_time` if not provided
+* Adds default `message_count = 100` to `slackr_history`
+* Improves test coverage
+
 # slackr 3.3.0
   User-facing changes:
   

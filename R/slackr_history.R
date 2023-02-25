@@ -24,7 +24,7 @@
 #' @param message_count The number of messages to retrieve (only when `paginate = FALSE`).
 #'   Corresponds to `limit` in the \href{https://api.slack.com/methods/conversations.history}{conversations.history} docs.
 #'   Note: If using pagination, setting a value of (e.g.) 1 will result in paginating
-#'   through the channel's history one message at a time. Slack recommends using a value of 200.
+#'   through the channel's history one message at a time. Slack recommends using a value of 200. (Default: 100)
 #' @param inclusive Include messages with oldest or latest timestamps in results. Ignored unless either timestamp is specified.
 #' @export
 #'
@@ -32,7 +32,7 @@
 #' @references <https://api.slack.com/methods/conversations.history>
 #'
 slackr_history <- function(
-  message_count,
+  message_count = 100,
   channel = Sys.getenv("SLACK_CHANNEL"),
   token = Sys.getenv("SLACK_TOKEN"),
   posted_to_time = as.numeric(Sys.time()),
@@ -60,7 +60,7 @@ slackr_history <- function(
         .frequency_id = "slackr_history_posted_from_infer_warning"
       )
     }
-    posted_from_time <- posted_to_time - duration * 3600
+    posted_from_time <- as.character(as.numeric(posted_to_time) - duration * 3600)
   }
 
   if (!paginate) {
