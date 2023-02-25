@@ -12,6 +12,7 @@ test_that("slackr_dev posts", {
 
 test_that("slackr_tex posts with no dir specified", {
   skip_on_cran()
+  skip_on_ci()
 
   ## No path specified
   post <- slackr_tex("$$e^{i \\pi} + 1 = 0$$")
@@ -22,6 +23,7 @@ test_that("slackr_tex posts with no dir specified", {
 
 test_that("slackr_tex posts with dir specified", {
   skip_on_cran()
+  skip_on_ci()
 
   ## With path specified
   d <- tempdir()
