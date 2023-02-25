@@ -174,3 +174,14 @@ test_that("Expect warning for too many params", {
     "You specified all three of"
   )
 })
+
+test_that("Error if trying to paginate with no start time", {
+  skip_on_cran()
+
+  expect_error(
+    slackr_history(
+      paginate = TRUE
+    ),
+    "To use pagination with `slackr_history`, you must specify a value for `posted_from_time`"
+  )
+})
