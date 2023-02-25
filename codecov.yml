@@ -3,6 +3,7 @@ coverage:
   ignore:
     - "R/slackr_dev.R"
     - "R/slackr_tex.R"
+    - "tests/testthat/test-dev-tex.R"
   status:
     project:
       default:
