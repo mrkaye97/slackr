@@ -44,7 +44,6 @@ jobs:
       - name: Install Magick
         run: |
           brew install imagemagick@6
-          sudo mv /etc/ImageMagick-6/policy.xml /etc/ImageMagick-6/policy.xml.off
 
       - name: Install dependencies
         run: |
