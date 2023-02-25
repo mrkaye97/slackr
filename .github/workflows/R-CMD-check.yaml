@@ -74,6 +74,8 @@ jobs:
             eval sudo $cmd
           done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
 
+          sudo mv /etc/ImageMagick-6/policy.xml /etc/ImageMagick-6/policy.xml.off
+
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
