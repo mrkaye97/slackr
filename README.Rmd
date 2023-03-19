@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# slackr - send messages to Slack <img src='man/figures/logo.svg' align="right" height="139" />
+# slackr - send messages to Slack <img src='man/figures/logo.svg' align="right" width=33% />
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/slackr)](https://CRAN.R-project.org/package=slackr)
