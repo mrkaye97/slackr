@@ -29,7 +29,7 @@ Description: 'Slack' <https://slack.com/> provides a service for teams to
     images from the current graphics device, R objects, and upload files.
 License: MIT + file LICENSE
 URL: https://github.com/mrkaye97/slackr,
-    https://mrkaye97.github.io/slackr/
+    https://matthewrkaye.com/slackr/
 BugReports: https://github.com/mrkaye97/slackr/issues
 Depends:
     R (>= 3.3.0)

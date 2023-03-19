@@ -1,9 +1,31 @@
+url: https://matthewrkaye.com/slackr
+
 template:
+  bootstrap: 5
+  bootswatch: cosmo
+  bslib:
+    primary: "#ffffff"
+    link-color: "#ff0000"
+    navbar-dark-contrast: "#000000"
+    navbar-dark-hover-color: "#000000"
+    navbar-dark-active-color: "#000000"
   params:
     ganalytics: UA-129880587-1
 
-reference:
+development:
+  mode: auto
 
+navbar:
+  bg: "white"
+  structure:
+    left:  [intro, reference, articles, tutorials, news]
+    right: [github]
+
+authors:
+  Matt Kaye:
+    href: https://www.matthewrkaye.com
+
+reference:
 - title: "Package documentation"
 
 - title: "Main functions"
@@ -13,7 +35,6 @@ reference:
   - ends_with("_slackr")
   - register_onexit
   - ggslackr
-
 
 - title: "Internal functions"
 - contents:

@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# slackr - send messages to Slack <img src='man/figures/logo.svg' align="right" width=33% />
+# slackr <a href="https://matthewrkaye.com/slackr"><img src="man/figures/logo.png" align="right" height="138" alt = ""/></a>
 
 <!-- badges: start -->
 
@@ -37,7 +37,7 @@ devtools::install_github("mrkaye97/slackr")
 Version `3.0.0+` removes all references to `bot_user_oauth_token`
 (deprecated in `v2.4.0`) in favor of `token`. There have also been
 significant changes to how `slackr` and `slackr_bot` handle errors. See
-[the changelog](https://mrkaye97.github.io/slackr/news/index.html) for
+[the changelog](https://matthewrkaye.com/slackr/news/index.html) for
 more details.
 
 Version `2.4.0+` now allows users to choose between using a bot token
