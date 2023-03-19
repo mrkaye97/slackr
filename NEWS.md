@@ -106,9 +106,9 @@ Other changes:
 * HTTP Caching speeds up requests and limits the number of requests we need to make
 * `slackr_history()` and `slackr_delete()` are now implemented
 * `username` and `icon_emoji` parameters to `slackr_***` functions now work again
-* [https://mrkaye97.github.io/slackr/articles/webhook-setup.html](https://mrkaye97.github.io/slackr/articles/webhook-setup.html) have been added with setup instructions and usage
+* [https://matthewrkaye.com/slackr/articles/webhook-setup.html](https://matthewrkaye.com/slackr/articles/webhook-setup.html) have been added with setup instructions and usage
 * Improved error messaging
-* Updates to the README and the [pkgdown site](https://mrkaye97.github.io/slackr/)
+* Updates to the README and the [pkgdown site](https://matthewrkaye.com/slackr/)
 * A number of significant back-end changes, thanks to [Andrie de Vries](https://github.com/andrie), including significant code cleanup, simplification of the API calls, pagination, and more!
 
 # slackr 2.0.2

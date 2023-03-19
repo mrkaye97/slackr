@@ -3,12 +3,21 @@ Package: slackr
 Title: Send Messages, Images, R Objects and Files to 'Slack'
     Channels/Users
 Version: 3.3.1
-Author: Bob Rudis [aut, cre], Jay Jacobs [ctb], David Severski [ctb],
-    Quinn Weber [ctb], Konrad Karczewski [ctb], Shinya Uryu [ctb], Gregory
-    Jefferis [ctb], Ed Niles [ctb], Rick Saporta [ctb], Jonathan Sidi
-    [aut, ctb], Matt Kaye [aut, ctb], Xinye Li [ctb], Andrie de Vries
-    [aut, ctb]
-Maintainer: Matt Kaye <mrkaye97@gmail.com>
+Authors@R: c(
+    person("Matt", "Kaye", role = c("aut", "cre"), email = "mrkaye97@gmail.com", comment = c(website = "matthewrkaye.com")),
+    person("Bob", "Rudis",role = c("aut")),
+    person("Andrie", "de Vries", role = c("aut", "ctb")),
+    person("Jay", "Jacobs", role = "ctb"),
+    person("David", "Severski", role = "ctb"),
+    person("Quinn", "Weber", role = "ctb"),
+    person("Konrad", "Karczewski", role = "ctb"),
+    person("Shinya", "Uryu", role = "ctb"),
+    person("Gregory", "Jefferis", role = "ctb"),
+    person("Ed", "Niles", role = "ctb"),
+    person("Rick", "Saporta", role = "ctb"),
+    person("Jonathan", "Sidi", role = c("aut", "ctb")),
+    person("Xinye", "Li", role = "ctb")
+  )
 Description: 'Slack' <https://slack.com/> provides a service for teams to
     collaborate by sharing messages, images, links, files and more.
     Functions are provided that make it possible to interact with the
@@ -20,7 +29,7 @@ Description: 'Slack' <https://slack.com/> provides a service for teams to
     images from the current graphics device, R objects, and upload files.
 License: MIT + file LICENSE
 URL: https://github.com/mrkaye97/slackr,
-    https://mrkaye97.github.io/slackr/
+    https://matthewrkaye.com/slackr/
 BugReports: https://github.com/mrkaye97/slackr/issues
 Depends:
     R (>= 3.3.0)

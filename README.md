@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# slackr - send messages to Slack <img src='man/figures/logo.svg' align="right" height="139" />
+# slackr <a href="https://matthewrkaye.com/slackr"><img src="man/figures/logo.png" align="right" height="138" alt = ""/></a>
 
 <!-- badges: start -->
 
@@ -37,7 +37,7 @@ devtools::install_github("mrkaye97/slackr")
 Version `3.0.0+` removes all references to `bot_user_oauth_token`
 (deprecated in `v2.4.0`) in favor of `token`. There have also been
 significant changes to how `slackr` and `slackr_bot` handle errors. See
-[the changelog](https://mrkaye97.github.io/slackr/news/index.html) for
+[the changelog](https://matthewrkaye.com/slackr/news/index.html) for
 more details.
 
 Version `2.4.0+` now allows users to choose between using a bot token
@@ -77,9 +77,9 @@ See the vignettes for setup instructions.
 
 The vignettes contain setup instructions and example usage:
 
--   Option 1 setup: `vignette('scoped-bot-setup', package = 'slackr')`
--   Option 2 setup: `vignette('webhook-setup', package = 'slackr')`
--   Usage: `vignette('using-slackr', package = 'slackr')`
+- Option 1 setup: `vignette('scoped-bot-setup', package = 'slackr')`
+- Option 2 setup: `vignette('webhook-setup', package = 'slackr')`
+- Usage: `vignette('using-slackr', package = 'slackr')`
 
 **Important Note:** The setup process for `Option 2` and `Option 3` are
 roughly the same, with only slightly differing scopes.
@@ -115,25 +115,25 @@ integration creation time) with `icon_emoji`.
 
 Many thanks to:
 
--   [Bob Rudis](https://github.com/hrbrmstr)
--   [Jay Jacobs](https://github.com/jayjacobs)
--   [David Severski](https://github.com/davidski)
--   [Quinn Weber](https://github.com/qsweber)
--   [Konrad Karczewski](https://github.com/konradjk)
--   [Ed Niles](https://github.com/eniles)
--   [Rick Saporta](https://github.com/rsaporta)
--   [Jonathan Sidi](https://github.com/yonicd)
--   [Matt Kaye](https://github.com/mrkaye97)
--   [Xinye Li](https://github.com/xinye1)
--   [Andrie de Vries](https://github.com/andrie)
+- [Bob Rudis](https://github.com/hrbrmstr)
+- [Jay Jacobs](https://github.com/jayjacobs)
+- [David Severski](https://github.com/davidski)
+- [Quinn Weber](https://github.com/qsweber)
+- [Konrad Karczewski](https://github.com/konradjk)
+- [Ed Niles](https://github.com/eniles)
+- [Rick Saporta](https://github.com/rsaporta)
+- [Jonathan Sidi](https://github.com/yonicd)
+- [Matt Kaye](https://github.com/mrkaye97)
+- [Xinye Li](https://github.com/xinye1)
+- [Andrie de Vries](https://github.com/andrie)
 
 for their contributions to the package!
 
 ## Known Issues
 
--   Depending on your scopes, `slackr` could quietly fail (i.e. not
-    throw an error, but also not post anything to your channel). If this
-    happens, try explicitly adding the app you’re trying to have
-    `slackr` post as to the channel you want in your Slack workspace
-    with `/invite @your_app_name` or make sure you have
-    `chat:write.public` enabled.
+- Depending on your scopes, `slackr` could quietly fail (i.e. not throw
+  an error, but also not post anything to your channel). If this
+  happens, try explicitly adding the app you’re trying to have `slackr`
+  post as to the channel you want in your Slack workspace with
+  `/invite @your_app_name` or make sure you have `chat:write.public`
+  enabled.
