@@ -5,5 +5,8 @@ articles:
   scoped-bot-setup: scoped-bot-setup.html
   using-slackr: using-slackr.html
   webhook-setup: webhook-setup.html
-last_built: 2023-02-25T18:37Z
+last_built: 2023-03-19T18:46Z
+urls:
+  reference: https://matthewrkaye.com/slackr/reference
+  article: https://matthewrkaye.com/slackr/articles
 
