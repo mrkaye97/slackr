@@ -10,7 +10,7 @@ template:
     navbar-dark-hover-color: "#000000"
     navbar-dark-active-color: "#000000"
   params:
-    ganalytics: UA-129880587-1
+    ganalytics: "358809638"
 
 development:
   mode: auto
