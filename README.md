@@ -88,10 +88,10 @@ roughly the same, with only slightly differing scopes.
 
 The `slackr_setup()` function will try to read setup values from a
 `~/.slackr` (you can change the default filepath by recording in the
-SLACKR_CONFIG_FILE environment variable or supplying as an argument to
-the `config_file` parameter) configuration file, which may be easier and
-more secure than passing them in manually (plus, will allow you to have
-multiple `slackr` configurations for multiple Slack.com teams).
+SLACKR_CONFIG_FILE_PATH environment variable or supplying as an argument
+to the `config_file` parameter) configuration file, which may be easier
+and more secure than passing them in manually (plus, will allow you to
+have multiple `slackr` configurations for multiple Slack.com teams).
 
 The file is in Debian Control File (DCF) format since it really doesn’t
 need to be JSON and R has a handy `read.dcf()` function since that’s

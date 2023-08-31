@@ -55,7 +55,7 @@ slackr_setup <- function(
   icon_emoji = "",
   incoming_webhook_url = "",
   token = "",
-  config_file = Sys.getenv("SLACKR_CONFIG_FILE", unset = "~/.slackr"),
+  config_file = Sys.getenv("SLACKR_CONFIG_FILE_PATH", unset = "~/.slackr"),
   echo = FALSE,
   cache_dir = ""
 ) {
