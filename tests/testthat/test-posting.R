@@ -76,7 +76,8 @@ test_that("ggslackr posts tiffs", {
     ggplot2::ggplot(data = iris, ggplot2::aes(x = Petal.Width, y = Petal.Length, color = Species)) +
       ggplot2::geom_point(),
     device = "tiff",
-    units = "in"
+    units = "in",
+    scale = 0.10
   )
 
   expect_true(res$ok)
