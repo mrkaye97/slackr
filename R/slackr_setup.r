@@ -125,7 +125,8 @@ slackr_setup <- function(
           "SLACK_TOKEN"
         ))
       ),
-      pretty = TRUE
+      pretty = TRUE,
+      auto_unbox = TRUE
     ))
   }
 
