@@ -86,6 +86,7 @@ jobs:
           install.packages("curl", type="source")
           install.packages("xml2", type="source")
           remotes::install_cran("devtools")
+          devtools::install_github("yonicd/texPreview")
         shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
