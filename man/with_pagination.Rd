@@ -16,7 +16,7 @@ A \code{tibble}
 }
 \description{
 This loops over \code{fun}, extracts the \code{next_cursor} from the API response, and
-injects this into the next loop.  At the completion of each loop, the function \code{\link[=convert_response_to_tibble]{convert_response_to_tibble()}} is run with \code{extract} as and argument. The results are combined with \code{\link[dplyr:bind]{dplyr::bind_rows()}}
+injects this into the next loop.  At the completion of each loop, the function \code{\link[=convert_response_to_tibble]{convert_response_to_tibble()}} is run with \code{extract} as and argument. The results are combined with \code{\link[dplyr:bind_rows]{dplyr::bind_rows()}}
 }
 \seealso{
 call_slack_api
