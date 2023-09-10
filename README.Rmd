@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/slackr)](https://CRAN.R-project.org/package=slackr)
-[![R-CMD-check](https://github.com/mrkaye97/slackr/workflows/R-CMD-check/badge.svg)](https://github.com/mrkaye97/slackr/actions)
+[![R-CMD-check](https://github.com/mrkaye97/slackr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mrkaye97/slackr/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/slackr)
 [![codecov](https://codecov.io/gh/mrkaye97/slackr/branch/master/graph/badge.svg?token=5HjUtFfIJR)](https://codecov.io/gh/mrkaye97/slackr)
