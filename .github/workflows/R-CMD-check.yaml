@@ -73,7 +73,7 @@ jobs:
       - name: Install system dependencies
         if: runner.os == 'Linux'
         run: |
-          sudo apt-get install -y libcurl4 libcurl4-openssl-dev imagemagick
+          sudo apt-get install -y libcurl4 libcurl4-openssl-dev imagemagick libmagick++-6.q16-8
           while read -r cmd
           do
             eval sudo $cmd
