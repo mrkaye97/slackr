@@ -46,6 +46,10 @@ Appends to the body of a function an on.exit call to run at the end of the call.
 \details{
 If a character is passed to f then it will evaluate internally to a function.
 }
+\note{
+You need a \url{https://www.slack.com} account and will also need to
+set up an API token \url{https://api.slack.com/}
+}
 \examples{
 \dontrun{
 ctl <- c(4.17, 5.58, 5.18, 6.11, 4.50, 4.61, 5.17, 4.53, 5.33, 5.14)

@@ -2,7 +2,7 @@ Type: Package
 Package: slackr
 Title: Send Messages, Images, R Objects and Files to 'Slack'
     Channels/Users
-Version: 3.3.1
+Version: 3.3.2
 Authors@R: c(
     person("Matt", "Kaye", role = c("aut", "cre"), email = "mrkaye97@gmail.com", comment = c(website = "matthewrkaye.com")),
     person("Bob", "Rudis",role = c("aut")),

@@ -10,7 +10,7 @@ slackr_setup(
   icon_emoji = "",
   incoming_webhook_url = "",
   token = "",
-  config_file = "~/.slackr",
+  config_file = Sys.getenv("SLACKR_CONFIG_FILE_PATH", unset = "~/.slackr"),
   echo = FALSE,
   cache_dir = ""
 )
@@ -45,7 +45,7 @@ work properly.
 By default, \code{\link[=slackr]{slackr()}} (and other functions) will use the \verb{#general}
 room and a username of \code{slackr()} with no emoji.
 
-If a valid file is found at the locaiton pointed to by \code{config_file}, the
+If a valid file is found at the location pointed to by \code{config_file}, the
 values there will be used. The fields should be specified as such in the file:
 
 \preformatted{
