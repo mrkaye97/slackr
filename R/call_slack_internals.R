@@ -112,19 +112,52 @@ files_upload <- function(
   token,
   ...
 ) {
-  r <- call_slack_api(
-    "/api/files.upload",
+  initial_upload_response <- call_slack_api(
+    "/api/files.getUploadURLExternal",
     .method = POST,
     token = token,
     body = list(
-      file = upload_file(file),
-      initial_comment = initial_comment,
-      channels = paste(channels, collapse = ","),
+      filename=file,
+      length=file.size(file)
+    )
+  )
+
+  initial_upload_content <- content(initial_upload_response)
+
+  upload_url <- initial_upload_content$upload_url
+  file_id <- initial_upload_content$file_id
+  channel <- slackr_chtrans(channels, token)
+
+  httr::POST(
+    url=upload_url,
+    body=upload_file(file)
+  )
+
+  kwargs <- list(...)
+  title <- kwargs$title
+
+  if (is.null(title)) {
+    inner <- list(id = file_id)
+  } else {
+    inner <- list(id = file_id, title = title)
+  }
+
+  response <- httr::POST(
+    "https://slack.com/api/files.completeUploadExternal",
+    add_headers(
+      .headers = c(Authorization = paste("Bearer", token))
+    ),
+    httr::content_type_json(),
+    encode="json",
+    body = list(
+      files = list(inner),
+      channel_id=channel,
+      initial_comment=initial_comment,
       ...
     )
   )
 
-  invisible(content(r))
+  invisible(content(response))
 }
 
 
