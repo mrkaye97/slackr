@@ -1,3 +1,7 @@
+# slackr 3.4.0
+
+* Fixes the internals of `files_upload` to use new Slack API and migrate off of [deprecated `files.upload` method](files.upload method)
+
 # slackr 3.3.1
 * Fixes a bug in `slackr_history` where the function fails to infer `posted_from_time` if not provided
 * Adds default `message_count = 100` to `slackr_history`
