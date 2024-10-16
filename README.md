@@ -10,7 +10,7 @@ status](https://www.r-pkg.org/badges/version/slackr)](https://CRAN.R-project.org
 [![R-CMD-check](https://github.com/mrkaye97/slackr/workflows/R-CMD-check/badge.svg)](https://github.com/mrkaye97/slackr/actions)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-![downloads](http://cranlogs.r-pkg.org/badges/grand-total/slackr)
+[![](https://cranlogs.r-pkg.org/badges/slackr)](https://cran.r-project.org/package=slackr)
 [![codecov](https://codecov.io/gh/mrkaye97/slackr/branch/master/graph/badge.svg?token=5HjUtFfIJR)](https://codecov.io/gh/mrkaye97/slackr)
 <!-- badges: end -->
 
