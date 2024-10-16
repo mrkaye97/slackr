@@ -1,3 +1,4 @@
+# Note: `slackr` is seeking a new maintainer! Please [see this issue](https://github.com/mrkaye97/slackr/issues/204)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
